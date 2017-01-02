@@ -549,6 +549,27 @@ paths:
             type: "array"
             items:
               type: "string"
+  /payments /{orderId}/serialNumber /{merchantSerialNumber}/details:
+    get:
+      tags:
+      - "Vipps"
+      summary: "Get payment details"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orderId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "merchantSerialNumber"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Vipps transaction"
   /preapproval/{loanid}:
     get:
       tags:
@@ -1667,3 +1688,26 @@ definitions:
       \  \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n \
       \       \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\"\
       :\"Please use vipps app to process the payment\"\n    }\n}\n```"
+  Vipps customer:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      phone:
+        type: "string"
+      name:
+        type: "string"
+      accountnumber:
+        type: "string"
+      cardnumber:
+        type: "string"
+  Vipps transaction:
+    type: "object"
+    description: "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\
+      \nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\"\
+      : {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\"\
+      :\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\"\
+      :\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\"\
+      : \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"\
+      transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\
+      \n}]\n```"
