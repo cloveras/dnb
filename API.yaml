@@ -1,0 +1,1669 @@
+---
+swagger: "2.0"
+info:
+  description: "Work in progress.."
+  version: "1.0.1"
+  title: "APIs"
+  contact: {}
+host: "api.example.com"
+basePath: "/v1"
+tags:
+- name: "Customers"
+- name: "Accounts"
+- name: "Transactions"
+- name: "Vipps"
+- name: "Location"
+  description: "A collection of location-related resources. Needs (lots of) work."
+- name: "Loans"
+  description: "Random notes.."
+- name: "Reports"
+  description: "Reports as specified by the BM Dashboared project."
+- name: "Representations"
+schemes:
+- "https"
+security:
+- OAuth 2.0: []
+paths:
+  /:
+    get:
+      tags:
+      - "Vipps"
+      summary: "In-app payment"
+      description: "Copied from: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\
+        \nTo launch the ViPPS app, use the following call (at a minimum):\n\nvipps://?action=inAppPayment&appID=fa01s-21res-qq21p-mq1p6&amount=12000&merchantSerialNumber=ed9320pre&fallbackURL=app://?action=confirmed"
+      parameters:
+      - name: "action"
+        in: "query"
+        description: "for payment it should be “inAppPayment” and for reservation\
+          \ “inAppReserve”."
+        required: true
+        type: "string"
+        x-example: "inAppPayment"
+      - name: "appID"
+        in: "query"
+        description: "App registration id will be created for Merchants’ each app\
+          \ registered in Vipps Systems and will be shared once the enrolment process\
+          \ is done"
+        required: true
+        type: "string"
+        x-example: "fa01s - 21res - qq21p - mq1p6"
+      - name: "amount"
+        in: "query"
+        description: "Amount for which the payment should be initiated. The amount\
+          \ should in the lowest denomination i.e., Øre. Vipps only support NOK currency.\
+          \ Minimum value is 100 and maximum value is 9999999. Vipps will not round\
+          \ of the provided number. If the amount is not in the mentioned format,\
+          \ Vipps will return the FAIL state of transaction mentioning incorrect number\
+          \ format."
+        required: true
+        type: "string"
+        x-example: "12000"
+      - name: "orderID"
+        in: "query"
+        description: "Order id from 3rdparty app for which user is initiating a payment.\
+          \ Maximum length for this field is 30 chars. This order ID will be stored\
+          \ in the Vipps systems against the transactions and shall be displayed the\
+          \ receipt in the Vipps App for the user. The order ID will also be presented\
+          \ for the respective transaction in the Sales and Settlement report."
+        required: true
+        type: "string"
+      - name: "message"
+        in: "query"
+        description: "URL encoded string. Payment’s reference message. Maximum length\
+          \ for this field is 200 chars. The message field will be displayed as part\
+          \ of the receipt."
+        required: false
+        type: "string"
+        x-example: "Test%20Message"
+      - name: "merchantSerialNumber"
+        in: "query"
+        description: "Merchant Sales Unit’s serial number will be a unique number\
+          \ in Vipps systems. The Serial number registered in Vipps Systems will be\
+          \ shared once the enrollment process is done."
+        required: true
+        type: "string"
+        x-example: "ed9320pre"
+      - name: "data"
+        in: "query"
+        description: "URL encoded string. If this exists, then the contents will go\
+          \ as a query string parameter with fallbackURL. Calling app can use this\
+          \ field to identify their session or booking for which the payment has been\
+          \ done. Maximum length for this field is 128 chars."
+        required: false
+        type: "string"
+      - name: "fallbackURL"
+        in: "query"
+        description: "URL encoded string. URL to be invoked once the payment process\
+          \ is complete. This is to respond back to calling app"
+        required: true
+        type: "string"
+        x-example: "app://?action=confirmed"
+      responses:
+        200:
+          description: ""
+        202:
+          description: "Status 202"
+        401:
+          description: "Status 401"
+        402:
+          description: "Status 402"
+        403:
+          description: "Status 403"
+        404:
+          description: "Status 404"
+        500:
+          description: "Status 500"
+  /account/{account}:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get account details"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Account"
+        401:
+          description: "Status 401"
+        404:
+          description: "Status 404"
+    post:
+      tags:
+      - "Accounts"
+      summary: "Create account"
+      description: "TBD"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Account"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Accounts"
+      summary: "Delete account"
+      parameters: []
+      responses:
+        200:
+          description: "Deleted"
+        401:
+          description: ""
+        404:
+          description: "Account does not exist."
+        500:
+          description: "I'm afraid I can't do that."
+  /accounts/{account}/balance:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Account balance."
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "{\n   \"balance\": 12345,\n   \"currency\": \"NOK\",\n}"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        401:
+          description: "No balance for you."
+        404:
+          description: "Account not found."
+  /accounts/{account}/name:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get name"
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    post:
+      tags:
+      - "Accounts"
+      summary: "Change name"
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Accounts"
+      summary: "Delete name"
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /accounts/{account}/safetospend:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get \"safe to spend\" amount"
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Don't spend it all at once."
+          schema:
+            type: "integer"
+            format: "int32"
+        401:
+          description: "Not really your account, is it?"
+  /accounts/{account}/transactionlist/{year}/{month}:
+    get:
+      tags:
+      - "Accounts"
+      summary: "List of transactions."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits. Example: 12345678910"
+        required: true
+        type: "string"
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        401:
+          description: "Status 401"
+        404:
+          description: "No transactions."
+  /customers/{orgnr}:
+    get:
+      tags:
+      - "Customers"
+      summary: "Get basic customer information."
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/Customer"
+        404:
+          description: "No such orgnr found."
+    post:
+      tags:
+      - "Customers"
+      summary: "Create new customer"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Customer"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Customers"
+      summary: "Delete customer"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /customers/{orgnr}/about:
+    get:
+      tags:
+      - "Customers"
+      summary: "Get detailed customer information."
+      description: "Nice if this is different from /customers/{orgnr}."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/Customer"
+    post:
+      tags:
+      - "Customers"
+      summary: "Update customer details"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Customer"
+      responses:
+        200:
+          description: "Status 200"
+  /customers/{orgnr}/accounts:
+    get:
+      tags:
+      - "Customers"
+      summary: "Accounts overview (list of accounts)."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Account"
+        404:
+          description: "No accounts."
+  /loans/apply:
+    post:
+      tags:
+      - "Loans"
+      summary: "Apply for a new loan"
+      description: "Need to POST quite a bit of data, and also handle AML, KYC, etc"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /loans/downpay/{loanid}:
+    post:
+      tags:
+      - "Loans"
+      summary: "Down to zero."
+      parameters:
+      - name: "loanid"
+        in: "path"
+        description: "The loan do downpay."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /loans/{loanid}:
+    get:
+      tags:
+      - "Loans"
+      summary: "Details of this loan"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Loan"
+    delete:
+      tags:
+      - "Loans"
+      summary: "Delete loan"
+      description: "Downpayment first."
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+  /location/branch/findbyaddress:
+    get:
+      tags:
+      - "Location"
+      summary: "Find nearest branch by address"
+      parameters:
+      - name: "address"
+        in: "query"
+        description: "TBD"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /location/branch/{branchid}/details:
+    get:
+      tags:
+      - "Location"
+      summary: "Branch details"
+      parameters:
+      - name: "branchid"
+        in: "path"
+        description: "Id of branch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+    post:
+      tags:
+      - "Location"
+      summary: "Update branch details"
+      parameters:
+      - name: "branchid"
+        in: "path"
+        description: "Id of branch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /location/branch/{branchid}/openinghours:
+    get:
+      tags:
+      - "Location"
+      summary: "Opening hours of a branch"
+      parameters:
+      - name: "branchid"
+        in: "path"
+        description: "Id of a branch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    post:
+      tags:
+      - "Location"
+      summary: "Update branch opening hours"
+      parameters:
+      - name: "branchid"
+        in: "path"
+        description: "Id of a branch"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /location/branch/{latitude}/{longditude}/:
+    get:
+      tags:
+      - "Location"
+      summary: "Nearest branch office"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /location/minibank/{latitude}/{longditude}/:
+    get:
+      tags:
+      - "Location"
+      summary: "Nearest minibank"
+      parameters:
+      - name: "latitude"
+        in: "path"
+        description: "Current latitude. Example: 37.4238253802915"
+        required: true
+        type: "string"
+      - name: "longditude"
+        in: "path"
+        description: "Current longditude. Example: -122.0842499"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "List of minibank locations"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+  /preapproval/{loanid}:
+    get:
+      tags:
+      - "Loans"
+      summary: "Get details of preapproval"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /preapproval/{personnr}/{desiredamount}:
+    post:
+      tags:
+      - "Loans"
+      summary: "Apply for preapproval"
+      parameters:
+      - name: "personnr"
+        in: "path"
+        description: "11-digit personal id number"
+        required: true
+        type: "string"
+      - name: "desiredamount"
+        in: "path"
+        description: "How much?"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+        417:
+          description: "Haha"
+  /reports/accounts/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Accounts report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Different use than /accounts?"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/advices/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Advices report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Advice"
+    delete:
+      tags:
+      - "Reports"
+      summary: "Delete advices"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/annual/{year}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Annual report for year and company,"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Report found."
+          schema:
+            $ref: "#/definitions/Annual report"
+        404:
+          description: "Annual report not found."
+  /reports/behaviour/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Behaviour report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+    delete:
+      tags:
+      - "Reports"
+      summary: "Delete advices."
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/benchmarks/{year}/{month}/{orgnr}/compareto/{orgnr_compare}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Benchmark report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      - name: "orgnr_compare"
+        in: "path"
+        description: "Organization number of company to to compare with, 9 digits.\
+          \ Example: 123456789"
+        required: true
+        type: "string"
+      - name: "?type="
+        in: "query"
+        description: "What to compare: revenue (default=, profitability, liquidity"
+        required: false
+        type: "string"
+        x-example: "revenue"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/calendars/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Calendar report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/chats/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Chats report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/expenses/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Expenses report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/invoices/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Invoices report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/liquidity/{year}{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Liquidity for year, month and company."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/liquidityprognosis/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Liquidity prognosis for year, month and copmpany."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+    delete:
+      tags:
+      - "Reports"
+      summary: "Delete prognosis."
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/liquiditystatus/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Liquidity status for year, month and company."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/loanpayments/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Loan payments report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/notifications/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Notifications report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/organization/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Organization report."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Report (placeholder)"
+  /reports/products/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Products report."
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/profitability/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Profitability report."
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/revenues/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Revenues report."
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/roles/{year}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Roles report."
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/solidity/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Solidity report."
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/system/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "System report."
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /reports/transactions/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Transaction report."
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "{\n    \"transactions\": [\n        {\n            \"account_balance\"\
+            : 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\"\
+            ,\n            \"currency\": \"NOK\",\n            \"description\": \"\
+            DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\"\
+            : \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n           \
+            \ \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"\
+            restaurant\"\n        },\n        {\n            \"account_balance\":\
+            \ 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\"\
+            ,\n            \"currency\": \"NOK\",\n            \"description\": \"\
+            DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\"\
+            : \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n           \
+            \ \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"\
+            restaurant\"\n        },\n    ]\n}"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+  /reports/turnovers/{year}/{month}/{orgnr}:
+    get:
+      tags:
+      - "Reports"
+      summary: "Turnovers report."
+      parameters:
+      - name: "year"
+        in: "path"
+        description: "Year, 4 digits. Example: 2017"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "Month, 2 digits (January is 01). Example: 01"
+        required: true
+        type: "string"
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /transactions/{transactionid}:
+    get:
+      tags:
+      - "Transactions"
+      summary: "Get transaction details"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "transactionid"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Transaction"
+    post:
+      tags:
+      - "Transactions"
+      summary: "Create transaction"
+      description: "TBD. Needs a lot more details. Just a note, really."
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "transactionid"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Transaction"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Transactions"
+      summary: "Delete/stop transaction"
+      parameters:
+      - name: "transactionid"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+        401:
+          description: "Not for you."
+        403:
+          description: "Too late?"
+  /vipps/customer:
+    post:
+      tags:
+      - "Vipps"
+      summary: "Create new Vipps customer"
+      description: "Phone number, personal id number, name, card number, account number"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Customer"
+  /vipps/merchants/{latitude}/{longditude}:
+    get:
+      tags:
+      - "Vipps"
+      summary: "Nearby Vipps merchants"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "latitude"
+        in: "path"
+        description: "Current latitude. Example: 37.4238253802915"
+        required: true
+        type: "string"
+      - name: "longditude"
+        in: "path"
+        description: "Current longditude. Example: -122.0842499"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Customer"
+  /vipps/payments:
+    post:
+      tags:
+      - "Vipps"
+      summary: "Make new Vipps payment"
+      description: "From 8.3.2: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Vipps payment request"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/Vipps payment response"
+  /vipps/settlement/create:
+    post:
+      tags:
+      - "Vipps"
+      summary: "Create a new (empty) settlement"
+      description: "date, name, participants, currency(?)"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /vipps/settlement/{settlementid}:
+    get:
+      tags:
+      - "Vipps"
+      summary: "Details of a settlement"
+      parameters: []
+      responses:
+        200:
+          description: "Created, status, name, owners/admins, list of expenses"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+    delete:
+      tags:
+      - "Vipps"
+      summary: "Delete settlement"
+      description: "(Not possible in Vipps today)"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /vipps/settlement/{settlementid}/expense:
+    get:
+      tags:
+      - "Vipps"
+      summary: "Details of expense"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    post:
+      tags:
+      - "Vipps"
+      summary: "New expense"
+      description: "Date, who, amount, description, etc"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Vipps"
+      summary: "Delete expense from settlement"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /vipps/settlement/{settlementid}/settle:
+    get:
+      tags:
+      - "Vipps"
+      summary: "Settle, pay everyone"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /vipps/settlement/{settlementid}/user:
+    post:
+      tags:
+      - "Vipps"
+      summary: "Add user to settlement"
+      description: "Should POST a Person, not Customer"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Customer"
+      responses:
+        200:
+          description: "Status 200"
+  /vipps/settlement/{settlementid}/user/{userid}:
+    get:
+      tags:
+      - "Vipps"
+      summary: "Details of user in settlement"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Maybe just a Person, as he/she may not be a customer with\
+            \ us."
+          schema:
+            $ref: "#/definitions/Customer"
+securityDefinitions:
+  OAuth 2.0:
+    type: "oauth2"
+    scopes: {}
+definitions:
+  Customer:
+    type: "object"
+    required:
+    - "Id"
+    properties:
+      Id:
+        type: "string"
+        description: "Person: Personal number, 11 digits.\nCompany: Organization number,\
+          \ 9 digits."
+      Name:
+        type: "string"
+        description: "Person: Rune Bjerke.\nCompany: DNB"
+      Address:
+        type: "string"
+        description: "Street address."
+      Postcode:
+        type: "string"
+        description: "4 digits if in Norway,"
+      City:
+        type: "string"
+      Country:
+        type: "string"
+      Email:
+        type: "string"
+      Phone:
+        type: "string"
+      Website:
+        type: "string"
+      Notes (placeholder):
+        type: "string"
+        description: "{\n    \"email\": \"rune.bjerke@dnb.no\",\n    \"first_name\"\
+          : \"Rune\",\n    \"last_name\": \"Bjerke\",\n    \"gender\": \"m\",\n  \
+          \  \"adr_street\": \"Dronning Eufemias gate 30\",\n    \"adr_post_code\"\
+          : \"0191\",\n    \"adr_city\": \"Oslo\",\n    \"adr_country\": \"NO\",\n\
+          \    “phone\": \"+47 04800\",\n    \"birthday\": \"1960-06-17\",\n    \"\
+          created\": \"2015-07-01T10:42:00+01:00\",\L    \"updated\": \"2015-10-01T10:42:00+01:00\"\
+          ,\n}"
+  Account:
+    type: "object"
+    properties:
+      Number:
+        type: "string"
+        description: "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
+      Type:
+        type: "string"
+        description: "Internal use, probably."
+      Name:
+        type: "string"
+        description: "Friendly name."
+      IBAN:
+        type: "string"
+        description: "ISO 13616:2007"
+      Currency:
+        type: "string"
+        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+      Notes (placeholder):
+        type: "string"
+        description: "{\n    \"accounts\": [\n        {\n            \"account_number\"\
+          : \"05000000000\",\n            \"description\": \"Salary\",\n         \
+          \   \"created\": \"2015-07-01T10:42:00+01:00\"\n        }\n        {\n \
+          \           \"account_number\": \"05000000001\",\n            \"description\"\
+          : \"Expenses\",\n            \"created\": \"2015-07-01T10:42:00+01:00\"\n\
+          \        }\n        {\n            \"account_number\": \"05000000002\",\n\
+          \            \"description\": \"Savings\",\n            \"created\": \"\
+          2015-07-01T10:42:00+01:00\"\n        }\n    ]\n}"
+  Transaction:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      account:
+        type: "string"
+      type:
+        type: "string"
+      currency:
+        type: "string"
+      amount:
+        type: "string"
+      reference:
+        type: "string"
+        description: "Description"
+      Notes (placeholder):
+        type: "string"
+        description: "{\n    \"transactions\": [\n        {\n            \"account_balance\"\
+          : 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\"\
+          ,\n            \"currency\": \"NOK\",\n            \"description\": \"DNB\
+          \ Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\"\
+          : \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"\
+          settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\
+          \n        },\n        {\n            \"account_balance\": 12305,\n     \
+          \       \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\"\
+          ,\n            \"currency\": \"NOK\",\n            \"description\": \"DNB\
+          \ Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\"\
+          : \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"\
+          settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\
+          \n        },\n    ]\n}"
+  Annual report:
+    type: "object"
+    properties:
+      orgnr:
+        type: "string"
+      year:
+        type: "string"
+      details:
+        type: "string"
+        description: "TDB. Around 80 fields."
+  Advice:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      details:
+        type: "string"
+        description: "TBD"
+    description: "Advice for BM Dashboard."
+  Report (placeholder):
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      details:
+        type: "string"
+  Loan:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      totalamount:
+        type: "string"
+      remainingamount:
+        type: "string"
+      details (placeholder):
+        type: "string"
+  Vipps payment request:
+    type: "object"
+    properties:
+      merchantInfo:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            merchantSerialNumber:
+              type: "string"
+              description: "Identifies a merchant sales channel i.e. website, mobile\
+                \ app etc."
+            callBack:
+              type: "string"
+              description: "ViPPS will use this Call back URL to provide the status\
+                \ of initiated transaction. Length of the string is 255 characters"
+      customerInfo:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            mobileNumber:
+              type: "string"
+              description: "Mobile number of the user who has to pay for the  transaction\
+                \ from ViPPS.\nAllowed format:\n+47-xxxxxxxx\n+47xxxxxxxx\nxxxxxxxx"
+          required:
+          - "mobileNumber"
+      transaction:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            orderId:
+              type: "string"
+              description: "Id which uniquely identifies an Order. Maximum length\
+                \ is 30 alphanumeric characters"
+            refOrderId:
+              type: "string"
+              description: "Identifies if the payment references to some past orders\
+                \ registered with ViPPS. If defined, transactions for this payment\
+                \ will show up as child transactions of the specified order. Described\
+                \ functionality is not in place and is planned for future implementation"
+            amount:
+              type: "integer"
+              format: "int32"
+              description: "Amount in øre. 32 Bit Integer (2147483647)"
+            transactionText:
+              type: "string"
+              description: "Transaction text that can be displayed to end user"
+            timeStamp:
+              type: "string"
+              description: "Timestamp in ISO\n-\n8601 representing when the \norder\
+                \ has been made by merchant"
+    description: "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\"\
+      : \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\
+      \n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n\
+      \    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n     \
+      \   \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\"\
+      : \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\
+      \n    }\n}\n```"
+  Vipps payment response:
+    type: "object"
+    properties:
+      orderId:
+        type: "string"
+      merchantSerialNumber:
+        type: "string"
+      transactionInfo:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            amount:
+              type: "string"
+            status:
+              type: "string"
+            transactionId:
+              type: "string"
+            timeStamp:
+              type: "string"
+            message:
+              type: "string"
+    description: "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\
+      \n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"\
+      NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n      \
+      \  \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n \
+      \       \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\"\
+      :\"Please use vipps app to process the payment\"\n    }\n}\n```"
