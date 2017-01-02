@@ -10,18 +10,53 @@ basePath: "/v1"
 tags:
 - name: "Customers"
   description: "For now: people and organizations are all \"Customers\", with \"orgnr\"\
-    \ as unique identifier."
+    \ as unique identifier.\n\nIn sales, commerce and economics, a customer (sometimes\
+    \ known as a client, buyer, or purchaser) is the recipient of a good, service,\
+    \ product or an idea - obtained from a seller, vendor, or supplier via a financial\
+    \ transaction or exchange for money or some other valuable consideration. An ultimate\
+    \ etymology of \"client\" may imply someone merely inclined to do business, whereas\
+    \ a purchaser procures goods or services on occasion but a customer customarily\
+    \ or habitually engages in transactions (historically: the collection of tolls\
+    \ or taxes - see the Wiktionary etymology of customer). Such distinctions have\
+    \ no contemporary semantic weight."
 - name: "Accounts"
+  description: "A transaction account, checking account, current account or demand\
+    \ deposit account is a deposit account held at a bank or other financial institution.\
+    \ It is available to the account owner \"on demand\" and is available for frequent\
+    \ and immediate access by the account owner or to others as the account owner\
+    \ may direct. Access may be in a variety of ways, such as cash withdrawals, use\
+    \ of cheques and debit by electronic transfer. In economic terms, the funds held\
+    \ in a transaction account are regarded as liquid funds and in accounting terms\
+    \ they are considered as cash."
 - name: "Transactions"
+  description: "A financial transaction is an agreement, communication, or movement\
+    \ carried out between a buyer and a seller to exchange an asset for payment. It\
+    \ involves a change in the status of the finances of two or more businesses or\
+    \ individuals. The buyer and seller are separate entities or objects, often involving\
+    \ the exchange of items of value, such as information, goods, services, and money.\
+    \ It is still a transaction if the goods are exchanged at one time, and the money\
+    \ at another. This is known as a two-part transaction: part one is giving the\
+    \ money, part two is receiving the goods."
 - name: "Vipps"
+  description: "Vipps[1] is a Norwegian mobile payment application designed for smartphones\
+    \ developed by DNB. Vipps was released May 30, 2015 and by reaching 1 million\
+    \ users November 5, 2015 - Vipps is Norways largest payment application. Although\
+    \ Vipps is developed by DNB it is an application open for customers from any Norwegian\
+    \ bank and 40% of the users are non-dnb customers. https://en.wikipedia.org/wiki/Vipps"
 - name: "Location"
   description: "A collection of location-related resources. Needs (lots of) work."
 - name: "Loans"
-  description: "Random notes.."
+  description: "A loan is a debt provided by an entity (organization or individual)\
+    \ to another entity at an interest rate, and evidenced by a promissory note which\
+    \ specifies, among other things, the principal amount of money borrowed, the interest\
+    \ rate the lender is charging, and date of repayment."
 - name: "Insurance"
+  description: "Insurance is a means of protection from financial loss. It is a form\
+    \ of risk management primarily used to hedge against the risk of a contingent,\
+    \ uncertain loss. "
 - name: "Currency"
 - name: "Reports"
-  description: "Reports as specified by the BM Dashboared project."
+  description: "Reports as specified by the BM Dashboard project."
 - name: "Representations"
 schemes:
 - "https"
