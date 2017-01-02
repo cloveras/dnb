@@ -1,2 +1,4 @@
 # dnb
-Minor, mediocre work-related hacks
+Minor work-related hacks
+
+API.yaml: https://kavringkjeks.restlet.io/
