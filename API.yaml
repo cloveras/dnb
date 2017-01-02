@@ -1,8 +1,8 @@
 ---
 swagger: "2.0"
 info:
-  description: "Work in progress.."
-  version: "1.0.1"
+  description: "Work in progress.. "
+  version: "1.0.2"
   title: "APIs"
   contact: {}
 host: "api.example.com"
@@ -18,6 +18,7 @@ tags:
   description: "A collection of location-related resources. Needs (lots of) work."
 - name: "Loans"
   description: "Random notes.."
+- name: "Insurance"
 - name: "Currency"
 - name: "Reports"
   description: "Reports as specified by the BM Dashboared project."
@@ -301,6 +302,12 @@ paths:
         description: "ISO 4217: alpha 3-letter upcase e.g EUR"
         required: true
         type: "string"
+      - name: "date"
+        in: "query"
+        description: "YYYY-MM-DD"
+        required: false
+        type: "string"
+        x-example: "2016-12-31"
       responses:
         200:
           description: "Status 200"
@@ -309,6 +316,22 @@ paths:
             format: "int32"
         404:
           description: "Status 404"
+  /currency/list/{currency}:
+    get:
+      tags:
+      - "Currency"
+      summary: "Get rates for the most common currencies"
+      parameters:
+      - name: "currency"
+        in: "path"
+        description: "\"Home!\" currency"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "string"
   /currency/rate/{currency}:
     get:
       tags:
@@ -417,6 +440,8 @@ paths:
       responses:
         200:
           description: "Status 200"
+        409:
+          description: "Conflicting orgnr: Already exists."
     delete:
       tags:
       - "Customers"
@@ -527,6 +552,65 @@ paths:
         in: "path"
         required: true
         type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /insurance/car/{licensenumber}:
+    get:
+      tags:
+      - "Insurance"
+      summary: "Get info about a car's insurance"
+      description: "Check if a car is insured: /insurance/car/AB12345"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "licensenumber"
+        in: "path"
+        description: "AB12345"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Insurance"
+        404:
+          description: "No insurance found."
+  /insurance/{policy}:
+    get:
+      tags:
+      - "Insurance"
+      summary: "Get insurance details"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Insurance"
+    post:
+      tags:
+      - "Insurance"
+      summary: "Update insurance details"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Insurance"
+      responses:
+        200:
+          description: "Status 200"
+        409:
+          description: "Status 409"
+    delete:
+      tags:
+      - "Insurance"
+      summary: "Delete an insurance"
+      parameters: []
       responses:
         200:
           description: "Status 200"
@@ -1383,6 +1467,33 @@ paths:
       responses:
         200:
           description: "Status 200"
+  /transactions/category/{mcc}/{account}:
+    get:
+      tags:
+      - "Transactions"
+      summary: "Get transactions with code MCC for one account"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "mcc"
+        in: "path"
+        description: "MCC: Merchant Category Code: https://en.wikipedia.org/wiki/Merchant_category_code"
+        required: true
+        type: "string"
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        404:
+          description: "Status 404"
   /transactions/sepa:
     post:
       tags:
@@ -1646,7 +1757,11 @@ definitions:
   Customer:
     type: "object"
     required:
+    - "City"
+    - "Country"
     - "Id"
+    - "Name"
+    - "Postcode"
     properties:
       Id:
         type: "string"
@@ -1663,14 +1778,19 @@ definitions:
         description: "4 digits if in Norway,"
       City:
         type: "string"
+        description: "Oslo"
       Country:
         type: "string"
+        description: "\"NO\". http://www.iso.org/iso/country_codes.htm"
       Email:
         type: "string"
+        description: "example@example.com"
       Phone:
         type: "string"
+        description: "+47 04800"
       Website:
         type: "string"
+        description: "dnb.no"
       Notes (placeholder):
         type: "string"
         description: "{\n    \"email\": \"rune.bjerke@dnb.no\",\n    \"first_name\"\
@@ -1769,6 +1889,15 @@ definitions:
         type: "string"
   Loan:
     type: "object"
+    required:
+    - "created"
+    - "customerid"
+    - "expires"
+    - "id"
+    - "interest"
+    - "remainingamount"
+    - "totalamount"
+    - "type"
     properties:
       id:
         type: "string"
@@ -1778,8 +1907,22 @@ definitions:
         type: "string"
       remainingamount:
         type: "string"
+      interest:
+        type: "integer"
+        format: "int32"
+      customerid:
+        type: "string"
+        description: "11 digits"
+      created:
+        type: "string"
+        format: "date"
+      expires:
+        type: "string"
+        format: "date"
+        description: "Remaining time can be calculated from this."
       details (placeholder):
         type: "string"
+    description: "For now: One common loan type for mortgage, car, credit card, etc"
   Vipps payment request:
     type: "object"
     properties:
@@ -1974,3 +2117,17 @@ definitions:
       : 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\"\
       : \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\"\
       : \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```"
+  Insurance:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      name:
+        type: "string"
+      amount:
+        type: "integer"
+        format: "int32"
+    description: "For now: One common insurance for all types (house, car, health,\
+      \ etc)."
