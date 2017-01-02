@@ -8,6 +8,8 @@ info:
 host: "api.example.com"
 basePath: "/v1"
 tags:
+- name: "API"
+  description: "Housekeeping, etc."
 - name: "Customers"
   description: "For now: people and organizations are all \"Customers\", with \"orgnr\"\
     \ as unique identifier.\n\nIn sales, commerce and economics, a customer (sometimes\
@@ -314,6 +316,43 @@ paths:
           description: "Status 401"
         404:
           description: "No transactions."
+  /api/key:
+    get:
+      tags:
+      - "API"
+      summary: "Get new API key"
+      description: "Needs a little bit of verification."
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /api/key/{apikey}:
+    get:
+      tags:
+      - "API"
+      summary: "Get details of API key"
+      parameters:
+      - name: "apikey"
+        in: "path"
+        description: "Example: fa01s-21res-qq21p-mq1p6"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "API"
+      summary: "Delete API key"
+      parameters:
+      - name: "apikey"
+        in: "path"
+        description: "Example: fa01s-21res-qq21p-mq1p6"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
   /currency/convert/{foreigncurrency}/{currency}/{amount}:
     get:
       tags:
@@ -611,14 +650,18 @@ paths:
             $ref: "#/definitions/Insurance"
         404:
           description: "No insurance found."
-  /insurance/{policy}:
+  /insurance/{policynumber}:
     get:
       tags:
       - "Insurance"
       summary: "Get insurance details"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "policynumber"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -631,6 +674,10 @@ paths:
       consumes:
       - "application/json"
       parameters:
+      - name: "policynumber"
+        in: "path"
+        required: true
+        type: "string"
       - in: "body"
         name: "body"
         required: false
@@ -645,7 +692,11 @@ paths:
       tags:
       - "Insurance"
       summary: "Delete an insurance"
-      parameters: []
+      parameters:
+      - name: "policynumber"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
