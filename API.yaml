@@ -18,6 +18,7 @@ tags:
   description: "A collection of location-related resources. Needs (lots of) work."
 - name: "Loans"
   description: "Random notes.."
+- name: "Currency"
 - name: "Reports"
   description: "Reports as specified by the BM Dashboared project."
 - name: "Representations"
@@ -166,7 +167,7 @@ paths:
     get:
       tags:
       - "Accounts"
-      summary: "Account balance."
+      summary: "Get account balance"
       parameters:
       - name: "account"
         in: "path"
@@ -188,7 +189,7 @@ paths:
     get:
       tags:
       - "Accounts"
-      summary: "Get name"
+      summary: "Get account name"
       parameters:
       - name: "account"
         in: "path"
@@ -201,7 +202,7 @@ paths:
     post:
       tags:
       - "Accounts"
-      summary: "Change name"
+      summary: "Change account name"
       parameters:
       - name: "account"
         in: "path"
@@ -214,7 +215,7 @@ paths:
     delete:
       tags:
       - "Accounts"
-      summary: "Delete name"
+      summary: "Delete account name"
       parameters:
       - name: "account"
         in: "path"
@@ -247,7 +248,7 @@ paths:
     get:
       tags:
       - "Accounts"
-      summary: "List of transactions."
+      summary: "List of transactions for one month"
       produces:
       - "application/json"
       parameters:
@@ -277,6 +278,56 @@ paths:
           description: "Status 401"
         404:
           description: "No transactions."
+  /currency/convert/{foreigncurrency}/{currency}/{amount}:
+    get:
+      tags:
+      - "Currency"
+      summary: "Convert amount from CUR 1 to CUR2"
+      parameters:
+      - name: "foreigncurrency"
+        in: "path"
+        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "currency"
+        in: "path"
+        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "amount"
+        in: "path"
+        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "integer"
+            format: "int32"
+        404:
+          description: "Status 404"
+  /currency/rate/{currency}:
+    get:
+      tags:
+      - "Currency"
+      summary: "Get rate of CUR in NOK"
+      parameters:
+      - name: "currency"
+        in: "path"
+        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "integer"
+            format: "int32"
+        404:
+          description: "Status 404"
   /customer/{orgnr}/score:
     get:
       tags:
@@ -453,6 +504,8 @@ paths:
       responses:
         200:
           description: "Status 200"
+        404:
+          description: "Status 404"
     post:
       tags:
       - "Customers"
@@ -667,6 +720,26 @@ paths:
         200:
           description: "Status 200"
   /preapproval/{personnr}/{desiredamount}:
+    get:
+      tags:
+      - "Loans"
+      summary: "Check if the person has approval"
+      parameters:
+      - name: "personnr"
+        in: "path"
+        description: "11-digit personal id number"
+        required: true
+        type: "string"
+      - name: "desiredamount"
+        in: "path"
+        description: "How much?"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Sufficient funds"
+        404:
+          description: "Insufficient funds"
     post:
       tags:
       - "Loans"
@@ -1810,6 +1883,9 @@ definitions:
         type: "string"
   Vipps transaction:
     type: "object"
+    properties:
+      orderId:
+        type: "string"
     description: "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\
       \nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\"\
       : {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\"\
