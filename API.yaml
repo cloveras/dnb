@@ -9,6 +9,8 @@ host: "api.example.com"
 basePath: "/v1"
 tags:
 - name: "Customers"
+  description: "For now: people and organizations are all \"Customers\", with \"orgnr\"\
+    \ as unique identifier."
 - name: "Accounts"
 - name: "Transactions"
 - name: "Vipps"
@@ -275,6 +277,54 @@ paths:
           description: "Status 401"
         404:
           description: "No transactions."
+  /customer/{orgnr}/score:
+    get:
+      tags:
+      - "Customers"
+      summary: "Get customer score"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Customer score"
+    post:
+      tags:
+      - "Customers"
+      summary: "Create/update customer score"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Customer score"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Customers"
+      summary: "Delete customer score"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
   /customers/{orgnr}:
     get:
       tags:
@@ -390,6 +440,43 @@ paths:
               $ref: "#/definitions/Account"
         404:
           description: "No accounts."
+  /customers/{orgnr}/profile:
+    get:
+      tags:
+      - "Customers"
+      summary: "Get customer profile"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    post:
+      tags:
+      - "Customers"
+      summary: "Create/update customer profile"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Customers"
+      summary: "Delete customer profile"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
   /loans/apply:
     post:
       tags:
@@ -1223,6 +1310,26 @@ paths:
       responses:
         200:
           description: "Status 200"
+  /transactions/sepa:
+    post:
+      tags:
+      - "Transactions"
+      summary: "Create new SEPA transfer"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/SEPA request"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/SEPA response"
   /transactions/{transactionid}:
     get:
       tags:
@@ -1711,3 +1818,83 @@ definitions:
       : \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"\
       transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\
       \n}]\n```"
+  Customer score:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "Id of this score"
+      customerid:
+        type: "string"
+        description: "Customer id"
+      Notes (placeholder):
+        type: "string"
+        description: "Need lots more details.."
+  Customer profile:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      customerid:
+        type: "string"
+      Notes (placeholder):
+        type: "string"
+        description: "Needs lots more."
+  SEPA request:
+    type: "object"
+    required:
+    - "account"
+    - "id"
+    - "remote_account"
+    - "remote_bic"
+    - "remote_iban"
+    properties:
+      id:
+        type: "string"
+        description: "Unique"
+      account:
+        type: "string"
+        description: "From-account"
+      remote_iban:
+        type: "string"
+      remote_bic:
+        type: "string"
+      remote_account:
+        type: "string"
+      amount:
+        type: "integer"
+        format: "int32"
+      currency:
+        type: "string"
+    description: "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" :\
+      \ \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"\
+      remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\
+      \n}\n```"
+  SEPA response:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      account:
+        type: "string"
+      amount:
+        type: "integer"
+        format: "int32"
+      remote_iban:
+        type: "string"
+      remote:_bic:
+        type: "string"
+      remote_name:
+        type: "string"
+      state:
+        type: "string"
+      created:
+        type: "string"
+      updated:
+        type: "string"
+      currency:
+        type: "string"
+    description: "```\n{\n\"id\": \"01\",\n\"account\": \"123456789\",\n\"amount\"\
+      : 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\"\
+      : \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\"\
+      : \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```"
