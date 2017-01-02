@@ -321,7 +321,8 @@ paths:
       tags:
       - "API"
       summary: "Get new API key"
-      description: "Needs a little bit of verification."
+      description: "Needs a little bit of verification. Also: \"API Keys ≠ Security:\
+        \ Why API Keys Are Not Enough\": http://nordicapis.com/why-api-keys-are-not-enough/"
       parameters: []
       responses:
         200:
@@ -513,7 +514,7 @@ paths:
           $ref: "#/definitions/Customer"
       responses:
         200:
-          description: "Status 200"
+          description: "Welcome!"
         409:
           description: "Conflicting orgnr: Already exists."
     delete:
@@ -1889,21 +1890,36 @@ definitions:
   Account:
     type: "object"
     properties:
-      Number:
+      number:
         type: "string"
         description: "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
-      Type:
+      type:
         type: "string"
         description: "Internal use, probably."
-      Name:
+      name:
         type: "string"
         description: "Friendly name."
+      currency:
+        type: "string"
+        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+      balance:
+        type: "integer"
+        format: "int32"
       IBAN:
         type: "string"
         description: "ISO 13616:2007"
-      Currency:
+      created:
         type: "string"
-        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+        format: "date"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+      updated:
+        type: "string"
+        format: "date"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+      locked:
+        type: "boolean"
+        description: "Is this account locked?"
+        default: false
       Notes (placeholder):
         type: "string"
         description: "{\n    \"accounts\": [\n        {\n            \"account_number\"\
