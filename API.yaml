@@ -388,9 +388,10 @@ paths:
         format: "int32"
       - name: "amount"
         in: "path"
-        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+        description: ""
         required: true
-        type: "string"
+        type: "integer"
+        format: "int32"
       - name: "date"
         in: "query"
         description: "YYYY-MM-DD"
@@ -1573,7 +1574,7 @@ paths:
       tags:
       - "SAF-T"
       summary: "Get SAF-T file for a company"
-      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      description: ""
       produces:
       - "application/json"
       parameters:
@@ -1591,7 +1592,7 @@ paths:
       tags:
       - "SAF-T"
       summary: "Send new SAF-T file"
-      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      description: ""
       consumes:
       - "application/json"
       parameters:
@@ -1613,7 +1614,7 @@ paths:
       tags:
       - "SAF-T"
       summary: "Get SAF-T file for a company of type"
-      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      description: ""
       produces:
       - "application/json"
       parameters:
@@ -1636,7 +1637,7 @@ paths:
       tags:
       - "SAF-T"
       summary: "Send new SAF-T file of type"
-      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      description: ""
       consumes:
       - "application/json"
       parameters:
