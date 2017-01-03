@@ -57,6 +57,20 @@ tags:
     \ of risk management primarily used to hedge against the risk of a contingent,\
     \ uncertain loss. "
 - name: "Currency"
+- name: "SAF-T"
+  description: "The primary purpose of the SAF-T Financial data format is to: \n*\
+    \ Serve as an export format for accounting data after req uest from the Norwegian\
+    \ Tax Administration, public accountants and other parties.\n* Serve as archiving\
+    \ format for the necessary accounting data for those who are obliged to keep accounts\
+    \ as stated in the Norwegian bookkeeping legislation.\n* Serve as a format for\
+    \ moving data when changing accounting software. \n* Serve as a format for moving\
+    \ data from accounting software to other financial systems such as year-end closing\
+    \ systems, tax computation systems, business intelligence software, advisory systems\
+    \ etc. This documentation is intended for software developers and vendors who\
+    \ are to incorporate export functionality of SAF-T Financial data in their software.\
+    \  \n\nSkatteetaten SAF-T information: http://www.skatteetaten.no/globalassets/standardformat-regnskapsaf-t/norwegian-saf-t-financial-data---documentation.pdf\n\
+    \nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml\n\
+    \nXML schema, etc: https://github.com/skatteetaten/saf-t"
 - name: "Reports"
   description: "Reports as specified by the BM Dashboard project."
 - name: "Representations"
@@ -1549,6 +1563,39 @@ paths:
       - name: "orgnr"
         in: "path"
         description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /saf-t/{orgnr}:
+    get:
+      tags:
+      - "SAF-T"
+      summary: "Get SAF-T for a company"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+  /saf-t/{orgnr}/{type}:
+    get:
+      tags:
+      - "SAF-T"
+      summary: "Get SAF-T file of type"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      - name: "type"
+        in: "path"
+        description: "Type of SAF-T file"
         required: true
         type: "string"
       responses:
