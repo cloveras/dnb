@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  description: "**Work in progress! **\nThis is a working document, an informal draft\
+  description: "**WORK IN PROGRESS! **\nThis is a working document, an informal draft\
     \ for API \"note-taking\", evaluation of API-related tools, etc. "
   version: "1.0.3"
   title: "APIs"
@@ -10,7 +10,7 @@ host: "api.example.com"
 basePath: "/v1"
 tags:
 - name: "API"
-  description: "Housekeeping, etc."
+  description: "API housekeeping: Onboarding, governance, etc."
 - name: "Customers"
   description: "For now: people and organizations are all \"Customers\", with \"orgnr\"\
     \ as unique identifier.\n\nIn sales, commerce and economics, a customer (sometimes\
@@ -85,7 +85,7 @@ paths:
       tags:
       - "Vipps"
       summary: "In-app payment"
-      description: "Copied from: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\
+      description: "From: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\
         \nTo launch the ViPPS app, use the following call (at a minimum):\n\nvipps://?action=inAppPayment&appID=fa01s-21res-qq21p-mq1p6&amount=12000&merchantSerialNumber=ed9320pre&fallbackURL=app://?action=confirmed"
       parameters:
       - name: "action"
@@ -462,6 +462,7 @@ paths:
       tags:
       - "Customers"
       summary: "Get customer score"
+      description: "Customer score with all details."
       produces:
       - "application/json"
       parameters:
@@ -1819,6 +1820,44 @@ paths:
           description: "Status 200"
           schema:
             $ref: "#/definitions/Customer"
+  /vipps/invoice/{orgnr}:
+    get:
+      tags:
+      - "Vipps"
+      summary: "Get Vipps invoice details"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+    post:
+      tags:
+      - "Vipps"
+      summary: "Create new Vipps invoice customer"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Customer"
+      responses:
+        200:
+          description: "Status 200"
+        400:
+          description: "Status 400"
   /vipps/merchants/{latitude}/{longditude}:
     get:
       tags:
@@ -2027,6 +2066,12 @@ definitions:
         type: "string"
         description: "Person: Personal number, 11 digits.\nCompany: Organization number,\
           \ 9 digits."
+      status:
+        type: "string"
+        description: "Active, pending, closed, etc"
+      program:
+        type: "string"
+        description: "SAGA, etc"
       Name:
         type: "string"
         description: "Person: Rune Bjerke.\nCompany: DNB"
@@ -2051,6 +2096,9 @@ definitions:
       Website:
         type: "string"
         description: "dnb.no"
+      welcomepackage:
+        type: "string"
+        description: "Id/tracking details for welcome package"
       Notes (placeholder):
         type: "string"
         description: "{\n    \"email\": \"rune.bjerke@dnb.no\",\n    \"first_name\"\
