@@ -53,7 +53,8 @@ tags:
     \ developed by DNB. Vipps was released May 30, 2015 and by reaching 1 million\
     \ users November 5, 2015 - Vipps is Norways largest payment application. Although\
     \ Vipps is developed by DNB it is an application open for customers from any Norwegian\
-    \ bank and 40% of the users are non-dnb customers. https://en.wikipedia.org/wiki/Vipps"
+    \ bank and 40% of the users are non-dnb customers. https://en.wikipedia.org/wiki/Vipps\n\
+    \nHTTP response codes\n\n"
 - name: "Location"
   description: "A collection of location-related resources. Needs (lots of) work."
 - name: "Loans"
@@ -66,6 +67,15 @@ tags:
     \ of risk management primarily used to hedge against the risk of a contingent,\
     \ uncertain loss. "
 - name: "Currency"
+- name: "Stocks"
+  description: "Ameritrade, from https://www.tdameritrade.com/api.page:\n\n* Trading\
+    \ - Submitting, canceling, modifying orders\n* Streaming data - Level I, Level\
+    \ II, News, and Actives\n* Historical data - Daily and intraday\n* Account information\
+    \ - Balances, positions, transactions\n* Multi-product support - Stocks, options,\
+    \ ETFs, mutual funds\n* Wrappers and sample code - Provides easy integration into\
+    \ various programming environments\n* Comprehensive documentation - Complete description\
+    \ and clear documentation available\n* Outstanding client support - Dedicated\
+    \ API specialists available to fully support your technical questions\n"
 - name: "SAF-T"
   description: "The primary purpose of the SAF-T Financial data format is to: \n*\
     \ Serve as an export format for accounting data after req uest from the Norwegian\
@@ -433,11 +443,28 @@ paths:
           description: "Status 204"
         404:
           description: "Status 404"
+  /api/ratelimit:
+    get:
+      tags:
+      - "API"
+      summary: "Rate limit for current user"
+      parameters: []
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        404:
+          description: "Status 404"
   /api/whoami:
     get:
       tags:
       - "API"
       summary: "Who am I?"
+      description: "All details of current API user account:\n* Contact details\n\
+        * API key details\n* Payment/plan/subscription\n* Throttling info\n* etc"
       parameters: []
       responses:
         200:
@@ -446,6 +473,8 @@ paths:
             type: "array"
             items:
               type: "string"
+        418:
+          description: "I'm a little teapot"
   /currency/convert/{foreigncurrency}/{currency}/{amount}:
     get:
       tags:
@@ -751,7 +780,7 @@ paths:
         200:
           description: "Status 200"
           schema:
-            $ref: "#/definitions/Insurance"
+            $ref: "#/definitions/Insurance offer"
   /insurance/car/{licensenumber}:
     get:
       tags:
@@ -802,6 +831,26 @@ paths:
           description: "Status 400"
         409:
           description: "Recently sent an offer."
+  /insurance/claim:
+    post:
+      tags:
+      - "Insurance"
+      summary: "Make new claim"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Insurance claim"
+      responses:
+        200:
+          description: "Claim received (not approved quite yet, though)."
+        400:
+          description: "Status 400"
+        404:
+          description: "Status 404"
   /insurance/{policynumber}:
     get:
       tags:
@@ -860,6 +909,44 @@ paths:
       responses:
         200:
           description: "Status 200"
+  /insurance/{policynumber}/claims:
+    get:
+      tags:
+      - "Insurance"
+      summary: "Get list of claims"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Insurance claim"
+  /insurance/{policynumber}/claims/{claimid}:
+    get:
+      tags:
+      - "Insurance"
+      summary: "Get details of claim"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "policynumber"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "claimid"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Insurance claim"
+        404:
+          description: "Status 404"
   /loans/apply:
     post:
       tags:
@@ -1830,6 +1917,37 @@ paths:
       responses:
         200:
           description: "Status 200"
+  /stocks/price/{ticker}/{timestamp}:
+    get:
+      tags:
+      - "Stocks"
+      summary: "Get price of stock"
+      parameters:
+      - name: "ticker"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "timestamp"
+        in: "path"
+        required: true
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Status 200"
+  /stocks/{ticker}:
+    get:
+      tags:
+      - "Stocks"
+      summary: "Get info about stock with ticker"
+      parameters:
+      - name: "ticker"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
   /transactions/category/{mcc}/{account}:
     get:
       tags:
@@ -2594,6 +2712,17 @@ definitions:
       : 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\"\
       : \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\"\
       : \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```"
+  SAF-T file:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      fileurl:
+        type: "string"
+        description: "(Unless all data is included in Object)"
+    description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
   Insurance:
     type: "object"
     properties:
@@ -2608,14 +2737,13 @@ definitions:
         format: "int32"
     description: "For now: One common insurance for all types (house, car, health,\
       \ etc)."
-  SAF-T file:
+  Insurance claim:
     type: "object"
     properties:
-      id:
+      details (placeholder):
         type: "string"
-      type:
+  Insurance offer:
+    type: "object"
+    properties:
+      details (placeholder):
         type: "string"
-      fileurl:
-        type: "string"
-        description: "(Unless all data is included in Object)"
-    description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
