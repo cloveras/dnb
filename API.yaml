@@ -70,7 +70,9 @@ tags:
     \ are to incorporate export functionality of SAF-T Financial data in their software.\
     \  \n\nSkatteetaten SAF-T information: http://www.skatteetaten.no/globalassets/standardformat-regnskapsaf-t/norwegian-saf-t-financial-data---documentation.pdf\n\
     \nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml\n\
-    \nXML schema, etc: https://github.com/skatteetaten/saf-t"
+    \nXML schema, etc: https://github.com/skatteetaten/saf-t\n\nPWC: http://blogg.pwc.no/skattebloggen-en/saf-t-new-reporting-obligations-that-are-sweeping-across-europe\n\
+    KPMG: https://home.kpmg.com/no/nb/home/nyheter-og-innsikt/2016/05/innforing-og-utvikling-av-saf-t-i-norge.html\n\
+    EY: http://www.ey.com/no/no/newsroom/news-releases/2016-09-19-sterk-saf-t-fra-finansdepartementet\n"
 - name: "Reports"
   description: "Reports as specified by the BM Dashboard project."
 - name: "Representations"
