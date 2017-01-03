@@ -2,7 +2,8 @@
 swagger: "2.0"
 info:
   description: "**WORK IN PROGRESS! **\nThis is a working document, an informal draft\
-    \ for API \"note-taking\", evaluation of API-related tools, etc. "
+    \ for API \"note-taking\", evaluation of API-related tools, etc. Contains several\
+    \ errors, contradictions and mistakes."
   version: "1.0.3"
   title: "APIs"
   contact: {}
@@ -236,6 +237,8 @@ paths:
       tags:
       - "Accounts"
       summary: "Get account balance"
+      produces:
+      - "application/json"
       parameters:
       - name: "account"
         in: "path"
@@ -244,15 +247,15 @@ paths:
         type: "string"
       responses:
         200:
-          description: "{\n   \"balance\": 12345,\n   \"currency\": \"NOK\",\n}"
+          description: ""
           schema:
-            type: "array"
-            items:
-              type: "string"
+            $ref: "#/definitions/Balance"
         401:
           description: "No balance for you."
         404:
           description: "Account not found."
+        417:
+          description: "Requires prior (paranormal) transfer of customer's expectation."
   /accounts/{account}/name:
     get:
       tags:
@@ -312,6 +315,35 @@ paths:
             format: "int32"
         401:
           description: "Not really your account, is it?"
+  /accounts/{account}/transactionlist:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get transactionlist for one account"
+      description: "Supports pagination: pagesize and pagenumber,"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "pagesize"
+        in: "query"
+        description: ""
+        required: false
+        type: "integer"
+        format: "int32"
+      - name: "pagenumber"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        404:
+          description: "Status 404"
   /accounts/{account}/transactionlist/{year}/{month}:
     get:
       tags:
@@ -547,6 +579,8 @@ paths:
       responses:
         200:
           description: "Welcome!"
+        400:
+          description: "Status 400"
         409:
           description: "Conflicting orgnr: Already exists."
     delete:
@@ -662,6 +696,32 @@ paths:
       responses:
         200:
           description: "Status 200"
+  /insurance/car/offer/{licensenumber}:
+    post:
+      tags:
+      - "Insurance"
+      summary: "Get insurance offer"
+      description: "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "licensenumber"
+        in: "path"
+        description: "AB12345"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Insurance"
   /insurance/car/{licensenumber}:
     get:
       tags:
@@ -683,6 +743,35 @@ paths:
             $ref: "#/definitions/Insurance"
         404:
           description: "No insurance found."
+    post:
+      tags:
+      - "Insurance"
+      summary: "Get insurance offer"
+      description: "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "licensenumber"
+        in: "path"
+        description: "AB12345"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Offer provided."
+          schema:
+            $ref: "#/definitions/Insurance"
+        400:
+          description: "Status 400"
+        409:
+          description: "Recently sent an offer."
   /insurance/{policynumber}:
     get:
       tags:
@@ -2151,6 +2240,19 @@ definitions:
           \        }\n        {\n            \"account_number\": \"05000000002\",\n\
           \            \"description\": \"Savings\",\n            \"created\": \"\
           2015-07-01T10:42:00+01:00\"\n        }\n    ]\n}"
+  Balance:
+    type: "object"
+    properties:
+      account:
+        type: "string"
+      amount:
+        type: "string"
+      timestamp:
+        type: "string"
+        format: "date"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+    description: "```\n{\n   \"account\": 12345678910,\n   \"balance\": 12345,\n \
+      \  \"timestamp\": \"2017-01-03T09:56:28+00:0\",\n}\n```"
   Transaction:
     type: "object"
     properties:
@@ -2182,6 +2284,7 @@ definitions:
           : \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"\
           settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\
           \n        },\n    ]\n}"
+    description: "```\n    \"id\": \n```"
   Annual report:
     type: "object"
     properties:
