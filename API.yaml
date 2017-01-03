@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "Work in progress.. "
-  version: "1.0.2"
+  version: "1.0.3"
   title: "APIs"
   contact: {}
 host: "api.example.com"
@@ -78,8 +78,6 @@ tags:
 - name: "Representations"
 schemes:
 - "https"
-security:
-- OAuth 2.0: []
 paths:
   /:
     get:
@@ -177,7 +175,12 @@ paths:
       summary: "Get account details"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -195,6 +198,11 @@ paths:
       consumes:
       - "application/json"
       parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
       - in: "body"
         name: "body"
         required: false
@@ -207,7 +215,12 @@ paths:
       tags:
       - "Accounts"
       summary: "Delete account"
-      parameters: []
+      parameters:
+      - name: "account"
+        in: "path"
+        description: "Account number, 11 digits."
+        required: true
+        type: "string"
       responses:
         200:
           description: "Deleted"
@@ -416,7 +429,7 @@ paths:
       parameters:
       - name: "currency"
         in: "path"
-        description: "\"Home!\" currency"
+        description: "\"Home\" currency"
         required: true
         type: "string"
       responses:
@@ -743,7 +756,7 @@ paths:
       parameters:
       - name: "loanid"
         in: "path"
-        description: "The loan do downpay."
+        description: "The loan to downpay."
         required: true
         type: "string"
       responses:
@@ -756,7 +769,11 @@ paths:
       summary: "Details of this loan"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "loanid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -767,7 +784,11 @@ paths:
       - "Loans"
       summary: "Delete loan"
       description: "Downpayment first."
-      parameters: []
+      parameters:
+      - name: "loanid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -850,7 +871,15 @@ paths:
       tags:
       - "Location"
       summary: "Nearest branch office"
-      parameters: []
+      parameters:
+      - name: "latitude"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "longditude"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -877,7 +906,7 @@ paths:
             type: "array"
             items:
               type: "string"
-  /payments /{orderId}/serialNumber /{merchantSerialNumber}/details:
+  /payments /{orderId}/serialNumber/{merchantSerialNumber}/details:
     get:
       tags:
       - "Vipps"
@@ -903,7 +932,11 @@ paths:
       tags:
       - "Loans"
       summary: "Get details of preapproval"
-      parameters: []
+      parameters:
+      - name: "loanid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -1853,7 +1886,11 @@ paths:
       tags:
       - "Vipps"
       summary: "Details of a settlement"
-      parameters: []
+      parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Created, status, name, owners/admins, list of expenses"
@@ -1866,7 +1903,11 @@ paths:
       - "Vipps"
       summary: "Delete settlement"
       description: "(Not possible in Vipps today)"
-      parameters: []
+      parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -1875,7 +1916,11 @@ paths:
       tags:
       - "Vipps"
       summary: "Details of expense"
-      parameters: []
+      parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -1885,6 +1930,10 @@ paths:
       summary: "New expense"
       description: "Date, who, amount, description, etc"
       parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
       - in: "body"
         name: "body"
         required: false
@@ -1899,7 +1948,11 @@ paths:
       tags:
       - "Vipps"
       summary: "Delete expense from settlement"
-      parameters: []
+      parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -1908,7 +1961,11 @@ paths:
       tags:
       - "Vipps"
       summary: "Settle, pay everyone"
-      parameters: []
+      parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -1921,6 +1978,10 @@ paths:
       consumes:
       - "application/json"
       parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
       - in: "body"
         name: "body"
         required: false
@@ -1936,17 +1997,21 @@ paths:
       summary: "Details of user in settlement"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "settlementid"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "userid"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Maybe just a Person, as he/she may not be a customer with\
             \ us."
           schema:
             $ref: "#/definitions/Customer"
-securityDefinitions:
-  OAuth 2.0:
-    type: "oauth2"
-    scopes: {}
 definitions:
   Customer:
     type: "object"
