@@ -67,6 +67,7 @@ tags:
     \ of risk management primarily used to hedge against the risk of a contingent,\
     \ uncertain loss. "
 - name: "Currency"
+  description: "VISA API: https://developer.visa.com/products/foreign_exchange/reference#foreign_exchange__fx"
 - name: "Stocks"
   description: "Ameritrade, from https://www.tdameritrade.com/api.page:\n\n* Trading\
     \ - Submitting, canceling, modifying orders\n* Streaming data - Level I, Level\
