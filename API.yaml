@@ -1,7 +1,8 @@
 ---
 swagger: "2.0"
 info:
-  description: "Work in progress.. "
+  description: "**Work in progress! **\nThis is a working document, an informal draft\
+    \ for API \"note-taking\", evaluation of API-related tools, etc. "
   version: "1.0.3"
   title: "APIs"
   contact: {}
