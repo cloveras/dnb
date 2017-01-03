@@ -1,17 +1,24 @@
 ---
 swagger: "2.0"
 info:
-  description: "**WORK IN PROGRESS! **\nThis is a working document, an informal draft\
-    \ for API \"note-taking\", evaluation of API-related tools, etc. Contains several\
-    \ errors, contradictions and mistakes."
-  version: "1.0.3"
+  description: "**WORK IN PROGRESS! **\n\nThis is a working document, an informal\
+    \ draft for API \"note-taking\", evaluation of API-related tools, etc. Contains\
+    \ several errors, contradictions and mistakes. Some Wikipedia texts added as placeholders.\n\
+    \nHTTP response codes\n\n* Wikipedia: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes\n\
+    * W3C: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\n\n\n| HTTP method\
+    \ | Success  | Fail  |\n| -------- | -------- | -------- |\n| GET     | 200  \
+    \   | 404, 4XX, 5XX     |\n| POST     | 200, 201     | 400, 404, 4XX, 5XX    \
+    \ |\n| PUT | 204 | 400, 404, 4XX, 5XX |\n\n"
+  version: "1.0.4"
   title: "APIs"
   contact: {}
 host: "api.example.com"
 basePath: "/v1"
 tags:
 - name: "API"
-  description: "API housekeeping: Onboarding, governance, etc."
+  description: "API housekeeping: Onboarding, governance, etc.\n\nImportant: KYC,\
+    \ AML, etc.\n\nIntros that may be useful: \n* BBVA: https://www.bbvaapimarket.com/how-it-works/get-started\n\
+    * Monzo: https://monzo.com/docs/#authentication\n* Fidor: http://docs.fidor.de/#prerequisites\n"
 - name: "Customers"
   description: "For now: people and organizations are all \"Customers\", with \"orgnr\"\
     \ as unique identifier.\n\nIn sales, commerce and economics, a customer (sometimes\
@@ -383,12 +390,20 @@ paths:
       tags:
       - "API"
       summary: "Get new API key"
-      description: "Needs a little bit of verification. Also: \"API Keys ≠ Security:\
+      description: "Needs a little bit of verification. \n\nOther intros:\n* BBVA:\
+        \ https://www.bbvaapimarket.com/how-it-works/get-started\n* Monzo: https://monzo.com/docs/#authentication\n\
+        * Fidor: http://docs.fidor.de/#prerequisites\n\n\nAlso: \"API Keys ≠ Security:\
         \ Why API Keys Are Not Enough\": http://nordicapis.com/why-api-keys-are-not-enough/"
       parameters: []
       responses:
         200:
           description: "Status 200"
+        400:
+          description: "Status 400"
+        401:
+          description: "Status 401"
+        429:
+          description: "Status 429"
   /api/key/{apikey}:
     get:
       tags:
@@ -414,8 +429,23 @@ paths:
         required: true
         type: "string"
       responses:
+        204:
+          description: "Status 204"
+        404:
+          description: "Status 404"
+  /api/whoami:
+    get:
+      tags:
+      - "API"
+      summary: "Who am I?"
+      parameters: []
+      responses:
         200:
-          description: "Status 200"
+          description: "Details of current API key holder."
+          schema:
+            type: "array"
+            items:
+              type: "string"
   /currency/convert/{foreigncurrency}/{currency}/{amount}:
     get:
       tags:
@@ -594,8 +624,8 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
-          description: "Status 200"
+        204:
+          description: "Status 204"
   /customers/{orgnr}/about:
     get:
       tags:
@@ -789,6 +819,10 @@ paths:
           description: "Status 200"
           schema:
             $ref: "#/definitions/Insurance"
+        401:
+          description: "Status 401"
+        404:
+          description: "Unknown policy number."
     post:
       tags:
       - "Insurance"
@@ -807,7 +841,11 @@ paths:
           $ref: "#/definitions/Insurance"
       responses:
         200:
-          description: "Status 200"
+          description: "Update successful."
+        401:
+          description: "Status 401"
+        404:
+          description: "Status 404"
         409:
           description: "Status 409"
     delete:
@@ -1050,8 +1088,13 @@ paths:
       responses:
         200:
           description: "Sufficient funds"
+        401:
+          description: "Status 401"
         404:
           description: "Insufficient funds"
+        429:
+          description: "We need to prevent repeated attempts at guessing the \"desiredamount\"\
+            . Rules, etc TBD."
     post:
       tags:
       - "Loans"
@@ -1071,7 +1114,9 @@ paths:
         200:
           description: "Status 200"
         417:
-          description: "Haha"
+          description: "Haha/Sorry."
+        429:
+          description: "Please go away."
   /reports/accounts/{orgnr}:
     get:
       tags:
@@ -1810,6 +1855,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Transaction"
+        401:
+          description: "Status 401"
         404:
           description: "Status 404"
   /transactions/sepa:
@@ -1850,6 +1897,10 @@ paths:
           description: "Status 200"
           schema:
             $ref: "#/definitions/Transaction"
+        401:
+          description: "Status 401"
+        404:
+          description: "Status 404"
     post:
       tags:
       - "Transactions"
