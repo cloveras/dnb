@@ -1572,7 +1572,10 @@ paths:
     get:
       tags:
       - "SAF-T"
-      summary: "Get SAF-T for a company"
+      summary: "Get SAF-T file for a company"
+      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      produces:
+      - "application/json"
       parameters:
       - name: "orgnr"
         in: "path"
@@ -1582,11 +1585,37 @@ paths:
       responses:
         200:
           description: "Status 200"
+          schema:
+            $ref: "#/definitions/SAF-T file"
+    post:
+      tags:
+      - "SAF-T"
+      summary: "Send new SAF-T file"
+      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/SAF-T file"
+      responses:
+        200:
+          description: "Status 200"
   /saf-t/{orgnr}/{type}:
     get:
       tags:
       - "SAF-T"
-      summary: "Get SAF-T file of type"
+      summary: "Get SAF-T file for a company of type"
+      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      produces:
+      - "application/json"
       parameters:
       - name: "orgnr"
         in: "path"
@@ -1598,6 +1627,34 @@ paths:
         description: "Type of SAF-T file"
         required: true
         type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/SAF-T file"
+    post:
+      tags:
+      - "SAF-T"
+      summary: "Send new SAF-T file of type"
+      description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "orgnr"
+        in: "path"
+        description: "Organization number, 9 digits. Example: 123456789"
+        required: true
+        type: "string"
+      - name: "type"
+        in: "path"
+        description: "Type of SAF-T file"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/SAF-T file"
       responses:
         200:
           description: "Status 200"
@@ -2280,3 +2337,14 @@ definitions:
         format: "int32"
     description: "For now: One common insurance for all types (house, car, health,\
       \ etc)."
+  SAF-T file:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      fileurl:
+        type: "string"
+        description: "(Unless all data is included in Object)"
+    description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
