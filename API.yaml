@@ -401,10 +401,10 @@ paths:
       tags:
       - "API"
       summary: "Get new API key"
-      description: "Needs a little bit of verification. \n\nOther intros:\n* BBVA:\
-        \ https://www.bbvaapimarket.com/how-it-works/get-started\n* Monzo: https://monzo.com/docs/#authentication\n\
-        * Fidor: http://docs.fidor.de/#prerequisites\n\n\nAlso: \"API Keys ≠ Security:\
-        \ Why API Keys Are Not Enough\": http://nordicapis.com/why-api-keys-are-not-enough/"
+      description: "Needs a little bit of verification. Might even be POST.\n\nOther\
+        \ intros:\n* BBVA: https://www.bbvaapimarket.com/how-it-works/get-started\n\
+        * Monzo: https://monzo.com/docs/#authentication\n* Fidor: http://docs.fidor.de/#prerequisites\n\
+        \n\nAlso: \"API Keys ≠ Security: Why API Keys Are Not Enough\": http://nordicapis.com/why-api-keys-are-not-enough/"
       parameters: []
       responses:
         200:
