@@ -782,6 +782,46 @@ paths:
           description: "Status 200"
           schema:
             $ref: "#/definitions/Insurance offer"
+  /insurance/car/service/{latitude}/{longditude}:
+    get:
+      tags:
+      - "Insurance"
+      summary: "Get nearest car service"
+      parameters:
+      - name: "latitude"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "longditude"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+  /insurance/car/towingservice/{latitude}/{longditude}:
+    get:
+      tags:
+      - "Insurance"
+      summary: "Get nearest car towing service"
+      parameters:
+      - name: "latitude"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "longditude"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              type: "string"
   /insurance/car/{licensenumber}:
     get:
       tags:
@@ -866,11 +906,21 @@ paths:
         in: "path"
         required: true
         type: "string"
+      - name: "radius"
+        in: "query"
+        description: "Radius in km."
+        required: false
+        type: "string"
+        x-example: "50"
       responses:
         200:
-          description: "Status 200"
+          description: "Yes there is, and here are the details."
+          schema:
+            type: "array"
+            items:
+              type: "string"
         404:
-          description: "Status 404"
+          description: "No weather alert."
   /insurance/{policynumber}:
     get:
       tags:
