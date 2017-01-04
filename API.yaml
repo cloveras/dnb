@@ -78,17 +78,17 @@ tags:
     \ and clear documentation available\n* Outstanding client support - Dedicated\
     \ API specialists available to fully support your technical questions\n"
 - name: "SAF-T"
-  description: "The primary purpose of the SAF-T Financial data format is to: \n*\
-    \ Serve as an export format for accounting data after req uest from the Norwegian\
-    \ Tax Administration, public accountants and other parties.\n* Serve as archiving\
-    \ format for the necessary accounting data for those who are obliged to keep accounts\
-    \ as stated in the Norwegian bookkeeping legislation.\n* Serve as a format for\
-    \ moving data when changing accounting software. \n* Serve as a format for moving\
-    \ data from accounting software to other financial systems such as year-end closing\
-    \ systems, tax computation systems, business intelligence software, advisory systems\
-    \ etc. This documentation is intended for software developers and vendors who\
-    \ are to incorporate export functionality of SAF-T Financial data in their software.\
-    \  \n\nSkatteetaten SAF-T information: http://www.skatteetaten.no/globalassets/standardformat-regnskapsaf-t/norwegian-saf-t-financial-data---documentation.pdf\n\
+  description: "Standard Audit File - Tax\n\nThe primary purpose of the SAF-T Financial\
+    \ data format is to: \n* Serve as an export format for accounting data after req\
+    \ uest from the Norwegian Tax Administration, public accountants and other parties.\n\
+    * Serve as archiving format for the necessary accounting data for those who are\
+    \ obliged to keep accounts as stated in the Norwegian bookkeeping legislation.\n\
+    * Serve as a format for moving data when changing accounting software. \n* Serve\
+    \ as a format for moving data from accounting software to other financial systems\
+    \ such as year-end closing systems, tax computation systems, business intelligence\
+    \ software, advisory systems etc. This documentation is intended for software\
+    \ developers and vendors who are to incorporate export functionality of SAF-T\
+    \ Financial data in their software.  \n\nSkatteetaten SAF-T information: http://www.skatteetaten.no/globalassets/standardformat-regnskapsaf-t/norwegian-saf-t-financial-data---documentation.pdf\n\
     \nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml\n\
     \nXML schema, etc: https://github.com/skatteetaten/saf-t\n\nPWC: http://blogg.pwc.no/skattebloggen-en/saf-t-new-reporting-obligations-that-are-sweeping-across-europe\n\
     KPMG: https://home.kpmg.com/no/nb/home/nyheter-og-innsikt/2016/05/innforing-og-utvikling-av-saf-t-i-norge.html\n\
@@ -2412,11 +2412,17 @@ definitions:
           2015-07-01T10:42:00+01:00\"\n        }\n    ]\n}"
   Balance:
     type: "object"
+    required:
+    - "account"
+    - "amount"
+    - "timestamp"
     properties:
       account:
         type: "string"
+        description: "Account number, 11 digits."
       amount:
-        type: "string"
+        type: "integer"
+        format: "int32"
       timestamp:
         type: "string"
         format: "date"
@@ -2425,6 +2431,12 @@ definitions:
       \  \"timestamp\": \"2017-01-03T09:56:28+00:0\",\n}\n```"
   Transaction:
     type: "object"
+    required:
+    - "account"
+    - "amount"
+    - "currency"
+    - "id"
+    - "type"
     properties:
       id:
         type: "string"
@@ -2454,7 +2466,9 @@ definitions:
           : \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"\
           settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\
           \n        },\n    ]\n}"
-    description: "```\n    \"id\": \n```"
+    description: "```\n{\n\t\"id\": \"99\"\n\t\"account\": \"12345678910\",\n\t\"\
+      type\": \"\",\n\t\"currency\": \"NOK\",\n\t\"amount\": 12345,\n\t\"reference\"\
+      : \"Enjoy!\"\n}\n```"
   Annual report:
     type: "object"
     properties:
@@ -2465,6 +2479,7 @@ definitions:
       details:
         type: "string"
         description: "TDB. Around 80 fields."
+    description: "See SAF-T: https://github.com/Skatteetaten/saf-t"
   Advice:
     type: "object"
     properties:
@@ -2483,6 +2498,7 @@ definitions:
         type: "string"
       details:
         type: "string"
+    description: "Placeholder for various reports."
   Loan:
     type: "object"
     required:
@@ -2723,7 +2739,7 @@ definitions:
       fileurl:
         type: "string"
         description: "(Unless all data is included in Object)"
-    description: "Example file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+    description: "Standard Audit File - Tax\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
   Insurance:
     type: "object"
     properties:
