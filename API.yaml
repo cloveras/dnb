@@ -2367,6 +2367,12 @@ definitions:
           \    “phone\": \"+47 04800\",\n    \"birthday\": \"1960-06-17\",\n    \"\
           created\": \"2015-07-01T10:42:00+01:00\",\L    \"updated\": \"2015-10-01T10:42:00+01:00\"\
           ,\n}"
+    description: "Draft, needs update from actual properties below:\n```\n{\n\t“email”\
+      : \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”\
+      , \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”\
+      : “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47\
+      \ 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”\
+      , \n\t“updated”: “2015-10-01T10:42:00+01:00”\n}\n```"
   Account:
     type: "object"
     properties:
