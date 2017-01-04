@@ -852,6 +852,25 @@ paths:
           description: "Status 400"
         404:
           description: "Status 404"
+  /insurance/weatheralert/{latitude}/{longditude}:
+    get:
+      tags:
+      - "Insurance"
+      summary: "Check if there is a weather alert"
+      parameters:
+      - name: "latitude"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "longditude"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
   /insurance/{policynumber}:
     get:
       tags:
