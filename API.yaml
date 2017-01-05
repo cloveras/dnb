@@ -333,6 +333,35 @@ paths:
             format: "int32"
         401:
           description: "Not really your account, is it?"
+  /accounts/{account}/statement/{year}/{month}:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get account statement"
+      description: "Account statement for specified account, year and month. Some\
+        \ meta data, and a list of all transactions. "
+      produces:
+      - "application/json"
+      parameters:
+      - name: "account"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "year"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Account statement"
+        404:
+          description: "Status 404"
   /accounts/{account}/transactionlist:
     get:
       tags:
@@ -2839,3 +2868,20 @@ definitions:
     properties:
       details (placeholder):
         type: "string"
+  Account statement:
+    type: "object"
+    required:
+    - "account"
+    - "month"
+    - "year"
+    properties:
+      account:
+        type: "string"
+      year:
+        type: "string"
+      month:
+        type: "string"
+      trnsactions:
+        type: "array"
+        items:
+          $ref: "#/definitions/Transaction"
