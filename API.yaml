@@ -3,15 +3,16 @@ swagger: "2.0"
 info:
   description: "**WORK IN PROGRESS! **\n\nThis is a working document, an informal\
     \ draft for API \"note-taking\", evaluation of API-related tools, etc. Contains\
-    \ several errors, contradictions and mistakes. Some Wikipedia texts added as placeholders.\n\
+    \ several errors, contradictions and mistakes. Some Wikipedia texts added as placeholders/examples.\n\
     \nHTTP response codes\n\n* Wikipedia: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes\n\
     * W3C: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\n\n\n| HTTP method\
     \ | Success  | Fail  |\n| -------- | -------- | -------- |\n| GET     | 200  \
     \   | 404, 4XX, 5XX     |\n| POST     | 200, 201     | 400, 404, 4XX, 5XX    \
     \ |\n| PUT | 204 | 400, 404, 4XX, 5XX |\n\n"
-  version: "1.0.4"
-  title: "APIs"
-  contact: {}
+  version: "1.0.5"
+  title: "API drafts"
+  contact: {name: "Christian Løverås", 
+            email: "cl@dnb.no"}
 host: "api.example.com"
 basePath: "/v1"
 tags:
@@ -193,6 +194,7 @@ paths:
       tags:
       - "Accounts"
       summary: "Get account details"
+      description: "Maybe add query parameters for filtering? '?type=stocks', etc"
       produces:
       - "application/json"
       parameters:
@@ -214,7 +216,7 @@ paths:
       tags:
       - "Accounts"
       summary: "Create account"
-      description: "TBD"
+      description: "Maybe send partial Account object (without account number) in request?"
       consumes:
       - "application/json"
       parameters:
@@ -235,6 +237,7 @@ paths:
       tags:
       - "Accounts"
       summary: "Delete account"
+      description: "Maybe return HTTP 2XX 'marked for deletion', as the account will not be deleted immediately?"
       parameters:
       - name: "account"
         in: "path"
@@ -273,7 +276,7 @@ paths:
         404:
           description: "Account not found."
         417:
-          description: "Requires prior (paranormal) transfer of customer's expectation."
+          description: "Requires prior (paranormal) transfer of customer's expectation (haha)."
   /accounts/{account}/name:
     get:
       tags:
@@ -288,6 +291,8 @@ paths:
       responses:
         200:
           description: "Status 200"
+        404:
+          description: "Account not found."
     post:
       tags:
       - "Accounts"
@@ -371,6 +376,10 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "account"
+        in: "path"
+        required: true
+        type: "string"
       - name: "pagesize"
         in: "query"
         description: ""
@@ -660,7 +669,7 @@ paths:
         description: "Organization number, 9 digits. Example: 123456789"
         required: true
         type: "string"
-      - in: "body"
+      - in: "body"  
         name: "body"
         required: false
         schema:
@@ -1015,7 +1024,11 @@ paths:
       summary: "Get list of claims"
       produces:
       - "application/json"
-      parameters: []
+      parameters: 
+      - name: "policynumber"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         200:
           description: "Status 200"
@@ -2856,7 +2869,7 @@ definitions:
       amount:
         type: "integer"
         format: "int32"
-    description: "For now: One common insurance for all types (house, car, health,\
+    description: "For now: One common Insurance object for all types (house, car, health,\
       \ etc)."
   Insurance claim:
     type: "object"
@@ -2881,7 +2894,7 @@ definitions:
         type: "string"
       month:
         type: "string"
-      trnsactions:
+      transactions:
         type: "array"
         items:
           $ref: "#/definitions/Transaction"
