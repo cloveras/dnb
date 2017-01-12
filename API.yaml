@@ -512,6 +512,8 @@ paths:
             type: "array"
             items:
               type: "string"
+        404:
+          description: "Well, that's a surprise"
         418:
           description: "I'm a little teapot"
   /currency/convert/{foreigncurrency}/{currency}/{amount}:
@@ -524,14 +526,12 @@ paths:
         in: "path"
         description: "ISO 4217: alpha 3-letter upcase e.g EUR"
         required: true
-        type: "integer"
-        format: "int32"
+        type: "string"
       - name: "currency"
         in: "path"
         description: "ISO 4217: alpha 3-letter upcase e.g EUR"
         required: true
-        type: "integer"
-        format: "int32"
+        type: "string"
       - name: "amount"
         in: "path"
         description: ""
@@ -540,7 +540,7 @@ paths:
         format: "int32"
       - name: "date"
         in: "query"
-        description: "YYYY-MM-DD"
+        description: "YYYY-MM-DD (or change to ISO timestamp?)"
         required: false
         type: "string"
         x-example: "2016-12-31"
@@ -556,7 +556,8 @@ paths:
     get:
       tags:
       - "Currency"
-      summary: "Get rates for the most common currencies"
+      summary: "Get a list rates for the most common currencies"
+      description: "Suitable for making a table or similar."
       parameters:
       - name: "currency"
         in: "path"
@@ -572,7 +573,8 @@ paths:
     get:
       tags:
       - "Currency"
-      summary: "Get rate of CUR in NOK"
+      summary: "Get rate of CUR in NOK."
+      description: "Possibly add parameters for markup/margin, specify a date, find min/max in an interval (separate method?), etc."
       parameters:
       - name: "currency"
         in: "path"
@@ -1080,7 +1082,7 @@ paths:
     post:
       tags:
       - "Loans"
-      summary: "Down to zero."
+      summary: "Downpay entire loan (settle)."
       parameters:
       - name: "loanid"
         in: "path"
