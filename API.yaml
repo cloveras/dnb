@@ -220,7 +220,11 @@ paths:
       - "Accounts"
       summary: "Open deposit acount"
       description: "Need to provide more than an Account object, but then again this\
-        \ is a draft/note only."
+        \ is a draft/note only.\n\nRequired:\n* Electronic copy of signed rental agreement\n\
+        * The address of the apartment (or license details for car, boat, etc)\n*\
+        \ Name, SSN, email, phone of the lender (or is SSN sufficient, at least for\
+        \ existing DNB customers?)\n\nUse a Customer object?\n\nDNB deposit account:\
+        \ https://www.dnb.no/privat/nettbank-mobil-og-kort/konto/depositumskonto.html "
       consumes:
       - "application/json"
       parameters:
