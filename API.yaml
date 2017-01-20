@@ -11,8 +11,7 @@ info:
     \ |\n| PUT | 204 | 400, 404, 4XX, 5XX |\n\n"
   version: "1.0.5"
   title: "API drafts"
-  contact: {name: "Christian Løverås", 
-            email: "cl@dnb.no"}
+  contact: {}
 host: "api.example.com"
 basePath: "/v1"
 tags:
@@ -189,6 +188,84 @@ paths:
           description: "Status 404"
         500:
           description: "Status 500"
+  /account/deposit/{ownerid}/{lenderid}:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get information about deposit account"
+      description: "Need to provide more than an Account object, but then again this\
+        \ is a draft/note only."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ownerid"
+        in: "path"
+        description: "Personal id number (SSN) of the \"owner\" for the artifact this\
+          \ deposit account is security for, 11 digits."
+        required: true
+        type: "string"
+      - name: "lenderid"
+        in: "path"
+        description: "Personal id number (SSN) of the \"lender\" for the artifact\
+          \ this deposit account is security for, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Account"
+    post:
+      tags:
+      - "Accounts"
+      summary: "Open deposit acount"
+      description: "Need to provide more than an Account object, but then again this\
+        \ is a draft/note only."
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "ownerid"
+        in: "path"
+        description: "Personal id number (SSN) of the \"owner\" for the artifact this\
+          \ deposit account is security for, 11 digits."
+        required: true
+        type: "string"
+      - name: "lenderid"
+        in: "path"
+        description: "Personal id number (SSN) of the \"lender\" for the artifact\
+          \ this deposit account is security for, 11 digits."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Account"
+      responses:
+        200:
+          description: "Status 200"
+    delete:
+      tags:
+      - "Accounts"
+      summary: "Delete deposit account"
+      parameters:
+      - name: "ownerid"
+        in: "path"
+        description: "Personal id number (SSN) of the \"owner\" for the artifact this\
+          \ deposit account is security for, 11 digits."
+        required: true
+        type: "string"
+      - name: "lenderid"
+        in: "path"
+        description: "Personal id number (SSN) of the \"lender\" for the artifact\
+          \ this deposit account is security for, 11 digits."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Account deleted"
+        404:
+          description: "Status 404"
   /account/{account}:
     get:
       tags:
@@ -216,7 +293,8 @@ paths:
       tags:
       - "Accounts"
       summary: "Create account"
-      description: "Maybe send partial Account object (without account number) in request?"
+      description: "Maybe send partial Account object (without account number) in\
+        \ request?"
       consumes:
       - "application/json"
       parameters:
@@ -237,7 +315,8 @@ paths:
       tags:
       - "Accounts"
       summary: "Delete account"
-      description: "Maybe return HTTP 2XX 'marked for deletion', as the account will not be deleted immediately?"
+      description: "Maybe return HTTP 2XX 'marked for deletion', as the account will\
+        \ not be deleted immediately?"
       parameters:
       - name: "account"
         in: "path"
@@ -276,7 +355,8 @@ paths:
         404:
           description: "Account not found."
         417:
-          description: "Requires prior (paranormal) transfer of customer's expectation (haha)."
+          description: "Requires prior (paranormal) transfer of customer's expectation\
+            \ (haha)."
   /accounts/{account}/name:
     get:
       tags:
@@ -574,7 +654,8 @@ paths:
       tags:
       - "Currency"
       summary: "Get rate of CUR in NOK."
-      description: "Possibly add parameters for markup/margin, specify a date, find min/max in an interval (separate method?), etc."
+      description: "Possibly add parameters for markup/margin, specify a date, find\
+        \ min/max in an interval (separate method?), etc."
       parameters:
       - name: "currency"
         in: "path"
@@ -671,7 +752,7 @@ paths:
         description: "Organization number, 9 digits. Example: 123456789"
         required: true
         type: "string"
-      - in: "body"  
+      - in: "body"
         name: "body"
         required: false
         schema:
@@ -1026,7 +1107,7 @@ paths:
       summary: "Get list of claims"
       produces:
       - "application/json"
-      parameters: 
+      parameters:
       - name: "policynumber"
         in: "path"
         required: true
@@ -2425,6 +2506,29 @@ paths:
           schema:
             $ref: "#/definitions/Customer"
 definitions:
+  Vipps customer:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      phone:
+        type: "string"
+      name:
+        type: "string"
+      accountnumber:
+        type: "string"
+      cardnumber:
+        type: "string"
+  Customer profile:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      customerid:
+        type: "string"
+      Notes (placeholder):
+        type: "string"
+        description: "Needs lots more."
   Customer:
     type: "object"
     required:
@@ -2486,6 +2590,18 @@ definitions:
       : “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47\
       \ 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”\
       , \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
+  Customer score:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "Id of this score"
+      customerid:
+        type: "string"
+        description: "Customer id"
+      Notes (placeholder):
+        type: "string"
+        description: "Need lots more details.."
   Account:
     type: "object"
     properties:
@@ -2588,72 +2704,81 @@ definitions:
     description: "```\n{\n\t\"id\": \"99\"\n\t\"account\": \"12345678910\",\n\t\"\
       type\": \"\",\n\t\"currency\": \"NOK\",\n\t\"amount\": 12345,\n\t\"reference\"\
       : \"Enjoy!\"\n}\n```"
-  Annual report:
+  Account statement:
     type: "object"
+    required:
+    - "account"
+    - "month"
+    - "year"
     properties:
-      orgnr:
+      account:
         type: "string"
       year:
         type: "string"
-      details:
+      month:
         type: "string"
-        description: "TDB. Around 80 fields."
-    description: "See SAF-T: https://github.com/Skatteetaten/saf-t"
-  Advice:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      type:
-        type: "string"
-      details:
-        type: "string"
-        description: "TBD"
-    description: "Advice for BM Dashboard."
-  Report (placeholder):
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      details:
-        type: "string"
-    description: "Placeholder for various reports."
-  Loan:
+      transactions:
+        type: "array"
+        items:
+          $ref: "#/definitions/Transaction"
+  SEPA request:
     type: "object"
     required:
-    - "created"
-    - "customerid"
-    - "expires"
+    - "account"
     - "id"
-    - "interest"
-    - "remainingamount"
-    - "totalamount"
-    - "type"
+    - "remote_account"
+    - "remote_bic"
+    - "remote_iban"
     properties:
       id:
         type: "string"
-      type:
+        description: "Unique"
+      account:
         type: "string"
-      totalamount:
+        description: "From-account"
+      remote_iban:
         type: "string"
-      remainingamount:
+      remote_bic:
         type: "string"
-      interest:
+      remote_account:
+        type: "string"
+      amount:
         type: "integer"
         format: "int32"
-      customerid:
+      currency:
         type: "string"
-        description: "11 digits"
+    description: "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" :\
+      \ \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"\
+      remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\
+      \n}\n```"
+  SEPA response:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      account:
+        type: "string"
+      amount:
+        type: "integer"
+        format: "int32"
+      remote_iban:
+        type: "string"
+      remote:_bic:
+        type: "string"
+      remote_name:
+        type: "string"
+      state:
+        type: "string"
       created:
         type: "string"
-        format: "date"
-      expires:
+      updated:
         type: "string"
-        format: "date"
-        description: "Remaining time can be calculated from this."
-      details (placeholder):
+      currency:
         type: "string"
-    description: "For now: One common loan type for mortgage, car, credit card, etc"
+    description: "```\n{\n\"id\": \"01\",\n\"account\": \"123456789\",\n\"amount\"\
+      : 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\"\
+      : \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\"\
+      : \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```"
   Vipps payment request:
     type: "object"
     properties:
@@ -2742,19 +2867,6 @@ definitions:
       \  \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n \
       \       \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\"\
       :\"Please use vipps app to process the payment\"\n    }\n}\n```"
-  Vipps customer:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      phone:
-        type: "string"
-      name:
-        type: "string"
-      accountnumber:
-        type: "string"
-      cardnumber:
-        type: "string"
   Vipps transaction:
     type: "object"
     properties:
@@ -2768,97 +2880,42 @@ definitions:
       : \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"\
       transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\
       \n}]\n```"
-  Customer score:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        description: "Id of this score"
-      customerid:
-        type: "string"
-        description: "Customer id"
-      Notes (placeholder):
-        type: "string"
-        description: "Need lots more details.."
-  Customer profile:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      customerid:
-        type: "string"
-      Notes (placeholder):
-        type: "string"
-        description: "Needs lots more."
-  SEPA request:
+  Loan:
     type: "object"
     required:
-    - "account"
+    - "created"
+    - "customerid"
+    - "expires"
     - "id"
-    - "remote_account"
-    - "remote_bic"
-    - "remote_iban"
-    properties:
-      id:
-        type: "string"
-        description: "Unique"
-      account:
-        type: "string"
-        description: "From-account"
-      remote_iban:
-        type: "string"
-      remote_bic:
-        type: "string"
-      remote_account:
-        type: "string"
-      amount:
-        type: "integer"
-        format: "int32"
-      currency:
-        type: "string"
-    description: "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" :\
-      \ \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"\
-      remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\
-      \n}\n```"
-  SEPA response:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      account:
-        type: "string"
-      amount:
-        type: "integer"
-        format: "int32"
-      remote_iban:
-        type: "string"
-      remote:_bic:
-        type: "string"
-      remote_name:
-        type: "string"
-      state:
-        type: "string"
-      created:
-        type: "string"
-      updated:
-        type: "string"
-      currency:
-        type: "string"
-    description: "```\n{\n\"id\": \"01\",\n\"account\": \"123456789\",\n\"amount\"\
-      : 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\"\
-      : \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\"\
-      : \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```"
-  SAF-T file:
-    type: "object"
+    - "interest"
+    - "remainingamount"
+    - "totalamount"
+    - "type"
     properties:
       id:
         type: "string"
       type:
         type: "string"
-      fileurl:
+      totalamount:
         type: "string"
-        description: "(Unless all data is included in Object)"
-    description: "Standard Audit File - Tax\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+      remainingamount:
+        type: "string"
+      interest:
+        type: "integer"
+        format: "int32"
+      customerid:
+        type: "string"
+        description: "11 digits"
+      created:
+        type: "string"
+        format: "date"
+      expires:
+        type: "string"
+        format: "date"
+        description: "Remaining time can be calculated from this."
+      details (placeholder):
+        type: "string"
+    description: "For now: One common loan type for mortgage, car, credit card, etc"
   Insurance:
     type: "object"
     properties:
@@ -2871,8 +2928,8 @@ definitions:
       amount:
         type: "integer"
         format: "int32"
-    description: "For now: One common Insurance object for all types (house, car, health,\
-      \ etc)."
+    description: "For now: One common Insurance object for all types (house, car,\
+      \ health, etc)."
   Insurance claim:
     type: "object"
     properties:
@@ -2883,20 +2940,44 @@ definitions:
     properties:
       details (placeholder):
         type: "string"
-  Account statement:
+  SAF-T file:
     type: "object"
-    required:
-    - "account"
-    - "month"
-    - "year"
     properties:
-      account:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      fileurl:
+        type: "string"
+        description: "(Unless all data is included in Object)"
+    description: "Standard Audit File - Tax\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+  Annual report:
+    type: "object"
+    properties:
+      orgnr:
         type: "string"
       year:
         type: "string"
-      month:
+      details:
         type: "string"
-      transactions:
-        type: "array"
-        items:
-          $ref: "#/definitions/Transaction"
+        description: "TDB. Around 80 fields."
+    description: "See SAF-T: https://github.com/Skatteetaten/saf-t"
+  Advice:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      details:
+        type: "string"
+        description: "TBD"
+    description: "Advice for BM Dashboard."
+  Report (placeholder):
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      details:
+        type: "string"
+    description: "Placeholder for various reports."
