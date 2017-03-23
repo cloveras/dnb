@@ -1,0 +1,3552 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "**WORK IN PROGRESS! **\n\nThis is a working document, an informal draft for API \"note-taking\", evaluation of API-related tools, etc. Contains several errors, contradictions and mistakes. Some Wikipedia texts added as placeholders/examples.\n\nHTTP response codes\n\n* Wikipedia: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes\n* W3C: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\n\n\n| HTTP method | Success  | Fail  |\n| -------- | -------- | -------- |\n| GET     | 200     | 404, 4XX, 5XX     |\n| POST     | 200, 201     | 400, 404, 4XX, 5XX     |\n| PUT | 204 | 400, 404, 4XX, 5XX |\n\n",
+    "version" : "1.0.5",
+    "title" : "API drafts",
+    "contact" : { }
+  },
+  "host" : "api.example.com",
+  "basePath" : "/v1",
+  "tags" : [ {
+    "name" : "API",
+    "description" : "API housekeeping: Onboarding, governance, etc.\n\nImportant: KYC, AML, etc.\n\nIntros that may be useful: \n* BBVA: https://www.bbvaapimarket.com/how-it-works/get-started\n* Monzo: https://monzo.com/docs/#authentication\n* Fidor: http://docs.fidor.de/#prerequisites\n"
+  }, {
+    "name" : "Customers",
+    "description" : "For now: people and organizations are all \"Customers\", with \"orgnr\" as unique identifier.\n\nIn sales, commerce and economics, a customer (sometimes known as a client, buyer, or purchaser) is the recipient of a good, service, product or an idea - obtained from a seller, vendor, or supplier via a financial transaction or exchange for money or some other valuable consideration. An ultimate etymology of \"client\" may imply someone merely inclined to do business, whereas a purchaser procures goods or services on occasion but a customer customarily or habitually engages in transactions (historically: the collection of tolls or taxes - see the Wiktionary etymology of customer). Such distinctions have no contemporary semantic weight."
+  }, {
+    "name" : "Accounts",
+    "description" : "A transaction account, checking account, current account or demand deposit account is a deposit account held at a bank or other financial institution. It is available to the account owner \"on demand\" and is available for frequent and immediate access by the account owner or to others as the account owner may direct. Access may be in a variety of ways, such as cash withdrawals, use of cheques and debit by electronic transfer. In economic terms, the funds held in a transaction account are regarded as liquid funds and in accounting terms they are considered as cash."
+  }, {
+    "name" : "Transactions",
+    "description" : "A financial transaction is an agreement, communication, or movement carried out between a buyer and a seller to exchange an asset for payment. It involves a change in the status of the finances of two or more businesses or individuals. The buyer and seller are separate entities or objects, often involving the exchange of items of value, such as information, goods, services, and money. It is still a transaction if the goods are exchanged at one time, and the money at another. This is known as a two-part transaction: part one is giving the money, part two is receiving the goods."
+  }, {
+    "name" : "Vipps",
+    "description" : "Vipps[1] is a Norwegian mobile payment application designed for smartphones developed by DNB. Vipps was released May 30, 2015 and by reaching 1 million users November 5, 2015 - Vipps is Norways largest payment application. Although Vipps is developed by DNB it is an application open for customers from any Norwegian bank and 40% of the users are non-dnb customers. https://en.wikipedia.org/wiki/Vipps\n\nHTTP response codes\n\n"
+  }, {
+    "name" : "Location",
+    "description" : "A collection of location-related resources. Needs (lots of) work."
+  }, {
+    "name" : "Loans",
+    "description" : "A loan is a debt provided by an entity (organization or individual) to another entity at an interest rate, and evidenced by a promissory note which specifies, among other things, the principal amount of money borrowed, the interest rate the lender is charging, and date of repayment."
+  }, {
+    "name" : "Insurance",
+    "description" : "Insurance is a means of protection from financial loss. It is a form of risk management primarily used to hedge against the risk of a contingent, uncertain loss. "
+  }, {
+    "name" : "Currency",
+    "description" : "VISA API: https://developer.visa.com/products/foreign_exchange/reference#foreign_exchange__fx"
+  }, {
+    "name" : "Stocks",
+    "description" : "Ameritrade, from https://www.tdameritrade.com/api.page:\n\n* Trading - Submitting, canceling, modifying orders\n* Streaming data - Level I, Level II, News, and Actives\n* Historical data - Daily and intraday\n* Account information - Balances, positions, transactions\n* Multi-product support - Stocks, options, ETFs, mutual funds\n* Wrappers and sample code - Provides easy integration into various programming environments\n* Comprehensive documentation - Complete description and clear documentation available\n* Outstanding client support - Dedicated API specialists available to fully support your technical questions\n"
+  }, {
+    "name" : "SAF-T",
+    "description" : "Standard Audit File - Tax\n\nThe primary purpose of the SAF-T Financial data format is to: \n* Serve as an export format for accounting data after req uest from the Norwegian Tax Administration, public accountants and other parties.\n* Serve as archiving format for the necessary accounting data for those who are obliged to keep accounts as stated in the Norwegian bookkeeping legislation.\n* Serve as a format for moving data when changing accounting software. \n* Serve as a format for moving data from accounting software to other financial systems such as year-end closing systems, tax computation systems, business intelligence software, advisory systems etc. This documentation is intended for software developers and vendors who are to incorporate export functionality of SAF-T Financial data in their software.  \n\nSkatteetaten SAF-T information: http://www.skatteetaten.no/globalassets/standardformat-regnskapsaf-t/norwegian-saf-t-financial-data---documentation.pdf\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml\n\nXML schema, etc: https://github.com/skatteetaten/saf-t\n\nPWC: http://blogg.pwc.no/skattebloggen-en/saf-t-new-reporting-obligations-that-are-sweeping-across-europe\nKPMG: https://home.kpmg.com/no/nb/home/nyheter-og-innsikt/2016/05/innforing-og-utvikling-av-saf-t-i-norge.html\nEY: http://www.ey.com/no/no/newsroom/news-releases/2016-09-19-sterk-saf-t-fra-finansdepartementet\n"
+  }, {
+    "name" : "Reports",
+    "description" : "Reports as specified by the BM Dashboard project."
+  }, {
+    "name" : "Representations"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "In-app payment",
+        "description" : "From: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nTo launch the ViPPS app, use the following call (at a minimum):\n\nvipps://?action=inAppPayment&appID=fa01s-21res-qq21p-mq1p6&amount=12000&merchantSerialNumber=ed9320pre&fallbackURL=app://?action=confirmed",
+        "parameters" : [ {
+          "name" : "action",
+          "in" : "query",
+          "description" : "for payment it should be “inAppPayment” and for reservation “inAppReserve”.",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "inAppPayment"
+        }, {
+          "name" : "appID",
+          "in" : "query",
+          "description" : "App registration id will be created for Merchants’ each app registered in Vipps Systems and will be shared once the enrolment process is done",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "fa01s - 21res - qq21p - mq1p6"
+        }, {
+          "name" : "amount",
+          "in" : "query",
+          "description" : "Amount for which the payment should be initiated. The amount should in the lowest denomination i.e., Øre. Vipps only support NOK currency. Minimum value is 100 and maximum value is 9999999. Vipps will not round of the provided number. If the amount is not in the mentioned format, Vipps will return the FAIL state of transaction mentioning incorrect number format.",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "12000"
+        }, {
+          "name" : "orderID",
+          "in" : "query",
+          "description" : "Order id from 3rdparty app for which user is initiating a payment. Maximum length for this field is 30 chars. This order ID will be stored in the Vipps systems against the transactions and shall be displayed the receipt in the Vipps App for the user. The order ID will also be presented for the respective transaction in the Sales and Settlement report.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "message",
+          "in" : "query",
+          "description" : "URL encoded string. Payment’s reference message. Maximum length for this field is 200 chars. The message field will be displayed as part of the receipt.",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "Test%20Message"
+        }, {
+          "name" : "merchantSerialNumber",
+          "in" : "query",
+          "description" : "Merchant Sales Unit’s serial number will be a unique number in Vipps systems. The Serial number registered in Vipps Systems will be shared once the enrollment process is done.",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "ed9320pre"
+        }, {
+          "name" : "data",
+          "in" : "query",
+          "description" : "URL encoded string. If this exists, then the contents will go as a query string parameter with fallbackURL. Calling app can use this field to identify their session or booking for which the payment has been done. Maximum length for this field is 128 chars.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fallbackURL",
+          "in" : "query",
+          "description" : "URL encoded string. URL to be invoked once the payment process is complete. This is to respond back to calling app",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "app://?action=confirmed"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          },
+          "202" : {
+            "description" : "Status 202"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "402" : {
+            "description" : "Status 402"
+          },
+          "403" : {
+            "description" : "Status 403"
+          },
+          "404" : {
+            "description" : "Status 404"
+          },
+          "500" : {
+            "description" : "Status 500"
+          }
+        }
+      }
+    },
+    "/account/deposit/{ownerid}/{lenderid}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get information about deposit account",
+        "description" : "Need to provide more than an Account object, but then again this is a draft/note only.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "ownerid",
+          "in" : "path",
+          "description" : "Personal id number (SSN) of the \"owner\" for the artifact this deposit account is security for, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lenderid",
+          "in" : "path",
+          "description" : "Personal id number (SSN) of the \"lender\" for the artifact this deposit account is security for, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Account"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Open deposit acount",
+        "description" : "Need to provide more than an Account object, but then again this is a draft/note only.\n\nRequired:\n* Electronic copy of signed rental agreement\n* The address of the apartment (or license details for car, boat, etc)\n* Name, SSN, email, phone of the lender (or is SSN sufficient, at least for existing DNB customers?)\n\nUse a Customer object?\n\nDNB deposit account: https://www.dnb.no/privat/nettbank-mobil-og-kort/konto/depositumskonto.html ",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "ownerid",
+          "in" : "path",
+          "description" : "Personal id number (SSN) of the \"owner\" for the artifact this deposit account is security for, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lenderid",
+          "in" : "path",
+          "description" : "Personal id number (SSN) of the \"lender\" for the artifact this deposit account is security for, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Account"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Delete deposit account",
+        "parameters" : [ {
+          "name" : "ownerid",
+          "in" : "path",
+          "description" : "Personal id number (SSN) of the \"owner\" for the artifact this deposit account is security for, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lenderid",
+          "in" : "path",
+          "description" : "Personal id number (SSN) of the \"lender\" for the artifact this deposit account is security for, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Account deleted"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/account/{account}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account details",
+        "description" : "Maybe add query parameters for filtering? '?type=stocks', etc",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Account"
+            }
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Create account",
+        "description" : "Maybe send partial Account object (without account number) in request?",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Account"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Delete account",
+        "description" : "Maybe return HTTP 2XX 'marked for deletion', as the account will not be deleted immediately?",
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Deleted"
+          },
+          "401" : {
+            "description" : ""
+          },
+          "404" : {
+            "description" : "Account does not exist."
+          },
+          "500" : {
+            "description" : "I'm afraid I can't do that."
+          }
+        }
+      }
+    },
+    "/accounts/{account}/balance" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account balance",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "$ref" : "#/definitions/Balance"
+            }
+          },
+          "401" : {
+            "description" : "No balance for you."
+          },
+          "404" : {
+            "description" : "Account not found."
+          },
+          "417" : {
+            "description" : "Requires prior (paranormal) transfer of customer's expectation (haha)."
+          }
+        }
+      }
+    },
+    "/accounts/{account}/name" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account name",
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Account not found."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Change account name",
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Delete account name",
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/accounts/{account}/safetospend" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get \"safe to spend\" amount",
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Don't spend it all at once.",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "401" : {
+            "description" : "Not really your account, is it?"
+          }
+        }
+      }
+    },
+    "/accounts/{account}/statement/{year}/{month}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account statement",
+        "description" : "Account statement for specified account, year and month. Some meta data, and a list of all transactions. ",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "year",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Account statement"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/accounts/{account}/transactionlist" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get transactionlist for one account",
+        "description" : "Supports pagination: pagesize and pagenumber,",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "pagenumber",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Transaction"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/accounts/{account}/transactionlist/{year}/{month}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "List of transactions for one month",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits. Example: 12345678910",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Transaction"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "No transactions."
+          }
+        }
+      }
+    },
+    "/api/key" : {
+      "get" : {
+        "tags" : [ "API" ],
+        "summary" : "Get new API key",
+        "description" : "Needs a little bit of verification. Might even be POST.\n\nOther intros:\n* BBVA: https://www.bbvaapimarket.com/how-it-works/get-started\n* Monzo: https://monzo.com/docs/#authentication\n* Fidor: http://docs.fidor.de/#prerequisites\n\n\nAlso: \"API Keys ≠ Security: Why API Keys Are Not Enough\": http://nordicapis.com/why-api-keys-are-not-enough/",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "429" : {
+            "description" : "Status 429"
+          }
+        }
+      }
+    },
+    "/api/key/{apikey}" : {
+      "get" : {
+        "tags" : [ "API" ],
+        "summary" : "Get details of API key",
+        "parameters" : [ {
+          "name" : "apikey",
+          "in" : "path",
+          "description" : "Example: fa01s-21res-qq21p-mq1p6",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "API" ],
+        "summary" : "Delete API key",
+        "parameters" : [ {
+          "name" : "apikey",
+          "in" : "path",
+          "description" : "Example: fa01s-21res-qq21p-mq1p6",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/api/ratelimit" : {
+      "get" : {
+        "tags" : [ "API" ],
+        "summary" : "Rate limit for current user",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/api/whoami" : {
+      "get" : {
+        "tags" : [ "API" ],
+        "summary" : "Who am I?",
+        "description" : "All details of current API user account:\n* Contact details\n* API key details\n* Payment/plan/subscription\n* Throttling info\n* etc",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Details of current API key holder.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Well, that's a surprise"
+          },
+          "418" : {
+            "description" : "I'm a little teapot"
+          }
+        }
+      }
+    },
+    "/currency/convert/{foreigncurrency}/{currency}/{amount}" : {
+      "get" : {
+        "tags" : [ "Currency" ],
+        "summary" : "Convert amount from CUR 1 to CUR2",
+        "parameters" : [ {
+          "name" : "foreigncurrency",
+          "in" : "path",
+          "description" : "ISO 4217: alpha 3-letter upcase e.g EUR",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "currency",
+          "in" : "path",
+          "description" : "ISO 4217: alpha 3-letter upcase e.g EUR",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "amount",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "description" : "YYYY-MM-DD (or change to ISO timestamp?)",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "2016-12-31"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/currency/list/{currency}" : {
+      "get" : {
+        "tags" : [ "Currency" ],
+        "summary" : "Get a list rates for the most common currencies",
+        "description" : "Suitable for making a table or similar.",
+        "parameters" : [ {
+          "name" : "currency",
+          "in" : "path",
+          "description" : "\"Home\" currency",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "/currency/rate/{currency}" : {
+      "get" : {
+        "tags" : [ "Currency" ],
+        "summary" : "Get rate of CUR in NOK.",
+        "description" : "Possibly add parameters for markup/margin, specify a date, find min/max in an interval (separate method?), etc.",
+        "parameters" : [ {
+          "name" : "currency",
+          "in" : "path",
+          "description" : "ISO 4217: alpha 3-letter upcase e.g EUR",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/customer/{orgnr}/score" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get customer score",
+        "description" : "Customer score with all details.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Customer score"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Create/update customer score",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customer score"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Delete customer score",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/customers/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get basic customer information.",
+        "description" : "",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "$ref" : "#/definitions/Customer"
+            }
+          },
+          "404" : {
+            "description" : "No such orgnr found."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Create new customer",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Welcome!"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "409" : {
+            "description" : "Conflicting orgnr: Already exists."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Delete customer",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          }
+        }
+      }
+    },
+    "/customers/{orgnr}/about" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get detailed customer information.",
+        "description" : "Nice if this is different from /customers/{orgnr}.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "$ref" : "#/definitions/Customer"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Update customer details",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/customers/{orgnr}/accounts" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Accounts overview (list of accounts).",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Account"
+              }
+            }
+          },
+          "404" : {
+            "description" : "No accounts."
+          }
+        }
+      }
+    },
+    "/customers/{orgnr}/profile" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get customer profile",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Create/update customer profile",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Delete customer profile",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/insurance/car/offer/{licensenumber}" : {
+      "post" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get insurance offer",
+        "description" : "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "licensenumber",
+          "in" : "path",
+          "description" : "AB12345",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Insurance offer"
+            }
+          }
+        }
+      }
+    },
+    "/insurance/car/service/{latitude}/{longditude}" : {
+      "get" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get nearest car service",
+        "parameters" : [ {
+          "name" : "latitude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "longditude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/insurance/car/towingservice/{latitude}/{longditude}" : {
+      "get" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get nearest car towing service",
+        "parameters" : [ {
+          "name" : "latitude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "longditude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/insurance/car/{licensenumber}" : {
+      "get" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get info about a car's insurance",
+        "description" : "Check if a car is insured: /insurance/car/AB12345",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "licensenumber",
+          "in" : "path",
+          "description" : "AB12345",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Insurance"
+            }
+          },
+          "404" : {
+            "description" : "No insurance found."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get insurance offer",
+        "description" : "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "licensenumber",
+          "in" : "path",
+          "description" : "AB12345",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Offer provided.",
+            "schema" : {
+              "$ref" : "#/definitions/Insurance"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "409" : {
+            "description" : "Recently sent an offer."
+          }
+        }
+      }
+    },
+    "/insurance/claim" : {
+      "post" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Make new claim",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Insurance claim"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Claim received (not approved quite yet, though)."
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/insurance/weatheralert/{latitude}/{longditude}" : {
+      "get" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Check if there is a weather alert",
+        "parameters" : [ {
+          "name" : "latitude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "longditude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "radius",
+          "in" : "query",
+          "description" : "Radius in km.",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "50"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Yes there is, and here are the details.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          },
+          "404" : {
+            "description" : "No weather alert."
+          }
+        }
+      }
+    },
+    "/insurance/{policynumber}" : {
+      "get" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get insurance details",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "policynumber",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Insurance"
+            }
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Unknown policy number."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Update insurance details",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "policynumber",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Insurance"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Update successful."
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          },
+          "409" : {
+            "description" : "Status 409"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Delete an insurance",
+        "parameters" : [ {
+          "name" : "policynumber",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/insurance/{policynumber}/claims" : {
+      "get" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get list of claims",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "policynumber",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Insurance claim"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/insurance/{policynumber}/claims/{claimid}" : {
+      "get" : {
+        "tags" : [ "Insurance" ],
+        "summary" : "Get details of claim",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "policynumber",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "claimid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Insurance claim"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/loans/apply" : {
+      "post" : {
+        "tags" : [ "Loans" ],
+        "summary" : "Apply for a new loan",
+        "description" : "Need to POST quite a bit of data, and also handle AML, KYC, etc",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/loans/downpay/{loanid}" : {
+      "post" : {
+        "tags" : [ "Loans" ],
+        "summary" : "Downpay entire loan (settle).",
+        "parameters" : [ {
+          "name" : "loanid",
+          "in" : "path",
+          "description" : "The loan to downpay.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/loans/{loanid}" : {
+      "get" : {
+        "tags" : [ "Loans" ],
+        "summary" : "Details of this loan",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "loanid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Loan"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Loans" ],
+        "summary" : "Delete loan",
+        "description" : "Downpayment first.",
+        "parameters" : [ {
+          "name" : "loanid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/location/branch/findbyaddress" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Find nearest branch by address",
+        "parameters" : [ {
+          "name" : "address",
+          "in" : "query",
+          "description" : "TBD",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/location/branch/{branchid}/details" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Branch details",
+        "parameters" : [ {
+          "name" : "branchid",
+          "in" : "path",
+          "description" : "Id of branch",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Location" ],
+        "summary" : "Update branch details",
+        "parameters" : [ {
+          "name" : "branchid",
+          "in" : "path",
+          "description" : "Id of branch",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/location/branch/{branchid}/openinghours" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Opening hours of a branch",
+        "parameters" : [ {
+          "name" : "branchid",
+          "in" : "path",
+          "description" : "Id of a branch",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Location" ],
+        "summary" : "Update branch opening hours",
+        "parameters" : [ {
+          "name" : "branchid",
+          "in" : "path",
+          "description" : "Id of a branch",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/location/branch/{latitude}/{longditude}/" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Nearest branch office",
+        "parameters" : [ {
+          "name" : "latitude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "longditude",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/location/minibank/{latitude}/{longditude}/" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Nearest minibank",
+        "parameters" : [ {
+          "name" : "latitude",
+          "in" : "path",
+          "description" : "Current latitude. Example: 37.4238253802915",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "longditude",
+          "in" : "path",
+          "description" : "Current longditude. Example: -122.0842499",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of minibank locations",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments /{orderId}/serialNumber/{merchantSerialNumber}/details" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Get payment details",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orderId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "merchantSerialNumber",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Vipps transaction"
+            }
+          }
+        }
+      }
+    },
+    "/preapproval/{loanid}" : {
+      "get" : {
+        "tags" : [ "Loans" ],
+        "summary" : "Get details of preapproval",
+        "parameters" : [ {
+          "name" : "loanid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/preapproval/{personnr}/{desiredamount}" : {
+      "get" : {
+        "tags" : [ "Loans" ],
+        "summary" : "Check if the person has approval",
+        "parameters" : [ {
+          "name" : "personnr",
+          "in" : "path",
+          "description" : "11-digit personal id number",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "desiredamount",
+          "in" : "path",
+          "description" : "How much?",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Sufficient funds"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Insufficient funds"
+          },
+          "429" : {
+            "description" : "We need to prevent repeated attempts at guessing the \"desiredamount\". Rules, etc TBD."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Loans" ],
+        "summary" : "Apply for preapproval",
+        "parameters" : [ {
+          "name" : "personnr",
+          "in" : "path",
+          "description" : "11-digit personal id number",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "desiredamount",
+          "in" : "path",
+          "description" : "How much?",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "417" : {
+            "description" : "Haha/Sorry."
+          },
+          "429" : {
+            "description" : "Please go away."
+          }
+        }
+      }
+    },
+    "/reports/accounts/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Accounts report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Different use than /accounts?",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/advices/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Advices report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Advice"
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Delete advices",
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/annual/{year}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Annual report for year and company,",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Report found.",
+            "schema" : {
+              "$ref" : "#/definitions/Annual report"
+            }
+          },
+          "404" : {
+            "description" : "Annual report not found."
+          }
+        }
+      }
+    },
+    "/reports/behaviour/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Behaviour report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Delete advices.",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/benchmarks/{year}/{month}/{orgnr}/compareto/{orgnr_compare}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Benchmark report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr_compare",
+          "in" : "path",
+          "description" : "Organization number of company to to compare with, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "?type=",
+          "in" : "query",
+          "description" : "What to compare: revenue (default=, profitability, liquidity",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "revenue"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/calendars/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Calendar report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/chats/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Chats report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/expenses/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Expenses report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/invoices/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Invoices report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/liquidity/{year}{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Liquidity for year, month and company.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/liquidityprognosis/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Liquidity prognosis for year, month and copmpany.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Delete prognosis.",
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/liquiditystatus/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Liquidity status for year, month and company.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/loanpayments/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Loan payments report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/notifications/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Notifications report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/organization/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Organization report.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Report (placeholder)"
+            }
+          }
+        }
+      }
+    },
+    "/reports/products/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Products report.",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/profitability/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Profitability report.",
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/revenues/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Revenues report.",
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/roles/{year}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Roles report.",
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/solidity/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Solidity report.",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/system/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "System report.",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/reports/transactions/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Transaction report.",
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "{\n    \"transactions\": [\n        {\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n            \"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/turnovers/{year}/{month}/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Reports" ],
+        "summary" : "Turnovers report.",
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Year, 4 digits. Example: 2017",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "month",
+          "in" : "path",
+          "description" : "Month, 2 digits (January is 01). Example: 01",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/saf-t/{orgnr}" : {
+      "get" : {
+        "tags" : [ "SAF-T" ],
+        "summary" : "Get SAF-T file for a company",
+        "description" : "",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/SAF-T file"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "SAF-T" ],
+        "summary" : "Send new SAF-T file",
+        "description" : "",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/SAF-T file"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/saf-t/{orgnr}/{type}" : {
+      "get" : {
+        "tags" : [ "SAF-T" ],
+        "summary" : "Get SAF-T file for a company of type",
+        "description" : "",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "description" : "Type of SAF-T file",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/SAF-T file"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "SAF-T" ],
+        "summary" : "Send new SAF-T file of type",
+        "description" : "",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "description" : "Type of SAF-T file",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/SAF-T file"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/stocks/price/{ticker}/{timestamp}" : {
+      "get" : {
+        "tags" : [ "Stocks" ],
+        "summary" : "Get price of stock",
+        "parameters" : [ {
+          "name" : "ticker",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "timestamp",
+          "in" : "path",
+          "required" : true,
+          "type" : "string",
+          "format" : "date"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/stocks/{ticker}" : {
+      "get" : {
+        "tags" : [ "Stocks" ],
+        "summary" : "Get info about stock with ticker",
+        "parameters" : [ {
+          "name" : "ticker",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/transactions/category/{mcc}/{account}" : {
+      "get" : {
+        "tags" : [ "Transactions" ],
+        "summary" : "Get transactions with code MCC for one account",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "mcc",
+          "in" : "path",
+          "description" : "MCC: Merchant Category Code: https://en.wikipedia.org/wiki/Merchant_category_code",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "account",
+          "in" : "path",
+          "description" : "Account number, 11 digits.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Transaction"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/transactions/sepa" : {
+      "post" : {
+        "tags" : [ "Transactions" ],
+        "summary" : "Create new SEPA transfer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/SEPA request"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/SEPA response"
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{transactionid}" : {
+      "get" : {
+        "tags" : [ "Transactions" ],
+        "summary" : "Get transaction details",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "transactionid",
+          "in" : "path",
+          "description" : "id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Transaction"
+            }
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Transactions" ],
+        "summary" : "Create transaction",
+        "description" : "TBD. Needs a lot more details. Just a note, really.",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "transactionid",
+          "in" : "path",
+          "description" : "id",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Transaction"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Transactions" ],
+        "summary" : "Delete/stop transaction",
+        "parameters" : [ {
+          "name" : "transactionid",
+          "in" : "path",
+          "description" : "id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "401" : {
+            "description" : "Not for you."
+          },
+          "403" : {
+            "description" : "Too late?"
+          }
+        }
+      }
+    },
+    "/vipps/customer" : {
+      "post" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Create new Vipps customer",
+        "description" : "Phone number, personal id number, name, card number, account number",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Customer"
+            }
+          }
+        }
+      }
+    },
+    "/vipps/invoice/{orgnr}" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Get Vipps invoice details",
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Create new Vipps invoice customer",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orgnr",
+          "in" : "path",
+          "description" : "Organization number, 9 digits. Example: 123456789",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      }
+    },
+    "/vipps/merchants/{latitude}/{longditude}" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Nearby Vipps merchants",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "latitude",
+          "in" : "path",
+          "description" : "Current latitude. Example: 37.4238253802915",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "longditude",
+          "in" : "path",
+          "description" : "Current longditude. Example: -122.0842499",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Customer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vipps/payments" : {
+      "post" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Make new Vipps payment",
+        "description" : "From 8.3.2: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Vipps payment request"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "$ref" : "#/definitions/Vipps payment response"
+            }
+          }
+        }
+      }
+    },
+    "/vipps/settlement/create" : {
+      "post" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Create a new (empty) settlement",
+        "description" : "date, name, participants, currency(?)",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/vipps/settlement/{settlementid}" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Details of a settlement",
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Created, status, name, owners/admins, list of expenses",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Delete settlement",
+        "description" : "(Not possible in Vipps today)",
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/vipps/settlement/{settlementid}/expense" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Details of expense",
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "New expense",
+        "description" : "Date, who, amount, description, etc",
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Delete expense from settlement",
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/vipps/settlement/{settlementid}/settle" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Settle, pay everyone",
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/vipps/settlement/{settlementid}/user" : {
+      "post" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Add user to settlement",
+        "description" : "Should POST a Person, not Customer",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      }
+    },
+    "/vipps/settlement/{settlementid}/user/{userid}" : {
+      "get" : {
+        "tags" : [ "Vipps" ],
+        "summary" : "Details of user in settlement",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "settlementid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "userid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Maybe just a Person, as he/she may not be a customer with us.",
+            "schema" : {
+              "$ref" : "#/definitions/Customer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Vipps customer" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "accountnumber" : {
+          "type" : "string"
+        },
+        "cardnumber" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Customer profile" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "customerid" : {
+          "type" : "string"
+        },
+        "Notes (placeholder)" : {
+          "type" : "string",
+          "description" : "Needs lots more."
+        }
+      }
+    },
+    "Customer" : {
+      "type" : "object",
+      "required" : [ "City", "Country", "Id", "Name", "Postcode" ],
+      "properties" : {
+        "Id" : {
+          "type" : "string",
+          "description" : "Person: Personal number, 11 digits.\nCompany: Organization number, 9 digits."
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Active, pending, closed, etc"
+        },
+        "program" : {
+          "type" : "string",
+          "description" : "SAGA, etc"
+        },
+        "Name" : {
+          "type" : "string",
+          "description" : "Person: Rune Bjerke.\nCompany: DNB"
+        },
+        "Address" : {
+          "type" : "string",
+          "description" : "Street address."
+        },
+        "Postcode" : {
+          "type" : "string",
+          "description" : "4 digits if in Norway,"
+        },
+        "City" : {
+          "type" : "string",
+          "description" : "Oslo"
+        },
+        "Country" : {
+          "type" : "string",
+          "description" : "\"NO\". http://www.iso.org/iso/country_codes.htm"
+        },
+        "Email" : {
+          "type" : "string",
+          "description" : "example@example.com"
+        },
+        "Phone" : {
+          "type" : "string",
+          "description" : "+47 04800"
+        },
+        "Website" : {
+          "type" : "string",
+          "description" : "dnb.no"
+        },
+        "welcomepackage" : {
+          "type" : "string",
+          "description" : "Id/tracking details for welcome package"
+        },
+        "Notes (placeholder)" : {
+          "type" : "string",
+          "description" : "{\n    \"email\": \"rune.bjerke@dnb.no\",\n    \"first_name\": \"Rune\",\n    \"last_name\": \"Bjerke\",\n    \"gender\": \"m\",\n    \"adr_street\": \"Dronning Eufemias gate 30\",\n    \"adr_post_code\": \"0191\",\n    \"adr_city\": \"Oslo\",\n    \"adr_country\": \"NO\",\n    “phone\": \"+47 04800\",\n    \"birthday\": \"1960-06-17\",\n    \"created\": \"2015-07-01T10:42:00+01:00\",     \"updated\": \"2015-10-01T10:42:00+01:00\",\n}"
+        }
+      },
+      "description" : "Draft, needs update from actual properties below:\n```\n{\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
+    },
+    "Customer score" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Id of this score"
+        },
+        "customerid" : {
+          "type" : "string",
+          "description" : "Customer id"
+        },
+        "Notes (placeholder)" : {
+          "type" : "string",
+          "description" : "Need lots more details.."
+        }
+      }
+    },
+    "Account" : {
+      "type" : "object",
+      "properties" : {
+        "number" : {
+          "type" : "string",
+          "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Internal use, probably."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Friendly name."
+        },
+        "currency" : {
+          "type" : "string",
+          "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+        },
+        "balance" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "IBAN" : {
+          "type" : "string",
+          "description" : "ISO 13616:2007"
+        },
+        "created" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        },
+        "updated" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        },
+        "locked" : {
+          "type" : "boolean",
+          "description" : "Is this account locked?",
+          "default" : false
+        },
+        "Notes (placeholder)" : {
+          "type" : "string",
+          "description" : "{\n    \"accounts\": [\n        {\n            \"account_number\": \"05000000000\",\n            \"description\": \"Salary\",\n            \"created\": \"2015-07-01T10:42:00+01:00\"\n        }\n        {\n            \"account_number\": \"05000000001\",\n            \"description\": \"Expenses\",\n            \"created\": \"2015-07-01T10:42:00+01:00\"\n        }\n        {\n            \"account_number\": \"05000000002\",\n            \"description\": \"Savings\",\n            \"created\": \"2015-07-01T10:42:00+01:00\"\n        }\n    ]\n}"
+        }
+      }
+    },
+    "Balance" : {
+      "type" : "object",
+      "required" : [ "account", "amount", "timestamp" ],
+      "properties" : {
+        "account" : {
+          "type" : "string",
+          "description" : "Account number, 11 digits."
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "timestamp" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        }
+      },
+      "description" : "```\n{\n   \"account\": 12345678910,\n   \"balance\": 12345,\n   \"timestamp\": \"2017-01-03T09:56:28+00:0\",\n}\n```"
+    },
+    "Transaction" : {
+      "type" : "object",
+      "required" : [ "account", "amount", "currency", "id", "type" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "account" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "string"
+        },
+        "reference" : {
+          "type" : "string",
+          "description" : "Description"
+        },
+        "Notes (placeholder)" : {
+          "type" : "string",
+          "description" : "{\n    \"transactions\": [\n        {\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n            \"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}"
+        }
+      },
+      "description" : "```\n{\n\t\"id\": \"99\"\n\t\"account\": \"12345678910\",\n\t\"type\": \"\",\n\t\"currency\": \"NOK\",\n\t\"amount\": 12345,\n\t\"reference\": \"Enjoy!\"\n}\n```"
+    },
+    "Account statement" : {
+      "type" : "object",
+      "required" : [ "account", "month", "year" ],
+      "properties" : {
+        "account" : {
+          "type" : "string"
+        },
+        "year" : {
+          "type" : "string"
+        },
+        "month" : {
+          "type" : "string"
+        },
+        "transactions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Transaction"
+          }
+        }
+      }
+    },
+    "SEPA request" : {
+      "type" : "object",
+      "required" : [ "account", "id", "remote_account", "remote_bic", "remote_iban" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Unique"
+        },
+        "account" : {
+          "type" : "string",
+          "description" : "From-account"
+        },
+        "remote_iban" : {
+          "type" : "string"
+        },
+        "remote_bic" : {
+          "type" : "string"
+        },
+        "remote_account" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currency" : {
+          "type" : "string"
+        }
+      },
+      "description" : "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" : \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\n}\n```"
+    },
+    "SEPA response" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "account" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "remote_iban" : {
+          "type" : "string"
+        },
+        "remote:_bic" : {
+          "type" : "string"
+        },
+        "remote_name" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "created" : {
+          "type" : "string"
+        },
+        "updated" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string"
+        }
+      },
+      "description" : "```\n{\n\"id\": \"01\",\n\"account\": \"123456789\",\n\"amount\": 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\": \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\": \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```"
+    },
+    "Vipps payment request" : {
+      "type" : "object",
+      "properties" : {
+        "merchantInfo" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "merchantSerialNumber" : {
+                "type" : "string",
+                "description" : "Identifies a merchant sales channel i.e. website, mobile app etc."
+              },
+              "callBack" : {
+                "type" : "string",
+                "description" : "ViPPS will use this Call back URL to provide the status of initiated transaction. Length of the string is 255 characters"
+              }
+            }
+          }
+        },
+        "customerInfo" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "mobileNumber" : {
+                "type" : "string",
+                "description" : "Mobile number of the user who has to pay for the  transaction from ViPPS.\nAllowed format:\n+47-xxxxxxxx\n+47xxxxxxxx\nxxxxxxxx"
+              }
+            },
+            "required" : [ "mobileNumber" ]
+          }
+        },
+        "transaction" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "orderId" : {
+                "type" : "string",
+                "description" : "Id which uniquely identifies an Order. Maximum length is 30 alphanumeric characters"
+              },
+              "refOrderId" : {
+                "type" : "string",
+                "description" : "Identifies if the payment references to some past orders registered with ViPPS. If defined, transactions for this payment will show up as child transactions of the specified order. Described functionality is not in place and is planned for future implementation"
+              },
+              "amount" : {
+                "type" : "integer",
+                "format" : "int32",
+                "description" : "Amount in øre. 32 Bit Integer (2147483647)"
+              },
+              "transactionText" : {
+                "type" : "string",
+                "description" : "Transaction text that can be displayed to end user"
+              },
+              "timeStamp" : {
+                "type" : "string",
+                "description" : "Timestamp in ISO\n-\n8601 representing when the \norder has been made by merchant"
+              }
+            }
+          }
+        }
+      },
+      "description" : "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\": \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n        \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\": \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\n    }\n}\n```"
+    },
+    "Vipps payment response" : {
+      "type" : "object",
+      "properties" : {
+        "orderId" : {
+          "type" : "string"
+        },
+        "merchantSerialNumber" : {
+          "type" : "string"
+        },
+        "transactionInfo" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "amount" : {
+                "type" : "string"
+              },
+              "status" : {
+                "type" : "string"
+              },
+              "transactionId" : {
+                "type" : "string"
+              },
+              "timeStamp" : {
+                "type" : "string"
+              },
+              "message" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "description" : "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n        \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n        \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\":\"Please use vipps app to process the payment\"\n    }\n}\n```"
+    },
+    "Vipps transaction" : {
+      "type" : "object",
+      "properties" : {
+        "orderId" : {
+          "type" : "string"
+        }
+      },
+      "description" : "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\": {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\":\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\":\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\": \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\n}]\n```"
+    },
+    "Loan" : {
+      "type" : "object",
+      "required" : [ "created", "customerid", "expires", "id", "interest", "remainingamount", "totalamount", "type" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "totalamount" : {
+          "type" : "string"
+        },
+        "remainingamount" : {
+          "type" : "string"
+        },
+        "interest" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "customerid" : {
+          "type" : "string",
+          "description" : "11 digits"
+        },
+        "created" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "expires" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Remaining time can be calculated from this."
+        },
+        "details (placeholder)" : {
+          "type" : "string"
+        }
+      },
+      "description" : "For now: One common loan type for mortgage, car, credit card, etc"
+    },
+    "Insurance" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "description" : "For now: One common Insurance object for all types (house, car, health, etc)."
+    },
+    "Insurance claim" : {
+      "type" : "object",
+      "properties" : {
+        "details (placeholder)" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Insurance offer" : {
+      "type" : "object",
+      "properties" : {
+        "details (placeholder)" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SAF-T file" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "fileurl" : {
+          "type" : "string",
+          "description" : "(Unless all data is included in Object)"
+        }
+      },
+      "description" : "Standard Audit File - Tax\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
+    },
+    "Annual report" : {
+      "type" : "object",
+      "properties" : {
+        "orgnr" : {
+          "type" : "string"
+        },
+        "year" : {
+          "type" : "string"
+        },
+        "details" : {
+          "type" : "string",
+          "description" : "TDB. Around 80 fields."
+        }
+      },
+      "description" : "See SAF-T: https://github.com/Skatteetaten/saf-t"
+    },
+    "Advice" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "details" : {
+          "type" : "string",
+          "description" : "TBD"
+        }
+      },
+      "description" : "Advice for BM Dashboard."
+    },
+    "Report (placeholder)" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "details" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Placeholder for various reports."
+    }
+  }
+}
