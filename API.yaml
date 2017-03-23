@@ -1342,6 +1342,26 @@ paths:
           description: "Status 200"
           schema:
             $ref: "#/definitions/Vipps transaction"
+  /preapproval/delete/{personnr}:
+    delete:
+      tags:
+      - "Loans"
+      summary: "Delete preapproval"
+      description: "When a loan is issued, either by DNB or another bank, the preapproval\
+        \ shoyld be deleted.\nSeparate method to avoid specifying amount. \"Personnr\"\
+        \ is sifficient."
+      parameters:
+      - name: "personnr"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+        401:
+          description: "Status 401"
+        404:
+          description: "Status 404"
   /preapproval/{loanid}:
     get:
       tags:
@@ -1360,6 +1380,10 @@ paths:
       tags:
       - "Loans"
       summary: "Check if the person has approval"
+      description: "Kommune (county) number, gårdsnummer and bruksnummer are optional\
+        \ parameters, which may be used to specify which property the preapproval\
+        \ is being checked for. This may allow DNB to find out that the preapproval\
+        \ holder is in a bidding process."
       parameters:
       - name: "personnr"
         in: "path"
@@ -1371,6 +1395,24 @@ paths:
         description: "How much?"
         required: true
         type: "string"
+      - name: "county"
+        in: "query"
+        description: "Number of the county (kommune)."
+        required: false
+        type: "string"
+        x-example: "1865"
+      - name: "gnr"
+        in: "query"
+        description: "Gårdsnummer."
+        required: false
+        type: "string"
+        x-example: "55"
+      - name: "bnr"
+        in: "query"
+        description: "Bruksnummer."
+        required: false
+        type: "string"
+        x-example: "34"
       responses:
         200:
           description: "Sufficient funds"
