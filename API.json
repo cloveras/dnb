@@ -4,7 +4,8 @@
     "description" : "**WORK IN PROGRESS! **\n\nThis is a working document, an informal draft for API \"note-taking\", evaluation of API-related tools, etc. Contains several errors, contradictions and mistakes. Some Wikipedia texts added as placeholders/examples.\n\nHTTP response codes\n\n* Wikipedia: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes\n* W3C: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\n\n\n| HTTP method | Success  | Fail  |\n| -------- | -------- | -------- |\n| GET     | 200     | 404, 4XX, 5XX     |\n| POST     | 200, 201     | 400, 404, 4XX, 5XX     |\n| PUT | 204 | 400, 404, 4XX, 5XX |\n\n",
     "version" : "1.0.5",
     "title" : "API drafts",
-    "termsOfService" : ""
+    "termsOfService" : "",
+    "contact" : { }
   },
   "host" : "a1r3mp0.restletmocks.net",
   "schemes" : [ "https" ],
@@ -13,11 +14,15 @@
       "get" : {
         "tags" : [ "API" ],
         "summary" : "Get new API key",
-        "description" : "Needs a little bit of verification. Might even be POST.\n\nOther intros:\n* BBVA: https://www.bbvaapimarket.com/how-it-works/get-started\n* Monzo: https://monzo.com/docs/#authentication\n* Fidor: http://docs.fidor.de/#prerequisites\n\n\nAlso: \"API Keys ≠ Security: Why API Keys Are Not Enough\": http://nordicapis.com/why-api-keys-are-not-enough/",
+        "description" : "Simplified example. Requires a method of identification, the minimum being Facebook or Google OAuth. ",
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Status 200"
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "string",
+              "example" : "Ok, you're in."
+            }
           },
           "400" : {
             "description" : "Status 400"
@@ -35,7 +40,12 @@
       "get" : {
         "tags" : [ "API" ],
         "summary" : "Get details of API key",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "apikey",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Status 200"
@@ -45,7 +55,12 @@
       "delete" : {
         "tags" : [ "API" ],
         "summary" : "Delete API key",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "apikey",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        } ],
         "responses" : {
           "204" : {
             "description" : "Status 204"
@@ -67,10 +82,11 @@
       "get" : {
         "tags" : [ "API" ],
         "summary" : "Rate limit for current user",
+        "description" : "How am I doing? Am I near my limit? ",
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "",
+            "description" : "Status 200",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -271,7 +287,7 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "",
+            "description" : "Status 200",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -410,7 +426,7 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "",
+            "description" : "Status 200",
             "schema" : {
               "$ref" : "#/definitions/Balance"
             }
@@ -422,7 +438,7 @@
             "description" : "Account not found."
           },
           "417" : {
-            "description" : "Requires prior (paranormal) transfer of customer's expectation (haha)."
+            "description" : "Expectation Failed: Requires prior (paranormal) transfer of customer's expectation (haha)."
           }
         }
       },
@@ -480,17 +496,18 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get \"safe to spend\" amount",
+        "description" : "The current balance, minus known outgoing transactions, plus known incoming transactions. ",
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Don't spend it all at once.",
+            "description" : "Here it is! Don't spend it all at once.",
             "schema" : {
               "type" : "integer",
               "format" : "int32"
             }
           },
           "401" : {
-            "description" : "Not really your account, is it?"
+            "description" : "Hmmm, not really your account, is it?"
           }
         }
       },
@@ -1375,6 +1392,17 @@
         "description" : "Need to POST quite a bit of data, and also handle AML, KYC, etc",
         "consumes" : [ ],
         "parameters" : [ {
+          "name" : "customer",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "loan",
+          "in" : "header",
+          "required" : false,
+          "type" : "string",
+          "description" : "Loan details"
+        }, {
           "name" : "body",
           "in" : "body",
           "required" : true,
@@ -2948,7 +2976,7 @@
           "description" : "{\n    \"email\": \"rune.bjerke@dnb.no\",\n    \"first_name\": \"Rune\",\n    \"last_name\": \"Bjerke\",\n    \"gender\": \"m\",\n    \"adr_street\": \"Dronning Eufemias gate 30\",\n    \"adr_post_code\": \"0191\",\n    \"adr_city\": \"Oslo\",\n    \"adr_country\": \"NO\",\n    “phone\": \"+47 04800\",\n    \"birthday\": \"1960-06-17\",\n    \"created\": \"2015-07-01T10:42:00+01:00\",     \"updated\": \"2015-10-01T10:42:00+01:00\",\n}"
         }
       },
-      "description" : "Draft, needs update from actual properties below.\n\nALso doubles as \"Person\", i.e: Not all Customer objects are DNB customers. A Customer is to be seen as a human person with certain attributes.\n\n```\n{\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
+      "description" : "Draft, needs update from actual properties below.\n\nAlso doubles as \"Person\", i.e: Not all Customer objects are DNB customers. A Customer is to be seen as a human person with certain attributes.\n\n```\n{\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
     },
     "Customer score" : {
       "type" : "object",
@@ -2961,9 +2989,13 @@
           "type" : "string",
           "description" : "Customer id"
         },
-        "Notes (placeholder)" : {
+        "score" : {
+          "type" : "integer",
+          "description" : "The score"
+        },
+        "score_details" : {
           "type" : "string",
-          "description" : "Need lots more details.."
+          "description" : "Optional details"
         }
       }
     },
@@ -3058,11 +3090,10 @@
           "description" : "Description"
         },
         "Notes (placeholder)" : {
-          "type" : "string",
-          "description" : "{\n    \"transactions\": [\n        {\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n            \"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}"
+          "type" : "string"
         }
       },
-      "description" : "```\n{\n\t\"id\": \"99\"\n\t\"account\": \"12345678910\",\n\t\"type\": \"\",\n\t\"currency\": \"NOK\",\n\t\"amount\": 12345,\n\t\"reference\": \"Enjoy!\"\n}\n```"
+      "description" : "Generic transaction. Quite basic for now.\n\nExample (array):\n```\n{\n    \"transactions\": [\n        {\n\t\t\t\t    \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n             \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n\t\t\t\t\t\t\"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel macchiato\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}\n```"
     },
     "Account statement" : {
       "type" : "object",
