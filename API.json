@@ -158,6 +158,7 @@
     },
     "/api/ping" : {
       "get" : {
+        "tags" : [ "API" ],
         "summary" : "API ping",
         "parameters" : [ ],
         "responses" : {
@@ -1034,6 +1035,7 @@
         }
       },
       "post" : {
+        "tags" : [ "Loans" ],
         "summary" : "Apply for preapproval",
         "description" : "For now apply for a specified amount only. If the amouhnt specified is 0 (zero), the application will be treated as for the maximum possible amount.",
         "parameters" : [ ],
