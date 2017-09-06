@@ -1,13 +1,13 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "API: Payment -\n\nAPIs allows authorized payments across accounts for business and individuals. Also, the details of the payments could be retrieved based on the Payment reference. You could initiate an immediate payment with ease at this instance and future payments are not supported at this point.\n",
+    "description" : "Merged from TCS APIs for the DNB Hackathon.\n",
     "version" : "1.0",
-    "title" : "Payments"
+    "title" : "Hackathon",
+    "contact" : { }
   },
-  "host" : "dnbapistore.com",
-  "basePath" : "/hackathon/accounts/1.0",
-  "schemes" : [ "https", "http" ],
+  "host" : "s1vvegi.restletmocks.net",
+  "schemes" : [ "https" ],
   "paths" : {
     "/account" : {
       "get" : {
