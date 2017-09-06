@@ -1,0 +1,439 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API: Payment -\n\nAPIs allows authorized payments across accounts for business and individuals. Also, the details of the payments could be retrieved based on the Payment reference. You could initiate an immediate payment with ease at this instance and future payments are not supported at this point.\n",
+    "version" : "1.0",
+    "title" : "Payments"
+  },
+  "host" : "dnbapistore.com",
+  "basePath" : "/hackathon/accounts/1.0",
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/account" : {
+      "get" : {
+        "summary" : "View customer account transaction details API",
+        "description" : "In the Merchant API, the transactions of a specific account can be retrieved during given time period. Customer ID and Account number must be passed along with the time horizon.",
+        "parameters" : [ {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "accountNumber"
+        }, {
+          "name" : "customerID",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "customerID"
+        }, {
+          "name" : "dateFrom",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "ddMMyyyy"
+        }, {
+          "name" : "dateTo",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "ddMMyyyy"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create Customer Account API",
+        "description" : "This API implements an account creation.",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "Update account name API",
+        "description" : "This API can update customer’s name specific for an account. The request should be based on the combination of Customer ID, Account number and the name to be updated.",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/account/close" : {
+      "patch" : {
+        "summary" : "Close Customer Account API",
+        "description" : "Using the API, You can choose to close an account by sending the Account number and Customer ID. The prerequisite for closing the account is for it to be active and the account could Savings or Current.",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/account/customer/{customerId}" : {
+      "get" : {
+        "summary" : "View Customer Account Overview API",
+        "description" : "This API will provide a list of active customer accounts as the response. The response will contain account level information such as account type, available balance along with the account number.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/account/details" : {
+      "get" : {
+        "summary" : "View Customer account details API",
+        "description" : "This API will provide details of one account against Account Number & Customer ID, and the response will contain details such as account type, name, available/book balance, Currency type along with the account number.",
+        "parameters" : [ {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "account number"
+        }, {
+          "name" : "customerID",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "customer id"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/account/balance" : {
+      "get" : {
+        "summary" : "View Customer Balance Account API",
+        "description" : "This API will provide the available and booked Balance of an account against Account Number & Customer ID, and the response will contain the currency type as well.",
+        "parameters" : [ {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "accountNumber"
+        }, {
+          "name" : "customerID",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "customerID"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/account/disponent" : {
+      "post" : {
+        "summary" : "Add disponent to account API",
+        "description" : "This API will add disponent for a given account number.",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/account/status" : {
+      "get" : {
+        "summary" : "View Customer account status API",
+        "description" : "This API will provide status of an account against Account Number & Customer ID, and the response will contain details such as account status, customer ID along with the account number.",
+        "parameters" : [ {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "accountNumber"
+        }, {
+          "name" : "customerID",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "customerID"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/bank/atm/{atmId}" : {
+      "get" : {
+        "summary" : "Bank ATM Details API",
+        "description" : "The API will return an ATM with Address, Latitude and Longitude against the ATM ID that is passed in the request",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "atmId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/bank/branch/{branchId}" : {
+      "get" : {
+        "summary" : "Bank Branches API",
+        "description" : "The API will return a Bank Branch with Address, Latitude and Longitude against the Branch ID that is passed in the request.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "branchId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/bank/branch/zip/{zipcode}" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "zipcode",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/bank/atm/zip/{zipcode}" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "zipcode",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/currency/convert" : {
+      "get" : {
+        "summary" : "Currency Conversion API",
+        "description" : "This API will convert the amount given by the user from base currency to foreign currency. The API is not fetching the live data at this point in time and the details provided are static in nature for now. Default date is 2025-08-20.",
+        "parameters" : [ {
+          "name" : "base",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "base currency"
+        }, {
+          "name" : "foreignCurrency",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "foreignCurrency"
+        }, {
+          "name" : "amount",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "amount to convert"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "date of conversion(yyyy-MM-dd)"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/currency/exchange" : {
+      "get" : {
+        "summary" : "Exchange rate details API",
+        "description" : "The Currency API offers exchange rates for all the global tradable currencies (300+) against a base currency on a given date. Default date is 2025-08-20.",
+        "parameters" : [ {
+          "name" : "base",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "base currency"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "date (yyyy-MM-dd)"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/payment/kid" : {
+      "put" : {
+        "summary" : "Payment Initiation with KID",
+        "description" : "The API allows money transfers between self and business accounts with KID reference. The prerequisite for the transfer to happen is to have both the debit and credit accounts active. Both credit and debit account numbers along with the amount & Kid number should be given as input. At this point in time, scheduling payment function is not available; hence the payment date should be current date.",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/payment/{id}" : {
+      "get" : {
+        "summary" : "Payment Details API",
+        "description" : "The Transactions API allows you to view the details of a transaction against payment ID as request parameter. The prerequisite of this API is to know the payment ID to retrieve the details.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/payment" : {
+      "put" : {
+        "summary" : "Payment Initiation without KID API",
+        "description" : "The API allows money transfers between self and 3rd party accounts on both Savings & Current. The prerequisite for the transfer to happen is to have both the debit and credit accounts active. Both credit and debit account numbers along with the amount & Message should be given as input. At this point in time, scheduling payment function is not available; hence the payment date should be present. ",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "default" : {
+      "type" : "oauth2",
+      "authorizationUrl" : "https://dnbapistore.com/authorize",
+      "flow" : "implicit",
+      "scopes" : { }
+    }
+  }
+}
