@@ -185,7 +185,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Customer score"
+              "$ref" : "#/definitions/Customer-score"
             }
           }
         }
@@ -199,7 +199,7 @@
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/Customer score"
+            "$ref" : "#/definitions/Customer-score"
           }
         } ],
         "responses" : {
@@ -800,14 +800,14 @@
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/SEPA request"
+            "$ref" : "#/definitions/SEPA-request"
           }
         } ],
         "responses" : {
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/SEPA response"
+              "$ref" : "#/definitions/SEPA-response"
             }
           }
         }
@@ -1344,7 +1344,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Insurance offer"
+              "$ref" : "#/definitions/Insurance-offer"
             }
           }
         }
@@ -1483,14 +1483,14 @@
       "post" : {
         "tags" : [ "Insurance" ],
         "summary" : "Make new insurance claim",
-        "description" : "Refers to object \"Insurance claim\", which is a very simplified representation.",
+        "description" : "Refers to object \"Insurance-claim\", which is a very simplified representation.",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "body",
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/Insurance claim"
+            "$ref" : "#/definitions/Insurance-claim"
           }
         } ],
         "responses" : {
@@ -1622,7 +1622,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Insurance claim"
+                "$ref" : "#/definitions/Insurance-claim"
               }
             }
           }
@@ -1645,7 +1645,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Insurance claim"
+              "$ref" : "#/definitions/Insurance-claim"
             }
           },
           "404" : {
@@ -1807,7 +1807,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Vipps transaction"
+              "$ref" : "#/definitions/Vipps-transaction"
             }
           }
         }
@@ -1939,14 +1939,14 @@
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/Vipps payment request"
+            "$ref" : "#/definitions/Vipps-payment-request"
           }
         } ],
         "responses" : {
           "200" : {
             "description" : "",
             "schema" : {
-              "$ref" : "#/definitions/Vipps payment response"
+              "$ref" : "#/definitions/Vipps-payment-response"
             }
           }
         }
@@ -2144,7 +2144,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/SAF-T file"
+              "$ref" : "#/definitions/SAF-T-file"
             }
           }
         }
@@ -2159,7 +2159,7 @@
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/SAF-T file"
+            "$ref" : "#/definitions/SAF-T-file"
           }
         } ],
         "responses" : {
@@ -2187,7 +2187,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/SAF-T file"
+              "$ref" : "#/definitions/SAF-T-file"
             }
           }
         }
@@ -2202,7 +2202,7 @@
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/SAF-T file"
+            "$ref" : "#/definitions/SAF-T-file"
           }
         } ],
         "responses" : {
@@ -2235,7 +2235,7 @@
           "200" : {
             "description" : "Different use than /accounts?",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2306,7 +2306,7 @@
           "200" : {
             "description" : "Report found.",
             "schema" : {
-              "$ref" : "#/definitions/Annual report"
+              "$ref" : "#/definitions/Annual-report"
             }
           },
           "404" : {
@@ -2338,7 +2338,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2378,7 +2378,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2419,7 +2419,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2454,7 +2454,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2489,7 +2489,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2524,7 +2524,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2547,7 +2547,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2582,7 +2582,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2627,7 +2627,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2662,7 +2662,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2697,7 +2697,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -2732,7 +2732,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Report (placeholder)"
+              "$ref" : "#/definitions/Report"
             }
           }
         }
@@ -3018,7 +3018,7 @@
       },
       "description" : "Draft, needs update from actual properties below.\n\nAlso doubles as \"Person\", i.e: Not all Customer objects are DNB customers. A Customer is to be seen as a human person with certain attributes.\n\n```\n{\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
     },
-    "Customer profile" : {
+    "Customer-profile" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -3033,7 +3033,7 @@
         }
       }
     },
-    "Customer score" : {
+    "Customer-score" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -3175,7 +3175,7 @@
         }
       }
     },
-    "SEPA request" : {
+    "SEPA-request" : {
       "type" : "object",
       "required" : [ "account", "id", "remote_account", "remote_bic", "remote_iban" ],
       "properties" : {
@@ -3206,7 +3206,7 @@
       },
       "description" : "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" : \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\n}\n```"
     },
-    "SEPA response" : {
+    "SEPA-response" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -3384,7 +3384,7 @@
       },
       "description" : "For now: One common Insurance object for all types (house, car, health, etc)."
     },
-    "Insurance claim" : {
+    "Insurance-claim" : {
       "type" : "object",
       "properties" : {
         "details (placeholder)" : {
@@ -3396,7 +3396,7 @@
       },
       "description" : "For now: A simple object to represent an insurance claim. Should include all details necessary to make a claim."
     },
-    "Insurance offer" : {
+    "Insurance-offer" : {
       "type" : "object",
       "properties" : {
         "insurance" : {
@@ -3409,7 +3409,7 @@
       },
       "description" : "For now: A simple object to represent an insurance offer. Refers to Insurance for simplicity."
     },
-    "Vipps customer" : {
+    "Vipps-customer" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -3429,7 +3429,7 @@
         }
       }
     },
-    "Vipps payment request" : {
+    "Vipps-payment-request" : {
       "type" : "object",
       "properties" : {
         "merchantInfo" : {
@@ -3493,7 +3493,7 @@
       },
       "description" : "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\": \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n        \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\": \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\n    }\n}\n```"
     },
-    "Vipps payment response" : {
+    "Vipps-payment-response" : {
       "type" : "object",
       "properties" : {
         "orderId" : {
@@ -3528,7 +3528,7 @@
       },
       "description" : "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n        \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n        \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\":\"Please use vipps app to process the payment\"\n    }\n}\n```"
     },
-    "Vipps transaction" : {
+    "Vipps-transaction" : {
       "type" : "object",
       "properties" : {
         "orderId" : {
@@ -3537,7 +3537,7 @@
       },
       "description" : "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\": {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\":\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\":\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\": \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\n}]\n```"
     },
-    "SAF-T file" : {
+    "SAF-T-file" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -3553,7 +3553,7 @@
       },
       "description" : "Standard Audit File - Tax\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
     },
-    "Annual report" : {
+    "Annual-report" : {
       "type" : "object",
       "properties" : {
         "orgnr" : {
@@ -3585,7 +3585,7 @@
       },
       "description" : "Advice for BM Dashboard."
     },
-    "Report (placeholder)" : {
+    "Report" : {
       "type" : "object",
       "properties" : {
         "id" : {
