@@ -1,13 +1,13 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Merged from TCS APIs for the DNB Hackathon.\n",
+    "description" : "API: Payment -\n\nAPIs allows authorized payments across accounts for business and individuals. Also, the details of the payments could be retrieved based on the Payment reference. You could initiate an immediate payment with ease at this instance and future payments are not supported at this point.\n",
     "version" : "1.0",
-    "title" : "Hackathon",
-    "contact" : { }
+    "title" : "Payments"
   },
-  "host" : "s1vvegi.restletmocks.net",
-  "schemes" : [ "https" ],
+  "host" : "dnbapistore.com",
+  "basePath" : "/hackathon/accounts/1.0",
+  "schemes" : [ "https", "http" ],
   "paths" : {
     "/account" : {
       "get" : {
@@ -39,8 +39,17 @@
           "description" : "ddMMyyyy"
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Enter Valid Account Number"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Accounts not found or not created, Please give valid CustomerID"
           }
         }
       },
@@ -62,8 +71,14 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Customer not found or not created. Please give valid customerId"
           }
         }
       },
@@ -85,8 +100,17 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Enter Valid Account Number"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Accounts not found or not created, Please give valid CustomerID"
           }
         }
       }
@@ -110,8 +134,14 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Requested Account is not active/Customer not found. Please provide a valid customerId and accountnumber"
           }
         }
       }
@@ -122,8 +152,17 @@
         "description" : "This API will provide a list of active customer accounts as the response. The response will contain account level information such as account type, available balance along with the account number.",
         "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Customer id must contain 11 digits"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Accounts not found or not created, Please give valid CustomerID"
           }
         }
       },
@@ -152,8 +191,17 @@
           "description" : "customer id"
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Customer id must contain 11 digits"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Accounts not found or not created, Please give valid CustomerID"
           }
         }
       }
@@ -176,8 +224,17 @@
           "description" : "customerID"
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Customer id must contain 11 digits"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Accounts not found or not created, Please give valid CustomerID"
           }
         }
       }
@@ -201,8 +258,17 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Customer id must contain 11 digits"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Accounts not found or not created, Please give valid CustomerID"
           }
         }
       }
@@ -225,25 +291,40 @@
           "description" : "customerID"
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Customer id must contain 11 digits"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Accounts not found or not created, Please give valid CustomerID"
           }
         }
       }
     },
-    "/bank/atm/{atmId}" : {
+    "/bank/atm/{atmID}" : {
       "get" : {
-        "summary" : "Bank ATM Details API",
+        "summary" : "Bank ATM Details API (ID)",
         "description" : "The API will return an ATM with Address, Latitude and Longitude against the ATM ID that is passed in the request",
         "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "ATM not found"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
           }
         }
       },
       "parameters" : [ {
-        "name" : "atmId",
+        "name" : "atmID",
         "in" : "path",
         "required" : true,
         "type" : "string"
@@ -251,12 +332,18 @@
     },
     "/bank/branch/{branchId}" : {
       "get" : {
-        "summary" : "Bank Branches API",
+        "summary" : "Bank Branch API (ID)",
         "description" : "The API will return a Bank Branch with Address, Latitude and Longitude against the Branch ID that is passed in the request.",
         "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Branch not found"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
           }
         }
       },
@@ -269,10 +356,17 @@
     },
     "/bank/branch/zip/{zipcode}" : {
       "get" : {
+        "summary" : "Bank ATM Details API (Zipcode)",
         "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Branch not found"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
           }
         }
       },
@@ -285,10 +379,17 @@
     },
     "/bank/atm/zip/{zipcode}" : {
       "get" : {
+        "summary" : "Bank Branch API (Zipcode)",
         "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "ATM not found"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
           }
         }
       },
@@ -329,8 +430,17 @@
           "description" : "date of conversion(yyyy-MM-dd)"
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Enter valid currency/Failed to convert property value"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Please enter a valid input/Currency is not valid"
           }
         }
       }
@@ -353,16 +463,46 @@
           "description" : "date (yyyy-MM-dd)"
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "500" : {
+            "description" : "Currency is not valid/Internal Server Error"
           }
         }
       }
     },
-    "/payment/kid" : {
-      "put" : {
-        "summary" : "Payment Initiation with KID",
-        "description" : "The API allows money transfers between self and business accounts with KID reference. The prerequisite for the transfer to happen is to have both the debit and credit accounts active. Both credit and debit account numbers along with the amount & Kid number should be given as input. At this point in time, scheduling payment function is not available; hence the payment date should be current date.",
+    "/customer/{customerId}" : {
+      "get" : {
+        "summary" : "View Customer Details API",
+        "description" : "  This API will query and display Customer attributes based on Customer ID",
+        "parameters" : [ ],
+        "responses" : {
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Customer ID must countain 11 digits"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/customer" : {
+      "post" : {
+        "summary" : "Create Customer API ",
+        "description" : "  This API enables external entities to create new Customers. This is the pre-requisite for creating an account for the customer",
         "consumes" : [ ],
         "parameters" : [ {
           "name" : "body",
@@ -378,8 +518,75 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Invalid personal Number/Invalid phone Number/Invalid request"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          }
+        }
+      },
+      "patch" : {
+        "summary" : "Update Customer Details API ",
+        "description" : " This API can update customer records (Address, email, Phone number) that was originally created. There are certain fields that cannot be modified for a Customer such as Customer ID, gender, nationality, etc",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Success"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Customer Not Found. Please provide valid customerID"
+          }
+        }
+      }
+    },
+    "/payment/kid" : {
+      "put" : {
+        "summary" : "Payment Initiation with KID",
+        "description" : "The API allows money transfers between self and business accounts with KID reference. The prerequisite for the transfer to happen is to have both the debit and credit accounts active. Both credit and debit account numbers along with the amount & Kid number should be given as input. At this point in time, scheduling payment function is not available; hence the payment date should be current date.",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Bad Request/Invalid Kid Number/Invalid Account Number"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Debit/Credit Account not found, Please give valid Debit/Credit AccountNumber"
+          },
+          "500" : {
+            "description" : "Internal Server Error/Enter valid amount/Enter valid Date"
           }
         }
       }
@@ -390,8 +597,17 @@
         "description" : "The Transactions API allows you to view the details of a transaction against payment ID as request parameter. The prerequisite of this API is to know the payment ID to retrieve the details.",
         "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Bad Request/Invalid Payment ID"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Payment Not found"
           }
         }
       },
@@ -421,8 +637,128 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : ""
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Bad Request/Invalid Account Number"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Debit/Credit Account not found, Please give valid Debit/Credit AccountNumber"
+          },
+          "500" : {
+            "description" : "Internal Server Error/Enter valid amount/Enter valid Date"
+          }
+        }
+      }
+    },
+    "/payment/atm" : {
+      "put" : {
+        "summary" : "Payment initiation through ATM",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Bad Request/Invalid Account Number"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Debit Account not found, Please give valid Debit AccountNumber"
+          },
+          "500" : {
+            "description" : "Internal Server Error/Enter valid amount/Enter valid Date"
+          }
+        }
+      }
+    },
+    "/payment/card" : {
+      "put" : {
+        "summary" : "Payment initiation through card",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Bad Request/Invalid Account Number"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Debit Account not found, Please give valid Debit AccountNumber"
+          },
+          "500" : {
+            "description" : "Internal Server Error/Enter valid amount/Enter valid Date"
+          }
+        }
+      }
+    },
+    "/payment/vipps" : {
+      "put" : {
+        "summary" : "Payment initiation through merchant/vipps",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "payload" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "Bad Request/Invalid Account Number"
+          },
+          "401" : {
+            "description" : "Invalid Credentials"
+          },
+          "404" : {
+            "description" : "Debit Account not found, Please give valid Debit AccountNumber"
+          },
+          "500" : {
+            "description" : "Internal Server Error/Enter valid amount/Enter valid Date"
           }
         }
       }
