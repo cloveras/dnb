@@ -1178,7 +1178,8 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "type" : "string"
+              "type" : "string",
+              "example" : "AED: 3.672538"
             }
           }
         }
@@ -1188,7 +1189,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string",
-        "description" : "\"Home\" currency"
+        "description" : "\"Home\" currency. ISO 4217: alpha 3-letter upcase e.g EUR"
       } ],
       "x-restlet" : {
         "section" : "Currency"
