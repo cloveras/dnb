@@ -2605,7 +2605,7 @@
         "summary" : "Benchmark report.",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "?type=",
+          "name" : "type",
           "in" : "query",
           "required" : false,
           "type" : "string",
