@@ -2436,7 +2436,7 @@
         "description" : "Organization number, 9 digits. Example: 123456789"
       } ]
     },
-    "/reports/liquidity/{year}{month}/{customerId}" : {
+    "/reports/liquidity/{year}/{month}/{customerId}" : {
       "get" : {
         "tags" : [ "Reports" ],
         "summary" : "Liquidity for year, month and company.",
@@ -2599,7 +2599,7 @@
         "description" : "Organization number, 9 digits. Example: 123456789"
       } ]
     },
-    "/reports/benchmarks/{year}/{month}/{customerId}/compareto/{customerIdCompare}" : {
+    "/reports/benchmarks/{year}/{month}/{customerId}/{customerIdCompare}" : {
       "get" : {
         "tags" : [ "Reports" ],
         "summary" : "Benchmark report.",
