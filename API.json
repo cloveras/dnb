@@ -387,7 +387,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/Customer-score"
+              "$ref": "#/definitions/CustomerScore"
             }
           }
         }
@@ -406,7 +406,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Customer-score"
+              "$ref": "#/definitions/CustomerScore"
             }
           }
         ],
@@ -689,7 +689,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/Account-statement"
+              "$ref": "#/definitions/Accountstatement"
             }
           },
           "404": {
@@ -1041,7 +1041,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SEPA-request"
+              "$ref": "#/definitions/SEPArequest"
             }
           }
         ],
@@ -1049,7 +1049,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/SEPA-response"
+              "$ref": "#/definitions/SEPAresponse"
             }
           }
         }
@@ -1476,7 +1476,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Insurance-claim"
+                "$ref": "#/definitions/Insuranceclaim"
               }
             }
           }
@@ -1505,7 +1505,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/Insurance-claim"
+              "$ref": "#/definitions/Insuranceclaim"
             }
           },
           "404": {
@@ -1534,7 +1534,7 @@
           "Insurance"
         ],
         "summary": "Make new insurance claim",
-        "description": "Refers to object \"Insurance-claim\", which is a very simplified representation.",
+        "description": "Refers to object \"Insuranceclaim\", which is a very simplified representation.",
         "consumes": [
           "application/json"
         ],
@@ -1544,7 +1544,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Insurance-claim"
+              "$ref": "#/definitions/Insuranceclaim"
             }
           }
         ],
@@ -1657,7 +1657,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/Insurance-offer"
+              "$ref": "#/definitions/Insuranceoffer"
             }
           }
         }
@@ -2284,7 +2284,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Vipps-payment-request"
+              "$ref": "#/definitions/VippsPaymentRequest"
             }
           }
         ],
@@ -2292,7 +2292,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Vipps-payment-response"
+              "$ref": "#/definitions/VippsPaymentResponse"
             }
           }
         }
@@ -2438,7 +2438,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/Vipps-transaction"
+              "$ref": "#/definitions/Vippstransaction"
             }
           }
         }
@@ -3239,7 +3239,7 @@
           "200": {
             "description": "Report found.",
             "schema": {
-              "$ref": "#/definitions/Annual-report"
+              "$ref": "#/definitions/Annualreport"
             }
           },
           "404": {
@@ -3366,7 +3366,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/SAF-T-file"
+              "$ref": "#/definitions/SAFTfile"
             }
           }
         }
@@ -3386,7 +3386,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SAF-T-file"
+              "$ref": "#/definitions/SAFTfile"
             }
           }
         ],
@@ -3428,7 +3428,7 @@
           "200": {
             "description": "Status 200",
             "schema": {
-              "$ref": "#/definitions/SAF-T-file"
+              "$ref": "#/definitions/SAFTfile"
             }
           }
         }
@@ -3448,7 +3448,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SAF-T-file"
+              "$ref": "#/definitions/SAFTfile"
             }
           }
         ],
@@ -3535,7 +3535,7 @@
       },
       "description": "Draft, needs update from actual properties below.\n\nAlso doubles as \"Person\", i.e: Not all Customer objects are DNB customers. A Customer is to be seen as a human person with certain attributes.\n\n```\n{\n\t\"id\": \"17066099999\",\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
     },
-    "Customer-profile": {
+    "CustomerProfile": {
       "type": "object",
       "properties": {
         "id": {
@@ -3550,7 +3550,7 @@
         }
       }
     },
-    "Customer-score": {
+    "CustomerScore": {
       "type": "object",
       "properties": {
         "id": {
@@ -3622,7 +3622,7 @@
       },
       "description": "For now: One kind of Account for all.\n\n```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"IBAN\": \"NO93 8601 1117 947\",\n\t\t\"SWIFT\": \"DNBANOKKXXX\",\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n}\n```"
     },
-    "Account-statement": {
+    "Accountstatement": {
       "type": "object",
       "required": [
         "account",
@@ -3706,7 +3706,7 @@
       },
       "description": "```\n{\n    \"transactions\": [\n        {\n\t\t\t\t    \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n             \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n\t\t\t\t\t\t\"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel macchiato\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}\n```"
     },
-    "SEPA-request": {
+    "SEPArequest": {
       "type": "object",
       "required": [
         "account",
@@ -3743,7 +3743,7 @@
       },
       "description": "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" : \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\n}\n```"
     },
-    "SEPA-response": {
+    "SEPAresponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -3853,7 +3853,7 @@
       },
       "description": "For now: One common Insurance object for all types (house, car, health, etc)."
     },
-    "Insurance-offer": {
+    "Insuranceoffer": {
       "type": "object",
       "properties": {
         "insurance": {
@@ -3866,7 +3866,7 @@
       },
       "description": "For now: A simple object to represent an insurance offer. Refers to Insurance for simplicity."
     },
-    "Insurance-claim": {
+    "Insuranceclaim": {
       "type": "object",
       "properties": {
         "details (placeholder)": {
@@ -3955,7 +3955,7 @@
         }
       }
     },
-    "Vipps-payment-request": {
+    "VippsPaymentRequest": {
       "type": "object",
       "properties": {
         "merchantInfo": {
@@ -4021,7 +4021,7 @@
       },
       "description": "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\": \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n        \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\": \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\n    }\n}\n```"
     },
-    "Vipps-transaction": {
+    "Vippstransaction": {
       "type": "object",
       "properties": {
         "orderId": {
@@ -4030,7 +4030,7 @@
       },
       "description": "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\": {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\":\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\":\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\": \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\n}]\n```"
     },
-    "Vipps-payment-response": {
+    "VippsPaymentResponse": {
       "type": "object",
       "properties": {
         "orderId": {
@@ -4065,7 +4065,7 @@
       },
       "description": "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n        \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n        \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\":\"Please use vipps app to process the payment\"\n    }\n}\n```"
     },
-    "Vipps-customer": {
+    "VippsCustomer": {
       "type": "object",
       "properties": {
         "id": {
@@ -4097,7 +4097,7 @@
       },
       "description": "Placeholder for various reports."
     },
-    "Annual-report": {
+    "Annualreport": {
       "type": "object",
       "properties": {
         "customerId": {
@@ -4129,7 +4129,7 @@
       },
       "description": "Advice for BM Dashboard."
     },
-    "SAF-T-file": {
+    "SAFTfile": {
       "type": "object",
       "properties": {
         "id": {
