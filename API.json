@@ -34,9 +34,6 @@
             "description" : "Status 429"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "API"
       }
     },
     "/api/key/{apikey}" : {
@@ -110,10 +107,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Example: fa01s-21res-qq21p-mq1p6"
-      } ],
-      "x-restlet" : {
-        "section" : "API"
-      }
+      } ]
     },
     "/api/ping" : {
       "get" : {
@@ -131,9 +125,6 @@
             "description" : "Yes, yes, yes!"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "API"
       }
     },
     "/api/whoami" : {
@@ -159,9 +150,6 @@
             "description" : "I'm a little teapot"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "API"
       }
     },
     "/api/ratelimit" : {
@@ -184,9 +172,6 @@
             "description" : "Status 404"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "API"
       }
     },
     "/customers/{customerId}/accounts" : {
@@ -216,10 +201,7 @@
         "required" : true,
         "type" : "string",
         "description" : "social security number (personnummer), 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Customer"
-      }
+      } ]
     },
     "/customers/{customerId}/score" : {
       "get" : {
@@ -270,10 +252,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Customer"
-      }
+      } ]
     },
     "/customers/{customerId}/about" : {
       "get" : {
@@ -315,10 +294,7 @@
         "required" : true,
         "type" : "string",
         "description" : "social security number (personnummer), 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Customer"
-      }
+      } ]
     },
     "/customers/{customerId}/profile" : {
       "get" : {
@@ -359,10 +335,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Customer"
-      }
+      } ]
     },
     "/customers/{customerId}" : {
       "get" : {
@@ -423,10 +396,7 @@
         "required" : true,
         "type" : "string",
         "description" : "social security number (personnummer), 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Customer"
-      }
+      } ]
     },
     "/account/deposit/{ownerid}/{lenderid}" : {
       "get" : {
@@ -488,10 +458,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Personal id number (SSN) of the \"lender\" for the artifact this deposit account is security for, 11 digits."
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/accounts/{account}/transactionlist/{year}/{month}" : {
       "get" : {
@@ -538,10 +505,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Month, 2 digits (January is 01). Example: 01"
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/accounts/{account}/transactionlist" : {
       "get" : {
@@ -582,10 +546,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/accounts/{account}/statement/{year}/{month}" : {
       "get" : {
@@ -621,10 +582,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/accounts/{account}/safetospend" : {
       "get" : {
@@ -651,10 +609,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Account number, 11 digits."
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/accounts/{account}/balance" : {
       "get" : {
@@ -686,10 +641,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Account number, 11 digits."
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/accounts/{account}/name" : {
       "get" : {
@@ -731,10 +683,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Account number, 11 digits."
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/accounts/{account}" : {
       "get" : {
@@ -803,10 +752,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Account number, 11 digits."
-      } ],
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      } ]
     },
     "/transactions/sepa" : {
       "post" : {
@@ -830,9 +776,6 @@
             }
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Transaction"
       }
     },
     "/transactions/category/{mcc}/{account}" : {
@@ -871,10 +814,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Account number, 11 digits."
-      } ],
-      "x-restlet" : {
-        "section" : "Transaction"
-      }
+      } ]
     },
     "/transactions/{transactionid}" : {
       "get" : {
@@ -938,10 +878,7 @@
         "required" : true,
         "type" : "string",
         "description" : "id"
-      } ],
-      "x-restlet" : {
-        "section" : "Transaction"
-      }
+      } ]
     },
     "/preapproval/delete/{personnr}" : {
       "delete" : {
@@ -966,10 +903,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Loans"
-      }
+      } ]
     },
     "/preapproval/{personnr}/{desiredamount}" : {
       "get" : {
@@ -1036,10 +970,7 @@
         "required" : true,
         "type" : "string",
         "description" : "How much?"
-      } ],
-      "x-restlet" : {
-        "section" : "Loans"
-      }
+      } ]
     },
     "/preapproval/details/{loanid}" : {
       "get" : {
@@ -1064,10 +995,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Loans"
-      }
+      } ]
     },
     "/loans/downpay/{loanid}" : {
       "post" : {
@@ -1086,10 +1014,7 @@
         "required" : true,
         "type" : "string",
         "description" : "The loan to downpay."
-      } ],
-      "x-restlet" : {
-        "section" : "Loans"
-      }
+      } ]
     },
     "/loans/apply" : {
       "post" : {
@@ -1124,9 +1049,6 @@
             "description" : "Status 200"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Loans"
       }
     },
     "/loans/{loanid}" : {
@@ -1163,10 +1085,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Loans"
-      }
+      } ]
     },
     "/insurance/weatheralert/{latitude}/{longditude}" : {
       "get" : {
@@ -1205,10 +1124,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/insurance/car/service/{latitude}/{longditude}" : {
       "get" : {
@@ -1241,10 +1157,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/insurance/car/towingservice/{latitude}/{longditude}" : {
       "get" : {
@@ -1274,10 +1187,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/insurance/car/offer/{licensenumber}" : {
       "post" : {
@@ -1309,10 +1219,7 @@
         "required" : true,
         "type" : "string",
         "description" : "AB12345"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/insurance/car/{licensenumber}" : {
       "get" : {
@@ -1371,10 +1278,7 @@
         "required" : true,
         "type" : "string",
         "description" : "AB12345"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/insurance/claim" : {
       "post" : {
@@ -1401,9 +1305,6 @@
             "description" : "Status 404"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Insurance"
       }
     },
     "/insurance/{policynumber}/claims/{claimid}" : {
@@ -1434,10 +1335,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/insurance/{policynumber}/claims" : {
       "get" : {
@@ -1462,10 +1360,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/insurance/{policynumber}" : {
       "get" : {
@@ -1530,10 +1425,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      } ]
     },
     "/location/branch/details/{branchid}" : {
       "get" : {
@@ -1569,10 +1461,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Id of branch"
-      } ],
-      "x-restlet" : {
-        "section" : "Location"
-      }
+      } ]
     },
     "/location/branch/openinghours/{branchid}" : {
       "get" : {
@@ -1630,10 +1519,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Location"
-      }
+      } ]
     },
     "/location/branch/findbycoordinates/{latitude}/{longditude}" : {
       "get" : {
@@ -1656,10 +1542,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Location"
-      }
+      } ]
     },
     "/location/branch/findbyaddress" : {
       "get" : {
@@ -1681,9 +1564,6 @@
             }
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Location"
       }
     },
     "/location/atm/{latitude}/{longditude}/" : {
@@ -1716,10 +1596,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Current longditude. Example: -122.0842499"
-      } ],
-      "x-restlet" : {
-        "section" : "Location"
-      }
+      } ]
     },
     "/currency/convert/{base}/{currency}/{amount}" : {
       "get" : {
@@ -1765,10 +1642,7 @@
         "required" : true,
         "type" : "integer",
         "format" : "int32"
-      } ],
-      "x-restlet" : {
-        "section" : "Currency"
-      }
+      } ]
     },
     "/currency/list/{base}" : {
       "get" : {
@@ -1792,10 +1666,7 @@
         "required" : true,
         "type" : "string",
         "description" : "\"Home\" currency. ISO 4217: alpha 3-letter upcase e.g EUR"
-      } ],
-      "x-restlet" : {
-        "section" : "Currency"
-      }
+      } ]
     },
     "/environment/travel/car/details/{licensenumber}" : {
       "get" : {
@@ -1834,10 +1705,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      } ]
     },
     "/environment/travel/car/footprint/" : {
       "get" : {
@@ -1863,9 +1731,6 @@
             }
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Environment"
       }
     },
     "/environment/travel/flight/footprint/{airportCodeFrom}/{airportCodeTo}" : {
@@ -1896,10 +1761,7 @@
         "required" : true,
         "type" : "string",
         "x-example" : "HND"
-      } ],
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      } ]
     },
     "/environment/building/ecoProfileByLocation/{latitude}/{longditude}" : {
       "get" : {
@@ -1970,10 +1832,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      } ]
     },
     "/environment/building/ecoProfileByAddress" : {
       "get" : {
@@ -2041,9 +1900,6 @@
             "description" : "Status 404"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Environment"
       }
     },
     "/environment/person/ecoprofile/{customerId}" : {
@@ -2115,10 +1971,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      } ]
     },
     "/stocks/price/{ticker}/{timestamp}" : {
       "get" : {
@@ -2146,10 +1999,7 @@
         "required" : true,
         "type" : "string",
         "format" : "date-time"
-      } ],
-      "x-restlet" : {
-        "section" : "Stocks"
-      }
+      } ]
     },
     "/stocks/{ticker}" : {
       "get" : {
@@ -2168,10 +2018,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Stocks"
-      }
+      } ]
     },
     "/reports/accounts/{customerId}" : {
       "get" : {
@@ -2194,10 +2041,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/advices/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2245,10 +2089,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/annual/{year}/{customerId}" : {
       "get" : {
@@ -2280,10 +2121,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/behaviour/{customerId}" : {
       "get" : {
@@ -2316,10 +2154,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/benchmarks/{year}/{month}/{customerId}/{customerIdCompare}" : {
       "get" : {
@@ -2367,10 +2202,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number of company to to compare with, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/calendars/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2405,10 +2237,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/chats/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2443,10 +2272,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/expenses/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2481,10 +2307,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/invoices/{customerId}" : {
       "get" : {
@@ -2507,10 +2330,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/liquidity/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2545,10 +2365,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/liquidityprognosis/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2593,10 +2410,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/liquiditystatus/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2631,10 +2445,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/loanpayments/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2669,10 +2480,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/notifications/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2707,10 +2515,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/organization/{customerId}" : {
       "get" : {
@@ -2733,10 +2538,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/products/{customerId}" : {
       "get" : {
@@ -2755,10 +2557,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/profitability/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2789,10 +2588,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/revenues/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2823,10 +2619,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/roles/{year}/{customerId}" : {
       "get" : {
@@ -2851,10 +2644,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/solidity/{customerId}" : {
       "get" : {
@@ -2873,10 +2663,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/system/{customerId}" : {
       "get" : {
@@ -2895,10 +2682,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/transactions/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2935,10 +2719,7 @@
         "required" : true,
         "type" : "string",
         "description" : "social security number (personnummer), 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/reports/turnovers/{year}/{month}/{customerId}" : {
       "get" : {
@@ -2969,10 +2750,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      } ]
     },
     "/vipps/payments/{orderId}/serialNumber/{merchantSerialNumber}/details" : {
       "get" : {
@@ -2999,10 +2777,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/vipps/customer" : {
       "post" : {
@@ -3030,9 +2805,6 @@
             }
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
       }
     },
     "/vipps/invoice/{customerId}" : {
@@ -3076,10 +2848,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/vipps/merchants/{latitude}/{longditude}" : {
       "get" : {
@@ -3111,10 +2880,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Current longditude. Example: -122.0842499"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/vipps/payments" : {
       "post" : {
@@ -3139,9 +2905,6 @@
             }
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
       }
     },
     "/vipps/settlement/create" : {
@@ -3166,9 +2929,6 @@
             "description" : "Status 200"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
       }
     },
     "/vipps/settlement/{settlementid}" : {
@@ -3204,10 +2964,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/vipps/settlement/{settlementid}/expense" : {
       "get" : {
@@ -3257,10 +3014,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/vipps/settlement/{settlementid}/settle" : {
       "get" : {
@@ -3278,10 +3032,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/vipps/settlement/{settlementid}/user" : {
       "post" : {
@@ -3308,10 +3059,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/vipps/settlement/{settlementid}/user/{userid}" : {
       "get" : {
@@ -3338,10 +3086,7 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      } ]
     },
     "/saf-t/{customerId}" : {
       "get" : {
@@ -3384,10 +3129,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "SAFT"
-      }
+      } ]
     },
     "/saf-t/{customerId}/{type}" : {
       "get" : {
@@ -3436,10 +3178,7 @@
         "required" : true,
         "type" : "string",
         "description" : "Type of SAF-T file"
-      } ],
-      "x-restlet" : {
-        "section" : "SAFT"
-      }
+      } ]
     }
   },
   "definitions" : {
@@ -3456,9 +3195,6 @@
           "type" : "string",
           "description" : "Needs lots more."
         }
-      },
-      "x-restlet" : {
-        "section" : "Customer"
       }
     },
     "CustomerScore" : {
@@ -3480,9 +3216,6 @@
           "type" : "string",
           "description" : "Optional details"
         }
-      },
-      "x-restlet" : {
-        "section" : "Customer"
       }
     },
     "Customer" : {
@@ -3542,10 +3275,7 @@
           "description" : "{\n    \"email\": \"rune.bjerke@dnb.no\",\n    \"first_name\": \"Rune\",\n    \"last_name\": \"Bjerke\",\n    \"gender\": \"m\",\n    \"adr_street\": \"Dronning Eufemias gate 30\",\n    \"adr_post_code\": \"0191\",\n    \"adr_city\": \"Oslo\",\n    \"adr_country\": \"NO\",\n    “phone\": \"+47 04800\",\n    \"birthday\": \"1960-06-17\",\n    \"created\": \"2015-07-01T10:42:00+01:00\",     \"updated\": \"2015-10-01T10:42:00+01:00\",\n}"
         }
       },
-      "description" : "Draft, needs update from actual properties below.\n\nAlso doubles as \"Person\", i.e: Not all Customer objects are DNB customers. A Customer is to be seen as a human person with certain attributes.\n\n```\n{\n\t\"id\": \"17066099999\",\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```",
-      "x-restlet" : {
-        "section" : "Customer"
-      }
+      "description" : "Draft, needs update from actual properties below.\n\nAlso doubles as \"Person\", i.e: Not all Customer objects are DNB customers. A Customer is to be seen as a human person with certain attributes.\n\n```\n{\n\t\"id\": \"17066099999\",\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
     },
     "Account" : {
       "type" : "object",
@@ -3596,10 +3326,7 @@
           "type" : "string"
         }
       },
-      "description" : "For now: One kind of Account for all.\n\n```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"IBAN\": \"NO93 8601 1117 947\",\n\t\t\"SWIFT\": \"DNBANOKKXXX\",\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n}\n```",
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      "description" : "For now: One kind of Account for all.\n\n```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"IBAN\": \"NO93 8601 1117 947\",\n\t\t\"SWIFT\": \"DNBANOKKXXX\",\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n}\n```"
     },
     "Accountstatement" : {
       "type" : "object",
@@ -3620,9 +3347,6 @@
             "$ref" : "#/definitions/Transaction"
           }
         }
-      },
-      "x-restlet" : {
-        "section" : "Account"
       }
     },
     "Balance" : {
@@ -3643,10 +3367,7 @@
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }
       },
-      "description" : "```\n{\n   \"account\": 12345678910,\n   \"balance\": 12345,\n   \"timestamp\": \"2017-01-03T09:56:28+00:0\",\n}\n```",
-      "x-restlet" : {
-        "section" : "Account"
-      }
+      "description" : "```\n{\n   \"account\": 12345678910,\n   \"balance\": 12345,\n   \"timestamp\": \"2017-01-03T09:56:28+00:0\",\n}\n```"
     },
     "SEPAresponse" : {
       "type" : "object",
@@ -3683,10 +3404,7 @@
           "type" : "string"
         }
       },
-      "description" : "```\n{\n\"id\": \"01\",\n\"account\": \"123456789\",\n\"amount\": 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\": \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\": \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```",
-      "x-restlet" : {
-        "section" : "Transaction"
-      }
+      "description" : "```\n{\n\"id\": \"01\",\n\"account\": \"123456789\",\n\"amount\": 100000\",\n\"currency\": \"NOK\",\n\"remote_iban\": \"XXXXX\",\n\"remote_bic\": \"XXXXX\",\n\"remote_name\": \"The Man\",\n\"state\": \"success\",\n\"created\": \"<timestamp>\",\n\"updated\": \"<timestamp>\",\n}\n\n```"
     },
     "SEPArequest" : {
       "type" : "object",
@@ -3717,10 +3435,7 @@
           "type" : "string"
         }
       },
-      "description" : "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" : \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\n}\n```",
-      "x-restlet" : {
-        "section" : "Transaction"
-      }
+      "description" : "```\n{\n  \"account_id\" : \"123456789\",\n  \"external_uid\" : \"99\",\n  \"remote_iban\": \"XXXXX\",\n  \"remote_bic\": \"XXXXX\",\n  \"remote_name\" : \"The Man,\n  \"amount\" : 100000,\n  \"subject\" : \"Enjoy\"\n}\n```"
     },
     "Transaction" : {
       "type" : "object",
@@ -3749,10 +3464,7 @@
           "type" : "string"
         }
       },
-      "description" : "```\n{\n    \"transactions\": [\n        {\n\t\t\t\t    \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n             \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n\t\t\t\t\t\t\"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel macchiato\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}\n```",
-      "x-restlet" : {
-        "section" : "Transaction"
-      }
+      "description" : "```\n{\n    \"transactions\": [\n        {\n\t\t\t\t    \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n             \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n\t\t\t\t\t\t\"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"notes\": \"Dobbel macchiato\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}\n```"
     },
     "Loan" : {
       "type" : "object",
@@ -3791,10 +3503,7 @@
           "type" : "string"
         }
       },
-      "description" : "For now: One common loan type for mortgage, car, credit card, etc",
-      "x-restlet" : {
-        "section" : "Loans"
-      }
+      "description" : "For now: One common loan type for mortgage, car, credit card, etc"
     },
     "House" : {
       "type" : "object",
@@ -3823,10 +3532,7 @@
           "description" : "mMay be empty"
         }
       },
-      "description" : "Used for house insurance.",
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      "description" : "Used for house insurance."
     },
     "Car" : {
       "type" : "object",
@@ -3858,10 +3564,7 @@
           "$ref" : "#/definitions/carDetails"
         }
       },
-      "description" : "Used for car insurance.",
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      "description" : "Used for car insurance."
     },
     "Insuranceclaim" : {
       "type" : "object",
@@ -3873,10 +3576,7 @@
           }
         }
       },
-      "description" : "For now: A simple object to represent an insurance claim. Should include all details necessary to make a claim.",
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      "description" : "For now: A simple object to represent an insurance claim. Should include all details necessary to make a claim."
     },
     "Insuranceoffer" : {
       "type" : "object",
@@ -3889,10 +3589,7 @@
           "description" : "Details for this insurance offer: Date issued, valid until, etc."
         }
       },
-      "description" : "For now: A simple object to represent an insurance offer. Refers to Insurance for simplicity.",
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      "description" : "For now: A simple object to represent an insurance offer. Refers to Insurance for simplicity."
     },
     "Insurance" : {
       "type" : "object",
@@ -3917,10 +3614,7 @@
           "description" : "URL (or other reference) to Terms & Conditions for this insurance."
         }
       },
-      "description" : "For now: One common Insurance object for all types (house, car, health, etc).",
-      "x-restlet" : {
-        "section" : "Insurance"
-      }
+      "description" : "For now: One common Insurance object for all types (house, car, health, etc)."
     },
     "Address" : {
       "type" : "object",
@@ -3958,9 +3652,6 @@
           "type" : "string",
           "description" : "For apartment buildings. H0101, H0508, etc."
         }
-      },
-      "x-restlet" : {
-        "section" : "Location"
       }
     },
     "Location" : {
@@ -3980,9 +3671,6 @@
           "type" : "string",
           "description" : "Name of place, or similar"
         }
-      },
-      "x-restlet" : {
-        "section" : "Location"
       }
     },
     "ecoProfileTravel" : {
@@ -4004,9 +3692,6 @@
           "type" : "string",
           "description" : "Hours"
         }
-      },
-      "x-restlet" : {
-        "section" : "Environment"
       }
     },
     "ecoProfileBuilding" : {
@@ -4051,10 +3736,7 @@
           "description" : "Area of building that is covered with plants. Measured in square meters (m^2)."
         }
       },
-      "description" : "A building's environmental profile. Aggregated and calculated data, which may be cached for fast access. The data is a suggestion, to be extended and improved.",
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      "description" : "A building's environmental profile. Aggregated and calculated data, which may be cached for fast access. The data is a suggestion, to be extended and improved."
     },
     "ecoProfile" : {
       "type" : "object",
@@ -4105,10 +3787,7 @@
           }
         }
       },
-      "description" : "A persons environmental profile. Aggregated and calculated data, which may be cached for fast access. The data is a suggestion, to be extended and improved.",
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      "description" : "A persons environmental profile. Aggregated and calculated data, which may be cached for fast access. The data is a suggestion, to be extended and improved."
     },
     "carDetails" : {
       "type" : "object",
@@ -4182,10 +3861,7 @@
           "example" : 31.7
         }
       },
-      "description" : "https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger",
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      "description" : "https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger"
     },
     "carDetailsObjects" : {
       "type" : "object",
@@ -4275,10 +3951,7 @@
           }
         }
       },
-      "description" : "https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger\n\nData grouped in objects: Easier to use?",
-      "x-restlet" : {
-        "section" : "Environment"
-      }
+      "description" : "https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger\n\nData grouped in objects: Easier to use?"
     },
     "Report" : {
       "type" : "object",
@@ -4290,10 +3963,7 @@
           "type" : "string"
         }
       },
-      "description" : "Placeholder for various reports.",
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      "description" : "Placeholder for various reports."
     },
     "Annualreport" : {
       "type" : "object",
@@ -4309,10 +3979,7 @@
           "description" : "TDB. Around 80 fields."
         }
       },
-      "description" : "See SAF-T: https://github.com/Skatteetaten/saf-t",
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      "description" : "See SAF-T: https://github.com/Skatteetaten/saf-t"
     },
     "Advice" : {
       "type" : "object",
@@ -4328,10 +3995,7 @@
           "description" : "TBD"
         }
       },
-      "description" : "Advice for BM Dashboard.",
-      "x-restlet" : {
-        "section" : "Reports"
-      }
+      "description" : "Advice for BM Dashboard."
     },
     "VippsCustomer" : {
       "type" : "object",
@@ -4351,9 +4015,6 @@
         "cardnumber" : {
           "type" : "string"
         }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
       }
     },
     "VippsPaymentResponse" : {
@@ -4389,10 +4050,7 @@
           }
         }
       },
-      "description" : "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n        \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n        \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\":\"Please use vipps app to process the payment\"\n    }\n}\n```",
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      "description" : "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n        \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n        \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\":\"Please use vipps app to process the payment\"\n    }\n}\n```"
     },
     "Vippstransaction" : {
       "type" : "object",
@@ -4401,10 +4059,7 @@
           "type" : "string"
         }
       },
-      "description" : "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\": {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\":\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\":\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\": \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\n}]\n```",
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      "description" : "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\": {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\":\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\":\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\": \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\n}]\n```"
     },
     "VippsPaymentRequest" : {
       "type" : "object",
@@ -4468,10 +4123,7 @@
           }
         }
       },
-      "description" : "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\": \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n        \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\": \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\n    }\n}\n```",
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
+      "description" : "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\": \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n        \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\": \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\n    }\n}\n```"
     },
     "SAFTfile" : {
       "type" : "object",
@@ -4487,27 +4139,7 @@
           "description" : "(Unless all data is included in Object)"
         }
       },
-      "description" : "Standard Audit File - Tax\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml",
-      "x-restlet" : {
-        "section" : "SAFT"
-      }
-    }
-  },
-  "x-restlet" : {
-    "sections" : {
-      "API" : { },
-      "Customer" : { },
-      "Account" : { },
-      "Transaction" : { },
-      "Loans" : { },
-      "Insurance" : { },
-      "Location" : { },
-      "Currency" : { },
-      "Environment" : { },
-      "Stocks" : { },
-      "Reports" : { },
-      "Vipps" : { },
-      "SAFT" : { }
+      "description" : "Standard Audit File - Tax\n\nExample file: https://github.com/Skatteetaten/saf-t/blob/master/Example%20Files/ExampleFile%20SAF-T%20Financial_999999999_20161125213512.xml"
     }
   }
 }
