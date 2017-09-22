@@ -15,13 +15,16 @@
         "tags" : [ "API" ],
         "summary" : "Get new API key",
         "description" : "Simplified example. Requires a method of identification, the minimum being Facebook or Google OAuth. ",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "type" : "string",
-              "example" : "Ok, you're in."
+              "type" : "string"
+            },
+            "examples" : {
+              "application/json" : "Ok, you're in."
             }
           },
           "400" : {
@@ -44,6 +47,7 @@
         "tags" : [ "API" ],
         "summary" : "Get details of API key",
         "description" : "For now: Also returns some housekeeping details, as an example. ",
+        "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "apikey",
           "in" : "header",
@@ -141,6 +145,7 @@
         "tags" : [ "API" ],
         "summary" : "Who am I?",
         "description" : "All details of current API user account:\n* Contact details\n* API key details\n* Payment/plan/subscription\n* Throttling info\n* etc",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -169,6 +174,7 @@
         "tags" : [ "API" ],
         "summary" : "Rate limit for current user",
         "description" : "How am I doing? Am I near my limit? ",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -631,6 +637,7 @@
         "tags" : [ "Accounts" ],
         "summary" : "Get \"safe to spend\" amount",
         "description" : "The current balance, minus known outgoing transactions, plus known incoming transactions. ",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1096,7 +1103,7 @@
         "tags" : [ "Loans" ],
         "summary" : "Apply for a new loan",
         "description" : "Need to POST quite a bit of data, and also handle AML, KYC, etc",
-        "consumes" : [ ],
+        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "customer",
           "in" : "header",
@@ -1122,6 +1129,12 @@
         "responses" : {
           "200" : {
             "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "401" : {
+            "description" : "Status 401"
           }
         }
       },
@@ -1172,6 +1185,7 @@
       "get" : {
         "tags" : [ "Insurance" ],
         "summary" : "Check if there is a weather alert",
+        "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "radius",
           "in" : "query",
@@ -1284,7 +1298,7 @@
         "tags" : [ "Insurance" ],
         "summary" : "Get insurance offer",
         "description" : "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html\n\nFor now: Assume the attributes of Car object are sufficient.",
-        "consumes" : [ ],
+        "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "body",
@@ -1337,7 +1351,7 @@
         "tags" : [ "Insurance" ],
         "summary" : "Get insurance offer",
         "description" : "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html",
-        "consumes" : [ ],
+        "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "body",
@@ -1540,6 +1554,7 @@
         "tags" : [ "Location" ],
         "summary" : "Branch details",
         "description" : "Returns an array of strings, which may include all kinds of iformation (text, URLs, media, etc).",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1726,6 +1741,7 @@
         "tags" : [ "Currency" ],
         "summary" : "Convert amount from CUR1 to CUR2",
         "description" : "Quite basic for now. Possibly add parameters for markup/margin, specify a date, find min/max in an interval (separate method?), etc.\n\nTime series is a likely feature - see OXR's API: https://docs.openexchangerates.org/docs/time-series-json\n\n```\n{\n    \"disclaimer\": \"https://openexchangerates.org/terms/\",\n    \"license\": \"https://openexchangerates.org/license/\",\n    \"start_date\": \"2013-01-01\",\n    \"end_date\": \"2013-01-31\",\n    \"base\": \"AUD\",\n    \"rates\": {\n        \"2013-01-01\": {\n            \"BTC\": 0.0778595876,\n            \"EUR\": 0.785518,\n            \"HKD\": 8.04136\n        },\n        \"2013-01-02\": {\n            \"BTC\": 0.0789400739,\n            \"EUR\": 0.795034,\n            \"HKD\": 8.138096\n        },\n        \"2013-01-03\": {\n            \"BTC\": 0.0785299961,\n            \"EUR\": 0.80092,\n            \"HKD\": 8.116954\n        },\n        /* ... */\n    }\n\n```",
+        "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "date",
           "in" : "query",
@@ -1775,13 +1791,16 @@
         "tags" : [ "Currency" ],
         "summary" : "Get a list rates for the most common currencies, with a specified base",
         "description" : "Suitable for making a table or similar.\n\n```\n{\n    disclaimer: \"http://api.dnb.no/diclaimer_goes_here/\",\n    license: \"http://api.dnb.no/license_goes_here/\",\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "type" : "string",
-              "example" : "AED: 3.672538"
+              "type" : "string"
+            },
+            "examples" : {
+              "application/json" : "AED: 3.672538"
             }
           }
         }
@@ -2125,6 +2144,7 @@
         "tags" : [ "Stocks" ],
         "summary" : "Get price of stock",
         "description" : "For now: Returns a number. ",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -2160,6 +2180,9 @@
         "responses" : {
           "200" : {
             "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
           }
         }
       },
@@ -2904,10 +2927,12 @@
       "get" : {
         "tags" : [ "Reports" ],
         "summary" : "Transaction report.",
+        "description" : "```\n{\n    \"transactions\": [\n        {\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n            \"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}\n```",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "{\n    \"transactions\": [\n        {\n            \"account_balance\": 12325,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:00:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:00:00Z \",\n            \"category\": \"restaurant\"\n        },\n        {\n            \"account_balance\": 12305,\n            \"amount\": -20,\n            \"created\": \"2016-08-05T08:05:00Z\",\n            \"currency\": \"NOK\",\n            \"description\": \"DNB Børsbaren\",\n            \"id\": \"<id>\",\n            \"merchant_id\": \"<id>\",\n            \"notes\": \"Dobbel espresso\",\n            \"settled\": \"2016-08-05T08:05:00Z \",\n            \"category\": \"restaurant\"\n        },\n    ]\n}",
+            "description" : "Status 200",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -2972,375 +2997,6 @@
       } ],
       "x-restlet" : {
         "section" : "Reports"
-      }
-    },
-    "/vipps/payments/{orderId}/serialNumber/{merchantSerialNumber}/details" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Get payment details",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/Vippstransaction"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "orderId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      }, {
-        "name" : "merchantSerialNumber",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/customer" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Create new Vipps customer",
-        "description" : "Phone number, personal id number, name, card number, account number",
-        "consumes" : [ ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/Customer"
-            }
-          }
-        }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/invoice/{customerId}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Get Vipps invoice details",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Create new Vipps invoice customer",
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Customer"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "400" : {
-            "description" : "Status 400"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Organization number, 9 digits. Example: 123456789"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/merchants/{latitude}/{longditude}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Nearby Vipps merchants",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Customer"
-              }
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "latitude",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Current latitude. Example: 37.4238253802915"
-      }, {
-        "name" : "longditude",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Current longditude. Example: -122.0842499"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/payments" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Make new Vipps payment",
-        "description" : "From 8.3.2: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/VippsPaymentRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "",
-            "schema" : {
-              "$ref" : "#/definitions/VippsPaymentResponse"
-            }
-          }
-        }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/settlement/create" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Create a new (empty) settlement",
-        "description" : "date, name, participants, currency(?)",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/settlement/{settlementid}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Details of a settlement",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Created, status, name, owners/admins, list of expenses",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "string"
-              }
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Delete settlement",
-        "description" : "(Not possible in Vipps today)",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/settlement/{settlementid}/expense" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Details of expense",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "New expense",
-        "description" : "Date, who, amount, description, etc",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Delete expense from settlement",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/settlement/{settlementid}/settle" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Settle, pay everyone",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/settlement/{settlementid}/user" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Add user to settlement",
-        "description" : "Should POST a Person, not Customer",
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Customer"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "/vipps/settlement/{settlementid}/user/{userid}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Details of user in settlement",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Maybe just a Person, as he/she may not be a customer with us.",
-            "schema" : {
-              "$ref" : "#/definitions/Customer"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      }, {
-        "name" : "userid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ],
-      "x-restlet" : {
-        "section" : "Vipps"
       }
     },
     "/saf-t/{customerId}" : {
@@ -3452,9 +3108,8 @@
         "customerid" : {
           "type" : "string"
         },
-        "Notes (placeholder)" : {
-          "type" : "string",
-          "description" : "Needs lots more."
+        "Notes" : {
+          "type" : "string"
         }
       },
       "x-restlet" : {
@@ -3537,9 +3192,8 @@
           "type" : "string",
           "description" : "Id/tracking details for welcome package"
         },
-        "Notes (placeholder)" : {
-          "type" : "string",
-          "description" : "{\n    \"email\": \"rune.bjerke@dnb.no\",\n    \"first_name\": \"Rune\",\n    \"last_name\": \"Bjerke\",\n    \"gender\": \"m\",\n    \"adr_street\": \"Dronning Eufemias gate 30\",\n    \"adr_post_code\": \"0191\",\n    \"adr_city\": \"Oslo\",\n    \"adr_country\": \"NO\",\n    “phone\": \"+47 04800\",\n    \"birthday\": \"1960-06-17\",\n    \"created\": \"2015-07-01T10:42:00+01:00\",     \"updated\": \"2015-10-01T10:42:00+01:00\",\n}"
+        "Notes" : {
+          "type" : "string"
         }
       },
       "description" : "Draft, needs update from actual properties below.\n\nAlso doubles as \"Person\", i.e: Not all Customer objects are DNB customers. A Customer is to be seen as a human person with certain attributes.\n\n```\n{\n\t\"id\": \"17066099999\",\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```",
@@ -3853,9 +3507,6 @@
         "description" : {
           "type" : "string",
           "description" : "Make, model, etc. This can be fetched from Statens Vegvesen (perhaps no API, just a web page? https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger)"
-        },
-        "carDetails" : {
-          "$ref" : "#/definitions/carDetails"
         }
       },
       "description" : "Used for car insurance.",
@@ -4187,99 +3838,6 @@
         "section" : "Environment"
       }
     },
-    "carDetailsObjects" : {
-      "type" : "object",
-      "required" : [ "registrationDate" ],
-      "properties" : {
-        "licenseNumber" : {
-          "type" : "string",
-          "example" : "AB12345",
-          "description" : "License plate"
-        },
-        "registrationDate" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "carDetails" : {
-          "required" : [ "environmentClass", "make", "modelYear" ],
-          "type" : "object",
-          "properties" : {
-            "modelYear" : {
-              "type" : "number",
-              "description" : "2014"
-            },
-            "make" : {
-              "type" : "string",
-              "description" : "Audi"
-            },
-            "model" : {
-              "type" : "string",
-              "description" : "A4 Allroad"
-            },
-            "environmentClass" : {
-              "type" : "string",
-              "description" : "Euro 6L"
-            },
-            "fuelType" : {
-              "type" : "string",
-              "description" : "Gasoline"
-            },
-            "seats" : {
-              "type" : "number",
-              "description" : "5"
-            },
-            "particleFilter" : {
-              "type" : "boolean",
-              "description" : "False"
-            }
-          }
-        },
-        "fuelDetails" : {
-          "type" : "object",
-          "properties" : {
-            "fuel type" : {
-              "type" : "string",
-              "example" : "Gasoline",
-              "description" : "Gasoline, Diesel, Electricity Hydrogen.."
-            },
-            "fuelUseCountry," : {
-              "type" : "string",
-              "example" : "0.7",
-              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType)."
-            },
-            "fuelUseCity" : {
-              "type" : "string",
-              "example" : "0.9",
-              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType)."
-            },
-            "fuelUseAverage" : {
-              "type" : "string",
-              "example" : "0.8",
-              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType)."
-            }
-          }
-        },
-        "emissions" : {
-          "type" : "object",
-          "properties" : {
-            "co2" : {
-              "type" : "string",
-              "example" : "164",
-              "description" : "Grams per kilometer"
-            },
-            "nox" : {
-              "type" : "string",
-              "example" : "31.7",
-              "description" : "Milligram per kilometer"
-            }
-          }
-        }
-      },
-      "description" : "https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger\n\nData grouped in objects: Easier to use?",
-      "x-restlet" : {
-        "section" : "Environment"
-      }
-    },
     "Report" : {
       "type" : "object",
       "properties" : {
@@ -4333,146 +3891,6 @@
         "section" : "Reports"
       }
     },
-    "VippsCustomer" : {
-      "type" : "object",
-      "properties" : {
-        "id" : {
-          "type" : "string"
-        },
-        "phone" : {
-          "type" : "string"
-        },
-        "name" : {
-          "type" : "string"
-        },
-        "accountnumber" : {
-          "type" : "string"
-        },
-        "cardnumber" : {
-          "type" : "string"
-        }
-      },
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "VippsPaymentResponse" : {
-      "type" : "object",
-      "properties" : {
-        "orderId" : {
-          "type" : "string"
-        },
-        "merchantSerialNumber" : {
-          "type" : "string"
-        },
-        "transactionInfo" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "amount" : {
-                "type" : "string"
-              },
-              "status" : {
-                "type" : "string"
-              },
-              "transactionId" : {
-                "type" : "string"
-              },
-              "timeStamp" : {
-                "type" : "string"
-              },
-              "message" : {
-                "type" : "string"
-              }
-            }
-          }
-        }
-      },
-      "description" : "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n        \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n        \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\":\"Please use vipps app to process the payment\"\n    }\n}\n```",
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "Vippstransaction" : {
-      "type" : "object",
-      "properties" : {
-        "orderId" : {
-          "type" : "string"
-        }
-      },
-      "description" : "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\": {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\":\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\":\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\": \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\n}]\n```",
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
-    "VippsPaymentRequest" : {
-      "type" : "object",
-      "properties" : {
-        "merchantInfo" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "merchantSerialNumber" : {
-                "type" : "string",
-                "description" : "Identifies a merchant sales channel i.e. website, mobile app etc."
-              },
-              "callBack" : {
-                "type" : "string",
-                "description" : "ViPPS will use this Call back URL to provide the status of initiated transaction. Length of the string is 255 characters"
-              }
-            }
-          }
-        },
-        "customerInfo" : {
-          "type" : "array",
-          "items" : {
-            "required" : [ "mobileNumber" ],
-            "type" : "object",
-            "properties" : {
-              "mobileNumber" : {
-                "type" : "string",
-                "description" : "Mobile number of the user who has to pay for the  transaction from ViPPS.\nAllowed format:\n+47-xxxxxxxx\n+47xxxxxxxx\nxxxxxxxx"
-              }
-            }
-          }
-        },
-        "transaction" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "orderId" : {
-                "type" : "string",
-                "description" : "Id which uniquely identifies an Order. Maximum length is 30 alphanumeric characters"
-              },
-              "refOrderId" : {
-                "type" : "string",
-                "description" : "Identifies if the payment references to some past orders registered with ViPPS. If defined, transactions for this payment will show up as child transactions of the specified order. Described functionality is not in place and is planned for future implementation"
-              },
-              "amount" : {
-                "type" : "integer",
-                "format" : "int32",
-                "description" : "Amount in øre. 32 Bit Integer (2147483647)"
-              },
-              "transactionText" : {
-                "type" : "string",
-                "description" : "Transaction text that can be displayed to end user"
-              },
-              "timeStamp" : {
-                "type" : "string",
-                "description" : "Timestamp in ISO\n-\n8601 representing when the \norder has been made by merchant"
-              }
-            }
-          }
-        }
-      },
-      "description" : "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\": \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n        \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\": \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\n    }\n}\n```",
-      "x-restlet" : {
-        "section" : "Vipps"
-      }
-    },
     "SAFTfile" : {
       "type" : "object",
       "properties" : {
@@ -4506,7 +3924,6 @@
       "Environment" : { },
       "Stocks" : { },
       "Reports" : { },
-      "Vipps" : { },
       "SAFT" : { }
     }
   }
