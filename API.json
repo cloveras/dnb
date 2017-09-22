@@ -2752,342 +2752,6 @@
         "description" : "Organization number, 9 digits. Example: 123456789"
       } ]
     },
-    "/vipps/payments/{orderId}/serialNumber/{merchantSerialNumber}/details" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Get payment details",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/Vippstransaction"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "orderId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      }, {
-        "name" : "merchantSerialNumber",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/vipps/customer" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Create new Vipps customer",
-        "description" : "Phone number, personal id number, name, card number, account number",
-        "consumes" : [ ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/Customer"
-            }
-          }
-        }
-      }
-    },
-    "/vipps/invoice/{customerId}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Get Vipps invoice details",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Create new Vipps invoice customer",
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Customer"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "400" : {
-            "description" : "Status 400"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Organization number, 9 digits. Example: 123456789"
-      } ]
-    },
-    "/vipps/merchants/{latitude}/{longditude}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Nearby Vipps merchants",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Customer"
-              }
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "latitude",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Current latitude. Example: 37.4238253802915"
-      }, {
-        "name" : "longditude",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Current longditude. Example: -122.0842499"
-      } ]
-    },
-    "/vipps/payments" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Make new Vipps payment",
-        "description" : "From 8.3.2: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/VippsPaymentRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "",
-            "schema" : {
-              "$ref" : "#/definitions/VippsPaymentResponse"
-            }
-          }
-        }
-      }
-    },
-    "/vipps/settlement/create" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Create a new (empty) settlement",
-        "description" : "date, name, participants, currency(?)",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      }
-    },
-    "/vipps/settlement/{settlementid}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Details of a settlement",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Created, status, name, owners/admins, list of expenses",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "string"
-              }
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Delete settlement",
-        "description" : "(Not possible in Vipps today)",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/vipps/settlement/{settlementid}/expense" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Details of expense",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "New expense",
-        "description" : "Date, who, amount, description, etc",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Delete expense from settlement",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/vipps/settlement/{settlementid}/settle" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Settle, pay everyone",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/vipps/settlement/{settlementid}/user" : {
-      "post" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Add user to settlement",
-        "description" : "Should POST a Person, not Customer",
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Customer"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/vipps/settlement/{settlementid}/user/{userid}" : {
-      "get" : {
-        "tags" : [ "Vipps" ],
-        "summary" : "Details of user in settlement",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Maybe just a Person, as he/she may not be a customer with us.",
-            "schema" : {
-              "$ref" : "#/definitions/Customer"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "settlementid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      }, {
-        "name" : "userid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
     "/saf-t/{customerId}" : {
       "get" : {
         "tags" : [ "SAF-T" ],
@@ -3633,8 +3297,8 @@
         },
         "country" : {
           "type" : "string",
-          "description" : "Two letter, uppercase: https://www.iso.org/glossary-for-iso-3166.html",
-          "example" : "NO"
+          "example" : "NO",
+          "description" : "Two letter, uppercase: https://www.iso.org/glossary-for-iso-3166.html"
         },
         "county" : {
           "type" : "string",
@@ -3795,8 +3459,8 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "description" : "License plate",
-          "example" : "AB12345"
+          "example" : "AB12345",
+          "description" : "License plate"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3832,13 +3496,13 @@
         },
         "fuel type" : {
           "type" : "string",
-          "description" : "Gasoline, Diesel, Electricity Hydrogen..",
-          "example" : "Gasoline"
+          "example" : "Gasoline",
+          "description" : "Gasoline, Diesel, Electricity Hydrogen.."
         },
         "fuelUseAverage" : {
           "type" : "string",
-          "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType).",
-          "example" : "0.8"
+          "example" : "0.8",
+          "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType)."
         },
         "fuelUseCity" : {
           "type" : "number",
@@ -3869,8 +3533,8 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "description" : "License plate",
-          "example" : "AB12345"
+          "example" : "AB12345",
+          "description" : "License plate"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3915,23 +3579,23 @@
           "properties" : {
             "fuel type" : {
               "type" : "string",
-              "description" : "Gasoline, Diesel, Electricity Hydrogen..",
-              "example" : "Gasoline"
+              "example" : "Gasoline",
+              "description" : "Gasoline, Diesel, Electricity Hydrogen.."
             },
             "fuelUseCountry," : {
               "type" : "string",
-              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType).",
-              "example" : "0.7"
+              "example" : "0.7",
+              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType)."
             },
             "fuelUseCity" : {
               "type" : "string",
-              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType).",
-              "example" : "0.9"
+              "example" : "0.9",
+              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType)."
             },
             "fuelUseAverage" : {
               "type" : "string",
-              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType).",
-              "example" : "0.8"
+              "example" : "0.8",
+              "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType)."
             }
           }
         },
@@ -3940,13 +3604,13 @@
           "properties" : {
             "co2" : {
               "type" : "string",
-              "description" : "Grams per kilometer",
-              "example" : "164"
+              "example" : "164",
+              "description" : "Grams per kilometer"
             },
             "nox" : {
               "type" : "string",
-              "description" : "Milligram per kilometer",
-              "example" : "31.7"
+              "example" : "31.7",
+              "description" : "Milligram per kilometer"
             }
           }
         }
@@ -3996,134 +3660,6 @@
         }
       },
       "description" : "Advice for BM Dashboard."
-    },
-    "VippsCustomer" : {
-      "type" : "object",
-      "properties" : {
-        "id" : {
-          "type" : "string"
-        },
-        "phone" : {
-          "type" : "string"
-        },
-        "name" : {
-          "type" : "string"
-        },
-        "accountnumber" : {
-          "type" : "string"
-        },
-        "cardnumber" : {
-          "type" : "string"
-        }
-      }
-    },
-    "VippsPaymentResponse" : {
-      "type" : "object",
-      "properties" : {
-        "orderId" : {
-          "type" : "string"
-        },
-        "merchantSerialNumber" : {
-          "type" : "string"
-        },
-        "transactionInfo" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "amount" : {
-                "type" : "string"
-              },
-              "status" : {
-                "type" : "string"
-              },
-              "transactionId" : {
-                "type" : "string"
-              },
-              "timeStamp" : {
-                "type" : "string"
-              },
-              "message" : {
-                "type" : "string"
-              }
-            }
-          }
-        }
-      },
-      "description" : "From 8.3.7: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\n```\n{\n    \"orderId\": \"219930212\",\n    \"merchantSerialNumber\": \"NSBWSHP12\",\n    \"transactionInfo\": {\n        \"amount\": 1200,\n        \"status\": \"Initiate\",\n        \"transactionId\": \"1001234566\",\n        \"timeStamp\": \"2014-06-24T08:34:25-07:00\" , \n        \"message\":\"Please use vipps app to process the payment\"\n    }\n}\n```"
-    },
-    "Vippstransaction" : {
-      "type" : "object",
-      "properties" : {
-        "orderId" : {
-          "type" : "string"
-        }
-      },
-      "description" : "From 8.7.5: https://www.vipps.no/portalfront/vipps/nedlast/eCommerce_API_v1.2.pdf\n\nExample:\n```\n{\n    \"orderId\": \"219930212\",\n    \"transactionSummary\": {\n        \"capturedAmount\":\"0\",\n        \"remainingAmoutTocapture\":\"0\",\n        \"refundedAmount\":\"1200\",\n        \"remainingAmountToRefund\":\"0\"\n      },\n     \"transactionLogHistory\": [{\n         \"timeStamp\": \"\",\n        \"operation\": \"\",\n        \"amount\": \"\",\n        \"transactionId\":\"\",\n       \"transactionText\"\n       \"requestId\": \"\"\n}]\n```"
-    },
-    "VippsPaymentRequest" : {
-      "type" : "object",
-      "properties" : {
-        "merchantInfo" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "merchantSerialNumber" : {
-                "type" : "string",
-                "description" : "Identifies a merchant sales channel i.e. website, mobile app etc."
-              },
-              "callBack" : {
-                "type" : "string",
-                "description" : "ViPPS will use this Call back URL to provide the status of initiated transaction. Length of the string is 255 characters"
-              }
-            }
-          }
-        },
-        "customerInfo" : {
-          "type" : "array",
-          "items" : {
-            "required" : [ "mobileNumber" ],
-            "type" : "object",
-            "properties" : {
-              "mobileNumber" : {
-                "type" : "string",
-                "description" : "Mobile number of the user who has to pay for the  transaction from ViPPS.\nAllowed format:\n+47-xxxxxxxx\n+47xxxxxxxx\nxxxxxxxx"
-              }
-            }
-          }
-        },
-        "transaction" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "orderId" : {
-                "type" : "string",
-                "description" : "Id which uniquely identifies an Order. Maximum length is 30 alphanumeric characters"
-              },
-              "refOrderId" : {
-                "type" : "string",
-                "description" : "Identifies if the payment references to some past orders registered with ViPPS. If defined, transactions for this payment will show up as child transactions of the specified order. Described functionality is not in place and is planned for future implementation"
-              },
-              "amount" : {
-                "type" : "integer",
-                "format" : "int32",
-                "description" : "Amount in øre. 32 Bit Integer (2147483647)"
-              },
-              "transactionText" : {
-                "type" : "string",
-                "description" : "Transaction text that can be displayed to end user"
-              },
-              "timeStamp" : {
-                "type" : "string",
-                "description" : "Timestamp in ISO\n-\n8601 representing when the \norder has been made by merchant"
-              }
-            }
-          }
-        }
-      },
-      "description" : "Example:\n```\n{\n    \"merchantInfo\": {\n        \"merchantSerialNumber\": \"NSBWSHP12\",\n        \"callBack\": \"https://www.demo.no/api/callback\"\n    },\n    \"customerInfo\": {\n        \"mobileNumber\": \"90090900\"\n    },\n    \"transaction\": {\n        \"orderId\": \"219930212\",\n        \"refOrderId\": \"119930211\",\n        \"amount\": 1200,\n        \"transactionText\": \"Transaction text\",\n        \"timeStamp\":\"2014-06-24T08:34:25-07:00\"\n    }\n}\n```"
     },
     "SAFTfile" : {
       "type" : "object",
