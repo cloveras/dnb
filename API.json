@@ -1726,7 +1726,7 @@
         "type" : "string"
       } ]
     },
-    "/environment/travel/car/footprint/" : {
+    "/environment/travel/car/footprint/{origin}/{destination}" : {
       "get" : {
         "tags" : [ "Environment" ],
         "summary" : "Get eco footprint for car travel",
@@ -1741,7 +1741,18 @@
             }
           }
         }
-      }
+      },
+      "parameters" : [ {
+        "name" : "origin",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "destination",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
     },
     "/environment/travel/flight/footprint/{airportOrigin}/{airportDestination}" : {
       "get" : {
@@ -3315,8 +3326,8 @@
         },
         "country" : {
           "type" : "string",
-          "description" : "Two letter, uppercase.",
-          "example" : "NO"
+          "example" : "NO",
+          "description" : "Two letter, uppercase."
         },
         "county" : {
           "type" : "string",
@@ -3478,8 +3489,8 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "description" : "License plate",
-          "example" : "AB12345"
+          "example" : "AB12345",
+          "description" : "License plate"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3515,13 +3526,13 @@
         },
         "fuel type" : {
           "type" : "string",
-          "description" : "Gasoline, Diesel, Electricity Hydrogen..",
-          "example" : "Gasoline"
+          "example" : "Gasoline",
+          "description" : "Gasoline, Diesel, Electricity Hydrogen.."
         },
         "fuelUseAverage" : {
           "type" : "string",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
-          "example" : "0.8"
+          "example" : "0.8",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
         "fuelUseCity" : {
           "type" : "number",
