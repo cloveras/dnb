@@ -1863,7 +1863,8 @@
           "name" : "Address",
           "in" : "header",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "description" : "Country codes: https://www.iso.org/glossary-for-iso-3166.html\nCounty numbers: https://register.geonorge.no/subregister/sosi-kodelister/kartverket/kommunenummer"
         } ],
         "responses" : {
           "200" : {
@@ -3323,12 +3324,12 @@
         },
         "country" : {
           "type" : "string",
-          "description" : "Two letter, uppercase: https://www.iso.org/glossary-for-iso-3166.html",
-          "example" : "NO"
+          "example" : "NO",
+          "description" : "Two letter, uppercase."
         },
         "county" : {
           "type" : "string",
-          "description" : "Numeric county code. Used together with gnr and bnr. https://register.geonorge.no/subregister/sosi-kodelister/kartverket/kommunenummer"
+          "description" : "Numeric county code. Used together with gnr and bnr."
         },
         "gnr" : {
           "type" : "string",
@@ -3342,7 +3343,8 @@
           "type" : "string",
           "description" : "For apartment buildings. H0101, H0508, etc."
         }
-      }
+      },
+      "description" : "Country codes: https://www.iso.org/glossary-for-iso-3166.html\nCounty numbers: https://register.geonorge.no/subregister/sosi-kodelister/kartverket/kommunenummer"
     },
     "Location" : {
       "type" : "object",
@@ -3485,8 +3487,8 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "description" : "License plate",
-          "example" : "AB12345"
+          "example" : "AB12345",
+          "description" : "License plate"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3522,22 +3524,22 @@
         },
         "fuel type" : {
           "type" : "string",
-          "description" : "Gasoline, Diesel, Electricity Hydrogen..",
-          "example" : "Gasoline"
+          "example" : "Gasoline",
+          "description" : "Gasoline, Diesel, Electricity Hydrogen.."
         },
         "fuelUseAverage" : {
           "type" : "string",
-          "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType).",
-          "example" : "0.8"
+          "example" : "0.8",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
         "fuelUseCity" : {
           "type" : "number",
-          "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType).",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
           "example" : 0.9
         },
         "fuelUseCountry," : {
           "type" : "number",
-          "description" : "Liters per kilometer, or kW per kilometer (depends on fuelType).",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
           "example" : 0.7
         },
         "co2" : {
