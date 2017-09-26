@@ -2185,7 +2185,7 @@
         "summary" : "Benchmark report.",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "?type=",
+          "name" : "type",
           "in" : "query",
           "required" : false,
           "type" : "string",
@@ -2198,6 +2198,12 @@
             "schema" : {
               "$ref" : "#/definitions/Report"
             }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
           }
         }
       },
@@ -3549,6 +3555,7 @@
     },
     "Report" : {
       "type" : "object",
+      "required" : [ "id" ],
       "properties" : {
         "id" : {
           "type" : "string"
