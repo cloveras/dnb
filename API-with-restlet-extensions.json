@@ -1858,22 +1858,13 @@
         "section" : "Environment"
       }
     },
-    "/environment/travel/car/footprint/" : {
+    "/environment/travel/car/footprint/{origin}/{destination}" : {
       "get" : {
         "tags" : [ "Environment" ],
         "summary" : "Get eco footprint for car travel",
-        "description" : "Returns array of String for now.\n\nExample call at Brighter Planet:\n```\nhttp://impact.brighterplanet.com/automobile_trips?automobile_fuel=Diesel&date=2017-09-20&destination=Kirkenes&fuel_efficiency=0.5&origin=Oslo&speed=80&timeframe=2017-01-01%2F2018-01-01\n````",
+        "description" : "Returns array of String for now.\nFuture: Support routes, not just origin and desitination.\n\nExample call at Brighter Planet:\n```\nhttp://impact.brighterplanet.com/automobile_trips?automobile_fuel=Diesel&date=2017-09-20&destination=Kirkenes&fuel_efficiency=0.5&origin=Oslo&speed=80&timeframe=2017-01-01%2F2018-01-01\n````",
         "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "Route",
-          "in" : "header",
-          "required" : false,
-          "type" : "array",
-          "description" : "Just to and from, or multiple locations.",
-          "items" : {
-            "$ref" : "#/definitions/Location"
-          }
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Status 200",
@@ -1883,11 +1874,22 @@
           }
         }
       },
+      "parameters" : [ {
+        "name" : "origin",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "destination",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
       "x-restlet" : {
         "section" : "Environment"
       }
     },
-    "/environment/travel/flight/footprint/{airportCodeFrom}/{airportCodeTo}" : {
+    "/environment/travel/flight/footprint/{airportOrigin}/{airportDestination}" : {
       "get" : {
         "tags" : [ "Environment" ],
         "summary" : "Get eco footprint for flight",
@@ -1904,13 +1906,13 @@
         }
       },
       "parameters" : [ {
-        "name" : "airportCodeFrom",
+        "name" : "airportOrigin",
         "in" : "path",
         "required" : true,
         "type" : "string",
         "x-example" : "OSL"
       }, {
-        "name" : "airportCodeTo",
+        "name" : "airportDestination",
         "in" : "path",
         "required" : true,
         "type" : "string",
