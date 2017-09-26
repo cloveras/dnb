@@ -1730,18 +1730,9 @@
       "get" : {
         "tags" : [ "Environment" ],
         "summary" : "Get eco footprint for car travel",
-        "description" : "Returns array of String for now.\n\nExample call at Brighter Planet:\n```\nhttp://impact.brighterplanet.com/automobile_trips?automobile_fuel=Diesel&date=2017-09-20&destination=Kirkenes&fuel_efficiency=0.5&origin=Oslo&speed=80&timeframe=2017-01-01%2F2018-01-01\n````",
+        "description" : "Returns array of String for now.\nFuture: Support routes, not just origin and desitination.\n\nExample call at Brighter Planet:\n```\nhttp://impact.brighterplanet.com/automobile_trips?automobile_fuel=Diesel&date=2017-09-20&destination=Kirkenes&fuel_efficiency=0.5&origin=Oslo&speed=80&timeframe=2017-01-01%2F2018-01-01\n````",
         "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "Route",
-          "in" : "header",
-          "required" : false,
-          "type" : "array",
-          "description" : "Just to and from, or multiple locations.",
-          "items" : {
-            "$ref" : "#/definitions/Location"
-          }
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Status 200",
@@ -1752,7 +1743,7 @@
         }
       }
     },
-    "/environment/travel/flight/footprint/{airportCodeFrom}/{airportCodeTo}" : {
+    "/environment/travel/flight/footprint/{airportOrigin}/{airportDestination}" : {
       "get" : {
         "tags" : [ "Environment" ],
         "summary" : "Get eco footprint for flight",
@@ -1769,13 +1760,13 @@
         }
       },
       "parameters" : [ {
-        "name" : "airportCodeFrom",
+        "name" : "airportOrigin",
         "in" : "path",
         "required" : true,
         "type" : "string",
         "x-example" : "OSL"
       }, {
-        "name" : "airportCodeTo",
+        "name" : "airportDestination",
         "in" : "path",
         "required" : true,
         "type" : "string",
@@ -3324,8 +3315,8 @@
         },
         "country" : {
           "type" : "string",
-          "example" : "NO",
-          "description" : "Two letter, uppercase."
+          "description" : "Two letter, uppercase.",
+          "example" : "NO"
         },
         "county" : {
           "type" : "string",
@@ -3487,8 +3478,8 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "example" : "AB12345",
-          "description" : "License plate"
+          "description" : "License plate",
+          "example" : "AB12345"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3524,13 +3515,13 @@
         },
         "fuel type" : {
           "type" : "string",
-          "example" : "Gasoline",
-          "description" : "Gasoline, Diesel, Electricity Hydrogen.."
+          "description" : "Gasoline, Diesel, Electricity Hydrogen..",
+          "example" : "Gasoline"
         },
         "fuelUseAverage" : {
           "type" : "string",
-          "example" : "0.8",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
+          "example" : "0.8"
         },
         "fuelUseCity" : {
           "type" : "number",
