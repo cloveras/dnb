@@ -3156,7 +3156,7 @@
           "type" : "string",
           "description" : "Description"
         },
-        "Notes (placeholder)" : {
+        "Notes" : {
           "type" : "string"
         }
       },
@@ -3195,7 +3195,7 @@
           "format" : "date-time",
           "description" : "Remaining time can be calculated from this."
         },
-        "details (placeholder)" : {
+        "details" : {
           "type" : "string"
         }
       },
@@ -3326,8 +3326,8 @@
         },
         "country" : {
           "type" : "string",
-          "example" : "NO",
-          "description" : "Two letter, uppercase."
+          "description" : "Two letter, uppercase.",
+          "example" : "NO"
         },
         "county" : {
           "type" : "string",
@@ -3489,8 +3489,8 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "example" : "AB12345",
-          "description" : "License plate"
+          "description" : "License plate",
+          "example" : "AB12345"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3526,13 +3526,13 @@
         },
         "fuel type" : {
           "type" : "string",
-          "example" : "Gasoline",
-          "description" : "Gasoline, Diesel, Electricity Hydrogen.."
+          "description" : "Gasoline, Diesel, Electricity Hydrogen..",
+          "example" : "Gasoline"
         },
         "fuelUseAverage" : {
           "type" : "string",
-          "example" : "0.8",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
+          "example" : "0.8"
         },
         "fuelUseCity" : {
           "type" : "number",
@@ -3555,7 +3555,7 @@
           "example" : 31.7
         }
       },
-      "description" : "https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger"
+      "description" : "Infomration from the Norwegian DMV: https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger"
     },
     "Report" : {
       "type" : "object",
