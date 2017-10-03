@@ -599,10 +599,9 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Here it is! Don't spend it all at once.",
+            "description" : "Status 200",
             "schema" : {
-              "type" : "integer",
-              "format" : "int32"
+              "type" : "integer"
             }
           },
           "401" : {
@@ -922,22 +921,20 @@
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "description" : "Number of the county (kommune).",
-          "x-example" : "1865"
+          "description" : "Number of the county (kommune)."
         }, {
           "name" : "gnr",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Gårdsnummer.",
-          "x-example" : "55"
+          "x-example" : "100"
         }, {
           "name" : "bnr",
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "description" : "Bruksnummer.",
-          "x-example" : "34"
+          "description" : "Bruksnummer."
         } ],
         "responses" : {
           "200" : {
@@ -1030,25 +1027,11 @@
         "description" : "Need to POST quite a bit of data, and also handle AML, KYC, etc",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "customer",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "loan",
-          "in" : "header",
-          "required" : false,
-          "type" : "string",
-          "description" : "Loan details"
-        }, {
           "name" : "body",
           "in" : "body",
           "required" : true,
           "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
+            "$ref" : "#/definitions/Loan"
           }
         } ],
         "responses" : {
@@ -1586,6 +1569,7 @@
         "tags" : [ "Location" ],
         "summary" : "Nearest ATM",
         "description" : "If no details (as for now): Assume ATM is open 24h.",
+        "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1593,7 +1577,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "string"
+                "$ref" : "#/definitions/ATM"
               }
             }
           }
@@ -3179,8 +3163,7 @@
           "type" : "string"
         },
         "interest" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "integer"
         },
         "customerid" : {
           "type" : "string",
@@ -3326,8 +3309,7 @@
         },
         "country" : {
           "type" : "string",
-          "description" : "Two letter, uppercase.",
-          "example" : "NO"
+          "description" : "Two letter, uppercase."
         },
         "county" : {
           "type" : "string",
@@ -3364,6 +3346,20 @@
         "description" : {
           "type" : "string",
           "description" : "Name of place, or similar"
+        }
+      }
+    },
+    "ATM" : {
+      "type" : "object",
+      "properties" : {
+        "atmId" : {
+          "type" : "string"
+        },
+        "latitude" : {
+          "type" : "string"
+        },
+        "longditude" : {
+          "type" : "string"
         }
       }
     },
@@ -3489,8 +3485,7 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "description" : "License plate",
-          "example" : "AB12345"
+          "description" : "License plate"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3524,35 +3519,25 @@
           "type" : "boolean",
           "description" : "False"
         },
-        "fuel type" : {
-          "type" : "string",
-          "description" : "Gasoline, Diesel, Electricity Hydrogen..",
-          "example" : "Gasoline"
-        },
         "fuelUseAverage" : {
           "type" : "string",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
-          "example" : "0.8"
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
         "fuelUseCity" : {
           "type" : "number",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
-          "example" : 0.9
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
-        "fuelUseCountry," : {
+        "fuelUseCountry" : {
           "type" : "number",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
-          "example" : 0.7
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
         "co2" : {
           "type" : "number",
-          "description" : "Grams per kilometer",
-          "example" : 164
+          "description" : "Grams per kilometer"
         },
         "nox" : {
           "type" : "number",
-          "description" : "Milligram per kilometer",
-          "example" : 31.7
+          "description" : "Milligram per kilometer"
         }
       },
       "description" : "Infomration from the Norwegian DMV: https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger"
