@@ -969,8 +969,9 @@
     },
     "Account" : {
       "type" : "object",
+      "required" : [ "accountNumber" ],
       "properties" : {
-        "number" : {
+        "accountNumber" : {
           "type" : "string",
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
         },
@@ -1020,9 +1021,9 @@
     },
     "AccountStatement" : {
       "type" : "object",
-      "required" : [ "account", "month", "year" ],
+      "required" : [ "accountNumber", "month", "year" ],
       "properties" : {
-        "account" : {
+        "accountNumber" : {
           "type" : "string"
         },
         "year" : {
@@ -1042,11 +1043,10 @@
     },
     "AccountBalance" : {
       "type" : "object",
-      "required" : [ "account", "amount", "timestamp" ],
+      "required" : [ "accountNumber", "amount", "timestamp" ],
       "properties" : {
-        "account" : {
-          "type" : "string",
-          "description" : "Account number, 11 digits."
+        "accountNumber" : {
+          "type" : "string"
         },
         "amount" : {
           "type" : "integer",
@@ -1082,12 +1082,16 @@
           "type" : "string"
         }
       },
-      "description" : "DNB's T&C:\n* Individuals: https://www.dnb.no/en/personal/internet-banking-mobile-and-card/accounts.html (is there a better one?)\n* Organizations: https://www.dnb.no/en/business/customer-service/terms-conditions.html\n* General: https://www.dnb.no/en/global/generelle-vilkar.html \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper elit vitae justo semper dignissim. Aliquam vel felis commodo, eleifend lorem id, mollis sem. Nulla ultricies nisi at dignissim blandit. Praesent iaculis nisi nec tempor congue. Proin et aliquet mauris. Curabitur ut lacinia leo. Vivamus elementum gravida dignissim. Mauris a cursus leo. Sed sit amet mollis nulla. Phasellus et posuere ipsum, sit amet vehicula eros. Sed ultricies dui vitae volutpat vulputate. Maecenas rutrum egestas porta.\n\nNulla ut lacus et nibh blandit vehicula. Aliquam maximus libero est, consequat porttitor ex aliquet nec. Sed luctus augue sed felis imperdiet venenatis. Quisque ut scelerisque nisl. Phasellus pharetra lobortis nisi, ac maximus velit tempor eu. Donec tellus sapien, congue vitae magna ut, venenatis luctus purus. Donec in ultrices ante, ac dignissim dui. Vivamus feugiat sodales mauris, sit amet dictum risus scelerisque in. Nulla tincidunt pellentesque convallis. Fusce elementum tincidunt nisi id mattis. Fusce quis ante libero. Vestibulum tristique augue tortor, efficitur pellentesque magna sagittis at. Donec at sapien mauris. Suspendisse dignissim non turpis quis vehicula. Cras arcu velit, porta et lacus at, viverra varius tellus.\n\nSed in odio eget purus sodales tempor quis et nibh. Vivamus consectetur ac sem sit amet rutrum. Nulla accumsan libero vel tortor tristique interdum. Quisque eget nulla vel tortor laoreet molestie. Phasellus tristique est mauris, a suscipit orci porta nec. Duis mattis est quis aliquam scelerisque. Sed a ullamcorper turpis. Curabitur pellentesque euismod sodales. Etiam placerat at mauris eleifend luctus. Nulla sollicitudin mauris et metus ultrices mattis. Nam in pharetra metus, eget mattis nisi. Mauris dapibus pharetra ex at tristique. Cras convallis aliquam odio id commodo. Cras vel feugiat velit. \n\n\n"
+      "description" : "DNB's T&C:\n* Individuals: https://www.dnb.no/en/personal/internet-banking-mobile-and-card/accounts.html (is there a better one?)\n* Organizations: https://www.dnb.no/en/business/customer-service/terms-conditions.html\n* General: https://www.dnb.no/en/global/generelle-vilkar.html \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper elit vitae justo semper dignissim. Aliquam vel felis commodo, eleifend lorem id, mollis sem. Nulla ultricies nisi at dignissim blandit. Praesent iaculis nisi nec tempor congue. Proin et aliquet mauris. Curabitur ut lacinia leo. Vivamus elementum gravida dignissim. Mauris a cursus leo. Sed sit amet mollis nulla. Phasellus et posuere ipsum, sit amet vehicula eros. Sed ultricies dui vitae volutpat vulputate. Maecenas rutrum egestas porta.\n\nNulla ut lacus et nibh blandit vehicula. Aliquam maximus libero est, consequat porttitor ex aliquet nec. Sed luctus augue sed felis imperdiet venenatis. Quisque ut scelerisque nisl. Phasellus pharetra lobortis nisi, ac maximus velit tempor eu. Donec tellus sapien, congue vitae magna ut, venenatis luctus purus. Donec in ultrices ante, ac dignissim dui. Vivamus feugiat sodales mauris, sit amet dictum risus scelerisque in. Nulla tincidunt pellentesque convallis. Fusce elementum tincidunt nisi id mattis. Fusce quis ante libero. Vestibulum tristique augue tortor, efficitur pellentesque magna sagittis at. Donec at sapien mauris. Suspendisse dignissim non turpis quis vehicula. Cras arcu velit, porta et lacus at, viverra varius tellus.\n\nSed in odio eget purus sodales tempor quis et nibh. Vivamus consectetur ac sem sit amet rutrum. Nulla accumsan libero vel tortor tristique interdum. Quisque eget nulla vel tortor laoreet molestie. Phasellus tristique est mauris, a suscipit orci porta nec. Duis mattis est quis aliquam scelerisque. Sed a ullamcorper turpis. Curabitur pellentesque euismod sodales. Etiam placerat at mauris eleifend luctus. Nulla sollicitudin mauris et metus ultrices mattis. Nam in pharetra metus, eget mattis nisi. Mauris dapibus pharetra ex at tristique. Cras convallis aliquam odio id commodo. Cras vel feugiat velit. \n\n\n"
     },
     "CreditCard" : {
       "type" : "object",
+      "required" : [ "creditCardId", "creditCardNumber" ],
       "properties" : {
         "creditCardId" : {
+          "type" : "string"
+        },
+        "creditCardNumber" : {
           "type" : "string"
         },
         "creditCardDetails" : {
@@ -1097,10 +1101,10 @@
     },
     "CreditCardAccount" : {
       "type" : "object",
+      "required" : [ "accountNumber" ],
       "properties" : {
-        "number" : {
-          "type" : "string",
-          "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
+        "accountNumber" : {
+          "type" : "string"
         },
         "type" : {
           "type" : "string",
