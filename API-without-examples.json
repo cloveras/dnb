@@ -1,6 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
+    "description" : "**WORK IN PROGRESS! **\n\nThis is a working document, an informal draft for API \"note-taking\", evaluation of API-related tools, etc. Contains several errors, contradictions and mistakes. Some Wikipedia texts added as placeholders/examples.\n\nHTTP response codes\n\n* Wikipedia: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes\n* W3C: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\n\n\n| HTTP method | Success  | Fail  |\n| -------- | -------- | -------- |\n| GET     | 200     | 404, 4XX, 5XX     |\n| POST     | 200, 201     | 400, 404, 4XX, 5XX     |\n| PUT | 204 | 400, 404, 4XX, 5XX |\n\n",
     "version" : "1.0.5",
     "title" : "DNB API AWS",
     "termsOfService" : "",
@@ -13,6 +14,7 @@
       "get" : {
         "tags" : [ "API" ],
         "summary" : "Get new API key",
+        "description" : "Simplified example. Requires a method of identification, the minimum being Facebook or Google OAuth. ",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -21,6 +23,7 @@
             "schema" : {
               "type" : "string"
             },
+            "examples" : {
               "application/json" : "Ok, you're in."
             }
           },
@@ -40,6 +43,7 @@
       "get" : {
         "tags" : [ "API" ],
         "summary" : "Get details of API key",
+        "description" : "For now: Also returns some housekeeping details, as an example. ",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "apikey",
@@ -919,18 +923,21 @@
           "required" : false,
           "type" : "string",
           "description" : "Number of the county (kommune).",
+          "x-example" : "1865"
         }, {
           "name" : "gnr",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Gårdsnummer.",
+          "x-example" : "55"
         }, {
           "name" : "bnr",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Bruksnummer.",
+          "x-example" : "34"
         } ],
         "responses" : {
           "200" : {
@@ -1104,6 +1111,7 @@
           "required" : false,
           "type" : "string",
           "description" : "Radius in km.",
+          "x-example" : "50"
         } ],
         "responses" : {
           "200" : {
@@ -1665,6 +1673,7 @@
             "schema" : {
               "type" : "string"
             },
+            "examples" : {
               "application/json" : "AED: 3.672538"
             }
           }
@@ -1766,11 +1775,13 @@
         "in" : "path",
         "required" : true,
         "type" : "string",
+        "x-example" : "OSL"
       }, {
         "name" : "airportDestination",
         "in" : "path",
         "required" : true,
         "type" : "string",
+        "x-example" : "HND"
       } ]
     },
     "/environment/building/ecoProfileByLocation/{latitude}/{longditude}" : {
@@ -2182,6 +2193,7 @@
           "required" : false,
           "type" : "string",
           "description" : "What to compare: revenue, profitability, liquidity",
+          "x-example" : "revenue"
         } ],
         "responses" : {
           "200" : {
@@ -2941,6 +2953,7 @@
         },
         "Email" : {
           "type" : "string",
+          "description" : "example@example.com"
         },
         "Phone" : {
           "type" : "string",
@@ -3313,7 +3326,7 @@
         },
         "country" : {
           "type" : "string",
-          "description" : "Two letter, uppercase.",
+          "description" : "Two letter, uppercase."
         },
         "county" : {
           "type" : "string",
@@ -3475,7 +3488,7 @@
       "properties" : {
         "licenseNumber" : {
           "type" : "string",
-          "description" : "License plate",
+          "description" : "License plate"
         },
         "registrationDate" : {
           "type" : "string",
@@ -3509,29 +3522,29 @@
           "type" : "boolean",
           "description" : "False"
         },
-        "fuel type" : {
+        "fuelType" : {
           "type" : "string",
-          "description" : "Gasoline, Diesel, Electricity Hydrogen..",
+          "description" : "Gasoline, Diesel, Electricity Hydrogen.."
         },
         "fuelUseAverage" : {
           "type" : "string",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
         "fuelUseCity" : {
           "type" : "number",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
-        "fuelUseCountry," : {
+        "fuelUseCountry" : {
           "type" : "number",
-          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType.",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
         },
         "co2" : {
           "type" : "number",
-          "description" : "Grams per kilometer",
+          "description" : "Grams per kilometer"
         },
         "nox" : {
           "type" : "number",
-          "description" : "Milligram per kilometer",
+          "description" : "Milligram per kilometer"
         }
       },
       "description" : "Infomration from the Norwegian DMV: https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger"
