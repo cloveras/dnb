@@ -1,0 +1,1316 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "APIs for third parties. Created from ADD by Christian Løverås 2017-10-04.\n\nData objects, payloads, etc are minimal versions - and in some cases copied from \"API.json\": https://github.com/cloveras/dnb/\n",
+    "version" : "0.1",
+    "title" : "7580",
+    "termsOfService" : "http://developer.dnb.no/terms",
+    "contact" : {
+      "name" : "Christian Løverås",
+      "url" : "https://dnb.no",
+      "email" : "cl@dnb.no"
+    }
+  },
+  "host" : "1gh7oej.restletmocks.net",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/customers" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Search customers",
+        "description" : "Returns CustomerIndividual for now.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "customerName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "customerSSN",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CustomerIndividual"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "/customers/{customerId}" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get customer",
+        "description" : "Returns CustomerIndividual for now.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CustomerIndividual"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "/customers/individual" : {
+      "post" : {
+        "tags" : [ "Customers" ],
+        "summary" : "New individual customer",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CustomerIndividual"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "/customers/individual/{customerId}" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get individual customer",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Update individual customer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CustomerIndividual"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "/customers/organization" : {
+      "post" : {
+        "tags" : [ "Customers" ],
+        "summary" : "New organization customer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CustomerOrganization"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CustomerOrganization"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "/customers/organization/{customerId}" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get organization customer",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CustomerOrganization"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Update organization customer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CustomerOrganization"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "/customers/{customerId}/accounts" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get accounts for customer",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Account"
+              }
+            }
+          },
+          "404" : {
+            "description" : "No accounts."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "/accounts" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account list for customer",
+        "description" : "customerId is sent as part of the context object",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Account"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "customerId unknown"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/deposit-accounts/{accountNumber}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get deposit account",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Account"
+            }
+          },
+          "404" : {
+            "description" : "customerId unknown"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Create deposit account",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Account"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Account"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/terms" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account terms",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/AccountTermsAndConditions"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/balances" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account balances",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/AccountBalance"
+              }
+            }
+          },
+          "401" : {
+            "description" : "No balance for you."
+          },
+          "404" : {
+            "description" : "Account not found."
+          },
+          "417" : {
+            "description" : "Expectation Failed: Requires prior (paranormal) transfer of customer's expectation (haha)."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Account number, 11 digits."
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/actions/close" : {
+      "patch" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Close account",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/transactions" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get transactions for account",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pagesize",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "pagenumber",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Payment"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/transactions/{transactionId}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get transaction details",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Payment"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "transactionId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/pending-payments" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get pending payments for account",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/AccountPayment"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/pending-payments/{paymentId}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get details for payment",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/AccountPayment"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Delete pending payment",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Update pending payment",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/AccountPayment"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "paymentId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/accounts/{accountNumber}/safetospend" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get \"safe to spend\" amount",
+        "description" : "The current balance, minus known outgoing transactions, plus known incoming transactions. ",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Here it is! Don't spend it all at once.",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "401" : {
+            "description" : "Hmmm, not really your account, is it?"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Account number, 11 digits."
+      } ],
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "/creditcards/accounts" : {
+      "get" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Get credit card accounts for customer",
+        "description" : "customerId is sent in the context object",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CreditCardAccount"
+              }
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "/creditcards/accounts/{creditCardId}" : {
+      "get" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Get credit card details",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CreditCardAccount"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "creditCardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "/creditcards/accounts/{creditCardId}/balance" : {
+      "get" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Get credit card balance",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/AccountBalance"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "creditCardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "/creditcards/accounts/{creditCardId}/transactions" : {
+      "get" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Get credit card transactions",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Transaction"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "creditCardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "/creditcard/{creditCardId}" : {
+      "get" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Get credit card details",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CreditCard"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Update credit card",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CreditCard"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "creditCardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "/creditcard/{creditCardId}/actions/block" : {
+      "get" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Block credit card",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "creditCardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "/creditcard/{creditCardId}/actions/unblock" : {
+      "get" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Unblock credit card",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "creditCardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ],
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "/payments/{paymentId}" : {
+      "get" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Get payment details",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Payment"
+            }
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "paymentId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "id"
+      } ],
+      "x-restlet" : {
+        "section" : "Payment"
+      }
+    },
+    "/payments/domestic" : {
+      "post" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Initiate payment",
+        "description" : "Domestic payment with KID or message",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Payment"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Payment"
+      }
+    },
+    "/payments/transfer" : {
+      "post" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Initiate transfer between accounts",
+        "description" : "Transfer between accounts for PM Norway",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Payment"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Payment"
+      }
+    }
+  },
+  "definitions" : {
+    "CustomerIndividual" : {
+      "type" : "object",
+      "required" : [ "City", "Country", "Id", "Name", "Postcode" ],
+      "properties" : {
+        "Id" : {
+          "type" : "string",
+          "description" : "Person: Personal number, 11 digits.\nCompany: Organization number, 9 digits."
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Active, pending, closed, etc"
+        },
+        "program" : {
+          "type" : "string",
+          "description" : "SAGA, etc"
+        },
+        "Name" : {
+          "type" : "string",
+          "description" : "Person: Rune Bjerke.\nCompany: DNB"
+        },
+        "Address" : {
+          "type" : "string",
+          "description" : "Street address."
+        },
+        "Postcode" : {
+          "type" : "string",
+          "description" : "4 digits if in Norway,"
+        },
+        "City" : {
+          "type" : "string",
+          "description" : "Oslo"
+        },
+        "Country" : {
+          "type" : "string",
+          "description" : "\"NO\". http://www.iso.org/iso/country_codes.htm"
+        },
+        "Email" : {
+          "type" : "string",
+          "description" : "example@example.com"
+        },
+        "Phone" : {
+          "type" : "string",
+          "description" : "+47 04800"
+        },
+        "Website" : {
+          "type" : "string",
+          "description" : "dnb.no"
+        },
+        "welcomepackage" : {
+          "type" : "string",
+          "description" : "Id/tracking details for welcome package"
+        },
+        "Notes" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Minimal, initial version.\n\n```\n{\n\t\"id\": \"17066099999\",\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```",
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "CustomerOrganization" : {
+      "type" : "object",
+      "properties" : {
+        "customerId" : {
+          "type" : "string"
+        },
+        "customerDetails" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Minimal, initial version.",
+      "x-restlet" : {
+        "section" : "Customer"
+      }
+    },
+    "Account" : {
+      "type" : "object",
+      "required" : [ "accountNumber" ],
+      "properties" : {
+        "accountNumber" : {
+          "type" : "string",
+          "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Internal use, probably."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Friendly name."
+        },
+        "currency" : {
+          "type" : "string",
+          "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+        },
+        "balance" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "IBAN" : {
+          "type" : "string",
+          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html"
+        },
+        "swift" : {
+          "type" : "string",
+          "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362"
+        },
+        "created" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        },
+        "updated" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        },
+        "locked" : {
+          "type" : "boolean",
+          "description" : "Is this account locked?"
+        },
+        "notes" : {
+          "type" : "string"
+        }
+      },
+      "description" : "```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"IBAN\": \"NO93 8601 1117 947\",\n\t\t\"SWIFT\": \"DNBANOKKXXX\",\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n}\n```",
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "AccountStatement" : {
+      "type" : "object",
+      "required" : [ "accountNumber", "month", "year" ],
+      "properties" : {
+        "accountNumber" : {
+          "type" : "string"
+        },
+        "year" : {
+          "type" : "string"
+        },
+        "month" : {
+          "type" : "string"
+        },
+        "transactions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Payment"
+          }
+        }
+      },
+      "description" : "Monthly account statement.",
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "AccountBalance" : {
+      "type" : "object",
+      "required" : [ "accountNumber", "amount", "timestamp" ],
+      "properties" : {
+        "accountNumber" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "timestamp" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        }
+      },
+      "description" : "```\n{\n   \"account\": 12345678910,\n   \"balance\": 12345,\n   \"timestamp\": \"2017-01-03T09:56:28+00:0\",\n}\n```",
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "AccountPayment" : {
+      "type" : "object",
+      "properties" : {
+        "paymentId" : {
+          "type" : "string"
+        },
+        "paymentDetails" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Minimal, initial version.",
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "AccountTermsAndConditions" : {
+      "type" : "object",
+      "properties" : {
+        "termsId" : {
+          "type" : "string"
+        },
+        "termsDetails" : {
+          "type" : "string"
+        }
+      },
+      "description" : "DNB's T&C:\n* Individuals: https://www.dnb.no/en/personal/internet-banking-mobile-and-card/accounts.html (is there a better one?)\n* Organizations: https://www.dnb.no/en/business/customer-service/terms-conditions.html\n* General: https://www.dnb.no/en/global/generelle-vilkar.html \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper elit vitae justo semper dignissim. Aliquam vel felis commodo, eleifend lorem id, mollis sem. Nulla ultricies nisi at dignissim blandit. Praesent iaculis nisi nec tempor congue. Proin et aliquet mauris. Curabitur ut lacinia leo. Vivamus elementum gravida dignissim. Mauris a cursus leo. Sed sit amet mollis nulla. Phasellus et posuere ipsum, sit amet vehicula eros. Sed ultricies dui vitae volutpat vulputate. Maecenas rutrum egestas porta.\n\nNulla ut lacus et nibh blandit vehicula. Aliquam maximus libero est, consequat porttitor ex aliquet nec. Sed luctus augue sed felis imperdiet venenatis. Quisque ut scelerisque nisl. Phasellus pharetra lobortis nisi, ac maximus velit tempor eu. Donec tellus sapien, congue vitae magna ut, venenatis luctus purus. Donec in ultrices ante, ac dignissim dui. Vivamus feugiat sodales mauris, sit amet dictum risus scelerisque in. Nulla tincidunt pellentesque convallis. Fusce elementum tincidunt nisi id mattis. Fusce quis ante libero. Vestibulum tristique augue tortor, efficitur pellentesque magna sagittis at. Donec at sapien mauris. Suspendisse dignissim non turpis quis vehicula. Cras arcu velit, porta et lacus at, viverra varius tellus.\n\nSed in odio eget purus sodales tempor quis et nibh. Vivamus consectetur ac sem sit amet rutrum. Nulla accumsan libero vel tortor tristique interdum. Quisque eget nulla vel tortor laoreet molestie. Phasellus tristique est mauris, a suscipit orci porta nec. Duis mattis est quis aliquam scelerisque. Sed a ullamcorper turpis. Curabitur pellentesque euismod sodales. Etiam placerat at mauris eleifend luctus. Nulla sollicitudin mauris et metus ultrices mattis. Nam in pharetra metus, eget mattis nisi. Mauris dapibus pharetra ex at tristique. Cras convallis aliquam odio id commodo. Cras vel feugiat velit. \n\n\n",
+      "x-restlet" : {
+        "section" : "Account"
+      }
+    },
+    "CreditCard" : {
+      "type" : "object",
+      "required" : [ "creditCardId", "creditCardNumber" ],
+      "properties" : {
+        "creditCardId" : {
+          "type" : "string"
+        },
+        "creditCardNumber" : {
+          "type" : "string"
+        },
+        "creditCardDetails" : {
+          "type" : "string"
+        }
+      },
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "CreditCardAccount" : {
+      "type" : "object",
+      "required" : [ "accountNumber" ],
+      "properties" : {
+        "accountNumber" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Internal use, probably."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Friendly name."
+        },
+        "currency" : {
+          "type" : "string",
+          "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+        },
+        "balance" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "IBAN" : {
+          "type" : "string",
+          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html"
+        },
+        "swift" : {
+          "type" : "string",
+          "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362"
+        },
+        "created" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        },
+        "updated" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        },
+        "locked" : {
+          "type" : "boolean",
+          "description" : "Is this account locked?"
+        },
+        "notes" : {
+          "type" : "string"
+        }
+      },
+      "description" : "For now: One kind of Account for all.\n\n```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"IBAN\": \"NO93 8601 1117 947\",\n\t\t\"SWIFT\": \"DNBANOKKXXX\",\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n}\n```",
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "Transaction" : {
+      "type" : "object",
+      "required" : [ "transactionId" ],
+      "properties" : {
+        "transactionId" : {
+          "type" : "string"
+        },
+        "transactionDetails" : {
+          "type" : "string"
+        }
+      },
+      "x-restlet" : {
+        "section" : "CreditCard"
+      }
+    },
+    "Payment" : {
+      "type" : "object",
+      "required" : [ "account", "amount", "currency", "paymentId", "type" ],
+      "properties" : {
+        "paymentId" : {
+          "type" : "string"
+        },
+        "account" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "string"
+        },
+        "reference" : {
+          "type" : "string",
+          "description" : "Description"
+        },
+        "Notes" : {
+          "type" : "string"
+        }
+      },
+      "x-restlet" : {
+        "section" : "Payment"
+      }
+    }
+  },
+  "x-restlet" : {
+    "sections" : {
+      "Customer" : { },
+      "Account" : { },
+      "CreditCard" : { },
+      "Payment" : { }
+    }
+  }
+}
