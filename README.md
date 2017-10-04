@@ -1,3 +1,9 @@
+# 7580
+
+Third Party APIs, also known as "Fintech Platform".
+
+* 7580.json: http://superelectric.net/tmp/7580
+
 # API drafts
 
 API.json: Swagger/OAS for draft APIs
