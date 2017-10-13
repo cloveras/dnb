@@ -18,6 +18,7 @@
   "paths" : {
     "/customers/person/{customerId}" : {
       "get" : {
+        "tags" : [ "Customers" ],
         "summary" : "View customer",
         "parameters" : [ {
           "name" : "Customer ID",
@@ -904,6 +905,7 @@
     },
     "/markets/FxRateService" : {
       "get" : {
+        "tags" : [ "Bank" ],
         "summary" : "Exhange rate",
         "description" : "Get exchange rate details",
         "parameters" : [ ],
