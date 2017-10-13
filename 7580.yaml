@@ -1,0 +1,1122 @@
+---
+swagger: "2.0"
+info:
+  description: "APIs for third parties. Created from ADD by Christian Løverås 2017-10-04.\n\
+    \nGuidelines:\n* Parameters: camelCase, starting with lowercase\n* Attributes\
+    \ of data objects: CamelCase, starting with uppercase\n\nStandards:\n* Country:\
+    \ ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html \n* Currency: ISO\
+    \ 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html\n\
+    * Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* SWIFT BIC: ISO\
+    \ 9362: https://en.wikipedia.org/wiki/ISO_9362 \n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html\
+    \ \n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes)\n\
+    \n\nData objects, payloads, etc are minimal versions - and in some cases copied\
+    \ from \"API.json\": https://github.com/cloveras/dnb/\n"
+  version: "0.1"
+  title: "7580"
+  termsOfService: "http://developer.dnb.no/terms"
+  contact:
+    name: "Christian Løverås"
+    url: "https://dnb.no"
+    email: "cl@dnb.no"
+host: "1gh7oej.restletmocks.net"
+schemes:
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /customers/person/{customerId}:
+    get:
+      tags:
+      - "Customers"
+      summary: "View customer"
+      parameters:
+      - name: "Customer ID"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/CustomerIndividual"
+    parameters:
+    - name: "customerId"
+      in: "path"
+      required: true
+      type: "string"
+  /customers:
+    get:
+      tags:
+      - "Customers"
+      summary: "Search customers"
+      description: "Returns CustomerIndividual for now."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "customerName"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "customerSSN"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CustomerIndividual"
+        400:
+          description: "Status 400"
+        404:
+          description: "Status 404"
+  /customers/individual:
+    post:
+      tags:
+      - "Customers"
+      summary: "New individual customer"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CustomerIndividual"
+      responses:
+        200:
+          description: "Status 200"
+        400:
+          description: "Status 400"
+  /customers/individual/{customerId}:
+    get:
+      tags:
+      - "Customers"
+      summary: "Get individual customer"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+        400:
+          description: "Status 400"
+        404:
+          description: "Status 404"
+    patch:
+      tags:
+      - "Customers"
+      summary: "Update individual customer"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        required: true
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/CustomerIndividual"
+        400:
+          description: "Status 400"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "customerId"
+      in: "path"
+      required: true
+      type: "string"
+  /customers/{customerId}/accounts:
+    get:
+      tags:
+      - "Customers"
+      summary: "Get accounts for customer"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Account"
+        404:
+          description: "No accounts."
+    parameters:
+    - name: "customerId"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get account list for customer"
+      description: "customerId is sent as part of the context object"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "customerId"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Account"
+        400:
+          description: "Status 400"
+        404:
+          description: "customerId unknown"
+  /accounts/deposit-accounts/{accountNumber}:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get deposit account"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Account"
+        404:
+          description: "customerId unknown"
+    post:
+      tags:
+      - "Accounts"
+      summary: "Create deposit account"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Account"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Account"
+        400:
+          description: "Status 400"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts/{accountNumber}/terms:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get account terms"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/AccountTermsAndConditions"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts/{accountNumber}/balances:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get account balances"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/AccountBalance"
+        401:
+          description: "No balance for you."
+        404:
+          description: "Account not found."
+        417:
+          description: "Expectation Failed: Requires prior (paranormal) transfer of\
+            \ customer's expectation (haha)."
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+      description: "Account number, 11 digits."
+  /accounts/{accountNumber}/actions/close:
+    patch:
+      tags:
+      - "Accounts"
+      summary: "Close account"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts/{accountNumber}/transactions:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get transactions for account"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "PageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int32"
+        description: "Number of transactions on one page"
+      - name: "PageNumber"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int32"
+      - name: "SortOrder"
+        in: "query"
+        required: false
+        type: "string"
+        description: "\"Ascending\", \"Descending\""
+      - name: "DateFrom"
+        in: "query"
+        required: false
+        type: "string"
+        format: "date"
+        description: "Filter for start date (included)"
+      - name: "DateTo"
+        in: "query"
+        required: false
+        type: "string"
+        format: "date"
+        description: "Filter for end date (included)"
+      - name: "AmountFrom"
+        in: "query"
+        required: false
+        type: "number"
+        description: "Filter for minimum amount (included)"
+      - name: "AmountTo"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Filter for maximum amount (included)"
+      - name: "MCC"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Filter for MCC"
+      - name: "FreeText"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Filter for free text"
+      - name: "IncludePending"
+        in: "query"
+        required: false
+        type: "boolean"
+        description: "Should pending transactions be included?"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Payment"
+        401:
+          description: "Status 401"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts/{accountNumber}/transactions/{transactionId}:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get transaction details"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Payment"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+    - name: "transactionId"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts/{accountNumber}/pending-payments:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get pending payments for account"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AccountPayment"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts/{accountNumber}/pending-payments/{paymentId}:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get details for payment"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/AccountPayment"
+        404:
+          description: "Status 404"
+    delete:
+      tags:
+      - "Accounts"
+      summary: "Delete pending payment"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+    patch:
+      tags:
+      - "Accounts"
+      summary: "Update pending payment"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        required: true
+        schema:
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/AccountPayment"
+        400:
+          description: "Status 400"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+    - name: "paymentId"
+      in: "path"
+      required: true
+      type: "string"
+  /accounts/{accountNumber}/safetospend:
+    get:
+      tags:
+      - "Accounts"
+      summary: "Get \"safe to spend\" amount"
+      description: "The current balance, minus known outgoing transactions, plus known\
+        \ incoming transactions. "
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Here it is! Don't spend it all at once."
+          schema:
+            type: "integer"
+            format: "int32"
+        401:
+          description: "Hmmm, not really your account, is it?"
+    parameters:
+    - name: "accountNumber"
+      in: "path"
+      required: true
+      type: "string"
+      description: "Account number, 11 digits."
+  /creditcards/accounts:
+    get:
+      tags:
+      - "CreditCard"
+      summary: "Get credit card accounts for customer"
+      description: "customerId is sent in the context object"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CreditCardAccount"
+  /creditcards/accounts/{creditCardId}:
+    get:
+      tags:
+      - "CreditCard"
+      summary: "Get credit card details"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/CreditCardAccount"
+    parameters:
+    - name: "creditCardId"
+      in: "path"
+      required: true
+      type: "string"
+  /creditcards/accounts/{creditCardId}/balance:
+    get:
+      tags:
+      - "CreditCard"
+      summary: "Get credit card balance"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "customerId"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "accountNumber"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AccountBalance"
+    parameters:
+    - name: "creditCardId"
+      in: "path"
+      required: true
+      type: "string"
+  /creditcards/accounts/{creditCardId}/transactions:
+    get:
+      tags:
+      - "CreditCard"
+      summary: "Get credit card transactions"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+    parameters:
+    - name: "creditCardId"
+      in: "path"
+      required: true
+      type: "string"
+  /creditcard/{creditCardId}:
+    get:
+      tags:
+      - "CreditCard"
+      summary: "Get credit card details"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/CreditCard"
+        404:
+          description: "Status 404"
+    patch:
+      tags:
+      - "CreditCard"
+      summary: "Update credit card"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/CreditCard"
+        400:
+          description: "Status 400"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "creditCardId"
+      in: "path"
+      required: true
+      type: "string"
+  /creditcard/{creditCardId}/actions/block:
+    get:
+      tags:
+      - "CreditCard"
+      summary: "Block credit card"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+    patch:
+      tags:
+      - "CreditCard"
+      summary: "Block credit card"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "creditCardId"
+      in: "path"
+      required: true
+      type: "string"
+  /creditcard/{creditCardId}/actions/unblock:
+    get:
+      tags:
+      - "CreditCard"
+      summary: "Unblock credit card"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+        404:
+          description: "Status 404"
+    patch:
+      tags:
+      - "CreditCard"
+      summary: "Unblock credit card"
+      parameters:
+      - name: "Unblock credit card"
+        in: "header"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+          headers:
+            Unblock:
+              type: "string"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "creditCardId"
+      in: "path"
+      required: true
+      type: "string"
+  /payments/{paymentId}:
+    get:
+      tags:
+      - "Payments"
+      summary: "Get payment details"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Payment"
+        401:
+          description: "Status 401"
+        404:
+          description: "Status 404"
+    parameters:
+    - name: "paymentId"
+      in: "path"
+      required: true
+      type: "string"
+      description: "id"
+  /payments/domestic:
+    post:
+      tags:
+      - "Payments"
+      summary: "Initiate payment"
+      description: "Domestic payment with KID or message"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/PaymentInitiation"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "string"
+            description: "Returning id of the new payment"
+        400:
+          description: "Status 400"
+        401:
+          description: "Status 401"
+  /payments/transfer:
+    post:
+      tags:
+      - "Payments"
+      summary: "Initiate transfer between accounts"
+      description: "Transfer between accounts for PM Norway"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Payment"
+      responses:
+        200:
+          description: "Status 200"
+        400:
+          description: "Status 400"
+  /markets/FxRateService:
+    get:
+      tags:
+      - "Bank"
+      summary: "Exhange rate"
+      description: "Get exchange rate details"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "string"
+          headers:
+            Exchange rate:
+              type: "string"
+definitions:
+  CustomerIndividual:
+    type: "object"
+    required:
+    - "Address"
+    - "CountryOfBirth"
+    - "FirstName"
+    - "LastName"
+    - "PersonNumber"
+    properties:
+      PersonNumber:
+        type: "string"
+        description: "11 digits."
+      FirstName:
+        type: "string"
+        description: "Rune"
+      LastName:
+        type: "string"
+        description: "Bjerke"
+      Address:
+        $ref: "#/definitions/Address"
+      CountryOfBirth:
+        type: "string"
+        description: "\"NO\". http://www.iso.org/iso/country_codes.htm"
+      Email:
+        type: "string"
+        description: "example@example.com"
+      Phone:
+        type: "string"
+        description: "+47 91 50 48 00"
+  CustomerOrganization:
+    type: "object"
+    properties:
+      customerId:
+        type: "string"
+      customerDetails:
+        type: "string"
+    description: "Minimal, initial version."
+  Account:
+    type: "object"
+    required:
+    - "AccountNumber"
+    - "AccountOwner"
+    - "BalanceAvailable"
+    - "TermsAndConditionsId"
+    - "Type"
+    properties:
+      AccountNumber:
+        type: "string"
+        description: "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
+      Type:
+        type: "string"
+        description: "Examples/guesses:\n* Deposit\n* CreditCard\n* BSU\n* ASK"
+      AccountName:
+        type: "string"
+        description: "Friendly name for the account: \"My savings account\", etc."
+      BalanceAvailable:
+        type: "number"
+      AccountOwner:
+        type: "string"
+        description: "SSN"
+      AccountDetails:
+        $ref: "#/definitions/AccountDetails"
+      TermsAndConditionsId:
+        type: "string"
+        description: "Reference to terms and conditions for this account (type)."
+  AccountDetails:
+    type: "object"
+    required:
+    - "AccountNumber"
+    - "BIC"
+    - "Created"
+    - "Currency"
+    - "IBAN"
+    properties:
+      AccountNumber:
+        $ref: "#/definitions/Account"
+      IBAN:
+        type: "string"
+        description: "ISO 13616:2007: https://www.iso.org/standard/41031.html"
+      BIC:
+        type: "string"
+        description: "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362"
+      Currency:
+        type: "string"
+        description: "Currency: ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html"
+      Created:
+        type: "string"
+        format: "date-time"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+      Updated:
+        type: "string"
+        format: "date-time"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+      AccountInterestDetails:
+        $ref: "#/definitions/AccountInterestDetails"
+    description: "Details for an Account."
+  AccountInterestDetails:
+    type: "object"
+    properties:
+      AccountNumber:
+        type: "string"
+      InterestRate:
+        type: "number"
+      EarnedInterestToDate:
+        type: "number"
+      AccruedInterestAndFeesToDate:
+        type: "number"
+      FeesToDate:
+        type: "string"
+      AccruedInterestFromLastYear:
+        type: "number"
+  AccountStatement:
+    type: "object"
+    required:
+    - "accountNumber"
+    - "month"
+    - "year"
+    properties:
+      accountNumber:
+        type: "string"
+      year:
+        type: "string"
+      month:
+        type: "string"
+      transactions:
+        type: "array"
+        items:
+          $ref: "#/definitions/Payment"
+    description: "Monthly account statement."
+  AccountBalance:
+    type: "object"
+    required:
+    - "AccountNumber"
+    - "AmountAvailable"
+    - "Timestamp"
+    properties:
+      AccountNumber:
+        type: "string"
+      Currency:
+        type: "string"
+      AmountAvailable:
+        type: "number"
+      AmountBook:
+        type: "number"
+      Timestamp:
+        type: "string"
+        format: "date-time"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+    description: "```\n{\n   \"account\": 12345678910,\n   \"balance\": 12345,\n \
+      \  \"timestamp\": \"2017-01-03T09:56:28+00:0\",\n}\n```"
+  AccountPayment:
+    type: "object"
+    required:
+    - "Amount"
+    - "FromAccount"
+    - "PaymentId"
+    - "ToAccount"
+    properties:
+      PaymentId:
+        type: "string"
+      FromAccount:
+        type: "string"
+      ToAccount:
+        type: "string"
+      Amount:
+        type: "string"
+      PaymentDetails:
+        type: "string"
+    description: "Minimal, initial version."
+  AccountTransaction:
+    type: "object"
+    required:
+    - "TransactionId"
+    properties:
+      TransactionId:
+        type: "string"
+      Amount:
+        type: "number"
+      DateBooking:
+        type: "string"
+        format: "date"
+      DateValue:
+        type: "string"
+        format: "date"
+      Description:
+        type: "string"
+      Status:
+        type: "string"
+        description: "\"Booked\", \"Reserved\""
+      MerchantName:
+        type: "string"
+      MCC:
+        type: "string"
+  AccountTermsAndConditions:
+    type: "object"
+    properties:
+      TermsId:
+        type: "string"
+      TermsDetails:
+        type: "string"
+    description: "DNB's T&C:\n* Individuals: https://www.dnb.no/en/personal/internet-banking-mobile-and-card/accounts.html\
+      \ (is there a better one?)\n* Organizations: https://www.dnb.no/en/business/customer-service/terms-conditions.html\n\
+      * General: https://www.dnb.no/en/global/generelle-vilkar.html \n\nLorem ipsum\
+      \ dolor sit amet, consectetur adipiscing elit. Aenean semper elit vitae justo\
+      \ semper dignissim. Aliquam vel felis commodo, eleifend lorem id, mollis sem.\
+      \ Nulla ultricies nisi at dignissim blandit. Praesent iaculis nisi nec tempor\
+      \ congue. Proin et aliquet mauris. Curabitur ut lacinia leo. Vivamus elementum\
+      \ gravida dignissim. Mauris a cursus leo. Sed sit amet mollis nulla. Phasellus\
+      \ et posuere ipsum, sit amet vehicula eros. Sed ultricies dui vitae volutpat\
+      \ vulputate. Maecenas rutrum egestas porta.\n\nNulla ut lacus et nibh blandit\
+      \ vehicula. Aliquam maximus libero est, consequat porttitor ex aliquet nec.\
+      \ Sed luctus augue sed felis imperdiet venenatis. Quisque ut scelerisque nisl.\
+      \ Phasellus pharetra lobortis nisi, ac maximus velit tempor eu. Donec tellus\
+      \ sapien, congue vitae magna ut, venenatis luctus purus. Donec in ultrices ante,\
+      \ ac dignissim dui. Vivamus feugiat sodales mauris, sit amet dictum risus scelerisque\
+      \ in. Nulla tincidunt pellentesque convallis. Fusce elementum tincidunt nisi\
+      \ id mattis. Fusce quis ante libero. Vestibulum tristique augue tortor, efficitur\
+      \ pellentesque magna sagittis at. Donec at sapien mauris. Suspendisse dignissim\
+      \ non turpis quis vehicula. Cras arcu velit, porta et lacus at, viverra varius\
+      \ tellus.\n\nSed in odio eget purus sodales tempor quis et nibh. Vivamus consectetur\
+      \ ac sem sit amet rutrum. Nulla accumsan libero vel tortor tristique interdum.\
+      \ Quisque eget nulla vel tortor laoreet molestie. Phasellus tristique est mauris,\
+      \ a suscipit orci porta nec. Duis mattis est quis aliquam scelerisque. Sed a\
+      \ ullamcorper turpis. Curabitur pellentesque euismod sodales. Etiam placerat\
+      \ at mauris eleifend luctus. Nulla sollicitudin mauris et metus ultrices mattis.\
+      \ Nam in pharetra metus, eget mattis nisi. Mauris dapibus pharetra ex at tristique.\
+      \ Cras convallis aliquam odio id commodo. Cras vel feugiat velit. \n\n\n"
+  CreditCard:
+    type: "object"
+    required:
+    - "creditCardId"
+    - "creditCardNumber"
+    properties:
+      creditCardId:
+        type: "string"
+      creditCardOwner:
+        type: "string"
+      creditCardNumber:
+        type: "string"
+      creditCardDetails:
+        type: "string"
+  CreditCardAccount:
+    type: "object"
+    required:
+    - "accountNumber"
+    properties:
+      accountNumber:
+        type: "string"
+      type:
+        type: "string"
+        description: "Internal use, probably."
+      name:
+        type: "string"
+        description: "Friendly name."
+      currency:
+        type: "string"
+        description: "ISO 4217: alpha 3-letter upcase e.g EUR"
+      balance:
+        type: "integer"
+        format: "int32"
+      created:
+        type: "string"
+        format: "date-time"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+      updated:
+        type: "string"
+        format: "date-time"
+        description: "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+      locked:
+        type: "boolean"
+        description: "Is this account locked?"
+      notes:
+        type: "string"
+      Available credit:
+        type: "number"
+    description: "\n```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\"\
+      ,\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\"\
+      ,\n\t\t\"balance\": 999999999,\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\"\
+      ,\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\
+      \"notes\": \"No lunch for you\"\n\t\t\"available credit\"; 000 000\n}\n```"
+  Transaction:
+    type: "object"
+    required:
+    - "transactionId"
+    properties:
+      transactionId:
+        type: "string"
+      transactionDetails:
+        type: "string"
+  Payment:
+    type: "object"
+    required:
+    - "account"
+    - "amount"
+    - "currency"
+    - "paymentId"
+    - "type"
+    properties:
+      paymentId:
+        type: "string"
+      account:
+        type: "string"
+      type:
+        type: "string"
+      currency:
+        type: "string"
+      amount:
+        type: "string"
+      reference:
+        type: "string"
+        description: "Description"
+      Notes:
+        type: "string"
+  PaymentInitiation:
+    type: "object"
+    required:
+    - "Amount"
+    - "CreditAccountNumber"
+    - "DebitAccountNumber"
+    - "PaymentDate"
+    - "Type"
+    properties:
+      Type:
+        type: "string"
+        description: "\"KID\", \"Message\""
+      DebitAccountNumber:
+        type: "string"
+      CreditAccountNumber:
+        type: "string"
+      Amount:
+        type: "number"
+      PaymentDate:
+        type: "string"
+        format: "date-time"
+      Message:
+        type: "string"
+        description: "Used for both KID and Message, based on Type."
+    description: "Not including the \"straksbetaling\" (imediate payment) flag, as\
+      \ this will be the default."
+  Currency:
+    type: "string"
+    description: "Currency: ISO 4217: alpha 3-letter upcase e.g EUR\n"
+    example: "NOK"
+  Address:
+    type: "object"
+    required:
+    - "PostCity"
+    - "PostCode"
+    - "PostCountry"
+    properties:
+      PostalAddressLine1:
+        type: "string"
+        description: "Street name and number"
+      PostalAddressLine2:
+        type: "string"
+      PostCode:
+        type: "string"
+      PostCity:
+        type: "string"
+      PostCountry:
+        type: "string"
+    description: "Corresponds with address fields used internally in DNB. "
+  Error:
+    type: "object"
+    required:
+    - "ErrorMessage"
+    properties:
+      ErrorNumber:
+        type: "number"
+        description: "4XX, 5XX, etc"
+      ErrorMessage:
+        type: "string"
+        description: "Explanation"
