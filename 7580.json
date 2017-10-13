@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "APIs for third parties. Created from ADD by Christian Løverås 2017-10-04.\n\nGuidelines:\n* Parameters: camelCase, starting with lowercase\n* Attributes of data objects: CamelCase, starting with uppercase\n\nStandards:\n* Country: ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html \n* Currency: ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html\n* Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 \n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html \n\nData objects, payloads, etc are minimal versions - and in some cases copied from \"API.json\": https://github.com/cloveras/dnb/\n",
+    "description" : "APIs for third parties. Created from ADD by Christian Løverås 2017-10-04.\n\nGuidelines:\n* Parameters: camelCase, starting with lowercase\n* Attributes of data objects: CamelCase, starting with uppercase\n\nStandards:\n* Country: ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html \n* Currency: ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html\n* Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 \n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html \n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes)\n\n\nData objects, payloads, etc are minimal versions - and in some cases copied from \"API.json\": https://github.com/cloveras/dnb/\n",
     "version" : "0.1",
     "title" : "7580",
     "termsOfService" : "http://developer.dnb.no/terms",
@@ -16,7 +16,7 @@
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
   "paths" : {
-    "/v1/customers/person/{customerId}" : {
+    "/customers/person/{customerId}" : {
       "get" : {
         "summary" : "View customer",
         "parameters" : [ {
@@ -296,10 +296,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/AccountBalance"
-              }
+              "$ref" : "#/definitions/AccountBalance"
             }
           },
           "401" : {
@@ -348,17 +345,68 @@
         "summary" : "Get transactions for account",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "pagesize",
+          "name" : "PageSize",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Number of transactions on one page"
+        }, {
+          "name" : "PageNumber",
           "in" : "query",
           "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
-          "name" : "pagenumber",
+          "name" : "SortOrder",
           "in" : "query",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string",
+          "description" : "\"Ascending\", \"Descending\""
+        }, {
+          "name" : "DateFrom",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for start date (included)"
+        }, {
+          "name" : "DateTo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for end date (included)"
+        }, {
+          "name" : "AmountFrom",
+          "in" : "query",
+          "required" : false,
+          "type" : "number",
+          "description" : "Filter for minimum amount (included)"
+        }, {
+          "name" : "AmountTo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for maximum amount (included)"
+        }, {
+          "name" : "MCC",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for MCC"
+        }, {
+          "name" : "FreeText",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for free text"
+        }, {
+          "name" : "IncludePending",
+          "in" : "query",
+          "required" : false,
+          "type" : "boolean",
+          "description" : "Should pending transactions be included?"
         } ],
         "responses" : {
           "200" : {
@@ -369,6 +417,9 @@
                 "$ref" : "#/definitions/Payment"
               }
             }
+          },
+          "401" : {
+            "description" : "Status 401"
           },
           "404" : {
             "description" : "Status 404"
@@ -807,15 +858,22 @@
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/Payment"
+            "$ref" : "#/definitions/PaymentInitiation"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200"
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "string",
+              "description" : "Returning id of the new payment"
+            }
           },
           "400" : {
             "description" : "Status 400"
+          },
+          "401" : {
+            "description" : "Status 401"
           }
         }
       }
@@ -913,7 +971,7 @@
     },
     "Account" : {
       "type" : "object",
-      "required" : [ "AccountNumber", "AccountOwner", "BalanceAvailable", "Type" ],
+      "required" : [ "AccountNumber", "AccountOwner", "BalanceAvailable", "TermsAndConditionsId", "Type" ],
       "properties" : {
         "AccountNumber" : {
           "type" : "string",
@@ -936,12 +994,16 @@
         },
         "AccountDetails" : {
           "$ref" : "#/definitions/AccountDetails"
+        },
+        "TermsAndConditionsId" : {
+          "type" : "string",
+          "description" : "Reference to terms and conditions for this account (type)."
         }
       }
     },
     "AccountDetails" : {
       "type" : "object",
-      "required" : [ "AccountNumber", "BIC", "Currency", "IBAN", "created" ],
+      "required" : [ "AccountNumber", "BIC", "Created", "Currency", "IBAN" ],
       "properties" : {
         "AccountNumber" : {
           "$ref" : "#/definitions/Account"
@@ -958,18 +1020,44 @@
           "type" : "string",
           "description" : "Currency: ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html"
         },
-        "created" : {
+        "Created" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         },
-        "updated" : {
+        "Updated" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        },
+        "AccountInterestDetails" : {
+          "$ref" : "#/definitions/AccountInterestDetails"
         }
       },
       "description" : "Details for an Account."
+    },
+    "AccountInterestDetails" : {
+      "type" : "object",
+      "properties" : {
+        "AccountNumber" : {
+          "type" : "string"
+        },
+        "InterestRate" : {
+          "type" : "number"
+        },
+        "EarnedInterestToDate" : {
+          "type" : "number"
+        },
+        "AccruedInterestAndFeesToDate" : {
+          "type" : "number"
+        },
+        "FeesToDate" : {
+          "type" : "string"
+        },
+        "AccruedInterestFromLastYear" : {
+          "type" : "number"
+        }
+      }
     },
     "AccountStatement" : {
       "type" : "object",
@@ -995,16 +1083,21 @@
     },
     "AccountBalance" : {
       "type" : "object",
-      "required" : [ "accountNumber", "amount", "timestamp" ],
+      "required" : [ "AccountNumber", "AmountAvailable", "Timestamp" ],
       "properties" : {
-        "accountNumber" : {
+        "AccountNumber" : {
           "type" : "string"
         },
-        "amount" : {
-          "type" : "integer",
-          "format" : "int32"
+        "Currency" : {
+          "type" : "string"
         },
-        "timestamp" : {
+        "AmountAvailable" : {
+          "type" : "number"
+        },
+        "AmountBook" : {
+          "type" : "number"
+        },
+        "Timestamp" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
@@ -1014,15 +1107,58 @@
     },
     "AccountPayment" : {
       "type" : "object",
+      "required" : [ "Amount", "FromAccount", "PaymentId", "ToAccount" ],
       "properties" : {
-        "paymentId" : {
+        "PaymentId" : {
           "type" : "string"
         },
-        "paymentDetails" : {
+        "FromAccount" : {
+          "type" : "string"
+        },
+        "ToAccount" : {
+          "type" : "string"
+        },
+        "Amount" : {
+          "type" : "string"
+        },
+        "PaymentDetails" : {
           "type" : "string"
         }
       },
       "description" : "Minimal, initial version."
+    },
+    "AccountTransaction" : {
+      "type" : "object",
+      "required" : [ "TransactionId" ],
+      "properties" : {
+        "TransactionId" : {
+          "type" : "string"
+        },
+        "Amount" : {
+          "type" : "number"
+        },
+        "DateBooking" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "DateValue" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "Description" : {
+          "type" : "string"
+        },
+        "Status" : {
+          "type" : "string",
+          "description" : "\"Booked\", \"Reserved\""
+        },
+        "MerchantName" : {
+          "type" : "string"
+        },
+        "MCC" : {
+          "type" : "string"
+        }
+      }
     },
     "AccountTermsAndConditions" : {
       "type" : "object",
@@ -1139,6 +1275,34 @@
           "type" : "string"
         }
       }
+    },
+    "PaymentInitiation" : {
+      "type" : "object",
+      "required" : [ "Amount", "CreditAccountNumber", "DebitAccountNumber", "PaymentDate", "Type" ],
+      "properties" : {
+        "Type" : {
+          "type" : "string",
+          "description" : "\"KID\", \"Message\""
+        },
+        "DebitAccountNumber" : {
+          "type" : "string"
+        },
+        "CreditAccountNumber" : {
+          "type" : "string"
+        },
+        "Amount" : {
+          "type" : "number"
+        },
+        "PaymentDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "Message" : {
+          "type" : "string",
+          "description" : "Used for both KID and Message, based on Type."
+        }
+      },
+      "description" : "Not including the \"straksbetaling\" (imediate payment) flag, as this will be the default."
     },
     "Currency" : {
       "type" : "string",
