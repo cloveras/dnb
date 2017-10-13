@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "APIs for third parties. Created from ADD by Christian Løverås 2017-10-04.\n\nData objects, payloads, etc are minimal versions - and in some cases copied from \"API.json\": https://github.com/cloveras/dnb/\n",
+    "description" : "APIs for third parties. Created from ADD by Christian Løverås 2017-10-04.\n\nGuidelines:\n* Parameters: camelCase, starting with lowercase\n* Attributes of data objects: CamelCase, starting with uppercase\n\nStandards:\n* Country: ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html \n* Currency: ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html\n* Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 \n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html \n\nData objects, payloads, etc are minimal versions - and in some cases copied from \"API.json\": https://github.com/cloveras/dnb/\n",
     "version" : "0.1",
     "title" : "7580",
     "termsOfService" : "http://developer.dnb.no/terms",
@@ -16,6 +16,31 @@
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
   "paths" : {
+    "/v1/customers/person/{customerId}" : {
+      "get" : {
+        "summary" : "View customer",
+        "parameters" : [ {
+          "name" : "Customer ID",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/CustomerIndividual"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
     "/customers" : {
       "get" : {
         "tags" : [ "Customers" ],
@@ -51,35 +76,6 @@
           }
         }
       }
-    },
-    "/customers/{customerId}" : {
-      "get" : {
-        "tags" : [ "Customers" ],
-        "summary" : "Get customer",
-        "description" : "Returns CustomerIndividual for now.",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/CustomerIndividual"
-            }
-          },
-          "400" : {
-            "description" : "Status 400"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
     },
     "/customers/individual" : {
       "post" : {
@@ -146,89 +142,6 @@
           },
           "400" : {
             "description" : "Status 400"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/customers/organization" : {
-      "post" : {
-        "tags" : [ "Customers" ],
-        "summary" : "New organization customer",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/CustomerOrganization"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/CustomerOrganization"
-            }
-          },
-          "400" : {
-            "description" : "Status 400"
-          }
-        }
-      }
-    },
-    "/customers/organization/{customerId}" : {
-      "get" : {
-        "tags" : [ "Customers" ],
-        "summary" : "Get organization customer",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/CustomerOrganization"
-            }
-          },
-          "400" : {
-            "description" : "Status 400"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "patch" : {
-        "tags" : [ "Customers" ],
-        "summary" : "Update organization customer",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/CustomerOrganization"
-            }
           },
           "404" : {
             "description" : "Status 404"
@@ -790,6 +703,19 @@
           }
         }
       },
+      "patch" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Block credit card",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
       "parameters" : [ {
         "name" : "creditCardId",
         "in" : "path",
@@ -805,6 +731,29 @@
         "responses" : {
           "200" : {
             "description" : "Status 200"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "CreditCard" ],
+        "summary" : "Unblock credit card",
+        "parameters" : [ {
+          "name" : "Unblock credit card",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "headers" : {
+              "Unblock" : {
+                "type" : "string"
+              }
+            }
           },
           "404" : {
             "description" : "Status 404"
@@ -894,42 +843,49 @@
           }
         }
       }
+    },
+    "/markets/FxRateService" : {
+      "get" : {
+        "summary" : "Exhange rate",
+        "description" : "Get exchange rate details",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "string"
+            },
+            "headers" : {
+              "Exchange rate" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions" : {
     "CustomerIndividual" : {
       "type" : "object",
-      "required" : [ "City", "Country", "Id", "Name", "Postcode" ],
+      "required" : [ "Address", "CountryOfBirth", "FirstName", "LastName", "PersonNumber" ],
       "properties" : {
-        "Id" : {
+        "PersonNumber" : {
           "type" : "string",
-          "description" : "Person: Personal number, 11 digits.\nCompany: Organization number, 9 digits."
+          "description" : "11 digits."
         },
-        "status" : {
+        "FirstName" : {
           "type" : "string",
-          "description" : "Active, pending, closed, etc"
+          "description" : "Rune"
         },
-        "program" : {
+        "LastName" : {
           "type" : "string",
-          "description" : "SAGA, etc"
-        },
-        "Name" : {
-          "type" : "string",
-          "description" : "Person: Rune Bjerke.\nCompany: DNB"
+          "description" : "Bjerke"
         },
         "Address" : {
-          "type" : "string",
-          "description" : "Street address."
+          "$ref" : "#/definitions/Address"
         },
-        "Postcode" : {
-          "type" : "string",
-          "description" : "4 digits if in Norway,"
-        },
-        "City" : {
-          "type" : "string",
-          "description" : "Oslo"
-        },
-        "Country" : {
+        "CountryOfBirth" : {
           "type" : "string",
           "description" : "\"NO\". http://www.iso.org/iso/country_codes.htm"
         },
@@ -939,21 +895,9 @@
         },
         "Phone" : {
           "type" : "string",
-          "description" : "+47 04800"
-        },
-        "Website" : {
-          "type" : "string",
-          "description" : "dnb.no"
-        },
-        "welcomepackage" : {
-          "type" : "string",
-          "description" : "Id/tracking details for welcome package"
-        },
-        "Notes" : {
-          "type" : "string"
+          "description" : "+47 91 50 48 00"
         }
-      },
-      "description" : "Minimal, initial version.\n\n```\n{\n\t\"id\": \"17066099999\",\n\t“email”: \"rune.bjerke@dnb.no\", \n\t“first_name”: “Rune”, \n\t“last_name”: “Bjerke”, \n\t“gender”: “m”, \n\t“adr_street”: “Dronning Eufemias gate 30”, \n\t“adr_post_code”: “0191”,\n\t\"adr_city”: “Oslo”, \n\t“adr_country”: “NO”, \n\t“phone\": “+47 04800”, \n\t“birthday”: “1960-06-17”, \n\t“created”: “2015-07-01T10:42:00+01:00”, \n\t“updated”: “2015-10-01T10:42:00+01:00”,\n}\n```"
+      }
     },
     "CustomerOrganization" : {
       "type" : "object",
@@ -969,35 +913,50 @@
     },
     "Account" : {
       "type" : "object",
-      "required" : [ "accountNumber" ],
+      "required" : [ "AccountNumber", "AccountOwner", "BalanceAvailable", "Type" ],
       "properties" : {
-        "accountNumber" : {
+        "AccountNumber" : {
           "type" : "string",
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
         },
-        "type" : {
+        "Type" : {
           "type" : "string",
-          "description" : "Internal use, probably."
+          "description" : "Examples/guesses:\n* Deposit\n* CreditCard\n* BSU\n* ASK"
         },
-        "name" : {
+        "AccountName" : {
           "type" : "string",
-          "description" : "Friendly name."
+          "description" : "Friendly name for the account: \"My savings account\", etc."
         },
-        "currency" : {
+        "BalanceAvailable" : {
+          "type" : "number"
+        },
+        "AccountOwner" : {
           "type" : "string",
-          "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+          "description" : "SSN"
         },
-        "balance" : {
-          "type" : "integer",
-          "format" : "int32"
+        "AccountDetails" : {
+          "$ref" : "#/definitions/AccountDetails"
+        }
+      }
+    },
+    "AccountDetails" : {
+      "type" : "object",
+      "required" : [ "AccountNumber", "BIC", "Currency", "IBAN", "created" ],
+      "properties" : {
+        "AccountNumber" : {
+          "$ref" : "#/definitions/Account"
         },
         "IBAN" : {
           "type" : "string",
           "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html"
         },
-        "swift" : {
+        "BIC" : {
           "type" : "string",
           "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362"
+        },
+        "Currency" : {
+          "type" : "string",
+          "description" : "Currency: ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html"
         },
         "created" : {
           "type" : "string",
@@ -1008,16 +967,9 @@
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
-        },
-        "locked" : {
-          "type" : "boolean",
-          "description" : "Is this account locked?"
-        },
-        "notes" : {
-          "type" : "string"
         }
       },
-      "description" : "```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"IBAN\": \"NO93 8601 1117 947\",\n\t\t\"SWIFT\": \"DNBANOKKXXX\",\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n}\n```"
+      "description" : "Details for an Account."
     },
     "AccountStatement" : {
       "type" : "object",
@@ -1075,10 +1027,10 @@
     "AccountTermsAndConditions" : {
       "type" : "object",
       "properties" : {
-        "termsId" : {
+        "TermsId" : {
           "type" : "string"
         },
-        "termsDetails" : {
+        "TermsDetails" : {
           "type" : "string"
         }
       },
@@ -1089,6 +1041,9 @@
       "required" : [ "creditCardId", "creditCardNumber" ],
       "properties" : {
         "creditCardId" : {
+          "type" : "string"
+        },
+        "creditCardOwner" : {
           "type" : "string"
         },
         "creditCardNumber" : {
@@ -1122,14 +1077,6 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "IBAN" : {
-          "type" : "string",
-          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html"
-        },
-        "swift" : {
-          "type" : "string",
-          "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362"
-        },
         "created" : {
           "type" : "string",
           "format" : "date-time",
@@ -1146,9 +1093,12 @@
         },
         "notes" : {
           "type" : "string"
+        },
+        "Available credit" : {
+          "type" : "number"
         }
       },
-      "description" : "For now: One kind of Account for all.\n\n```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"IBAN\": \"NO93 8601 1117 947\",\n\t\t\"SWIFT\": \"DNBANOKKXXX\",\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n}\n```"
+      "description" : "\n```\n{\n\t\t\"number\": \"05000000000\",\n\t\t\"type\": \"1\",\n\t\t\"name\": \"Gordon Gecko's savings account\",\n\t\t\"currency\": \"NOK\",\n\t\t\"balance\": 999999999,\n\t\t\"created\": \"2010-07-01T10:42:00+01:00\",\n\t\t\"updated\": \"2015-07-01T10:42:00+01:00\",\n\t\t\"locked\": 0,\n\t\t\"notes\": \"No lunch for you\"\n\t\t\"available credit\"; 000 000\n}\n```"
     },
     "Transaction" : {
       "type" : "object",
@@ -1187,6 +1137,48 @@
         },
         "Notes" : {
           "type" : "string"
+        }
+      }
+    },
+    "Currency" : {
+      "type" : "string",
+      "description" : "Currency: ISO 4217: alpha 3-letter upcase e.g EUR\n",
+      "example" : "NOK"
+    },
+    "Address" : {
+      "type" : "object",
+      "required" : [ "PostCity", "PostCode", "PostCountry" ],
+      "properties" : {
+        "PostalAddressLine1" : {
+          "type" : "string",
+          "description" : "Street name and number"
+        },
+        "PostalAddressLine2" : {
+          "type" : "string"
+        },
+        "PostCode" : {
+          "type" : "string"
+        },
+        "PostCity" : {
+          "type" : "string"
+        },
+        "PostCountry" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Corresponds with address fields used internally in DNB. "
+    },
+    "Error" : {
+      "type" : "object",
+      "required" : [ "ErrorMessage" ],
+      "properties" : {
+        "ErrorNumber" : {
+          "type" : "number",
+          "description" : "4XX, 5XX, etc"
+        },
+        "ErrorMessage" : {
+          "type" : "string",
+          "description" : "Explanation"
         }
       }
     }
