@@ -707,7 +707,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Location"
+              "$ref" : "#/definitions/Branch"
             }
           }
         }
@@ -758,6 +758,7 @@
         }
       },
       "patch" : {
+        "tags" : [ "Location" ],
         "summary" : "Update branch details",
         "consumes" : [ ],
         "parameters" : [ {
@@ -792,7 +793,7 @@
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Get a branch's opening times",
-        "description" : "Google Places' ```opening_hours```may be useful: https://developers.google.com/places/web-service/details",
+        "description" : "Opening times is also included in Branch.",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -805,7 +806,8 @@
         }
       },
       "patch" : {
-        "summary" : "Update a branch's opening hours",
+        "tags" : [ "Location" ],
+        "summary" : "Update a branch's opening times",
         "consumes" : [ ],
         "parameters" : [ {
           "name" : "body",
@@ -869,6 +871,7 @@
     },
     "/location/branches" : {
       "get" : {
+        "tags" : [ "Location" ],
         "summary" : "Get list of all DNB branches",
         "parameters" : [ ],
         "responses" : {
