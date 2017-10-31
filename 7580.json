@@ -920,10 +920,6 @@
         "Address" : {
           "$ref" : "#/definitions/Address"
         },
-        "CountryOfBirth" : {
-          "type" : "string",
-          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html"
-        },
         "Email" : {
           "type" : "string",
           "description" : "example@example.com"
@@ -931,6 +927,24 @@
         "Phone" : {
           "type" : "string",
           "description" : "+47 91 50 48 00"
+        },
+        "CountryOfBirth" : {
+          "type" : "string",
+          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html"
+        },
+        "CountryCitizenships" : {
+          "type" : "array",
+          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "CountryTax" : {
+          "type" : "array",
+          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
+          "items" : {
+            "type" : "string"
+          }
         }
       }
     },
