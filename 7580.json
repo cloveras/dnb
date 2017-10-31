@@ -78,30 +78,6 @@
         }
       }
     },
-    "/customers/individual/{customerId}" : {
-      "get" : {
-        "tags" : [ "Customers" ],
-        "summary" : "Get individual customer",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "400" : {
-            "description" : "Status 400"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
     "/customers/{customerId}/accounts" : {
       "get" : {
         "tags" : [ "Customers" ],
@@ -1120,7 +1096,7 @@
       "properties" : {
         "ErrorNumber" : {
           "type" : "number",
-          "description" : "4XX, 5XX, etc"
+          "description" : "DNB's error number. HTTP error implicit."
         },
         "ErrorMessage" : {
           "type" : "string",
