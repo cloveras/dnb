@@ -998,7 +998,7 @@
       "required" : [ "AccountNumber", "BIC", "Created", "Currency", "IBAN" ],
       "properties" : {
         "AccountNumber" : {
-          "$ref" : "#/definitions/Account"
+          "type" : "string"
         },
         "IBAN" : {
           "type" : "string",
