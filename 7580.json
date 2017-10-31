@@ -1105,4 +1105,253 @@
       }
     }
   }
-}
+},
+
+    "/currency/convert/{base}/{currency}/{amount}" : {
+      "get" : {
+        "tags" : [ "Currency" ],
+        "summary" : "Convert amount from CUR1 to CUR2",
+        "description" : "Quite basic for now. Possibly add parameters for markup/margin, specify a date, find min/max in an interval (separate method?), etc.\n\nTime series is a likely feature - see OXR's API: https://docs.openexchangerates.org/docs/time-series-json\n\n```\n{\n    \"disclaimer\": \"https://openexchangerates.org/terms/\",\n    \"license\": \"https://openexchangerates.org/license/\",\n    \"start_date\": \"2013-01-01\",\n    \"end_date\": \"2013-01-31\",\n    \"base\": \"AUD\",\n    \"rates\": {\n        \"2013-01-01\": {\n            \"BTC\": 0.0778595876,\n            \"EUR\": 0.785518,\n            \"HKD\": 8.04136\n        },\n        \"2013-01-02\": {\n            \"BTC\": 0.0789400739,\n            \"EUR\": 0.795034,\n            \"HKD\": 8.138096\n        },\n        \"2013-01-03\": {\n            \"BTC\": 0.0785299961,\n            \"EUR\": 0.80092,\n            \"HKD\": 8.116954\n        },\n        /* ... */\n    }\n\n```",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "date",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "End of day."
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "base",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+      }, {
+        "name" : "currency",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+      }, {
+        "name" : "amount",
+        "in" : "path",
+        "required" : true,
+        "type" : "integer",
+        "format" : "int32"
+      } ]
+    },
+    "/currency/list/{base}" : {
+      "get" : {
+        "tags" : [ "Currency" ],
+        "summary" : "Get a list rates for the most common currencies, with a specified base",
+        "description" : "Suitable for making a table or similar.\n\n```\n{\n    disclaimer: \"http://api.dnb.no/diclaimer_goes_here/\",\n    license: \"http://api.dnb.no/license_goes_here/\",\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "string"
+            },
+            "examples" : {
+              "application/json" : "AED: 3.672538"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "base",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "\"Home\" currency. ISO 4217: alpha 3-letter upcase e.g EUR"
+      } ]
+    }
+,
+    "/location/branch/details/{branchid}" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Branch details",
+        "description" : "Returns an array of strings, which may include all kinds of iformation (text, URLs, media, etc).",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Location" ],
+        "summary" : "Update branch details",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "branchid",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Id of branch"
+      } ]
+    },
+    "/location/branch/openinghours/{branchid}" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Opening hours of a branch",
+        "description" : "Response may not be ideal - input is welcome. Google Places' ```opening_hours```may be useful: https://developers.google.com/places/web-service/details",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "day" : {
+                    "type" : "integer",
+                    "description" : "Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6, Sunday: 7"
+                  },
+                  "open_hour" : {
+                    "type" : "integer",
+                    "description" : "The \"07\" in \"07:30\"."
+                  },
+                  "open_minute" : {
+                    "type" : "integer",
+                    "description" : "The \"30\" in \"07:30\"."
+                  },
+                  "close_hour" : {
+                    "type" : "integer",
+                    "description" : "The \"17\" in \"17:30\"."
+                  },
+                  "close_minutes" : {
+                    "type" : "string",
+                    "description" : "The \"30\" in \"17:30\"."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Location" ],
+        "summary" : "Update branch opening hours",
+        "description" : "Request data TBD",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "branchid",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/location/branch/findbycoordinates/{latitude}/{longditude}" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Nearest branch office",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "latitude",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "longditude",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/location/branch/findbyaddress" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Find nearest branch by address",
+        "description" : "For now: Assume geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
+        "parameters" : [ {
+          "name" : "address",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "For now: Assume geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Location"
+            }
+          }
+        }
+      }
+    },
+    "/location/atm/{latitude}/{longditude}/" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Nearest ATM",
+        "description" : "If no details (as for now): Assume ATM is open 24h.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "List of minibank locations",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "latitude",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Current latitude. Example: 37.4238253802915"
+      }, {
+        "name" : "longditude",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Current longditude. Example: -122.0842499"
+      } ]
+    }
+
