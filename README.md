@@ -1,9 +1,10 @@
 # 7580
 
-Third Party APIs, also known as "Fintech Platform".
+APIs for Third Parties, also known as "Fintech Platform".
 
 * 7580.json: http://7580.restlet.io
 * 7580.json: http://superelectric.net/tmp/7580
+* 7580.json: http://superelectric.net/tmp/7580.slate
 
 # API drafts
 
