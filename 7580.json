@@ -118,7 +118,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get account list for customer",
-        "description" : "customerId is sent as part of the context object",
+        "description" : "Returns array of Accounts.\n\ncustomerId is sent as part of the context object(?)",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "customerId",
@@ -137,10 +137,16 @@
             }
           },
           "400" : {
-            "description" : "Status 400"
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           },
           "404" : {
-            "description" : "customerId unknown"
+            "description" : "customerId unknown",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       }
@@ -149,6 +155,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get account details",
+        "description" : "Returns Account.",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -158,8 +165,17 @@
               "$ref" : "#/definitions/Account"
             }
           },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
           "404" : {
-            "description" : "customerId unknown"
+            "description" : "customerId unknown",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -184,13 +200,22 @@
             }
           },
           "401" : {
-            "description" : "No balance for you."
+            "description" : "No balance for you.",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           },
           "404" : {
-            "description" : "Account not found."
+            "description" : "Account not found.",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           },
           "417" : {
-            "description" : "Expectation Failed: Requires prior (paranormal) transfer of customer's expectation (haha)."
+            "description" : "Expectation Failed: Requires prior (paranormal) transfer of customer's expectation (haha).",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -206,6 +231,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transactions for account",
+        "description" : "Otional query parameters:\n* PageSize: Number of transactions per page: 10, 11, 24, 50, 100, etc\n* PageNumber: 1,2,3,4,5\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "PageSize",
@@ -232,22 +258,22 @@
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for start date (included)"
+          "description" : "Filter for start date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }, {
           "name" : "DateTo",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for end date (included)"
+          "description" : "Filter for end date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }, {
-          "name" : "AmountFrom",
+          "name" : "AmountMinimum",
           "in" : "query",
           "required" : false,
           "type" : "number",
           "description" : "Filter for minimum amount (included)"
         }, {
-          "name" : "AmountTo",
+          "name" : "AmountMaximum",
           "in" : "query",
           "required" : false,
           "type" : "string",
@@ -282,10 +308,16 @@
             }
           },
           "401" : {
-            "description" : "Status 401"
+            "description" : "Status 401",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           },
           "404" : {
-            "description" : "Status 404"
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -1418,6 +1450,16 @@
       },
       "description" : "Details about a payment. Used when returning a list of payments."
     },
+    "PaymentDetails" : {
+      "type" : "object",
+      "properties" : {
+        "InvoiceReference" : {
+          "type" : "string",
+          "description" : "Used for eFaktura"
+        }
+      },
+      "description" : "More details about a payment. Some payment types have more data than others."
+    },
     "PaymentInitiation" : {
       "type" : "object",
       "properties" : {
@@ -1448,16 +1490,6 @@
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default."
-    },
-    "PaymentDetails" : {
-      "type" : "object",
-      "properties" : {
-        "InvoiceReference" : {
-          "type" : "string",
-          "description" : "Used for eFaktura"
-        }
-      },
-      "description" : "More details about a patyment."
     },
     "Address" : {
       "type" : "object",
