@@ -13,11 +13,12 @@ git push
 # Spectacle
 # ------------------------------------------------------------
 spectacle 7580.json -t 7580
-scp -r /Users/cl/Dropbox/DNB/API/dnb/7580/* superelectric@login.domeneshop.no:www/tmp/7580/
+scp -r 7580/* superelectric@login.domeneshop.no:www/tmp/7580/
 
 # Slate
 # ------------------------------------------------------------
 cd ../slate
-widdershins /Users/cl/Dropbox/DNB/API/dnb/7580.json -o source/index.html.md 
+widdershins ../dnb/7580.json -o source/index.html.md 
 bundle exec middleman build --clean
-scp -r scp -r /Users/cl/Dropbox/DNB/API/slate/build/* superelectric@login.domeneshop.no:www/tmp/7580.slate/
+scp -r scp -r build/* superelectric@login.domeneshop.no:www/tmp/7580.slate/
+
