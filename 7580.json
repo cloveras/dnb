@@ -607,13 +607,15 @@
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }, {
           "name" : "stopDate",
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         } ],
         "responses" : {
           "200" : {
@@ -623,6 +625,24 @@
               "items" : {
                 "$ref" : "#/definitions/Payment"
               }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Status 401",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Status 403",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -638,20 +658,22 @@
       "get" : {
         "tags" : [ "Payments" ],
         "summary" : "Get due payments details by date range",
-        "description" : "Gets all due payments, both domestic and international.",
+        "description" : "Gets all due payments with details, for both domestic and international.",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "startDate",
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }, {
           "name" : "stopDate",
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         } ],
         "responses" : {
           "200" : {
@@ -661,6 +683,24 @@
               "items" : {
                 "$ref" : "#/definitions/Payment"
               }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Status 401",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Status 403",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -676,6 +716,7 @@
       "get" : {
         "tags" : [ "Payments" ],
         "summary" : "Get due payment by payment id",
+        "description" : "Returns Payment, complete with with PaymentDetails.",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -686,7 +727,10 @@
             }
           },
           "404" : {
-            "description" : "Status 404"
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -727,7 +771,28 @@
             }
           },
           "400" : {
-            "description" : "Status 400"
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Status 401",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Status 403",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -750,6 +815,12 @@
           },
           "401" : {
             "description" : "Status 401",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Status 403",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -1448,7 +1519,7 @@
           "$ref" : "#/definitions/PaymentDetails"
         }
       },
-      "description" : "Details about a payment. Used when returning a list of payments."
+      "description" : "Details about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n```\n{\n  \"PaymentId\": \"string\",\n  \"DebitAccount\": \"string\",\n  \"CreditAccount\": \"string\",\n  \"Amount\": \"string\",\n  \"Type\": \"string\",\n  \"Date\": \"string (date)\",\n  \"Status\": \"string\",\n  \"PaymentDetails\": {\n    \"InvoiceReference\": \"string\"\n  }\n}\n```\n"
     },
     "PaymentDetails" : {
       "type" : "object",
@@ -1489,7 +1560,7 @@
           "description" : "\"DNB\", \"Vipps\", \"IKEA\", \"Facebook\", etc"
         }
       },
-      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default."
+      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\n```\n{\n  \"Type\": \"string\",\n  \"DebitAccountNumber\": \"string\",\n  \"CreditAccountNumber\": \"string\",\n  \"Amount\": \"number\",\n  \"PaymentDate\": \"string (date-time)\",\n  \"Message\": \"string\",\n  \"Initiator\": \"string\"\n}\n```"
     },
     "Address" : {
       "type" : "object",
