@@ -1412,9 +1412,8 @@
         "Status" : {
           "type" : "string"
         },
-        "InvoiceReference" : {
-          "type" : "string",
-          "description" : "URI to invoice, for instance for eFaktura"
+        "PaymentDetails" : {
+          "$ref" : "#/definitions/PaymentDetails"
         }
       },
       "description" : "Details about a payment. Used when returning a list of payments."
@@ -1449,6 +1448,16 @@
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default."
+    },
+    "PaymentDetails" : {
+      "type" : "object",
+      "properties" : {
+        "InvoiceReference" : {
+          "type" : "string",
+          "description" : "Used for eFaktura"
+        }
+      },
+      "description" : "More details about a patyment."
     },
     "Address" : {
       "type" : "object",
