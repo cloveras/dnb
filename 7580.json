@@ -75,6 +75,7 @@
     },
     "/accounts" : {
       "get" : {
+        "tags" : [ "Accounts" ],
         "summary" : "Get all accounts for current user",
         "parameters" : [ ],
         "responses" : {
@@ -1091,6 +1092,7 @@
     },
     "/payments/{paymentId}" : {
       "delete" : {
+        "tags" : [ "Payments" ],
         "summary" : "Delete paymennt",
         "parameters" : [ ],
         "responses" : {
