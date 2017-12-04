@@ -1810,7 +1810,8 @@
         "AccountDetails" : {
           "$ref" : "#/definitions/AccountDetails"
         }
-      }
+      },
+      "description" : "A small test of embedded code:\n```\n{\n  \"AccountNumber\": \"string\",\n  \"Type\": \"string\",\n  \"AccountName\": \"string\",\n  \"BalanceAvailable\": \"number\",\n  \"AccountOwner\": \"string\",\n  \"AccountDetails\": {\n    \"AccountNumber\": \"string\",\n    \"IBAN\": \"string\",\n    \"BIC\": \"string\",\n    \"Currency\": \"string\",\n    \"Created\": \"string (date-time)\",\n    \"Updated\": \"string (date-time)\",\n    \"AccountInterestDetails\": {\n      \"AccountNumber\": \"string\",\n      \"InterestRate\": \"number\",\n      \"EarnedInterestToDate\": \"number\",\n      \"AccruedInterestAndFeesToDate\": \"number\",\n      \"FeesToDate\": \"string\",\n      \"AccruedInterestFromLastYear\": \"number\"\n    }\n  }\n}\n```"
     },
     "AccountDetails" : {
       "type" : "object",
