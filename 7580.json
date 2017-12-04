@@ -1,9 +1,9 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "**Guidelines:**\n\n* Parameters: camelCase, starting with lowercase\n* Attributes of data objects: CamelCase, starting with uppercase\n\nTODO: Check internal guidelines and update if required.\n\n**Standards:**\n\n* Country: ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html\n* Currency: ISO 4217: alpha 3-letter upcase e.g “EUR”: https://www.iso.org/iso-4217-currency-codes.html\n* Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes)\n\n**HTTP Response Codes**\n\nSuccess\n\n* 200: OK, https://httpstatuses.com/200 / https://tools.ietf.org/html/rfc7231#section-6.3.1     \n* 201: Created, https://httpstatuses.com/201 / https://tools.ietf.org/html/rfc7231#section-6.3.2\n\nClient Error\n\n* 400: Not Found, https://httpstatuses.com/400 / https://tools.ietf.org/html/rfc7231#section-6.5.1     \n* 401: Unauthorized, https://httpstatuses.com/401 / https://tools.ietf.org/html/rfc7235#section-3.1      \n* 403: Forbidden, https://httpstatuses.com/403 / https://tools.ietf.org/html/rfc7231#section-6.5.3     \n* 404: Not Found, https://httpstatuses.com/404 / https://tools.ietf.org/html/rfc7231#section-6.5.4      \n* 429: Too Many Requests, https://httpstatuses.com/429 / https://tools.ietf.org/html/rfc6585#section-4   \n\nServer Error\n\n* 500: Server Error, https://httpstatuses.com/500 / https://tools.ietf.org/html/rfc7231#section-6.6.1     \n* 504: Timeout, https://httpstatuses.com/504 / https://tools.ietf.org/html/rfc7231#section-6.6.5     \n\n**Github**\n\nhttps://github.com/cloveras/dnb/\n\n\n",
+    "description" : "**Guidelines:**\n\n* Parameters: camelCase, starting with lowercase\n* Attributes of data objects: CamelCase, starting with uppercase\n\nTODO: Check internal guidelines and update if required.\n\n**Standards:**\n\nAPIs should use ISO and RFC standards. \n\n* Country: ISO 3166-1 alpha-2, eg \"NO\", \"US\", \"GB\": https://www.iso.org/standard/63546.html\n* Currency: ISO 4217: alpha 3-letter upcase e.g “NOK\", \"EUR”, \"USD\": https://www.iso.org/iso-4217-currency-codes.html\n* Date: ISO 8601, eg \"2017-11-02\" (day) and \"2017-11-02T14:09:15+00:00\" (timestamp):  www.iso.org/iso/home/standards/iso8601.htm\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes)\n\n**HTTP Response Codes**\n\nHTTP reponse codes in Open Bank may be more detailed than in Shared Sertvices and layers below. The HTTP reponses below is a good starting point, and may be updated if needed. \n\nSuccess\n\n* 200: OK, https://httpstatuses.com/200 / https://tools.ietf.org/html/rfc7231#section-6.3.1     \n* 201: Created, https://httpstatuses.com/201 / https://tools.ietf.org/html/rfc7231#section-6.3.2\n\nClient Error\n\n* 400: Bad Request, https://httpstatuses.com/400 / https://tools.ietf.org/html/rfc7231#section-6.5.1     \n* 401: Unauthorized, https://httpstatuses.com/401 / https://tools.ietf.org/html/rfc7235#section-3.1      \n* 403: Forbidden, https://httpstatuses.com/403 / https://tools.ietf.org/html/rfc7231#section-6.5.3     \n* 404: Not Found, https://httpstatuses.com/404 / https://tools.ietf.org/html/rfc7231#section-6.5.4      \n* 429: Too Many Requests, https://httpstatuses.com/429 / https://tools.ietf.org/html/rfc6585#section-4   \n\nServer Error\n\n* 500: Server Error, https://httpstatuses.com/500 / https://tools.ietf.org/html/rfc7231#section-6.6.1     \n* 503: Service Unavailable, https://httpstatuses.com/503 / https://tools.ietf.org/html/rfc7231#section-6.6.4\n* 504: Timeout, https://httpstatuses.com/504 / https://tools.ietf.org/html/rfc7231#section-6.6.5     \n\n**Github**\n\nhttps://github.com/cloveras/dnb/\n\n\n",
     "version" : "0.1",
-    "title" : "7580: APIs for Third Parties",
+    "title" : "7580: APIs for Third Parties - gateway layer",
     "termsOfService" : "http://developer.dnb.no/terms",
     "contact" : {
       "name" : "Christian Løverås",
@@ -15,81 +15,67 @@
   "schemes" : [ "https" ],
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
+  "security" : [ {
+    "OAuth2" : [ "read", "write" ]
+  }, {
+    "Basic authentication" : [ ]
+  } ],
   "paths" : {
-    "/customers/person/{customerId}" : {
+    "/customers/current" : {
       "get" : {
         "tags" : [ "Customers" ],
         "summary" : "View customer",
         "description" : "View customer details",
-        "parameters" : [ {
-          "name" : "SSN",
-          "in" : "query",
-          "required" : true,
-          "type" : "string",
-          "description" : "Social Security Number"
-        }, {
-          "name" : "View Customer",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Customer found",
             "schema" : {
               "$ref" : "#/definitions/CustomerIndividual"
             }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/customers" : {
-      "get" : {
-        "tags" : [ "Customers" ],
-        "summary" : "Search customers",
-        "description" : "Not in scope for first release\n(Returns CustomerIndividual for now.)\n",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "customerName",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "customerSSN",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/CustomerIndividual"
-              }
-            }
           },
           "400" : {
-            "description" : "Status 400"
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           },
           "404" : {
-            "description" : "Status 404"
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       }
     },
-    "/customers/{customerId}/accounts" : {
+    "/accounts" : {
       "get" : {
-        "tags" : [ "Customers" ],
-        "summary" : "Get accounts for customer",
-        "produces" : [ "application/json" ],
+        "summary" : "Get all accounts for current user",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -102,51 +88,7 @@
             }
           },
           "404" : {
-            "description" : "No accounts."
-          }
-        },
-        "security" : [ ]
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/accounts" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Get account list for customer",
-        "description" : "Returns array of Accounts.\n\ncustomerId is sent as part of the context object(?)",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "header",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Account"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Status 400",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          },
-          "404" : {
-            "description" : "customerId unknown",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
+            "description" : "Status 404"
           }
         }
       }
@@ -157,22 +99,57 @@
         "summary" : "Get account details",
         "description" : "Returns Account.",
         "produces" : [ "application/json" ],
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "AccountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/Account"
+              "$ref" : "#/definitions/AccountDetails"
             }
           },
           "400" : {
-            "description" : "Status 400",
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "404" : {
             "description" : "customerId unknown",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -191,28 +168,57 @@
         "tags" : [ "Accounts" ],
         "summary" : "Get account balances",
         "produces" : [ "application/json" ],
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "AccountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/AccountBalance"
             }
           },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
           "401" : {
-            "description" : "No balance for you.",
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "404" : {
-            "description" : "Account not found.",
+            "description" : "Not Found",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
-          "417" : {
-            "description" : "Expectation Failed: Requires prior (paranormal) transfer of customer's expectation (haha).",
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -223,30 +229,16 @@
         "name" : "accountNumber",
         "in" : "path",
         "required" : true,
-        "type" : "string",
-        "description" : "Account number, 11 digits."
+        "type" : "string"
       } ]
     },
     "/accounts/{accountNumber}/transactions" : {
       "get" : {
         "tags" : [ "Accounts" ],
-        "summary" : "Get transactions for account",
-        "description" : "Otional query parameters:\n* PageSize: Number of transactions per page: 10, 11, 24, 50, 100, etc\n* PageNumber: 1,2,3,4,5\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
+        "summary" : "Get transaction list for account",
+        "description" : "Optional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "PageSize",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32",
-          "description" : "Number of transactions on one page"
-        }, {
-          "name" : "PageNumber",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "SortOrder",
           "in" : "query",
           "required" : false,
@@ -299,7 +291,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -307,14 +299,44 @@
               }
             }
           },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
           "401" : {
-            "description" : "Status 401",
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "404" : {
-            "description" : "Status 404",
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -331,18 +353,62 @@
     "/accounts/{accountNumber}/transactions/{transactionId}" : {
       "get" : {
         "tags" : [ "Accounts" ],
-        "summary" : "Get transaction information",
+        "summary" : "Get transaction specified by id",
         "produces" : [ "application/json" ],
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "AccountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/AccountTransaction"
             }
           },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
           "404" : {
-            "description" : "Status 404"
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -358,33 +424,76 @@
         "type" : "string"
       } ]
     },
-    "/cards/list/{customerId}" : {
+    "/cards" : {
       "get" : {
         "tags" : [ "Card" ],
         "summary" : "Get cards for a customer",
-        "description" : "customerId is sent in the context object",
+        "description" : "List over customers debet and credit cards",
         "produces" : [ "application/json" ],
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "SSN",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "Social Security Number",
+          "x-example" : "NO 11-digits"
+        } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "type" : "array",
               "items" : {
                 "$ref" : "#/definitions/Card"
               }
             }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
-      },
-      "parameters" : [ {
-        "name" : "customerId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
+      }
     },
-    "/cards/{cardNumber}" : {
+    "/cards/{cardId}/details" : {
       "get" : {
         "tags" : [ "Card" ],
         "summary" : "Get card details",
@@ -392,67 +501,49 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/Card"
             }
           },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardNumber",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/cards/accounts/{cardNumber}/transactions" : {
-      "get" : {
-        "tags" : [ "Card" ],
-        "summary" : "Get card transactions",
-        "description" : "Transactionlist for the customers creditcard",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "SSN",
-          "in" : "query",
-          "required" : true,
-          "type" : "string",
-          "description" : "Social Security Number"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
+          "400" : {
+            "description" : "Bad Request",
             "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/CardTransaction"
-              }
+              "$ref" : "#/definitions/Error"
             }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardNumber",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/cards/{cardNumber}/actions/block" : {
-      "patch" : {
-        "tags" : [ "Card" ],
-        "summary" : "Block card",
-        "description" : "Updates the \"BlockingInformation\".",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           },
           "404" : {
-            "description" : "Status 404",
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -460,17 +551,168 @@
         }
       },
       "parameters" : [ {
-        "name" : "cardNumber",
+        "name" : "cardId",
         "in" : "path",
         "required" : true,
         "type" : "string"
       } ]
     },
-    "/cards/{cardNumber}/actions/unblock" : {
+    "/cards/{cardId)/transactions" : {
+      "get" : {
+        "tags" : [ "Card" ],
+        "summary" : "Get card transactions",
+        "description" : "Transactionlist for the customers creditcard",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CardTransaction"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/cards/{cardId}/block" : {
+      "patch" : {
+        "tags" : [ "Card" ],
+        "summary" : "Block card",
+        "description" : "Aviability for end-customet to block a debit or credit card. (Not Cresco Cards)",
+        "parameters" : [ {
+          "name" : "SSN",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "Social Security Number"
+        }, {
+          "name" : "CardNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "ReasonCode",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "Codes?"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The card is now blocked"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/cards/{cardId}/unblock" : {
       "patch" : {
         "tags" : [ "Card" ],
         "summary" : "Unblock card",
         "parameters" : [ {
+          "name" : "SSN",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "description" : "Social Security Number"
+        }, {
+          "name" : "CardNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
           "name" : "Unblock credit card",
           "in" : "header",
           "required" : false,
@@ -478,42 +720,138 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Unblocked",
             "headers" : {
               "Unblock" : {
                 "type" : "string"
               }
             }
           },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardNumber",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/cards/invoice/{cardNumber}/{year}/{month}" : {
-      "get" : {
-        "tags" : [ "Card" ],
-        "summary" : "Get card invoice",
-        "description" : "Get card invoice form chosen month",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
+          "400" : {
+            "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/CardInvoice"
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
       },
       "parameters" : [ {
-        "name" : "cardNumber",
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/cards/{cardId}/invoice/{year}/{month}" : {
+      "get" : {
+        "tags" : [ "Card" ],
+        "summary" : "Get card invoice",
+        "description" : "Get card invoice form chosen month",
+        "parameters" : [ {
+          "name" : "CardNumber",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Year",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Month",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "$ref" : "#/definitions/CardInvoice"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
         "in" : "path",
         "required" : true,
         "type" : "string"
@@ -544,51 +882,44 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "string",
-              "description" : "Returning id of the new payment"
-            }
-          },
-          "400" : {
-            "description" : "Status 400"
-          },
-          "401" : {
-            "description" : "Status 401"
-          }
-        }
-      }
-    },
-    "/payments/transfer" : {
-      "post" : {
-        "tags" : [ "Payments" ],
-        "summary" : "Transfer between accounts",
-        "description" : "Transfer between two accounts that the user owns or has permissions to (disponent). Uses PaymentInitiation for now.",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/PaymentInitiation"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
           "201" : {
-            "description" : "Status 201"
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/PaymentInitiation"
+            }
           },
           "400" : {
-            "description" : "Status 400",
+            "description" : "Bad Request",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "401" : {
-            "description" : "Status 401",
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -596,13 +927,18 @@
         }
       }
     },
-    "/payments/due/{accountNumber}" : {
+    "/payments/{accountNumber}/due" : {
       "get" : {
         "tags" : [ "Payments" ],
         "summary" : "Get due payments by date range",
         "description" : "Gets all due payments, both domestic and international.",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "name" : "AccountNumber",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
           "name" : "startDate",
           "in" : "query",
           "required" : false,
@@ -619,7 +955,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -628,19 +964,43 @@
             }
           },
           "400" : {
-            "description" : "Status 400",
+            "description" : "Bad Request",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "401" : {
-            "description" : "Status 401",
+            "description" : "Unauthorized",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "403" : {
-            "description" : "Status 403",
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -654,80 +1014,63 @@
         "type" : "string"
       } ]
     },
-    "/payments/due/{accountNumber}/details" : {
-      "get" : {
-        "tags" : [ "Payments" ],
-        "summary" : "Get due payments details by date range",
-        "description" : "Gets all due payments with details, for both domestic and international.",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "startDate",
-          "in" : "query",
-          "required" : false,
-          "type" : "string",
-          "format" : "date",
-          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
-        }, {
-          "name" : "stopDate",
-          "in" : "query",
-          "required" : false,
-          "type" : "string",
-          "format" : "date",
-          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Payment"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Status 400",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          },
-          "401" : {
-            "description" : "Status 401",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          },
-          "403" : {
-            "description" : "Status 403",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "accountNumber",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/payments/due/{accountNumber}/{paymentId}" : {
+    "/payments/{accountNumber}/due/{paymentId}" : {
       "get" : {
         "tags" : [ "Payments" ],
         "summary" : "Get due payment by payment id",
         "description" : "Returns Payment, complete with with PaymentDetails.",
         "produces" : [ "application/json" ],
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "PaymentID",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/Payment"
             }
           },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
           "404" : {
-            "description" : "Status 404",
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Tiimeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -746,11 +1089,20 @@
         "type" : "string"
       } ]
     },
-    "/payments/change/{paymentId}" : {
+    "/payments/{paymentId}" : {
+      "delete" : {
+        "summary" : "Delete paymennt",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
       "patch" : {
         "tags" : [ "Payments" ],
-        "summary" : "Change existing payment",
-        "description" : "Change the following:\n* Date (\"YYYY-MM-DD\", ISO 8601: www.iso.org/iso/home/standards/iso8601.htm)\n* Amount\n* Status (deactivate, reactivate)\n\nReturns the updated Payment.",
+        "summary" : "Update existing payment",
+        "description" : "A payment can be updatet until due dtae. \nPossible to udate :\n* Date (\"YYYY-MM-DD\", ISO 8601: www.iso.org/iso/home/standards/iso8601.htm)\n* Amount\n* Status (deactivate, reactivate)\n\nReturns the updated Payment.",
         "consumes" : [ ],
         "parameters" : [ {
           "name" : "body",
@@ -764,69 +1116,50 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : "Status 200",
+          "201" : {
+            "description" : "Changed",
             "schema" : {
               "$ref" : "#/definitions/Payment"
             }
           },
           "400" : {
-            "description" : "Status 400",
+            "description" : "Bad Request",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "401" : {
-            "description" : "Status 401",
+            "description" : "Unauthorized",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "403" : {
-            "description" : "Status 403",
+            "description" : "Forbidden",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
           "404" : {
-            "description" : "Status 404",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "paymentId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/payments/{paymentId}/delete" : {
-      "delete" : {
-        "tags" : [ "Payments" ],
-        "summary" : "Delete payment",
-        "description" : "Mark for deletion, or \"physically\" delete: TBD",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "401" : {
-            "description" : "Status 401",
+            "description" : "Not Found",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
-          "403" : {
-            "description" : "Status 403",
+          "500" : {
+            "description" : "Internal Server Error",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
           },
-          "404" : {
-            "description" : "Status 404",
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
@@ -855,14 +1188,53 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "type" : "integer",
               "format" : "int32"
             }
           },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
           "404" : {
-            "description" : "Status 404"
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -899,12 +1271,54 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "type" : "array",
               "items" : {
                 "type" : "string"
               }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -931,9 +1345,51 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/Branch"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -946,9 +1402,51 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/Branch"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -973,37 +1471,52 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/Branch"
             }
           },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "patch" : {
-        "tags" : [ "Location" ],
-        "summary" : "Update branch details",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
           "400" : {
-            "description" : "Status 400"
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -1024,34 +1537,52 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "$ref" : "#/definitions/OpeningTimes"
             }
-          }
-        }
-      },
-      "patch" : {
-        "tags" : [ "Location" ],
-        "summary" : "Update a branch's opening times",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
           },
           "400" : {
-            "description" : "Status 400"
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         }
       },
@@ -1071,12 +1602,54 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "List of minibank locations",
+            "description" : "Request succeeded",
             "schema" : {
               "type" : "array",
               "items" : {
-                "type" : "string"
+                "$ref" : "#/definitions/ATM"
               }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -1102,12 +1675,54 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Status 200",
+            "description" : "Request succeeded",
             "schema" : {
               "type" : "array",
               "items" : {
                 "$ref" : "#/definitions/Branch"
               }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -1124,16 +1739,15 @@
         "read" : "Read",
         "write" : "Write"
       }
+    },
+    "Basic authentication" : {
+      "type" : "basic"
     }
   },
   "definitions" : {
     "CustomerIndividual" : {
       "type" : "object",
       "properties" : {
-        "PersonNumber" : {
-          "type" : "string",
-          "description" : "11 digits."
-        },
         "FirstName" : {
           "type" : "string",
           "description" : "First name"
@@ -1173,18 +1787,6 @@
         }
       }
     },
-    "CustomerOrganization" : {
-      "type" : "object",
-      "properties" : {
-        "customerId" : {
-          "type" : "string"
-        },
-        "customerDetails" : {
-          "type" : "string"
-        }
-      },
-      "description" : "Minimal, initial version."
-    },
     "Account" : {
       "type" : "object",
       "properties" : {
@@ -1202,10 +1804,6 @@
         },
         "BalanceAvailable" : {
           "type" : "number"
-        },
-        "AccountOwner" : {
-          "type" : "string",
-          "description" : "SSN of customer"
         },
         "AccountDetails" : {
           "$ref" : "#/definitions/AccountDetails"
@@ -1284,7 +1882,7 @@
         "transactions" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/Payment"
+            "$ref" : "#/definitions/AccountTransaction"
           }
         }
       },
@@ -1308,27 +1906,6 @@
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }
       }
-    },
-    "AccountPayment" : {
-      "type" : "object",
-      "properties" : {
-        "PaymentId" : {
-          "type" : "string"
-        },
-        "FromAccount" : {
-          "type" : "string"
-        },
-        "ToAccount" : {
-          "type" : "string"
-        },
-        "Amount" : {
-          "type" : "string"
-        },
-        "PaymentDetails" : {
-          "type" : "string"
-        }
-      },
-      "description" : "Minimal, initial version. To be replaced by Payment?"
     },
     "AccountTransaction" : {
       "type" : "object",
@@ -1373,7 +1950,7 @@
           "type" : "string",
           "description" : "\"Debit\", \"Credit\""
         },
-        "CardNumber" : {
+        "MaskedCardNumber" : {
           "type" : "string"
         },
         "CardGroup" : {
@@ -1407,7 +1984,7 @@
     "CardBalance" : {
       "type" : "object",
       "properties" : {
-        "CardNumber" : {
+        "MaskedCardNumber" : {
           "type" : "string"
         },
         "Currency" : {
@@ -1533,6 +2110,7 @@
     },
     "PaymentInitiation" : {
       "type" : "object",
+      "required" : [ "Amount", "CreditAccountNumber", "DebitAccountNumber", "Initiator", "PaymentDate", "Type" ],
       "properties" : {
         "Type" : {
           "type" : "string",
@@ -1560,10 +2138,11 @@
           "description" : "\"DNB\", \"Vipps\", \"IKEA\", \"Facebook\", etc"
         }
       },
-      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\n```\n{\n  \"Type\": \"string\",\n  \"DebitAccountNumber\": \"string\",\n  \"CreditAccountNumber\": \"string\",\n  \"Amount\": \"number\",\n  \"PaymentDate\": \"string (date-time)\",\n  \"Message\": \"string\",\n  \"Initiator\": \"string\"\n}\n```"
+      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
     },
     "Address" : {
       "type" : "object",
+      "required" : [ "PostCity", "PostCode", "PostCountry" ],
       "properties" : {
         "PostalAddressLine1" : {
           "type" : "string",
