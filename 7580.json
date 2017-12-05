@@ -1093,7 +1093,7 @@
     "/payments/{paymentId}" : {
       "delete" : {
         "tags" : [ "Payments" ],
-        "summary" : "Delete paymennt",
+        "summary" : "Delete",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -2117,7 +2117,7 @@
       "properties" : {
         "Type" : {
           "type" : "string",
-          "description" : "\"KID\", \"Message\""
+          "description" : "\"KID\", \"Message\", \"Transfer\""
         },
         "DebitAccountNumber" : {
           "type" : "string"
