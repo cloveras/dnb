@@ -51,24 +51,6 @@
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
-          },
-          "500" : {
-            "description" : "Internal Server Error",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          },
-          "504" : {
-            "description" : "Gateway Timeout",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
           }
         }
       }
@@ -87,6 +69,9 @@
                 "$ref" : "#/definitions/Account"
               }
             }
+          },
+          "400" : {
+            "description" : "Status 400"
           },
           "404" : {
             "description" : "Status 404"
@@ -431,14 +416,7 @@
         "summary" : "Get cards for a customer",
         "description" : "List over customers debet and credit cards",
         "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "SSN",
-          "in" : "query",
-          "required" : true,
-          "type" : "string",
-          "description" : "Social Security Number",
-          "x-example" : "NO 11-digits"
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Request succeeded",
@@ -571,16 +549,19 @@
         "tags" : [ "Card" ],
         "summary" : "Block card",
         "description" : "Aviability for end-customet to block a debit or credit card. (Not Cresco Cards)",
-        "parameters" : [ {
-          "name" : "ReasonCode",
-          "in" : "query",
-          "required" : true,
-          "type" : "string",
-          "description" : "Codes?"
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "The card is now blocked"
+            "description" : "The card is now blocked",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "examples" : {
+              "application/json" : "ReasonCode, etc"
+            }
           },
           "400" : {
             "description" : "Bad Request",
