@@ -1377,6 +1377,7 @@
   "definitions" : {
     "Customer" : {
       "type" : "object",
+      "required" : [ "Address", "CountryTax", "customerId", "customerType" ],
       "properties" : {
         "customerId" : {
           "type" : "string",
@@ -1424,7 +1425,11 @@
           }
         },
         "CustomerEngagement" : {
-          "$ref" : "#/definitions/CustomerEngagement"
+          "type" : "array",
+          "description" : "One or more engagements",
+          "items" : {
+            "$ref" : "#/definitions/CustomerEngagement"
+          }
         }
       },
       "description" : "One common ```Customer```data object for all kinds of customers.\n\nSome updates required. See https://shasl.restlet.io/#type_customer\n\nAlso: Align with CIM, while still hiding internal complexity and making it easy to unserstand and use."
