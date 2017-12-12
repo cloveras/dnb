@@ -31,7 +31,7 @@
           "200" : {
             "description" : "Customer found",
             "schema" : {
-              "$ref" : "#/definitions/CustomerIndividual"
+              "$ref" : "#/definitions/Customer"
             }
           },
           "400" : {
@@ -703,7 +703,7 @@
       "post" : {
         "tags" : [ "Payments" ],
         "summary" : "Initiate payment",
-        "description" : "Domestic payment with KID or message",
+        "description" : "Domestic payment with KID or message.\n\nReturns HTTP 201 and the ```PaymentId``` of successfully created payment.",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "body",
@@ -871,7 +871,7 @@
     "/payments/{paymentId}" : {
       "delete" : {
         "tags" : [ "Payments" ],
-        "summary" : "Delete",
+        "summary" : "Delete payment by id",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1375,9 +1375,17 @@
     }
   },
   "definitions" : {
-    "CustomerIndividual" : {
+    "Customer" : {
       "type" : "object",
       "properties" : {
+        "customerId" : {
+          "type" : "string",
+          "description" : "SSN or organization number"
+        },
+        "customerType" : {
+          "type" : "string",
+          "description" : "Person, Company, possibly others"
+        },
         "FirstName" : {
           "type" : "string",
           "description" : "First name"
@@ -1415,7 +1423,8 @@
             "type" : "string"
           }
         }
-      }
+      },
+      "description" : "One common ```Customer```data object for all kinds of customers.\n\nSome updates required. See https://shasl.restlet.io/#type_customer\n\nAlso: Align with CIM, while still hiding internal complexity and making it easy to unserstand and use."
     },
     "Account" : {
       "type" : "object",
