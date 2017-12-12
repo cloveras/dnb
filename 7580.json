@@ -427,6 +427,7 @@
     },
     "/accounts/{accountNumber}/payments/due" : {
       "get" : {
+        "tags" : [ "Accounts" ],
         "summary" : "Get due payments for account",
         "parameters" : [ ],
         "responses" : {
@@ -444,6 +445,7 @@
     },
     "/accounts/{accountNumber}/payments/due/{paymentId}" : {
       "get" : {
+        "tags" : [ "Accounts" ],
         "summary" : "Get details for a payments for an account",
         "parameters" : [ ],
         "responses" : {
