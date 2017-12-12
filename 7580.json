@@ -428,8 +428,21 @@
     "/accounts/{accountNumber}/payments/due" : {
       "get" : {
         "tags" : [ "Accounts" ],
-        "summary" : "Get due payments for account",
-        "parameters" : [ ],
+        "summary" : "Get due payments for account by date range",
+        "parameters" : [ {
+          "name" : "startDate",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "YYYY-MM-DD”: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        }, {
+          "name" : "stopDate",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "YYYY-MM-DD”: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Status 200"
