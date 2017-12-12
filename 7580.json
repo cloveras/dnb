@@ -1422,9 +1422,33 @@
           "items" : {
             "type" : "string"
           }
+        },
+        "CustomerEngagement" : {
+          "$ref" : "#/definitions/CustomerEngagement"
         }
       },
       "description" : "One common ```Customer```data object for all kinds of customers.\n\nSome updates required. See https://shasl.restlet.io/#type_customer\n\nAlso: Align with CIM, while still hiding internal complexity and making it easy to unserstand and use."
+    },
+    "CustomerEngagement" : {
+      "type" : "object",
+      "properties" : {
+        "EngagementId" : {
+          "type" : "string"
+        },
+        "EngagementType" : {
+          "type" : "string"
+        },
+        "AccountNumber" : {
+          "type" : "string"
+        },
+        "FriendlyName" : {
+          "type" : "string"
+        },
+        "Corporate" : {
+          "type" : "boolean"
+        }
+      },
+      "description" : "Used with ```Customer```. \n\nWork in progress. See https://shasl.restlet.io/#type_engagement"
     },
     "Account" : {
       "type" : "object",
