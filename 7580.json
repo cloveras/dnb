@@ -235,7 +235,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/AccountTransaction"
+                "$ref" : "#/definitions/Transaction"
               }
             }
           },
@@ -282,7 +282,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/AccountTransaction"
+              "$ref" : "#/definitions/Transaction"
             }
           },
           "400" : {
@@ -513,7 +513,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/CardTransaction"
+                "$ref" : "#/definitions/Transaction"
               }
             }
           },
@@ -1551,7 +1551,7 @@
         "transactions" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/AccountTransaction"
+            "$ref" : "#/definitions/Transaction"
           }
         }
       },
@@ -1575,39 +1575,6 @@
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }
       }
-    },
-    "AccountTransaction" : {
-      "type" : "object",
-      "properties" : {
-        "TransactionId" : {
-          "type" : "string"
-        },
-        "Amount" : {
-          "type" : "number"
-        },
-        "DateBooking" : {
-          "type" : "string",
-          "format" : "date"
-        },
-        "DateValue" : {
-          "type" : "string",
-          "format" : "date"
-        },
-        "Description" : {
-          "type" : "string"
-        },
-        "Status" : {
-          "type" : "string",
-          "description" : "\"Booked\", \"Reserved\""
-        },
-        "MerchantName" : {
-          "type" : "string"
-        },
-        "MCC" : {
-          "type" : "string"
-        }
-      },
-      "description" : "Very similar to CardTransaction. Should we merge AccountTransation and CardTransaction (both for debit and credit cards)?"
     },
     "Card" : {
       "type" : "object",
@@ -1676,29 +1643,6 @@
       },
       "description" : "Used by Card."
     },
-    "CardTransaction" : {
-      "type" : "object",
-      "properties" : {
-        "TransactionId" : {
-          "type" : "string"
-        },
-        "Date" : {
-          "type" : "string",
-          "format" : "date"
-        },
-        "Amount" : {
-          "type" : "number"
-        },
-        "TransactionDetails" : {
-          "type" : "string",
-          "description" : "Includes currency rate if applicable"
-        },
-        "Description" : {
-          "type" : "string"
-        }
-      },
-      "description" : "Very similar to AccountTransaction. Can they be merged? Should have MCC codes, etc"
-    },
     "CardInvoice" : {
       "type" : "object",
       "properties" : {
@@ -1730,7 +1674,7 @@
         "Transactions" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/CardTransaction"
+            "$ref" : "#/definitions/Transaction"
           }
         }
       }
@@ -1808,6 +1752,39 @@
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
+    },
+    "Transaction" : {
+      "type" : "object",
+      "properties" : {
+        "TransactionId" : {
+          "type" : "string"
+        },
+        "Amount" : {
+          "type" : "number"
+        },
+        "DateBooking" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "DateValue" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "Description" : {
+          "type" : "string"
+        },
+        "Status" : {
+          "type" : "string",
+          "description" : "\"Booked\", \"Reserved\""
+        },
+        "MerchantName" : {
+          "type" : "string"
+        },
+        "MCC" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Same ```Transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them."
     },
     "Address" : {
       "type" : "object",
