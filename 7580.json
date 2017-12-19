@@ -37,19 +37,19 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -96,25 +96,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "customerId unknown",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -142,25 +142,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -242,25 +242,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -288,25 +288,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -354,13 +354,13 @@
           "400" : {
             "description" : "Status 400",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Status 404",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -387,13 +387,13 @@
           "400" : {
             "description" : "Status 400",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Status 404",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -430,25 +430,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -470,25 +470,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -520,25 +520,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -566,25 +566,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -613,25 +613,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -659,25 +659,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -724,19 +724,19 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -781,25 +781,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -833,25 +833,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -917,25 +917,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -958,7 +958,8 @@
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "End of day. ISO 8601: \"YYYY-MM-DD\": https://en.wikipedia.org/wiki/ISO_8601"
+          "description" : "End of day. ISO 8601: \"YYYY-MM-DD\": https://en.wikipedia.org/wiki/ISO_8601",
+          "x-example" : "2018-12-31"
         } ],
         "responses" : {
           "200" : {
@@ -971,25 +972,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -999,18 +1000,21 @@
         "in" : "path",
         "required" : true,
         "type" : "string",
-        "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+        "description" : "ISO 4217: alpha 3-letter upcase e.g EUR",
+        "x-example" : "NOK"
       }, {
         "name" : "currency",
         "in" : "path",
         "required" : true,
         "type" : "string",
-        "description" : "ISO 4217: alpha 3-letter upcase e.g EUR"
+        "description" : "ISO 4217: alpha 3-letter upcase e.g EUR",
+        "x-example" : "GBP"
       }, {
         "name" : "amount",
         "in" : "path",
         "required" : true,
-        "type" : "number"
+        "type" : "number",
+        "x-example" : 100.0
       } ]
     },
     "/currency/list/{base}" : {
@@ -1023,7 +1027,8 @@
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "description" : "End of day. ISO 8601: “YYYY-MM-DD”: https://en.wikipedia.org/wiki/ISO_8601"
+          "description" : "End of day. ISO 8601: “YYYY-MM-DD”: https://en.wikipedia.org/wiki/ISO_8601",
+          "x-example" : "2018-12-31"
         } ],
         "responses" : {
           "200" : {
@@ -1038,25 +1043,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -1066,7 +1071,8 @@
         "in" : "path",
         "required" : true,
         "type" : "string",
-        "description" : "\"Home\" currency. ISO 4217: alpha 3-letter upcase e.g EUR"
+        "description" : "\"Home\" currency. ISO 4217: alpha 3-letter upcase",
+        "x-example" : "NOK"
       } ]
     },
     "/location/branch/findbyaddress" : {
@@ -1091,25 +1097,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -1130,25 +1136,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -1181,25 +1187,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -1229,25 +1235,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -1279,25 +1285,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -1334,25 +1340,25 @@
           "400" : {
             "description" : "Bad Request",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "401" : {
             "description" : "Unauthorized",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "403" : {
             "description" : "Forbidden",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           },
           "404" : {
             "description" : "Not Found",
             "schema" : {
-              "$ref" : "#/definitions/Error"
+              "$ref" : "#/definitions/error"
             }
           }
         }
@@ -1385,43 +1391,52 @@
         },
         "customerType" : {
           "type" : "string",
-          "description" : "Person, Company, possibly others"
+          "description" : "```PERSON```, ```COMPANY```"
         },
         "FirstName" : {
           "type" : "string",
-          "description" : "First name"
+          "description" : "First name. May be used contact person if type is ```COMPANY```."
         },
         "LastName" : {
           "type" : "string",
-          "description" : "Surname"
+          "description" : "Surname. May be used contact person if type is ```COMPANY```."
+        },
+        "CompanyName" : {
+          "type" : "string",
+          "description" : "Company name, if type is ```COMPANY```."
         },
         "Address" : {
           "$ref" : "#/definitions/Address"
         },
         "Email" : {
           "type" : "string",
-          "description" : "example@example.com"
+          "description" : "Email address.",
+          "example" : "example@example.com"
         },
         "Phone" : {
           "type" : "string",
-          "description" : "+47 91 50 48 00"
+          "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
+          "example" : "+4791504800"
         },
         "CountryOfBirth" : {
           "type" : "string",
-          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html"
+          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
+          "example" : "NO"
         },
         "CountryCitizenships" : {
           "type" : "array",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "NO"
           }
         },
         "CountryTax" : {
           "type" : "array",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "NO"
           }
         },
         "CustomerEngagement" : {
@@ -1436,6 +1451,7 @@
     },
     "CustomerEngagement" : {
       "type" : "object",
+      "required" : [ "EngagementId" ],
       "properties" : {
         "EngagementId" : {
           "type" : "string"
@@ -1464,14 +1480,17 @@
         },
         "Type" : {
           "type" : "string",
-          "description" : "Examples:\n* Deposit\n* CreditCard\n* BSU\n* ASK"
+          "description" : "Any type of account.",
+          "example" : "DEPOSIT"
         },
         "AccountName" : {
           "type" : "string",
-          "description" : "Friendly name for the account: \"My savings account\", etc."
+          "description" : "Friendly name for the account:",
+          "example" : "Savings account"
         },
         "BalanceAvailable" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 100
         },
         "AccountDetails" : {
           "$ref" : "#/definitions/AccountDetails"
@@ -1495,23 +1514,26 @@
         },
         "Currency" : {
           "type" : "string",
-          "description" : "Currency: ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html"
+          "description" : "Currency: ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
+          "example" : "NOK"
         },
         "Created" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-12-31T23:59:59+01"
         },
         "Updated" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-12-31T23:59:59+01"
         },
         "AccountInterestDetails" : {
           "$ref" : "#/definitions/AccountInterestDetails"
         }
       },
-      "description" : "Details for an Account."
+      "description" : "Details for an ```Account```, with optional reference to ```AccountDetails```."
     },
     "AccountInterestDetails" : {
       "type" : "object",
@@ -1561,18 +1583,24 @@
       "type" : "object",
       "properties" : {
         "AccountNumber" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "11 digits"
         },
         "AmountAvailable" : {
-          "type" : "number"
+          "type" : "number",
+          "description" : "Amount available",
+          "example" : 100
         },
         "AmountBook" : {
-          "type" : "number"
+          "type" : "number",
+          "description" : "Booked amount available",
+          "example" : 100
         },
         "Timestamp" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-12-31T23:59:59+01"
         }
       }
     },
@@ -1587,15 +1615,18 @@
           "description" : "\"Visa\", \"Mastercard\""
         },
         "MaskedCardNumber" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "16 characters: Twelve \"X\", and the last four digits ofr the card number. 4x4 nubers with whitespace.",
+          "example" : "XXXX XXXX XXXX 1234"
         },
         "CardGroup" : {
           "type" : "string",
-          "description" : "\"Debet\", \"Credit\""
+          "description" : "Debet or credit.",
+          "example" : "DEBET"
         },
         "AccountNumber" : {
           "type" : "string",
-          "description" : "Debit and credit cards"
+          "description" : "Both for debit and credit cards"
         },
         "CardStatus" : {
           "type" : "string",
@@ -1607,7 +1638,9 @@
         },
         "ExpiryDate" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "YYYY-MM. ISO 8601: https://www.iso.org/iso-8601-date-and-time-format.html",
+          "example" : "2018-12"
         },
         "DebitBalance" : {
           "$ref" : "#/definitions/AccountBalance"
@@ -1619,26 +1652,35 @@
     },
     "CardBalance" : {
       "type" : "object",
+      "required" : [ "Currency", "MaskedCardNumber" ],
       "properties" : {
         "MaskedCardNumber" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "16 characters: Twelve “X”, and the last four digits ofr the card number. 4x4 nubers with whitespace.",
+          "example" : "XXXX XXXX XXXX 1234"
         },
         "Currency" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "example" : "NOK"
         },
         "CreditLimit" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "100000.00"
         },
         "AmountAvailable" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 90000
         },
         "AmountBook" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 90000
         },
         "Timestamp" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-12-31T23:59:59+01:00"
         }
       },
       "description" : "Used by Card."
@@ -1651,25 +1693,31 @@
         },
         "Year" : {
           "type" : "string",
-          "description" : "YYYY"
+          "description" : "YYYY",
+          "example" : "2018"
         },
         "Month" : {
           "type" : "string",
-          "description" : "MM, where January is 01"
+          "description" : "MM, where January is 01",
+          "example" : "01"
         },
         "Amount" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "100.00"
         },
         "DueDate" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "YYYY-MM-DD. ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-12-31"
         },
         "Account" : {
           "type" : "string",
           "description" : "Account to pay to"
         },
         "KID" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "Up to 25 digits"
         },
         "Transactions" : {
           "type" : "array",
@@ -1681,7 +1729,7 @@
     },
     "Payment" : {
       "type" : "object",
-      "required" : [ "PaymentId", "Status" ],
+      "required" : [ "Amount", "CreditAccount", "DebitAccount", "PaymentId", "Status", "Type" ],
       "properties" : {
         "PaymentId" : {
           "type" : "string"
@@ -1700,7 +1748,9 @@
         },
         "Date" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-31-12"
         },
         "Status" : {
           "type" : "string"
@@ -1727,7 +1777,8 @@
       "properties" : {
         "Type" : {
           "type" : "string",
-          "description" : "\"KID\", \"Message\", \"Transfer\""
+          "description" : "KID, message (and transfer?)",
+          "example" : "KID"
         },
         "DebitAccountNumber" : {
           "type" : "string"
@@ -1740,7 +1791,9 @@
         },
         "PaymentDate" : {
           "type" : "string",
-          "format" : "date-time"
+          "format" : "date-time",
+          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-12-31"
         },
         "Message" : {
           "type" : "string",
@@ -1748,43 +1801,64 @@
         },
         "Initiator" : {
           "type" : "string",
-          "description" : "\"DNB\", \"Vipps\", \"IKEA\", \"Facebook\", etc"
+          "description" : "\"DNB\", \"Vipps\", \"IKEA\", \"Facebook\", etc",
+          "example" : "DNB"
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
     },
     "Transaction" : {
       "type" : "object",
+      "required" : [ "Amount", "DateBooking", "TransactionId" ],
       "properties" : {
         "TransactionId" : {
           "type" : "string"
         },
         "Amount" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 100
+        },
+        "currencyValue" : {
+          "type" : "string",
+          "description" : "Amount in foreign currency (if relevant)",
+          "example" : "90.00"
+        },
+        "currency" : {
+          "type" : "string",
+          "description" : "If not the currency of the account/card.",
+          "example" : "NOK"
         },
         "DateBooking" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018-13-12"
         },
         "DateValue" : {
           "type" : "string",
           "format" : "date"
         },
         "Description" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "Descriptive text for the transaction."
         },
         "Status" : {
           "type" : "string",
-          "description" : "\"Booked\", \"Reserved\""
+          "description" : "\"Booked\", \"Reserved\"",
+          "example" : "BOOKED"
         },
         "MerchantName" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "Name of merchant.",
+          "example" : "Coffee Shop ChainName, shop number 10"
         },
         "MCC" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html",
+          "example" : "3514: Hotels/Motels/Inns/Resorts"
         }
       },
-      "description" : "Same ```Transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them."
+      "description" : "Same ```Transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for hotels:\n```\n  {\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
     },
     "Address" : {
       "type" : "object",
@@ -1819,18 +1893,26 @@
           "type" : "string",
           "description" : "Internal id"
         },
+        "friendlyName" : {
+          "type" : "string",
+          "description" : "Descriptive name",
+          "example" : "DNB headquarters"
+        },
         "latitude" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 59.9075823
         },
         "longditude" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 10.760133399999972
         },
         "description" : {
           "type" : "string",
-          "description" : "\"South entrance near elevators\""
+          "description" : "May be used for large areas like airports, train stations, stadiums, etc.",
+          "example" : "Lobby"
         }
       },
-      "description" : "Data object for physical location based on GPS coordinates. May be used for something that needs a more specific than an address provides, such as an ATM at a train station. A Location may be used in addition to an Address."
+      "description" : "Data object for physical location based on GPS coordinates. May be used for something that needs a more specific than an address provides, such as an ATM at a train station. A Location may be used in addition to an Address.\n"
     },
     "Branch" : {
       "type" : "object",
@@ -1839,13 +1921,15 @@
           "type" : "string"
         },
         "Name" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "DNB headquarters, lobby"
         },
         "PhoneNumber" : {
           "type" : "string"
         },
         "Email" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "example@example.com"
         },
         "Address" : {
           "$ref" : "#/definitions/Address"
@@ -1878,9 +1962,10 @@
         },
         "Currencies" : {
           "type" : "array",
-          "description" : "Array of ISO 4217: alpha 3-letter upcase e.g \"EUR\": https://www.iso.org/iso-4217-currency-codes.html",
+          "description" : "Array of ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
           "items" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "NOK"
           }
         }
       }
@@ -1897,31 +1982,69 @@
           },
           "OpeningTime" : {
             "type" : "string",
-            "description" : "\"HH:MM\": \"09:00\""
+            "description" : "HH:MM",
+            "example" : "09:00"
           },
           "CloseTime" : {
             "type" : "string",
-            "description" : "\"HH:MM\": \"17:00\""
+            "description" : "HH:MM",
+            "example" : "16:00"
           }
         }
       }
     },
-    "Error" : {
+    "error" : {
       "type" : "object",
       "properties" : {
-        "ErrorNumber" : {
-          "type" : "number",
-          "description" : "DNB's error number. HTTP error implicit."
+        "httpStatus" : {
+          "type" : "string",
+          "description" : "Implicit",
+          "example" : "400"
         },
-        "ErrorMessage" : {
+        "errorNumber" : {
+          "type" : "number",
+          "description" : "DNB's error number",
+          "example" : 1234
+        },
+        "errorMessage" : {
           "type" : "string",
           "description" : "Explanation"
         },
-        "ErrorDocumentation" : {
+        "errorDocumentation" : {
           "type" : "string",
-          "description" : "URI to developer documentation for this error"
+          "description" : "URI to developer documentation for this error",
+          "example" : "https://docs.example.com/help-for-this-error/"
+        },
+        "errorDetails" : {
+          "type" : "array",
+          "description" : "Details about the cause of this error. Zero or more.",
+          "items" : {
+            "$ref" : "#/definitions/errorDetails"
+          }
         }
-      }
+      },
+      "description" : "The HTTP error response code is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. The ```explanation```is a descriptive, human-readable text. \n\nMay have zero or more ```errorDetails```."
+    },
+    "errorDetails" : {
+      "type" : "object",
+      "required" : [ "errorNumber" ],
+      "properties" : {
+        "errorNumber" : {
+          "type" : "string",
+          "description" : "DNB's internal error number.",
+          "example" : "5432"
+        },
+        "errorField" : {
+          "type" : "string",
+          "description" : "Name of field that caused the error.",
+          "example" : "firstName"
+        },
+        "errorDescription" : {
+          "type" : "string",
+          "example" : "First name cannot have non-Latin characters."
+        }
+      },
+      "description" : "Detailed explanation of the error. Used by ```error```."
     },
     "HeaderLinks" : {
       "type" : "object",
