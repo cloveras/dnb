@@ -112,10 +112,16 @@
             }
           },
           "400" : {
-            "description" : "Status 400"
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
           },
           "404" : {
-            "description" : "Status 404"
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
           }
         }
       }
