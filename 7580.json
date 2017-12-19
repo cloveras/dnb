@@ -1395,15 +1395,18 @@
         },
         "FirstName" : {
           "type" : "string",
-          "description" : "First name. May be used contact person if type is ```COMPANY```."
+          "description" : "First name. May be used contact person if type is ```COMPANY```.",
+          "example" : "Rune"
         },
         "LastName" : {
           "type" : "string",
-          "description" : "Surname. May be used contact person if type is ```COMPANY```."
+          "description" : "Surname. May be used contact person if type is ```COMPANY```.",
+          "example" : "Bjerke"
         },
         "CompanyName" : {
           "type" : "string",
-          "description" : "Company name, if type is ```COMPANY```."
+          "description" : "Company name, if type is ```COMPANY```.",
+          "example" : "DNB"
         },
         "Address" : {
           "$ref" : "#/definitions/Address"
@@ -1476,7 +1479,8 @@
       "properties" : {
         "AccountNumber" : {
           "type" : "string",
-          "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
+          "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
+          "example" : "12345678901"
         },
         "Type" : {
           "type" : "string",
@@ -1542,19 +1546,24 @@
           "type" : "string"
         },
         "InterestRate" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 2
         },
         "EarnedInterestToDate" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 100
         },
         "AccruedInterestAndFeesToDate" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 1
         },
         "FeesToDate" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "5.00"
         },
         "AccruedInterestFromLastYear" : {
-          "type" : "number"
+          "type" : "number",
+          "example" : 500
         }
       }
     },
@@ -1562,13 +1571,18 @@
       "type" : "object",
       "properties" : {
         "accountNumber" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "12345678901"
         },
         "year" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "YYYY: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "2018"
         },
         "month" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "MM: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "example" : "01"
         },
         "transactions" : {
           "type" : "array",
@@ -1584,7 +1598,8 @@
       "properties" : {
         "AccountNumber" : {
           "type" : "string",
-          "description" : "11 digits"
+          "description" : "11 digits",
+          "example" : "12345678901"
         },
         "AmountAvailable" : {
           "type" : "number",
@@ -1866,7 +1881,8 @@
       "properties" : {
         "PostalAddressLine1" : {
           "type" : "string",
-          "description" : "Street name and number"
+          "description" : "Street name and number",
+          "example" : "Dronning Eufemias gate 30"
         },
         "PostalAddressLine2" : {
           "type" : "string"
@@ -1875,13 +1891,17 @@
           "type" : "string"
         },
         "PostCode" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "0191"
         },
         "PostCity" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "Oslo"
         },
         "PostCountry" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
+          "example" : "NO"
         }
       },
       "description" : "Corresponds with address fields used internally in DNB. "
