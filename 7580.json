@@ -1799,7 +1799,7 @@
           "example" : "2018-12-31T23:59:59+01:00"
         }
       },
-      "description" : "Used by ```card```. See also: ```AccountBalance```."
+      "description" : "Used by ```card```. See also: ```accountBalance```."
     },
     "cardInvoice" : {
       "type" : "object",
