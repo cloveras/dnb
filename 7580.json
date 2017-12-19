@@ -24,8 +24,8 @@
     "/customers/current" : {
       "get" : {
         "tags" : [ "Customers" ],
-        "summary" : "Get customer",
-        "description" : "View customer details",
+        "summary" : "Get current customer's details",
+        "description" : "Get current ```customer``` details. The ```customerId```is included in the context object.",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -54,6 +54,47 @@
           }
         }
       }
+    },
+    "/customers/{customerId}" : {
+      "get" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Get customer's details by id",
+        "description" : "Get ```customer``` details by id.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Customer found",
+            "schema" : {
+              "$ref" : "#/definitions/customer"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "1234567890"
+      } ]
     },
     "/accounts" : {
       "get" : {
@@ -784,7 +825,7 @@
         "description" : "Gets all due payments, both domestic and international.",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "AccountNumber",
+          "name" : "accountNumber",
           "in" : "query",
           "required" : true,
           "type" : "string",
@@ -853,15 +894,9 @@
       "get" : {
         "tags" : [ "Payments" ],
         "summary" : "Get due payment by payment id",
-        "description" : "Returns Payment, complete with with PaymentDetails.\n\nThis endpoint may change, as it is offers the same as “/accounts/{accountNumber}/payments/due/{paymentId}”, and the placement is not decided yet.",
+        "description" : "Returns ```payment,``` complete with with ```paymentDetails```.\n\nThis endpoint may change, as it is offers the same as ```accounts/{accountNumber}/payments/due/{paymentId}```, and the placement is not decided yet.",
         "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "PaymentID",
-          "in" : "query",
-          "required" : true,
-          "type" : "string",
-          "x-example" : "12345"
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Request succeeded",
@@ -1117,7 +1152,7 @@
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Find nearest branch by address",
-        "description" : "Base geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
+        "description" : "Basic geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
         "parameters" : [ {
           "name" : "address",
           "in" : "query",
@@ -1494,7 +1529,7 @@
           }
         }
       },
-      "description" : "One common ```customer```data object for all kinds of customers.\n\nSome updates required. See https://shasl.restlet.io/#type_customer\n\nAlso: Align with CIM, while still hiding internal complexity and making it easy to unserstand and use."
+      "description" : "One common ```customer```data object for all kinds of customers: Private customers, business customers, and others.\n\nPlease note:\n* Some updates may be required.\n* Should be aligned with Shared Services Layer: https://shasl.restlet.io/#type_customer\n* Should be aligned with CIM, while still hiding internal complexity and making it easy to understand and use."
     },
     "customerEngagement" : {
       "type" : "object",
@@ -1562,8 +1597,8 @@
         },
         "IBAN" : {
           "type" : "string",
-          "example" : "NO93 8601 1117 947",
-          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html"
+          "example" : "NO9386011117947",
+          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace"
         },
         "BIC" : {
           "type" : "string",
@@ -1677,7 +1712,7 @@
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }
       },
-      "description" : "Balances for an ```account```."
+      "description" : "Balances for an ```account```. See also: ```cardBalance```."
     },
     "card" : {
       "type" : "object",
@@ -1764,7 +1799,7 @@
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }
       },
-      "description" : "Used by Card."
+      "description" : "Used by ```card```. See also: ```AccountBalance```."
     },
     "cardInvoice" : {
       "type" : "object",
@@ -1831,7 +1866,9 @@
           "example" : 1500.01
         },
         "type" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "TBD1",
+          "description" : "TBD"
         },
         "date" : {
           "type" : "string",
@@ -1840,7 +1877,9 @@
           "example" : "2018-31-12"
         },
         "status" : {
-          "type" : "string"
+          "type" : "string",
+          "example" : "PAID",
+          "description" : "Statuses TBD"
         },
         "paymentDetails" : {
           "$ref" : "#/definitions/paymentDetails"
@@ -1853,6 +1892,7 @@
       "properties" : {
         "invoiceReference" : {
           "type" : "string",
+          "example" : "12345678901",
           "description" : "Used for eFaktura"
         }
       },
@@ -1893,7 +1933,7 @@
         "initiator" : {
           "type" : "string",
           "example" : "DNB",
-          "description" : "\"DNB\", \"Vipps\", \"IKEA\", \"Facebook\", etc"
+          "description" : "Nu phone who dis?"
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
@@ -1934,12 +1974,13 @@
         },
         "description" : {
           "type" : "string",
+          "example" : "Lunch at The Restaurant at the End of the Universe",
           "description" : "Descriptive text for the transaction."
         },
         "status" : {
           "type" : "string",
           "example" : "BOOKED",
-          "description" : "Booked, reserved, and, if this is to be merged with ```Payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)"
+          "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)"
         },
         "merchantName" : {
           "type" : "string",
@@ -1952,7 +1993,7 @@
           "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html"
         }
       },
-      "description" : "Same ```transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for hotels:\n```\n  {\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
+      "description" : "Same ```transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for hotels:\n```\n  {\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
     },
     "address" : {
       "type" : "object",
@@ -2048,24 +2089,24 @@
     "ATM" : {
       "type" : "object",
       "properties" : {
-        "Id" : {
+        "id" : {
           "type" : "string",
           "example" : "12345"
         },
-        "Name" : {
+        "name" : {
           "type" : "string",
           "example" : "DNB headquarters, lobby"
         },
-        "Address" : {
+        "address" : {
           "$ref" : "#/definitions/address"
         },
-        "Location" : {
+        "location" : {
           "$ref" : "#/definitions/location"
         },
-        "OpeningTimes" : {
+        "openingTimes" : {
           "$ref" : "#/definitions/openingTimes"
         },
-        "Currencies" : {
+        "currencies" : {
           "type" : "array",
           "description" : "Array of ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
           "items" : {
