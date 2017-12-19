@@ -24,7 +24,7 @@
     "/customers/current" : {
       "get" : {
         "tags" : [ "Customers" ],
-        "summary" : "View customer",
+        "summary" : "Get customer",
         "description" : "View customer details",
         "parameters" : [ ],
         "responses" : {
@@ -375,7 +375,7 @@
     "/accounts/{accountNumber}/payments/due/{paymentId}" : {
       "get" : {
         "tags" : [ "Accounts" ],
-        "summary" : "Get details for a payments for an account",
+        "summary" : "Get details for a payment for an account",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -601,7 +601,7 @@
         "tags" : [ "Card" ],
         "summary" : "Unblock card",
         "parameters" : [ {
-          "name" : "Unblock credit card",
+          "name" : "Unblock dedit card",
           "in" : "header",
           "required" : false,
           "type" : "string"
@@ -1584,14 +1584,14 @@
         },
         "CardType" : {
           "type" : "string",
-          "description" : "\"Debit\", \"Credit\""
+          "description" : "\"Visa\", \"Mastercard\""
         },
         "MaskedCardNumber" : {
           "type" : "string"
         },
         "CardGroup" : {
           "type" : "string",
-          "description" : "\"VISA\", \"MasterCard\", \"American Express\""
+          "description" : "\"Debet\", \"Credit\""
         },
         "AccountNumber" : {
           "type" : "string",
