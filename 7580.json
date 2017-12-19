@@ -31,7 +31,7 @@
           "200" : {
             "description" : "Customer found",
             "schema" : {
-              "$ref" : "#/definitions/Customer"
+              "$ref" : "#/definitions/customer"
             }
           },
           "400" : {
@@ -66,7 +66,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Account"
+                "$ref" : "#/definitions/account"
               }
             }
           },
@@ -90,7 +90,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/AccountDetails"
+              "$ref" : "#/definitions/accountDetails"
             }
           },
           "400" : {
@@ -137,7 +137,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/AccountBalance"
+              "$ref" : "#/definitions/accountBalance"
             }
           },
           "400" : {
@@ -244,7 +244,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Transaction"
+                "$ref" : "#/definitions/transaction"
               }
             }
           },
@@ -292,7 +292,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/Transaction"
+              "$ref" : "#/definitions/transaction"
             }
           },
           "400" : {
@@ -361,7 +361,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Payment"
+                "$ref" : "#/definitions/payment"
               }
             }
           },
@@ -396,7 +396,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/Payment"
+              "$ref" : "#/definitions/payment"
             }
           },
           "400" : {
@@ -440,7 +440,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Card"
+                "$ref" : "#/definitions/card"
               }
             }
           },
@@ -481,7 +481,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/Card"
+              "$ref" : "#/definitions/card"
             }
           },
           "400" : {
@@ -531,7 +531,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Transaction"
+                "$ref" : "#/definitions/transaction"
               }
             }
           },
@@ -742,7 +742,7 @@
           "in" : "body",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/PaymentInitiation"
+            "$ref" : "#/definitions/paymentInitiation"
           }
         } ],
         "responses" : {
@@ -812,7 +812,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Payment"
+                "$ref" : "#/definitions/payment"
               }
             }
           },
@@ -866,7 +866,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/Payment"
+              "$ref" : "#/definitions/payment"
             }
           },
           "400" : {
@@ -950,7 +950,7 @@
           "201" : {
             "description" : "Changed",
             "schema" : {
-              "$ref" : "#/definitions/Payment"
+              "$ref" : "#/definitions/payment"
             }
           },
           "400" : {
@@ -1129,7 +1129,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/Branch"
+              "$ref" : "#/definitions/branch"
             }
           },
           "400" : {
@@ -1168,7 +1168,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/Branch"
+              "$ref" : "#/definitions/branch"
             }
           },
           "400" : {
@@ -1221,7 +1221,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/Branch"
+              "$ref" : "#/definitions/branch"
             }
           },
           "400" : {
@@ -1270,7 +1270,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/OpeningTimes"
+              "$ref" : "#/definitions/openingTimes"
             }
           },
           "400" : {
@@ -1377,7 +1377,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Branch"
+                "$ref" : "#/definitions/branch"
               }
             }
           },
@@ -1425,9 +1425,9 @@
     }
   },
   "definitions" : {
-    "Customer" : {
+    "customer" : {
       "type" : "object",
-      "required" : [ "Address", "CountryTax", "customerId", "customerType" ],
+      "required" : [ "address", "countryTax", "customerId", "customerType" ],
       "properties" : {
         "customerId" : {
           "type" : "string",
@@ -1437,40 +1437,40 @@
           "type" : "string",
           "description" : "```PERSON```, ```COMPANY```"
         },
-        "FirstName" : {
+        "firstName" : {
           "type" : "string",
           "description" : "First name. May be used contact person if type is ```COMPANY```.",
           "example" : "Rune"
         },
-        "LastName" : {
+        "lastName" : {
           "type" : "string",
           "description" : "Surname. May be used contact person if type is ```COMPANY```.",
           "example" : "Bjerke"
         },
-        "CompanyName" : {
+        "companyName" : {
           "type" : "string",
           "description" : "Company name, if type is ```COMPANY```.",
           "example" : "DNB"
         },
-        "Address" : {
-          "$ref" : "#/definitions/Address"
+        "address" : {
+          "$ref" : "#/definitions/address"
         },
-        "Email" : {
+        "email" : {
           "type" : "string",
           "description" : "Email address.",
           "example" : "example@example.com"
         },
-        "Phone" : {
+        "phone" : {
           "type" : "string",
           "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
           "example" : "+4791504800"
         },
-        "CountryOfBirth" : {
+        "countryOfBirth" : {
           "type" : "string",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "example" : "NO"
         },
-        "CountryCitizenships" : {
+        "countryCitizenships" : {
           "type" : "array",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
@@ -1478,7 +1478,7 @@
             "example" : "NO"
           }
         },
-        "CountryTax" : {
+        "countryTax" : {
           "type" : "array",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
@@ -1486,71 +1486,72 @@
             "example" : "NO"
           }
         },
-        "CustomerEngagement" : {
+        "customerEngagement" : {
           "type" : "array",
           "description" : "One or more engagements",
           "items" : {
-            "$ref" : "#/definitions/CustomerEngagement"
+            "$ref" : "#/definitions/customerEngagement"
           }
         }
       },
-      "description" : "One common ```Customer```data object for all kinds of customers.\n\nSome updates required. See https://shasl.restlet.io/#type_customer\n\nAlso: Align with CIM, while still hiding internal complexity and making it easy to unserstand and use."
+      "description" : "One common ```customer```data object for all kinds of customers.\n\nSome updates required. See https://shasl.restlet.io/#type_customer\n\nAlso: Align with CIM, while still hiding internal complexity and making it easy to unserstand and use."
     },
-    "CustomerEngagement" : {
+    "customerEngagement" : {
       "type" : "object",
-      "required" : [ "EngagementId" ],
+      "required" : [ "engagementId" ],
       "properties" : {
-        "EngagementId" : {
+        "engagementId" : {
           "type" : "string"
         },
-        "EngagementType" : {
+        "engagementType" : {
           "type" : "string"
         },
-        "AccountNumber" : {
+        "accountNumber" : {
           "type" : "string",
           "example" : "12345678901"
         },
-        "FriendlyName" : {
+        "friendlyName" : {
           "type" : "string",
           "example" : "SAGA MasterCard"
         },
-        "Corporate" : {
+        "corporate" : {
           "type" : "boolean"
         }
       },
-      "description" : "Used with ```Customer```. \n\nWork in progress. See https://shasl.restlet.io/#type_engagement"
+      "description" : "Used with ```customer```. \n\nWork in progress. See https://shasl.restlet.io/#type_engagement"
     },
-    "Account" : {
+    "account" : {
       "type" : "object",
       "properties" : {
-        "AccountNumber" : {
+        "accountNumber" : {
           "type" : "string",
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
           "example" : "12345678901"
         },
-        "Type" : {
+        "type" : {
           "type" : "string",
           "description" : "Any type of account.",
           "example" : "DEPOSIT"
         },
-        "AccountName" : {
+        "accountName" : {
           "type" : "string",
           "description" : "Friendly name for the account:",
           "example" : "Savings account"
         },
-        "BalanceAvailable" : {
+        "balanceAvailable" : {
           "type" : "number",
           "example" : 100.01
         },
-        "AccountDetails" : {
-          "$ref" : "#/definitions/AccountDetails"
+        "accountDetails" : {
+          "$ref" : "#/definitions/accountDetails"
         }
-      }
+      },
+      "description" : "Same ```account``` data object for all types of account. The ```type``` property determines the type. \n\nAn ```account```may have ```accountDetails```, which may again have ```accountBalance```and  ```accountInterestDetails```."
     },
-    "AccountDetails" : {
+    "accountDetails" : {
       "type" : "object",
       "properties" : {
-        "AccountNumber" : {
+        "accountNumber" : {
           "type" : "string",
           "description" : "11 digits",
           "example" : "12345678901"
@@ -1565,60 +1566,61 @@
           "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362",
           "example" : "DNBANOKKXXX"
         },
-        "Currency" : {
+        "currency" : {
           "type" : "string",
           "description" : "Currency: ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
           "example" : "NOK"
         },
-        "Created" : {
+        "created" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31T23:59:59+01"
         },
-        "Updated" : {
+        "updated" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31T23:59:59+01"
         },
-        "AccountInterestDetails" : {
-          "$ref" : "#/definitions/AccountInterestDetails"
+        "accountInterestDetails" : {
+          "$ref" : "#/definitions/accountInterestDetails"
         }
       },
-      "description" : "Details for an ```Account```, with optional reference to ```AccountDetails```.\n\nIBAN help: http://www.xe.com/ibancalculator/sample/?ibancountry=norway"
+      "description" : "Details for an ```account```, with optional reference to ```accountDetails```.\n\nIBAN help: http://www.xe.com/ibancalculator/sample/?ibancountry=norway"
     },
-    "AccountInterestDetails" : {
+    "accountInterestDetails" : {
       "type" : "object",
-      "required" : [ "AccountNumber" ],
+      "required" : [ "accountNumber" ],
       "properties" : {
-        "AccountNumber" : {
+        "accountNumber" : {
           "type" : "string",
           "example" : "12345678901"
         },
-        "InterestRate" : {
+        "interestRate" : {
           "type" : "number",
           "example" : 2.01
         },
-        "EarnedInterestToDate" : {
+        "earnedInterestToDate" : {
           "type" : "number",
           "example" : 100.01
         },
-        "AccruedInterestAndFeesToDate" : {
+        "accruedInterestAndFeesToDate" : {
           "type" : "number",
           "example" : 1.01
         },
-        "FeesToDate" : {
+        "feesToDate" : {
           "type" : "number",
           "example" : 5.01
         },
-        "AccruedInterestFromLastYear" : {
+        "accruedInterestFromLastYear" : {
           "type" : "number",
           "example" : 500.01
         }
-      }
+      },
+      "description" : "Details about an the interest for an ```account```."
     },
-    "AccountStatement" : {
+    "accountStatement" : {
       "type" : "object",
       "required" : [ "accountNumber", "month", "year" ],
       "properties" : {
@@ -1639,116 +1641,118 @@
         "transactions" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/Transaction"
+            "$ref" : "#/definitions/transaction"
           }
         }
       },
-      "description" : "Monthly account statement."
+      "description" : "Monthly ```account``` statement. "
     },
-    "AccountBalance" : {
+    "accountBalance" : {
       "type" : "object",
-      "required" : [ "AccountNumber", "AmountAvailable", "AmountBook" ],
+      "required" : [ "accountNumber", "amountAvailable", "amountBooked" ],
       "properties" : {
-        "AccountNumber" : {
+        "accountNumber" : {
           "type" : "string",
           "description" : "11 digits",
           "example" : "12345678901"
         },
-        "AmountAvailable" : {
+        "amountAvailable" : {
           "type" : "number",
           "description" : "Amount available",
           "example" : 100.01
         },
-        "AmountBook" : {
+        "amountBooked" : {
           "type" : "number",
           "description" : "Booked amount available",
           "example" : 100.01
         },
-        "Timestamp" : {
+        "timestamp" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31T23:59:59+01"
         }
-      }
+      },
+      "description" : "Balances for an ```account```."
     },
-    "Card" : {
+    "card" : {
       "type" : "object",
       "properties" : {
-        "CardId" : {
-          "type" : "string"
+        "cardId" : {
+          "type" : "string",
+          "example" : "12345"
         },
-        "CardType" : {
+        "cardType" : {
           "type" : "string",
           "description" : "Visa, Mastercard",
           "example" : "VISA"
         },
-        "MaskedCardNumber" : {
+        "maskedCardNumber" : {
           "type" : "string",
           "description" : "16 characters: Twelve \"X\", and the last four digits ofr the card number. 4x4 nubers with whitespace.",
           "example" : "XXXX XXXX XXXX 1234"
         },
-        "CardGroup" : {
+        "cardGroup" : {
           "type" : "string",
           "description" : "Debet or credit.",
           "example" : "DEBET"
         },
-        "AccountNumber" : {
+        "accountNumber" : {
           "type" : "string",
           "description" : "Both for debit and credit cards",
           "example" : "012345678901"
         },
-        "CardStatus" : {
+        "cardStatus" : {
           "type" : "string",
           "description" : "Normal, active, blocked",
           "example" : "NORMAL"
         },
-        "BlockCode" : {
+        "blockCode" : {
           "type" : "string",
           "description" : "(If blocked)"
         },
-        "ExpiryDate" : {
+        "expiryDate" : {
           "type" : "string",
           "format" : "date",
           "description" : "YYYY-MM. ISO 8601: https://www.iso.org/iso-8601-date-and-time-format.html",
           "example" : "2018-12"
         },
-        "DebitBalance" : {
-          "$ref" : "#/definitions/AccountBalance"
+        "debitBalance" : {
+          "$ref" : "#/definitions/accountBalance"
         },
-        "CreditBalance" : {
-          "$ref" : "#/definitions/CardBalance"
+        "creditBalance" : {
+          "$ref" : "#/definitions/cardBalance"
         }
       },
       "description" : "Both debit and credit cards."
     },
-    "CardBalance" : {
+    "cardBalance" : {
       "type" : "object",
-      "required" : [ "Currency", "MaskedCardNumber" ],
+      "required" : [ "currency", "maskedCardNumber" ],
       "properties" : {
-        "MaskedCardNumber" : {
+        "maskedCardNumber" : {
           "type" : "string",
           "description" : "16 characters: Twelve “X”, and the last four digits ofr the card number. 4x4 nubers with whitespace.",
           "example" : "XXXX XXXX XXXX 1234"
         },
-        "Currency" : {
+        "currency" : {
           "type" : "string",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
           "example" : "NOK"
         },
-        "CreditLimit" : {
+        "creditLimit" : {
           "type" : "string",
           "example" : "100000.00"
         },
-        "AmountAvailable" : {
+        "amountAvailable" : {
           "type" : "number",
-          "example" : 90000
+          "example" : 90000.01
         },
-        "AmountBook" : {
+        "amountBook" : {
           "type" : "number",
-          "example" : 90000
+          "example" : 90000.01
         },
-        "Timestamp" : {
+        "timestamp" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
@@ -1760,30 +1764,30 @@
     "CardInvoice" : {
       "type" : "object",
       "properties" : {
-        "Card" : {
-          "$ref" : "#/definitions/Card"
+        "card" : {
+          "$ref" : "#/definitions/card"
         },
-        "Year" : {
+        "year" : {
           "type" : "string",
           "description" : "YYYY",
           "example" : "2018"
         },
-        "Month" : {
+        "month" : {
           "type" : "string",
           "description" : "MM, where January is 01",
           "example" : "01"
         },
-        "Amount" : {
+        "amount" : {
           "type" : "string",
           "example" : "100.00"
         },
-        "DueDate" : {
+        "dueDate" : {
           "type" : "string",
           "format" : "date",
           "description" : "YYYY-MM-DD. ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31"
         },
-        "Account" : {
+        "accountNumber" : {
           "type" : "string",
           "description" : "Account to pay to. 11 digits.",
           "example" : "012345678901"
@@ -1793,95 +1797,95 @@
           "description" : "2-25 digits",
           "example" : "42"
         },
-        "Transactions" : {
+        "transactions" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/Transaction"
+            "$ref" : "#/definitions/transaction"
           }
         }
       }
     },
-    "Payment" : {
+    "payment" : {
       "type" : "object",
-      "required" : [ "Amount", "CreditAccount", "DebitAccount", "PaymentId", "Status", "Type" ],
+      "required" : [ "amount", "creditAccount", "debitAccount", "paymentId", "status", "type" ],
       "properties" : {
-        "PaymentId" : {
+        "paymentId" : {
           "type" : "string",
           "example" : "123456789"
         },
-        "DebitAccount" : {
+        "debitAccount" : {
           "type" : "string",
           "example" : "12345678901"
         },
-        "CreditAccount" : {
+        "creditAccount" : {
           "type" : "string",
           "example" : "12345678901"
         },
-        "Amount" : {
-          "type" : "string",
-          "example" : "1500.00"
+        "amount" : {
+          "type" : "number",
+          "example" : 1500.01
         },
-        "Type" : {
+        "type" : {
           "type" : "string"
         },
-        "Date" : {
+        "date" : {
           "type" : "string",
           "format" : "date",
           "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-31-12"
         },
-        "Status" : {
+        "status" : {
           "type" : "string"
         },
-        "PaymentDetails" : {
-          "$ref" : "#/definitions/PaymentDetails"
+        "paymentDetails" : {
+          "$ref" : "#/definitions/paymentDetails"
         }
       },
-      "description" : "Details about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n**Note:** May be completely merged with ```Transaction```."
+      "description" : "**Note:** May be completely merged with ```Transaction```.\n\nDetails about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n"
     },
-    "PaymentDetails" : {
+    "paymentDetails" : {
       "type" : "object",
       "properties" : {
-        "InvoiceReference" : {
+        "invoiceReference" : {
           "type" : "string",
           "description" : "Used for eFaktura"
         }
       },
       "description" : "More details about a payment. Some payment types have more data than others."
     },
-    "PaymentInitiation" : {
+    "paymentInitiation" : {
       "type" : "object",
-      "required" : [ "Amount", "CreditAccountNumber", "DebitAccountNumber", "Initiator", "PaymentDate", "Type" ],
+      "required" : [ "amount", "creditAccountNumber", "debitAccountNumber", "initiator", "paymentDate", "type" ],
       "properties" : {
-        "Type" : {
+        "type" : {
           "type" : "string",
           "description" : "KID, message (and transfer?)",
           "example" : "KID"
         },
-        "DebitAccountNumber" : {
+        "debitAccountNumber" : {
           "type" : "string",
           "example" : "12345678901"
         },
-        "CreditAccountNumber" : {
+        "creditAccountNumber" : {
           "type" : "string",
           "example" : "12345678901"
         },
-        "Amount" : {
+        "amount" : {
           "type" : "string",
           "example" : "1500.00"
         },
-        "PaymentDate" : {
+        "paymentDate" : {
           "type" : "string",
           "format" : "date-time",
           "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31"
         },
-        "Message" : {
+        "message" : {
           "type" : "string",
           "description" : "Used for both KID and Message, based on Type.",
           "example" : "35298562958265982749"
         },
-        "Initiator" : {
+        "initiator" : {
           "type" : "string",
           "description" : "\"DNB\", \"Vipps\", \"IKEA\", \"Facebook\", etc",
           "example" : "DNB"
@@ -1889,15 +1893,15 @@
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
     },
-    "Transaction" : {
+    "transaction" : {
       "type" : "object",
-      "required" : [ "Amount", "DateBooking", "TransactionId" ],
+      "required" : [ "amount", "dateBooking", "transactionId" ],
       "properties" : {
-        "TransactionId" : {
+        "transactionId" : {
           "type" : "string",
           "example" : "12345"
         },
-        "Amount" : {
+        "amount" : {
           "type" : "string",
           "example" : "1500.00"
         },
@@ -1911,28 +1915,28 @@
           "description" : "If not the currency of the account/card.",
           "example" : "NOK"
         },
-        "DateBooking" : {
+        "dateBooking" : {
           "type" : "string",
           "format" : "date",
           "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-13-12"
         },
-        "DateValue" : {
+        "dateValue" : {
           "type" : "string",
           "format" : "date",
           "description" : "YYYY-MM. ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31"
         },
-        "Description" : {
+        "description" : {
           "type" : "string",
           "description" : "Descriptive text for the transaction."
         },
-        "Status" : {
+        "status" : {
           "type" : "string",
           "description" : "Booked, reserved, and, if this is to be merged with ```Payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)",
           "example" : "BOOKED"
         },
-        "MerchantName" : {
+        "merchantName" : {
           "type" : "string",
           "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```.",
           "example" : "Coffee Shop ChainName, shop number 10"
@@ -1943,32 +1947,33 @@
           "example" : "3514: Hotels/Motels/Inns/Resorts"
         }
       },
-      "description" : "Same ```Transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for hotels:\n```\n  {\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
+      "description" : "Same ```transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for hotels:\n```\n  {\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
     },
-    "Address" : {
+    "address" : {
       "type" : "object",
-      "required" : [ "PostCity", "PostCode", "PostCountry" ],
+      "required" : [ "postCity", "postCode", "postCountry" ],
       "properties" : {
-        "PostalAddressLine1" : {
+        "postalAddressLine1" : {
           "type" : "string",
           "description" : "Street name and number",
           "example" : "Dronning Eufemias gate 30"
         },
-        "PostalAddressLine2" : {
+        "postalAddressLine2" : {
+          "type" : "string",
+          "example" : "c/o CEO office"
+        },
+        "postalAddressLine3" : {
           "type" : "string"
         },
-        "PostalAddressLine3" : {
-          "type" : "string"
-        },
-        "PostCode" : {
+        "postCode" : {
           "type" : "string",
           "example" : "0191"
         },
-        "PostCity" : {
+        "postCity" : {
           "type" : "string",
           "example" : "Oslo"
         },
-        "PostCountry" : {
+        "postCountry" : {
           "type" : "string",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "example" : "NO"
@@ -1976,7 +1981,7 @@
       },
       "description" : "Corresponds with address fields used internally in DNB. "
     },
-    "Location" : {
+    "location" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -2005,33 +2010,33 @@
       },
       "description" : "Data object for physical location based on GPS coordinates. May be used for something that needs a more specific than an address provides, such as an ATM at a train station. A Location may be used in addition to an Address.\n"
     },
-    "Branch" : {
+    "branch" : {
       "type" : "object",
       "properties" : {
-        "Id" : {
+        "branchId" : {
           "type" : "string"
         },
-        "Name" : {
+        "name" : {
           "type" : "string",
           "example" : "DNB headquarters, lobby"
         },
-        "PhoneNumber" : {
+        "phoneNumber" : {
           "type" : "string",
           "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
           "example" : "+4791504800"
         },
-        "Email" : {
+        "email" : {
           "type" : "string",
           "example" : "example@example.com"
         },
-        "Address" : {
-          "$ref" : "#/definitions/Address"
+        "address" : {
+          "$ref" : "#/definitions/address"
         },
-        "OpeningTimes" : {
-          "$ref" : "#/definitions/OpeningTimes"
+        "openingTimes" : {
+          "$ref" : "#/definitions/openingTimes"
         },
-        "Location" : {
-          "$ref" : "#/definitions/Location"
+        "location" : {
+          "$ref" : "#/definitions/location"
         }
       }
     },
@@ -2047,13 +2052,13 @@
           "example" : "DNB headquarters, lobby"
         },
         "Address" : {
-          "$ref" : "#/definitions/Address"
+          "$ref" : "#/definitions/address"
         },
         "Location" : {
-          "$ref" : "#/definitions/Location"
+          "$ref" : "#/definitions/location"
         },
         "OpeningTimes" : {
-          "$ref" : "#/definitions/OpeningTimes"
+          "$ref" : "#/definitions/openingTimes"
         },
         "Currencies" : {
           "type" : "array",
@@ -2065,22 +2070,22 @@
         }
       }
     },
-    "OpeningTimes" : {
+    "openingTimes" : {
       "type" : "array",
       "description" : "Opening times for a branch, ATM, or something else.\n\nIf open 24 hours, use \"00:00\" both for OpeningTime and CloseTime.",
       "items" : {
         "type" : "object",
         "properties" : {
-          "Day" : {
+          "day" : {
             "type" : "integer",
             "description" : "1: Monday, 2: Tuesday, etc"
           },
-          "OpeningTime" : {
+          "openingTime" : {
             "type" : "string",
             "description" : "HH:MM",
             "example" : "09:00"
           },
-          "CloseTime" : {
+          "closingTime" : {
             "type" : "string",
             "description" : "HH:MM",
             "example" : "16:00"
@@ -2142,19 +2147,19 @@
       },
       "description" : "Detailed explanation of the error. Used by ```error```."
     },
-    "HeaderLinks" : {
+    "headerLinks" : {
       "type" : "object",
-      "required" : [ "Self" ],
+      "required" : [ "self" ],
       "properties" : {
-        "Previous" : {
+        "previous" : {
           "type" : "string",
           "example" : "https://api.example.com/something-previous"
         },
-        "Self" : {
+        "self" : {
           "type" : "string",
           "example" : "https://api.example.com/something"
         },
-        "Next" : {
+        "next" : {
           "type" : "string",
           "example" : "https://api.example.com/next"
         }
