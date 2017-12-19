@@ -1506,15 +1506,18 @@
       "type" : "object",
       "properties" : {
         "AccountNumber" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "12345678901"
         },
         "IBAN" : {
           "type" : "string",
-          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html"
+          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html",
+          "example" : "NO93 8601 1117 947"
         },
         "BIC" : {
           "type" : "string",
-          "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362"
+          "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362",
+          "example" : "DNBANOKKXXX"
         },
         "Currency" : {
           "type" : "string",
@@ -1537,7 +1540,7 @@
           "$ref" : "#/definitions/AccountInterestDetails"
         }
       },
-      "description" : "Details for an ```Account```, with optional reference to ```AccountDetails```."
+      "description" : "Details for an ```Account```, with optional reference to ```AccountDetails```.\n\nIBAN help: http://www.xe.com/ibancalculator/sample/?ibancountry=norway"
     },
     "AccountInterestDetails" : {
       "type" : "object",
