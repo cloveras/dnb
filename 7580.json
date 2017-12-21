@@ -824,7 +824,7 @@
       "get" : {
         "tags" : [ "Payments" ],
         "summary" : "Get due payments by date range",
-        "description" : "Gets all due payments, both domestic and international.",
+        "description" : "Gets all due ```payment```s, both domestic and international.",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "accountNumber",
@@ -1468,46 +1468,46 @@
       "properties" : {
         "customerId" : {
           "type" : "string",
-          "description" : "SSN or organization number",
-          "example" : "12345678901"
+          "example" : "12345678901",
+          "description" : "SSN or organization number"
         },
         "customerType" : {
           "type" : "string",
-          "description" : "```PERSON```, ```COMPANY```",
-          "example" : "PERSON"
+          "example" : "PERSON",
+          "description" : "```PERSON```, ```COMPANY```"
         },
         "firstName" : {
           "type" : "string",
-          "description" : "First name. May be used contact person if type is ```COMPANY```.",
-          "example" : "Rune"
+          "example" : "Rune",
+          "description" : "First name. May be used contact person if type is ```COMPANY```."
         },
         "lastName" : {
           "type" : "string",
-          "description" : "Surname. May be used contact person if type is ```COMPANY```.",
-          "example" : "Bjerke"
+          "example" : "Bjerke",
+          "description" : "Surname. May be used contact person if type is ```COMPANY```."
         },
         "companyName" : {
           "type" : "string",
-          "description" : "Company name, if type is ```COMPANY```.",
-          "example" : "DNB"
+          "example" : "DNB",
+          "description" : "Company name, if type is ```COMPANY```."
         },
         "address" : {
           "$ref" : "#/definitions/address"
         },
         "email" : {
           "type" : "string",
-          "description" : "Email address.",
-          "example" : "example@example.com"
+          "example" : "example@example.com",
+          "description" : "Email address."
         },
         "phone" : {
           "type" : "string",
-          "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
-          "example" : "+4791504800"
+          "example" : "+4791504800",
+          "description" : "Including \"+\" and international prefix. Whitespace is stripped."
         },
         "countryOfBirth" : {
           "type" : "string",
-          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
-          "example" : "NO"
+          "example" : "NO",
+          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html"
         },
         "countryCitizenships" : {
           "type" : "array",
@@ -1545,8 +1545,8 @@
         },
         "engagementType" : {
           "type" : "string",
-          "description" : "Types of engagements: To be determined. Needs to be aligned with DNB CIM, without exposing internal complexity.",
-          "example" : "DEPOSIT"
+          "example" : "DEPOSIT",
+          "description" : "Types of engagements: To be determined. Needs to be aligned with DNB CIM, without exposing internal complexity."
         },
         "accountNumber" : {
           "type" : "string",
@@ -1568,18 +1568,18 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
-          "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
-          "example" : "12345678901"
+          "example" : "12345678901",
+          "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer"
         },
         "type" : {
           "type" : "string",
-          "description" : "Any type of account.",
-          "example" : "DEPOSIT"
+          "example" : "DEPOSIT",
+          "description" : "Any type of account."
         },
         "accountName" : {
           "type" : "string",
-          "description" : "Friendly name for the account:",
-          "example" : "Standard account"
+          "example" : "Standard account",
+          "description" : "Friendly name for the account:"
         },
         "balanceAvailable" : {
           "type" : "number",
@@ -1596,30 +1596,30 @@
       "properties" : {
         "IBAN" : {
           "type" : "string",
-          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace",
-          "example" : "NO9386011117947"
+          "example" : "NO9386011117947",
+          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace"
         },
         "BIC" : {
           "type" : "string",
-          "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362",
-          "example" : "DNBANOKKXXX"
+          "example" : "DNBANOKKXXX",
+          "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362"
         },
         "currency" : {
           "type" : "string",
-          "description" : "Currency: ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
-          "example" : "NOK"
+          "example" : "NOK",
+          "description" : "Currency: ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html"
         },
         "created" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "2018-12-31T23:59:59+01"
+          "example" : "2018-12-31T23:59:59+01",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         },
         "updated" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "2018-12-31T23:59:59+01"
+          "example" : "2018-12-31T23:59:59+01",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         },
         "accountInterestDetails" : {
           "$ref" : "#/definitions/accountInterestDetails"
@@ -1663,13 +1663,13 @@
         },
         "year" : {
           "type" : "string",
-          "description" : "YYYY: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "1990"
+          "example" : "1990",
+          "description" : "YYYY: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         },
         "month" : {
           "type" : "string",
-          "description" : "MM: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "01"
+          "example" : "01",
+          "description" : "MM: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         },
         "transactions" : {
           "type" : "array",
@@ -1686,8 +1686,8 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
-          "description" : "11 digits",
-          "example" : "12345678901"
+          "example" : "12345678901",
+          "description" : "11 digits"
         },
         "amountAvailable" : {
           "type" : "number",
@@ -1702,8 +1702,8 @@
         "timestamp" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "2018-12-31T23:59:59+01"
+          "example" : "2018-12-31T23:59:59+01",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }
       },
       "description" : "Balances for an ```account```. See also: ```cardBalance```."
@@ -1717,33 +1717,33 @@
         },
         "maskedCardNumber" : {
           "type" : "string",
-          "description" : "16 characters: Twelve \"X\", and the last four digits ofr the card number. 4x4 nubers with whitespace.",
-          "example" : "XXXX XXXX XXXX 1234"
+          "example" : "XXXX XXXX XXXX 1234",
+          "description" : "16 characters: Twelve \"X\", and the last four digits ofr the card number. 4x4 nubers with whitespace."
         },
         "cardType" : {
           "type" : "string",
-          "description" : "Visa, MasterCard, American Express, etc",
-          "example" : "VISA"
+          "example" : "VISA",
+          "description" : "Visa, MasterCard, American Express, etc"
         },
         "cardGroup" : {
           "type" : "string",
-          "description" : "Debit or credit.",
-          "example" : "DEBIT"
+          "example" : "DEBIT",
+          "description" : "Debit or credit."
         },
         "accountNumber" : {
           "type" : "string",
-          "description" : "Both for debit and credit cards",
-          "example" : "012345678901"
+          "example" : "012345678901",
+          "description" : "Both for debit and credit cards"
         },
         "cardStatus" : {
           "type" : "string",
-          "description" : "Normal, active, blocked",
-          "example" : "NORMAL"
+          "example" : "NORMAL",
+          "description" : "Normal, active, blocked"
         },
         "blockCode" : {
           "type" : "string",
-          "description" : "If blocked: Code for the blocking reason.",
-          "example" : "12345"
+          "example" : "12345",
+          "description" : "If blocked: Code for the blocking reason."
         },
         "expiryDate" : {
           "type" : "string",
@@ -1766,8 +1766,8 @@
       "properties" : {
         "currency" : {
           "type" : "string",
-          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
-          "example" : "NOK"
+          "example" : "NOK",
+          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html"
         },
         "creditLimit" : {
           "type" : "string",
@@ -1785,8 +1785,8 @@
         "timestamp" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "2018-12-31T23:59:59+01:00"
+          "example" : "2018-12-31T23:59:59+01:00",
+          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         }
       },
       "description" : "Used by ```card```. See also: ```accountBalance```."
@@ -1799,13 +1799,13 @@
         },
         "year" : {
           "type" : "string",
-          "description" : "YYYY",
-          "example" : "2018"
+          "example" : "2018",
+          "description" : "YYYY"
         },
         "month" : {
           "type" : "string",
-          "description" : "MM, where January is 01",
-          "example" : "01"
+          "example" : "01",
+          "description" : "MM, where January is 01"
         },
         "amount" : {
           "type" : "string",
@@ -1819,13 +1819,13 @@
         },
         "accountNumber" : {
           "type" : "string",
-          "description" : "Account to pay to. 11 digits.",
-          "example" : "012345678901"
+          "example" : "012345678901",
+          "description" : "Account to pay to. 11 digits."
         },
         "KID" : {
           "type" : "string",
-          "description" : "2-25 digits",
-          "example" : "42"
+          "example" : "42",
+          "description" : "2-25 digits"
         },
         "transactions" : {
           "type" : "array",
@@ -1857,8 +1857,8 @@
         },
         "type" : {
           "type" : "string",
-          "description" : "TBD",
-          "example" : "TBD1"
+          "example" : "TBD1",
+          "description" : "TBD"
         },
         "date" : {
           "type" : "string",
@@ -1868,8 +1868,8 @@
         },
         "status" : {
           "type" : "string",
-          "description" : "Statuses TBD",
-          "example" : "PAID"
+          "example" : "PAID",
+          "description" : "Statuses TBD"
         },
         "paymentDetails" : {
           "$ref" : "#/definitions/paymentDetails"
@@ -1882,8 +1882,8 @@
       "properties" : {
         "invoiceReference" : {
           "type" : "string",
-          "description" : "Used for eFaktura",
-          "example" : "12345678901"
+          "example" : "12345678901",
+          "description" : "Used for eFaktura"
         }
       },
       "description" : "More details about a payment. Some payment types have more data than others."
@@ -1894,8 +1894,8 @@
       "properties" : {
         "type" : {
           "type" : "string",
-          "description" : "KID, message (and transfer?)",
-          "example" : "KID"
+          "example" : "KID",
+          "description" : "KID, message (and transfer?)"
         },
         "debitAccountNumber" : {
           "type" : "string",
@@ -1912,18 +1912,18 @@
         "paymentDate" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "2018-12-31"
+          "example" : "2018-12-31",
+          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm"
         },
         "message" : {
           "type" : "string",
-          "description" : "Used for both KID and Message, based on Type.",
-          "example" : "35298562958265982749"
+          "example" : "35298562958265982749",
+          "description" : "Used for both KID and Message, based on Type."
         },
         "initiator" : {
           "type" : "string",
-          "description" : "Nu phone who dis?",
-          "example" : "DNB"
+          "example" : "DNB",
+          "description" : "Nu phone who dis?"
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
@@ -1942,13 +1942,13 @@
         },
         "currencyValue" : {
           "type" : "string",
-          "description" : "Amount in foreign currency (if relevant)",
-          "example" : "90.00"
+          "example" : "90.00",
+          "description" : "Amount in foreign currency (if relevant)"
         },
         "currency" : {
           "type" : "string",
-          "description" : "If not the currency of the account/card.",
-          "example" : "NOK"
+          "example" : "NOK",
+          "description" : "If not the currency of the account/card."
         },
         "dateBooking" : {
           "type" : "string",
@@ -1964,23 +1964,23 @@
         },
         "description" : {
           "type" : "string",
-          "description" : "Descriptive text for the transaction.",
-          "example" : "Lunch at The Restaurant at the End of the Universe"
+          "example" : "Lunch at The Restaurant at the End of the Universe",
+          "description" : "Descriptive text for the transaction."
         },
         "status" : {
           "type" : "string",
-          "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)",
-          "example" : "BOOKED"
+          "example" : "BOOKED",
+          "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)"
         },
         "merchantName" : {
           "type" : "string",
-          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```.",
-          "example" : "Coffee Shop ChainName, shop number 10"
+          "example" : "Coffee Shop ChainName, shop number 10",
+          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```."
         },
         "MCC" : {
           "type" : "string",
-          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html",
-          "example" : "3514: Hotels/Motels/Inns/Resorts"
+          "example" : "3514: Hotels/Motels/Inns/Resorts",
+          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html"
         }
       },
       "description" : "Same ```transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
@@ -1991,8 +1991,8 @@
       "properties" : {
         "postalAddressLine1" : {
           "type" : "string",
-          "description" : "Street name and number",
-          "example" : "Dronning Eufemias gate 30"
+          "example" : "Dronning Eufemias gate 30",
+          "description" : "Street name and number"
         },
         "postalAddressLine2" : {
           "type" : "string",
@@ -2011,8 +2011,8 @@
         },
         "postCountry" : {
           "type" : "string",
-          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
-          "example" : "NO"
+          "example" : "NO",
+          "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html"
         }
       },
       "description" : "Corresponds with address fields used internally in DNB. "
@@ -2022,13 +2022,13 @@
       "properties" : {
         "id" : {
           "type" : "string",
-          "description" : "Internal id",
-          "example" : "12345"
+          "example" : "12345",
+          "description" : "Internal id"
         },
         "friendlyName" : {
           "type" : "string",
-          "description" : "Descriptive name",
-          "example" : "DNB headquarters"
+          "example" : "DNB headquarters",
+          "description" : "Descriptive name"
         },
         "latitude" : {
           "type" : "string",
@@ -2040,8 +2040,8 @@
         },
         "description" : {
           "type" : "string",
-          "description" : "May be used for large areas like airports, train stations, stadiums, etc.",
-          "example" : "Lobby"
+          "example" : "Lobby",
+          "description" : "May be used for large areas like airports, train stations, stadiums, etc."
         }
       },
       "description" : "Data object for physical location based on GPS coordinates. May be used for something that does not have a specific address, or somethjing that needs a more specific than an address provides, such as an ```ATM``` at a train station. A ```location``` may be used in addition to an ```address```.\n"
@@ -2058,8 +2058,8 @@
         },
         "phoneNumber" : {
           "type" : "string",
-          "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
-          "example" : "+4791504800"
+          "example" : "+4791504800",
+          "description" : "Including \"+\" and international prefix. Whitespace is stripped."
         },
         "email" : {
           "type" : "string",
@@ -2118,13 +2118,13 @@
           },
           "openingTime" : {
             "type" : "string",
-            "description" : "HH:MM",
-            "example" : "09:00"
+            "example" : "09:00",
+            "description" : "HH:MM"
           },
           "closingTime" : {
             "type" : "string",
-            "description" : "HH:MM",
-            "example" : "16:00"
+            "example" : "16:00",
+            "description" : "HH:MM"
           }
         }
       }
@@ -2134,8 +2134,8 @@
       "properties" : {
         "httpStatus" : {
           "type" : "string",
-          "description" : "Implicit, but still included.",
-          "example" : "400"
+          "example" : "400",
+          "description" : "Implicit, but still included."
         },
         "errorNumber" : {
           "type" : "number",
@@ -2144,13 +2144,13 @@
         },
         "errorMessage" : {
           "type" : "string",
-          "description" : "Explanation",
-          "example" : "Computer says no"
+          "example" : "Computer says no",
+          "description" : "Explanation"
         },
         "errorDocumentation" : {
           "type" : "string",
-          "description" : "URI to developer documentation for this error",
-          "example" : "https://docs.example.com/help-for-this-endpoint/"
+          "example" : "https://docs.example.com/help-for-this-endpoint/",
+          "description" : "URI to developer documentation for this error"
         },
         "errorDetails" : {
           "type" : "array",
@@ -2168,13 +2168,13 @@
       "properties" : {
         "errorNumber" : {
           "type" : "string",
-          "description" : "DNB's internal error number.",
-          "example" : "5432"
+          "example" : "5432",
+          "description" : "DNB's internal error number."
         },
         "errorField" : {
           "type" : "string",
-          "description" : "Name of field that caused the error.",
-          "example" : "firstName"
+          "example" : "firstName",
+          "description" : "Name of field that caused the error."
         },
         "errorDescription" : {
           "type" : "string",
@@ -2207,8 +2207,8 @@
       "properties" : {
         "currency" : {
           "type" : "string",
-          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
-          "example" : "NOK"
+          "example" : "NOK",
+          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html"
         },
         "currencyRate" : {
           "type" : "string",
