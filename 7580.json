@@ -1579,7 +1579,7 @@
         "accountName" : {
           "type" : "string",
           "description" : "Friendly name for the account:",
-          "example" : "Savings account"
+          "example" : "Standard account"
         },
         "balanceAvailable" : {
           "type" : "number",
@@ -1589,7 +1589,7 @@
           "$ref" : "#/definitions/accountDetails"
         }
       },
-      "description" : "Same ```account``` data object for all types of account. The ```type``` property determines the type. \n\nAn ```account```may have ```accountDetails```, which may again have ```accountBalance```and  ```accountInterestDetails```."
+      "description" : "Same ```account``` data object for all types of account. The ```type``` property determines the type. \n\nAn ```account``` may have ```accountDetails```, which may again have ```accountBalance``` and  ```accountInterestDetails```.\n\nA Norwegian ```account```has three groups: xxxx yy zzzzc.\n* xxxx: Bank register number, identifying bank and branch. \n* yy: Account group. \n* zzzz: Customer account number.  \n* c: Control digit, modulo 11 with weight number 5432765432."
     },
     "accountDetails" : {
       "type" : "object",
