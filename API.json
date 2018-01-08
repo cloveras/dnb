@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "**IMPORTANT:** Contains (most of) 7580 APIs, plus additional drafts. This file may not contain all changes in the 7580 APIs. Questions? Contact cl@dnb.no.\n\n**Guidelines:**\n\n* camelCase, starting with lowercase: ```customerEngagement```, ```accountNumber```, ```creditCard```, etc.\n* Refer to standards, and use examples for all properties and values.\n* General rule: Response (object) determines endpoint: If reponse is ```account```, the endpoint should start with ```/accounts```. In cases where this may be up for discussion, multiple endpoints may be available for some time in order to evaluate.\n\n**Standards:**\n\nAPIs must use ISO and RFC standards. \n\n* Country: ISO 3166-1 alpha-2: : https://www.iso.org/standard/63546.html (```NO```, ```GB```, ```US```)\n* Currency: ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html (```NOK```, ```EUR```, ```USD```)\n* Date: ISO 8601:  www.iso.org/iso/home/standards/iso8601.htm (date: ```2018-12-31```, timestamp: ```2018-12-31T23:59:59+01:00```)\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 (```DNBANOKKXXX```)\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html (```NO9386011117947```)\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes) (```3514: Hotels/Motels/Inns/Resorts```)\n\n**HTTP Response Codes**\n\nHTTP reponse codes in Open Bank may be more detailed than in Shared Sertvices and layers below. The HTTP reponses below is a good starting point, and may be updated if needed. \n\nSuccess\n\n* ```200: OK``` https://httpstatuses.com/200 / https://tools.ietf.org/html/rfc7231#section-6.3.1     \n* ```201: Created``` https://httpstatuses.com/201 / https://tools.ietf.org/html/rfc7231#section-6.3.2\n\nClient Error\n\n* ```400: Bad Request``` https://httpstatuses.com/400 / https://tools.ietf.org/html/rfc7231#section-6.5.1     \n* ```401: Unauthorized``` https://httpstatuses.com/401 / https://tools.ietf.org/html/rfc7235#section-3.1      \n* ```403: Forbidden``` https://httpstatuses.com/403 / https://tools.ietf.org/html/rfc7231#section-6.5.3     \n* ```404: Not Found``` https://httpstatuses.com/404 / https://tools.ietf.org/html/rfc7231#section-6.5.4      \n* ```429: Too Many Requests``` https://httpstatuses.com/429 / https://tools.ietf.org/html/rfc6585#section-4  \n\nServer Error\n\n* ```500: Server Error``` https://httpstatuses.com/500 / https://tools.ietf.org/html/rfc7231#section-6.6.1     \n* ```503: Service Unavailable``` https://httpstatuses.com/503 / https://tools.ietf.org/html/rfc7231#section-6.6.503\n* ```504: Timeout``` https://httpstatuses.com/504 / https://tools.ietf.org/html/rfc7231#section-6.6.5    \n\n**Github**\n\nFull Swagger documentation and links to other generated documentation si available on Github: https://github.com/cloveras/dnb/\n\n\n",
-    "version" : "0.1",
+    "version" : "0.5",
     "title" : "API Drafts + 7580",
     "termsOfService" : "",
     "contact" : {
@@ -2028,7 +2028,7 @@
     },
     "/insurance/{policynumber}" : {
       "get" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get insurance details",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
@@ -2048,7 +2048,7 @@
         }
       },
       "post" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Update insurance details",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
@@ -2075,7 +2075,7 @@
         }
       },
       "delete" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Delete an insurance",
         "parameters" : [ ],
         "responses" : {
@@ -2093,7 +2093,7 @@
     },
     "/insurance/{policynumber}/claims" : {
       "get" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get list of claims",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
@@ -2118,7 +2118,7 @@
     },
     "/insurance/{policynumber}/claims/{claimid}" : {
       "get" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get details of claim",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
@@ -2148,7 +2148,7 @@
     },
     "/insurance/claim" : {
       "post" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Make new insurance claim",
         "description" : "Refers to object \"Insurance-claim\", which is a very simplified representation.",
         "consumes" : [ "application/json" ],
@@ -2175,7 +2175,7 @@
     },
     "/insurance/car/{licensenumber}" : {
       "get" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get info about a car's insurance",
         "description" : "Check if a car is insured: /insurance/car/AB12345",
         "produces" : [ "application/json" ],
@@ -2193,7 +2193,7 @@
         }
       },
       "post" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get insurance offer",
         "description" : "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html",
         "consumes" : [ ],
@@ -2231,7 +2231,7 @@
     },
     "/insurance/car/offer/{licensenumber}" : {
       "post" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get insurance offer",
         "description" : "Needs a lot of input. https://www.dnb.no/privat/forsikring/bilforsikring.html\n\nFor now: Assume the attributes of Car object are sufficient.",
         "consumes" : [ ],
@@ -2263,7 +2263,7 @@
     },
     "/insurance/car/towingservice/{latitude}/{longditude}" : {
       "get" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get nearest car towing service",
         "description" : "For now: Return a list of Locations. Later: Array of object representing car towing services.",
         "parameters" : [ ],
@@ -2290,7 +2290,7 @@
     },
     "/insurance/car/service/{latitude}/{longditude}" : {
       "get" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Get nearest car service",
         "description" : "Based on the specified location: List the nearest car service Locations, sorted by distance. Ideally: Also provide references to details about each service Location (contact info, opening hours, etc).",
         "parameters" : [ ],
@@ -2320,7 +2320,7 @@
     },
     "/insurance/weatheralert/{latitude}/{longditude}" : {
       "get" : {
-        "tags" : [ "Insurance" ],
+        "tags" : [ "Insurances" ],
         "summary" : "Check if there is a weather alert",
         "parameters" : [ {
           "name" : "radius",
@@ -4166,6 +4166,308 @@
           }
         }
       }
+    },
+    "/environment/travel/car/details/{licensenumber}" : {
+      "get" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Get details about car",
+        "description" : "Get data about a car, by license number.\n\nNorwegian vehicles: https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/carDetails"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Delete details about a car",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "licensenumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/environment/travel/car/footprint/{origin}/{destination}" : {
+      "get" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Get eco footprint for car travel",
+        "description" : "Returns array of String for now.\nFuture: Support routes, not just origin and desitination.\n\nExample call at Brighter Planet:\n```\nhttp://impact.brighterplanet.com/automobile_trips?automobile_fuel=Diesel&date=2017-09-20&destination=Kirkenes&fuel_efficiency=0.5&origin=Oslo&speed=80&timeframe=2017-01-01%2F2018-01-01\n````",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/ecoProfileTravel"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "origin",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "destination",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/environment/travel/flight/footprint/{airportOrigin}/{airportDestination}" : {
+      "get" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Get eco footprint for flight",
+        "description" : "Returns array of String for now.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/ecoProfileTravel"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "airportOrigin",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "OSL"
+      }, {
+        "name" : "airportDestination",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "HND"
+      } ]
+    },
+    "/environment/building/ecoProfileByLocation/{latitude}/{longditude}" : {
+      "get" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Get a building's eco profile by address",
+        "description" : "Retrieves data from various sources TBD",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/ecoProfileBuilding"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Create a building's eco profile",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ecoProfileBuilding"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "401" : {
+            "description" : "Status 401"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Delete a building's eco profile",
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "latitude",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "longditude",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/environment/building/ecoProfileByAddress" : {
+      "get" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Get a building's eco profile by address",
+        "description" : "Retrieves data from various sources TBD",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/ecoProfileBuilding"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Create a building's eco profile",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ecoProfileBuilding"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "401" : {
+            "description" : "Status 401"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Delete building's eco profile",
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      }
+    },
+    "/environment/person/ecoprofile/{customerId}" : {
+      "get" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Get a person's eco profile",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/ecoProfile"
+            }
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Create a person's eco profile",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ecoProfile"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "500" : {
+            "description" : "Status 500"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Environment" ],
+        "summary" : "Delete a person's eco profile",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
     }
   },
   "securityDefinitions" : {
@@ -5377,6 +5679,185 @@
         }
       },
       "description" : "URIs for previous, this and next. Only this (self) is required, as previous and next may not exist).\n\nSee also global headers for pagination: ```pageNumber```and ```pageSize```."
+    },
+    "ecoProfileTravel" : {
+      "type" : "object",
+      "properties" : {
+        "co2" : {
+          "type" : "string",
+          "description" : "Total CO2 in kg"
+        },
+        "nox" : {
+          "type" : "string",
+          "description" : "Total NOx in kg"
+        },
+        "distance" : {
+          "type" : "string",
+          "description" : "Kilometers"
+        },
+        "time" : {
+          "type" : "string",
+          "description" : "Hours"
+        }
+      }
+    },
+    "ecoProfileBuilding" : {
+      "type" : "object",
+      "properties" : {
+        "county" : {
+          "type" : "string",
+          "description" : "11 digits"
+        },
+        "bnr" : {
+          "type" : "integer",
+          "description" : "Bruksnummer"
+        },
+        "gnr" : {
+          "type" : "integer",
+          "description" : "Gårdsnummer"
+        },
+        "overallScrore" : {
+          "type" : "integer",
+          "description" : "1-100"
+        },
+        "buildYear" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "energyRating" : {
+          "type" : "string"
+        },
+        "co2Footprint" : {
+          "type" : "string"
+        },
+        "climateNeutral" : {
+          "type" : "boolean",
+          "description" : "Yes/no"
+        },
+        "solarEnergyPercentage" : {
+          "type" : "number",
+          "description" : "How much of the building's energy is solar? 0-100%"
+        },
+        "greenRoofArea" : {
+          "type" : "number",
+          "description" : "Area of building that is covered with plants. Measured in square meters (m^2)."
+        }
+      },
+      "description" : "A building's environmental profile. Aggregated and calculated data, which may be cached for fast access. The data is a suggestion, to be extended and improved."
+    },
+    "ecoProfile" : {
+      "type" : "object",
+      "properties" : {
+        "customerId" : {
+          "type" : "string",
+          "description" : "11 digits"
+        },
+        "overallScrore" : {
+          "type" : "integer",
+          "description" : "1-100"
+        },
+        "transport" : {
+          "type" : "object",
+          "properties" : {
+            "publicTransport" : {
+              "type" : "string"
+            },
+            "carPollution" : {
+              "type" : "string"
+            },
+            "annualTravel" : {
+              "type" : "string"
+            }
+          }
+        },
+        "home" : {
+          "type" : "object",
+          "description" : "Data about the home",
+          "properties" : {
+            "homeBuilding" : {
+              "type" : "string",
+              "description" : "Envoronmental rate of home"
+            },
+            "homeElectricity" : {
+              "type" : "string"
+            }
+          }
+        },
+        "work" : {
+          "type" : "object",
+          "description" : "Data about the workplace",
+          "properties" : {
+            "workBuilding" : {
+              "type" : "string",
+              "description" : "CO2 data of workplace"
+            }
+          }
+        }
+      },
+      "description" : "A persons environmental profile. Aggregated and calculated data, which may be cached for fast access. The data is a suggestion, to be extended and improved."
+    },
+    "carDetails" : {
+      "type" : "object",
+      "required" : [ "environmentClass", "licenseNumber", "make", "modelYear", "registrationDate" ],
+      "properties" : {
+        "licenseNumber" : {
+          "type" : "string",
+          "description" : "License plate"
+        },
+        "registrationDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "modelYear" : {
+          "type" : "number",
+          "description" : "2014"
+        },
+        "make" : {
+          "type" : "string",
+          "description" : "Audi"
+        },
+        "model" : {
+          "type" : "string",
+          "description" : "A4 Allroad"
+        },
+        "environmentClass" : {
+          "type" : "string",
+          "description" : "Euro 6L"
+        },
+        "fuelType" : {
+          "type" : "string",
+          "description" : "Gasoline"
+        },
+        "seats" : {
+          "type" : "number",
+          "description" : "5"
+        },
+        "particleFilter" : {
+          "type" : "boolean",
+          "description" : "False"
+        },
+        "fuelUseAverage" : {
+          "type" : "string",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
+        },
+        "fuelUseCity" : {
+          "type" : "number",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
+        },
+        "fuelUseCountry" : {
+          "type" : "number",
+          "description" : "Liters per kilometer, or kW per kilometer. Depends on fuelType."
+        },
+        "co2" : {
+          "type" : "number",
+          "description" : "Grams per kilometer"
+        },
+        "nox" : {
+          "type" : "number",
+          "description" : "Milligram per kilometer"
+        }
+      },
+      "description" : "Infomration from the Norwegian DMV: https://www.vegvesen.no/Kjoretoy/Kjop+og+salg/Kj%C3%B8ret%C3%B8yopplysninger"
     }
   }
 }
