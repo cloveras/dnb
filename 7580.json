@@ -53,6 +53,9 @@
             }
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Customers"
       }
     },
     "/customers/{customerId}" : {
@@ -94,7 +97,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "1234567890"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Customers"
+      }
     },
     "/accounts" : {
       "get" : {
@@ -124,6 +130,9 @@
             }
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Accounts"
       }
     },
     "/accounts/{accountNumber}" : {
@@ -172,7 +181,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "/accounts/{accountNumber}/balances" : {
       "get" : {
@@ -219,7 +231,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "/accounts/{accountNumber}/transactions" : {
       "get" : {
@@ -327,7 +342,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "/accounts/{accountNumber}/transactions/{transactionId}" : {
       "get" : {
@@ -380,7 +398,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "/accounts/{accountNumber}/payments/due" : {
       "get" : {
@@ -432,7 +453,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "/accounts/{accountNumber}/payments/due/{paymentId}" : {
       "get" : {
@@ -472,7 +496,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "/cards" : {
       "get" : {
@@ -516,6 +543,9 @@
             }
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Cards"
       }
     },
     "/cards/{cardId}/details" : {
@@ -563,7 +593,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Cards"
+      }
     },
     "/cards/{cardId}/transactions" : {
       "get" : {
@@ -614,7 +647,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Cards"
+      }
     },
     "/cards/{cardId}/block" : {
       "patch" : {
@@ -667,7 +703,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Cards"
+      }
     },
     "/cards/{cardId}/unblock" : {
       "patch" : {
@@ -711,7 +750,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Cards"
+      }
     },
     "/cards/{cardId}/invoice/{year}/{month}" : {
       "get" : {
@@ -772,7 +814,10 @@
         "type" : "string",
         "description" : "MM, where January is 01",
         "x-example" : "01"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Cards"
+      }
     },
     "/payments" : {
       "post" : {
@@ -818,6 +863,9 @@
             }
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Payments"
       }
     },
     "/payments/{accountNumber}/due" : {
@@ -890,7 +938,10 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Payments"
+      }
     },
     "/payments/{accountNumber}/due/{paymentId}" : {
       "get" : {
@@ -942,7 +993,10 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Payments"
+      }
     },
     "/payments/{paymentId}" : {
       "delete" : {
@@ -1021,7 +1075,10 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Payments"
+      }
     },
     "/currencies/convert/{base}/{currency}/{amount}" : {
       "get" : {
@@ -1090,7 +1147,10 @@
         "required" : true,
         "type" : "number",
         "x-example" : 100.0
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Currencies"
+      }
     },
     "/currencies/list/{base}" : {
       "get" : {
@@ -1148,7 +1208,10 @@
         "type" : "string",
         "description" : "\"Home\" currency. ISO 4217: alpha 3-letter upcase",
         "x-example" : "NOK"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Currencies"
+      }
     },
     "/locations/branch/findbyaddress" : {
       "get" : {
@@ -1194,6 +1257,9 @@
             }
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Locations"
       }
     },
     "/locations/branch/{latitude}/{longditude}/" : {
@@ -1246,7 +1312,10 @@
         "required" : true,
         "type" : "string",
         "x-example" : "10.760133399999972"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Locations"
+      }
     },
     "/locations/branch/{branchid}/details" : {
       "get" : {
@@ -1294,7 +1363,10 @@
         "type" : "string",
         "description" : "Id of branch",
         "x-example" : "12345"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Locations"
+      }
     },
     "/locations/branch/{branchid}/openingtimes" : {
       "get" : {
@@ -1343,7 +1415,10 @@
         "type" : "string",
         "description" : "Id of a branch",
         "x-example" : "12345"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Locations"
+      }
     },
     "/locations/atm/{latitude}/{longditude}/" : {
       "get" : {
@@ -1401,7 +1476,10 @@
         "type" : "string",
         "description" : "Current longditude.",
         "x-example" : "10.760133399999972"
-      } ]
+      } ],
+      "x-restlet" : {
+        "section" : "Locations"
+      }
     },
     "/locations/branches" : {
       "get" : {
@@ -1443,6 +1521,9 @@
             }
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Locations"
       }
     }
   },
@@ -1533,7 +1614,10 @@
           }
         }
       },
-      "description" : "One common ```customer```data object for all kinds of customers: Private customers, business customers, and others.\n\nPlease note:\n* Some updates may be required.\n* Should be aligned with Shared Services Layer: https://shasl.restlet.io/#type_customer\n* Should be aligned with CIM, while still hiding internal complexity and making it easy to understand and use."
+      "description" : "One common ```customer```data object for all kinds of customers: Private customers, business customers, and others.\n\nPlease note:\n* Some updates may be required.\n* Should be aligned with Shared Services Layer: https://shasl.restlet.io/#type_customer\n* Should be aligned with CIM, while still hiding internal complexity and making it easy to understand and use.",
+      "x-restlet" : {
+        "section" : "Customers"
+      }
     },
     "customerEngagement" : {
       "type" : "object",
@@ -1561,7 +1645,10 @@
           "example" : true
         }
       },
-      "description" : "Used with ```customer```. \n\nWork in progress. See https://shasl.restlet.io/#type_engagement"
+      "description" : "Used with ```customer```. \n\nWork in progress. See https://shasl.restlet.io/#type_engagement",
+      "x-restlet" : {
+        "section" : "Customers"
+      }
     },
     "account" : {
       "type" : "object",
@@ -1589,7 +1676,10 @@
           "$ref" : "#/definitions/accountDetails"
         }
       },
-      "description" : "Same ```account``` data object for all types of account. The ```type``` property determines the type. \n\nAn ```account``` may have ```accountDetails```, which may again have ```accountBalance``` and  ```accountInterestDetails```.\n\nA Norwegian ```account```has three groups: xxxx yy zzzzc.\n* xxxx: Bank register number, identifying bank and branch. \n* yy: Account group. \n* zzzz: Customer account number.  \n* c: Control digit, modulo 11 with weight number 5432765432."
+      "description" : "Same ```account``` data object for all types of account. The ```type``` property determines the type. \n\nAn ```account``` may have ```accountDetails```, which may again have ```accountBalance``` and  ```accountInterestDetails```.\n\nA Norwegian ```account```has three groups: xxxx yy zzzzc.\n* xxxx: Bank register number, identifying bank and branch. \n* yy: Account group. \n* zzzz: Customer account number.  \n* c: Control digit, modulo 11 with weight number 5432765432.",
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "accountDetails" : {
       "type" : "object",
@@ -1625,7 +1715,10 @@
           "$ref" : "#/definitions/accountInterestDetails"
         }
       },
-      "description" : "Details for an ```account```, with optional reference to ```accountDetails```.\n\nIBAN help: http://www.xe.com/ibancalculator/sample/?ibancountry=norway"
+      "description" : "Details for an ```account```, with optional reference to ```accountDetails```.\n\nIBAN help: http://www.xe.com/ibancalculator/sample/?ibancountry=norway",
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "accountInterestDetails" : {
       "type" : "object",
@@ -1651,7 +1744,10 @@
           "example" : 500.01
         }
       },
-      "description" : "Details about an the interest for an ```account```."
+      "description" : "Details about an the interest for an ```account```.",
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "accountStatement" : {
       "type" : "object",
@@ -1678,7 +1774,10 @@
           }
         }
       },
-      "description" : "Monthly ```account``` statement. "
+      "description" : "Monthly ```account``` statement. ",
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "accountBalance" : {
       "type" : "object",
@@ -1706,7 +1805,10 @@
           "example" : "2018-12-31T23:59:59+01"
         }
       },
-      "description" : "Balances for an ```account```. See also: ```cardBalance```."
+      "description" : "Balances for an ```account```. See also: ```cardBalance```.",
+      "x-restlet" : {
+        "section" : "Accounts"
+      }
     },
     "card" : {
       "type" : "object",
@@ -1758,7 +1860,10 @@
           "$ref" : "#/definitions/cardBalance"
         }
       },
-      "description" : "Both debit and credit cards."
+      "description" : "Both debit and credit cards.",
+      "x-restlet" : {
+        "section" : "Cards"
+      }
     },
     "cardBalance" : {
       "type" : "object",
@@ -1789,7 +1894,10 @@
           "example" : "2018-12-31T23:59:59+01:00"
         }
       },
-      "description" : "Used by ```card```. See also: ```accountBalance```."
+      "description" : "Used by ```card```. See also: ```accountBalance```.",
+      "x-restlet" : {
+        "section" : "Cards"
+      }
     },
     "cardInvoice" : {
       "type" : "object",
@@ -1833,6 +1941,9 @@
             "$ref" : "#/definitions/transaction"
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Cards"
       }
     },
     "payment" : {
@@ -1875,7 +1986,10 @@
           "$ref" : "#/definitions/paymentDetails"
         }
       },
-      "description" : "**Note:** May be completely merged with ```transaction```.\n\nDetails about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n"
+      "description" : "**Note:** May be completely merged with ```transaction```.\n\nDetails about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n",
+      "x-restlet" : {
+        "section" : "Payments"
+      }
     },
     "paymentDetails" : {
       "type" : "object",
@@ -1886,7 +2000,10 @@
           "example" : "12345678901"
         }
       },
-      "description" : "More details about a payment. Some payment types have more data than others."
+      "description" : "More details about a payment. Some payment types have more data than others.",
+      "x-restlet" : {
+        "section" : "Payments"
+      }
     },
     "paymentInitiation" : {
       "type" : "object",
@@ -1926,7 +2043,10 @@
           "example" : "DNB"
         }
       },
-      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
+      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. ",
+      "x-restlet" : {
+        "section" : "Payments"
+      }
     },
     "transaction" : {
       "type" : "object",
@@ -1983,7 +2103,10 @@
           "example" : "3514: Hotels/Motels/Inns/Resorts"
         }
       },
-      "description" : "Same ```transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
+      "description" : "Same ```transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```",
+      "x-restlet" : {
+        "section" : "Common"
+      }
     },
     "address" : {
       "type" : "object",
@@ -2015,7 +2138,10 @@
           "example" : "NO"
         }
       },
-      "description" : "Corresponds with address fields used internally in DNB. "
+      "description" : "Corresponds with address fields used internally in DNB. ",
+      "x-restlet" : {
+        "section" : "Common"
+      }
     },
     "location" : {
       "type" : "object",
@@ -2044,7 +2170,10 @@
           "example" : "Lobby"
         }
       },
-      "description" : "Data object for physical location based on GPS coordinates. May be used for something that does not have a specific address, or somethjing that needs a more specific than an address provides, such as an ```ATM``` at a train station. A ```location``` may be used in addition to an ```address```.\n"
+      "description" : "Data object for physical location based on GPS coordinates. May be used for something that does not have a specific address, or somethjing that needs a more specific than an address provides, such as an ```ATM``` at a train station. A ```location``` may be used in addition to an ```address```.\n",
+      "x-restlet" : {
+        "section" : "Common"
+      }
     },
     "branch" : {
       "type" : "object",
@@ -2074,6 +2203,9 @@
         "location" : {
           "$ref" : "#/definitions/location"
         }
+      },
+      "x-restlet" : {
+        "section" : "Common"
       }
     },
     "ATM" : {
@@ -2104,6 +2236,9 @@
             "example" : "NOK"
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Common"
       }
     },
     "openingTimes" : {
@@ -2127,6 +2262,9 @@
             "example" : "16:00"
           }
         }
+      },
+      "x-restlet" : {
+        "section" : "Common"
       }
     },
     "error" : {
@@ -2160,7 +2298,10 @@
           }
         }
       },
-      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred."
+      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.",
+      "x-restlet" : {
+        "section" : "Common"
+      }
     },
     "errorDetails" : {
       "type" : "object",
@@ -2181,7 +2322,10 @@
           "example" : "First name cannot have non-Latin characters."
         }
       },
-      "description" : "Detailed explanation of the error. Used by ```error```."
+      "description" : "Detailed explanation of the error. Used by ```error```.",
+      "x-restlet" : {
+        "section" : "Common"
+      }
     },
     "headerLinks" : {
       "type" : "object",
@@ -2200,7 +2344,10 @@
           "example" : "https://api.example.com/next"
         }
       },
-      "description" : "URIs for previous, this and next. Only this (self) is required, as previous and next may not exist).\n\nSee also global headers for pagination: ```pageNumber```and ```pageSize```."
+      "description" : "URIs for previous, this and next. Only this (self) is required, as previous and next may not exist).\n\nSee also global headers for pagination: ```pageNumber```and ```pageSize```.",
+      "x-restlet" : {
+        "section" : "Common"
+      }
     },
     "currencyRate" : {
       "type" : "object",
@@ -2215,7 +2362,33 @@
           "example" : "123.45"
         }
       },
-      "description" : "Used by ```/currencies/list/{base}``` for a response similar to:\n\n```\n{\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```"
+      "description" : "Used by ```/currencies/list/{base}``` for a response similar to:\n\n```\n{\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```",
+      "x-restlet" : {
+        "section" : "Common"
+      }
+    }
+  },
+  "x-restlet" : {
+    "sections" : {
+      "Customers" : {
+        "description" : "View or update basic customer information such as address, phone number and mail address."
+      },
+      "Accounts" : {
+        "description" : "Retrieve all the savings and debit accounts where your user is listed as the owner, and view account details if you’d like."
+      },
+      "Cards" : {
+        "description" : "Get information about all of the cards where the user is listed as owner, for both credit and debit cards."
+      },
+      "Payments" : {
+        "description" : "Initiate payments straight from an account using BankID, or fetch all the due payments on that account."
+      },
+      "Common" : { },
+      "Currencies" : {
+        "description" : "Get conversion rates between currencies, or list the most common currency rates based on a currency of your choice."
+      },
+      "Locations" : {
+        "description" : "Get coordinates, address and opening hours of a DNB branch or ATM."
+      }
     }
   }
 }
