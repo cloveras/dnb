@@ -266,299 +266,6 @@
         "x-example" : "1234567890"
       } ]
     },
-    "/accounts/{account}/name" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Get account name",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/account"
-            }
-          },
-          "404" : {
-            "description" : "Account not found."
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Change account name",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/account"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Delete account name",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "401" : {
-            "description" : "Status 401"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "account",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Account number, 11 digits."
-      } ]
-    },
-    "/accounts/{account}/balance" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Get account balance",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/accountBalance"
-            }
-          },
-          "401" : {
-            "description" : "No balance for you."
-          },
-          "404" : {
-            "description" : "Account not found."
-          },
-          "417" : {
-            "description" : "Expectation Failed: Requires prior (paranormal) transfer of customer's expectation (haha)."
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "account",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Account number, 11 digits."
-      } ]
-    },
-    "/accounts/{account}/safetospend" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Get \"safe to spend\" amount",
-        "description" : "The current balance, minus known outgoing transactions, plus known incoming transactions. ",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Here it is! Don't spend it all at once.",
-            "schema" : {
-              "type" : "number"
-            }
-          },
-          "401" : {
-            "description" : "Hmmm, not really your account, is it?"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "account",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Account number, 11 digits."
-      } ]
-    },
-    "/accounts/{account}/statement/{year}/{month}" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Get account statement",
-        "description" : "Account statement for specified account, year and month. Some meta data, and a list of all transactions. ",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/accountStatement"
-            }
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "account",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      }, {
-        "name" : "year",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      }, {
-        "name" : "month",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/accounts/{account}/transactionlist" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Get transactionlist for one account",
-        "description" : "Supports pagination: pagesize and pagenumber,",
-        "parameters" : [ {
-          "name" : "pagesize",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "pagenumber",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/transaction"
-              }
-            }
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "account",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/accounts/{account}/transactionlist/{year}/{month}" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "List of transactions for one month",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/transaction"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid parameters?"
-          },
-          "401" : {
-            "description" : "Status 401"
-          },
-          "404" : {
-            "description" : "No transactions."
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "account",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Account number, 11 digits. Example: 12345678910"
-      }, {
-        "name" : "year",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Year, 4 digits. Example: 2017"
-      }, {
-        "name" : "month",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Month, 2 digits (January is 01). Example: 01"
-      } ]
-    },
-    "/account/deposit/{ownerid}/{lenderid}" : {
-      "get" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Get information about deposit account",
-        "description" : "Need to provide more than an Account object, but then again this is a draft/note only.",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/account"
-            }
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Open deposit acount",
-        "description" : "For now: Using Account object with SSIDs of tennant and owner. \n\nRequired:\n* Electronic copy of signed rental agreement\n* The address of the apartment (or license details for car, boat, etc)\n* Name, SSN, email, phone of the lender (or is SSN sufficient, at least for existing DNB customers?)\n\nUse a Customer object?\n\nDNB deposit account: https://www.dnb.no/privat/nettbank-mobil-og-kort/konto/depositumskonto.html ",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "Accounts" ],
-        "summary" : "Delete deposit account",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Account deleted"
-          },
-          "401" : {
-            "description" : "Status 401"
-          },
-          "404" : {
-            "description" : "Status 404"
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "ownerid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Personal id number (SSN) of the \"owner\" for the artifact this deposit account is security for, 11 digits."
-      }, {
-        "name" : "lenderid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Personal id number (SSN) of the \"lender\" for the artifact this deposit account is security for, 11 digits."
-      } ]
-    },
     "/accounts" : {
       "get" : {
         "tags" : [ "Accounts" ],
@@ -684,6 +391,32 @@
         "x-example" : "12345678901"
       } ]
     },
+    "/accounts/{accountNumber}/safetospend" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get \"safe to spend\" amount",
+        "description" : "The current balance, minus known outgoing transactions, plus known incoming transactions. ",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Here it is! Don't spend it all at once.",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "401" : {
+            "description" : "Hmmm, not really your account, is it?"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Account number, 11 digits."
+      } ]
+    },
     "/accounts/{accountNumber}/transactions" : {
       "get" : {
         "tags" : [ "Accounts" ],
@@ -790,6 +523,52 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
+      } ]
+    },
+    "/accounts/{accountNumber}/transactions/{year}/{month}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "List of transactions for one month",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/transaction"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameters?"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "No transactions."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Account number, 11 digits. Example: 12345678910"
+      }, {
+        "name" : "year",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Year, 4 digits. Example: 2017"
+      }, {
+        "name" : "month",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Month, 2 digits (January is 01). Example: 01"
       } ]
     },
     "/accounts/{accountNumber}/transactions/{transactionId}" : {
@@ -937,6 +716,41 @@
         "x-example" : "12345"
       } ]
     },
+    "/accounts/{accountNumber}/statement/{year}/{month}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get account statement",
+        "description" : "Account statement for specified account, year and month. Some meta data, and a list of all transactions. ",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/accountStatement"
+            }
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "year",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      }, {
+        "name" : "month",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
     "/accounts/{accountNumber}/disponents" : {
       "get" : {
         "tags" : [ "Accounts" ],
@@ -979,6 +793,7 @@
         }
       },
       "patch" : {
+        "tags" : [ "Accounts" ],
         "summary" : "Update account disponents",
         "consumes" : [ ],
         "parameters" : [ {
@@ -1009,6 +824,62 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
+      } ]
+    },
+    "/accounts/depositAccounts/{ownerid}/{lenderid}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get information about deposit account",
+        "description" : "Need to provide more than an Account object, but then again this is a draft/note only.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/account"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Open deposit acount",
+        "description" : "For now: Using Account object with SSIDs of tennant and owner. \n\nRequired:\n* Electronic copy of signed rental agreement\n* The address of the apartment (or license details for car, boat, etc)\n* Name, SSN, email, phone of the lender (or is SSN sufficient, at least for existing DNB customers?)\n\nUse a Customer object?\n\nDNB deposit account: https://www.dnb.no/privat/nettbank-mobil-og-kort/konto/depositumskonto.html ",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Delete deposit account",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Account deleted"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "404" : {
+            "description" : "Status 404"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "ownerid",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Personal id number (SSN) of the \"owner\" for the artifact this deposit account is security for, 11 digits."
+      }, {
+        "name" : "lenderid",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Personal id number (SSN) of the \"lender\" for the artifact this deposit account is security for, 11 digits."
       } ]
     },
     "/cards" : {
