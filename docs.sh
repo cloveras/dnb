@@ -13,6 +13,7 @@ cd $MAINDIR
 # Github
 # ------------------------------------------------------------
 git add 7580.json
+git add API.json
 git commit -m "$COMMITMESSAGE"
 git push
 
