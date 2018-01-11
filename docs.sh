@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Generates HTML documentation from Swagger, using Spectacle and Slate
+#
+# Spectacle: https://github.com/sourcey/spectacle
+# Slate: https://github.com/lord/slate 
+# Widdershins (converts Swagger to Markdown): https://github.com/Mermade/widdershins
+
 COMMITMESSAGE=$*
 MAINDIR=/Users/cl/Dropbox/DNB/API/dnb
 
