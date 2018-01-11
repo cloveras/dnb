@@ -886,7 +886,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get annual recurring transactions",
-        "description" : "Retrieves what is believed to be recurring, annual transactions.\n\nAn array consisting of:\n* account: ```account```that the recurring transactions has been made to. The owner of the account may be looked up using ```/accounts/{accountNumber}```and using the ```customer``` (or further lookup if not known - TODO).\n* transactions: Number of ```transactions```found.\n* averageAmount: The average amount paid in all the transactions.\n* probability: An indication of how likely it is that this is, in fact, a recurring transaction. Takes into account the variation in amount and the number of transactions.",
+        "description" : "Retrieves what is believed to be recurring, annual transactions.\n\nAn array consisting of:\n* accountNumber: Number of the ```account```that the recurring transactions has been made to. The owner of the account may be looked up using ```/accounts/{accountNumber}```and using the ```customer``` (or further lookup if not known - TODO).\n* transactions: Number of ```transactions```found.\n* averageAmount: The average amount paid in all the transactions.\n* probability: An indication of how likely it is that this is, in fact, a recurring transaction. Takes into account the variation in amount and the number of transactions.",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -896,8 +896,9 @@
               "items" : {
                 "type" : "object",
                 "properties" : {
-                  "account" : {
-                    "$ref" : "#/definitions/account"
+                  "accountNumber" : {
+                    "type" : "string",
+                    "example" : "12345678901"
                   },
                   "transactions" : {
                     "type" : "integer",
@@ -929,7 +930,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get monthly recurring transactions",
-        "description" : "Retrieves what is believed to be recurring, monthly transactions.\n\nAn array consisting of:\n* account: ```account```that the recurring transactions has been made to. The owner of the account may be looked up using ```/accounts/{accountNumber}```and using the ```customer``` (or further lookup if not known - TODO).\n* transactions: Number of ```transactions```found.\n* averageAmount: The average amount paid in all the transactions.\n* probability: An indication of how likely it is that this is, in fact, a recurring transaction. Takes into account the variation in amount and the number of transactions.",
+        "description" : "Retrieves what is believed to be recurring, monthly transactions.\n\nAn array consisting of:\n* accountNumber: Number of the ```account```that the recurring transactions has been made to. The owner of the account may be looked up using ```/accounts/{accountNumber}```and using the ```customer``` (or further lookup if not known - TODO).\n* transactions: Number of ```transactions```found.\n* averageAmount: The average amount paid in all the transactions.\n* probability: An indication of how likely it is that this is, in fact, a recurring transaction. Takes into account the variation in amount and the number of transactions.",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -939,8 +940,9 @@
               "items" : {
                 "type" : "object",
                 "properties" : {
-                  "account" : {
-                    "$ref" : "#/definitions/account"
+                  "accountNumber" : {
+                    "type" : "string",
+                    "example" : "12345678901"
                   },
                   "transactions" : {
                     "type" : "integer",
