@@ -1026,7 +1026,7 @@
     },
     "/transactions/accounts/{accountNumber}" : {
       "get" : {
-        "tags" : [ "Accounts" ],
+        "tags" : [ "Transactions" ],
         "summary" : "Get transaction list for account",
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
@@ -1134,7 +1134,7 @@
     },
     "/transactions/cards/{cardId}" : {
       "get" : {
-        "tags" : [ "Accounts" ],
+        "tags" : [ "Transactions" ],
         "summary" : "Get transaction list for account",
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Cards```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
@@ -1242,7 +1242,7 @@
     },
     "/transactions/accounts/{accountNumber}/{transactionId}" : {
       "get" : {
-        "tags" : [ "Accounts" ],
+        "tags" : [ "Transactions" ],
         "summary" : "Get transaction list for account",
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
