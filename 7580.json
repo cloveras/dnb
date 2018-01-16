@@ -225,7 +225,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transaction list for account",
-        "description" : "Optional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
+        "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "SortOrder",
@@ -333,6 +333,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transaction specified by id",
+        "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. ",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -569,7 +570,7 @@
       "get" : {
         "tags" : [ "Cards" ],
         "summary" : "Get card transactions",
-        "description" : "Transactionlist for the customers creditcard",
+        "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nTransactionlist for the customers creditcard",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -1027,7 +1028,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transaction list for account",
-        "description" : "Optional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
+        "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "SortOrder",
@@ -1135,7 +1136,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transaction list for account",
-        "description" : "Optional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
+        "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Cards```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "SortOrder",
@@ -1237,6 +1238,120 @@
         "required" : true,
         "type" : "string",
         "x-example" : "12345678901"
+      } ]
+    },
+    "/transactions/accounts/{accountNumber}/{transactionId}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get transaction list for account",
+        "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "SortOrder",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Ascending, descending",
+          "x-example" : "ASC"
+        }, {
+          "name" : "DateFrom",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for start date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "x-example" : "2018-01"
+        }, {
+          "name" : "DateTo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for end date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "x-example" : "2018-02"
+        }, {
+          "name" : "AmountMinimum",
+          "in" : "query",
+          "required" : false,
+          "type" : "number",
+          "description" : "Filter for minimum amount (included). No decimals.",
+          "x-example" : 500.0
+        }, {
+          "name" : "AmountMaximum",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for maximum amount (included). No decimals.",
+          "x-example" : "10000"
+        }, {
+          "name" : "MCC",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for MCC. Use code only.",
+          "x-example" : "3514"
+        }, {
+          "name" : "FreeText",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for free text. Case insensitive.",
+          "x-example" : "\"vipps\""
+        }, {
+          "name" : "IncludePending",
+          "in" : "query",
+          "required" : false,
+          "type" : "boolean",
+          "description" : "Should pending transactions be included?"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/transaction"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      }, {
+        "name" : "transactionId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345"
       } ]
     },
     "/currencies/convert/{base}/{currency}/{amount}" : {
