@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "**IMPORTANT:** This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts. For more APIs, in even less finished form, see: https://dnb.restlet.no\n\n**Guidelines:**\n\n* camelCase, starting with lowercase: ```customerEngagement```, ```accountNumber```, ```creditCard```, etc.\n* Refer to standards, and use examples for all properties and values.\n* General rule: Response (object) determines endpoint: If response is ```account```, the endpoint should start with ```/accounts```. In cases where this may be up for discussion, multiple endpoints may, for a limited time, be available in order to evaluate.\n\n**Standards:**\n\nAPIs must use ISO and RFC standards:\n\n* Country: ISO 3166-1 alpha-2: : https://www.iso.org/standard/63546.html (```NO```, ```GB```, ```US```)\n* Currency: ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html (```NOK```, ```EUR```, ```USD```)\n* Date: ISO 8601:  www.iso.org/iso/home/standards/iso8601.htm (date: ```2018-12-31```, timestamp: ```2018-12-31T23:59:59+01:00```)\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 (```DNBANOKKXXX```)\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html (```NO9386011117947```)\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes) (```3514: Hotels/Motels/Inns/Resorts```)\n\n**HTTP Response Codes**\n\nHTTP response codes in Open Bank may be more detailed than in Shared Sertvices and layers below. The HTTP responses below is a good starting point, and may be updated if needed. \n\nSuccess\n\n* ```200: OK``` https://httpstatuses.com/200 / https://tools.ietf.org/html/rfc7231#section-6.3.1     \n* ```201: Created``` https://httpstatuses.com/201 / https://tools.ietf.org/html/rfc7231#section-6.3.2\n\nClient Error\n\n* ```400: Bad Request``` https://httpstatuses.com/400 / https://tools.ietf.org/html/rfc7231#section-6.5.1     \n* ```401: Unauthorized``` https://httpstatuses.com/401 / https://tools.ietf.org/html/rfc7235#section-3.1      \n* ```403: Forbidden``` https://httpstatuses.com/403 / https://tools.ietf.org/html/rfc7231#section-6.5.3     \n* ```404: Not Found``` https://httpstatuses.com/404 / https://tools.ietf.org/html/rfc7231#section-6.5.4      \n* ```429: Too Many Requests``` https://httpstatuses.com/429 / https://tools.ietf.org/html/rfc6585#section-4  \n\nServer Error\n\n* ```500: Server Error``` https://httpstatuses.com/500 / https://tools.ietf.org/html/rfc7231#section-6.6.1     \n* ```503: Service Unavailable``` https://httpstatuses.com/503 / https://tools.ietf.org/html/rfc7231#section-6.6.503\n* ```504: Timeout``` https://httpstatuses.com/504 / https://tools.ietf.org/html/rfc7231#section-6.6.5    \n\n**Errors**\n\nAll errors return a relevant HTTP status code and response with an ``error`` containing additional details.\n\n**Github**\n\nFull Swagger documentation and links to other generated documentation is available on Github: https://github.com/cloveras/dnb/\n\n\n",
+    "description" : "**IMPORTANT:** This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts. For more APIs, in even less finished form, see: https://dnb.restlet.no\n\n**Guidelines:**\n\n* The Swagger file should be self-documented, containing as much relevant information as possible.\n* camelCase, starting with lowercase: ```customerEngagement```, ```accountNumber```, ```creditCard```, etc.\n* Use, and refer to, standards for all properties and values.\n* Use examples for all properties and values. Don't force guesses.\n* General rule: Response (object) determines endpoint: If response is ```account```, the endpoint should start with ```/accounts```. In cases where this may be up for discussion, multiple endpoints may, for a limited time, be available in order to evaluate.\n\n**Standards:**\n\nAPIs must use ISO and RFC standards:\n\n* Country: ISO 3166-1 alpha-2: : https://www.iso.org/standard/63546.html (```NO```, ```GB```, ```US```)\n* Currency: ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html (```NOK```, ```EUR```, ```USD```)\n* Date: ISO 8601:  www.iso.org/iso/home/standards/iso8601.htm (date: ```2018-12-31```, timestamp: ```2018-12-31T23:59:59+01:00```)\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 (```DNBANOKKXXX```)\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html (```NO9386011117947```)\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes) (```3514: Hotels/Motels/Inns/Resorts```)\n\n**HTTP Response Codes**\n\nHTTP response codes should be logical: If an ```account``` does not exist, the response should be ```404 Not Found```.  All errors return a relevant HTTP status code and response with an ``error`` containing additional details. \n\nSuccess\n\n* ```200: OK``` https://httpstatuses.com/200 / https://tools.ietf.org/html/rfc7231#section-6.3.1     \n* ```201: Created``` https://httpstatuses.com/201 / https://tools.ietf.org/html/rfc7231#section-6.3.2\n\nClient Error\n\n* ```400: Bad Request``` https://httpstatuses.com/400 / https://tools.ietf.org/html/rfc7231#section-6.5.1     \n* ```401: Unauthorized``` https://httpstatuses.com/401 / https://tools.ietf.org/html/rfc7235#section-3.1      \n* ```403: Forbidden``` https://httpstatuses.com/403 / https://tools.ietf.org/html/rfc7231#section-6.5.3     \n* ```404: Not Found``` https://httpstatuses.com/404 / https://tools.ietf.org/html/rfc7231#section-6.5.4      \n* ```429: Too Many Requests``` https://httpstatuses.com/429 / https://tools.ietf.org/html/rfc6585#section-4  \n\nServer Error\n\n* ```500: Server Error``` https://httpstatuses.com/500 / https://tools.ietf.org/html/rfc7231#section-6.6.1     \n* ```503: Service Unavailable``` https://httpstatuses.com/503 / https://tools.ietf.org/html/rfc7231#section-6.6.503\n* ```504: Timeout``` https://httpstatuses.com/504 / https://tools.ietf.org/html/rfc7231#section-6.6.5    \n\n**Github**\n\nFull Swagger documentation and links to other generated documentation is available on Github: https://github.com/cloveras/dnb/\n\n\n",
     "version" : "0.4",
     "title" : "7580: APIs for 3rd Parties - Gateway Layer",
     "termsOfService" : "http://developer.dnb.no/terms",
@@ -1021,6 +1021,222 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
+      } ]
+    },
+    "/transactions/accounts/{accountNumber}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get transaction list for account",
+        "description" : "Optional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "SortOrder",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Ascending, descending",
+          "x-example" : "ASC"
+        }, {
+          "name" : "DateFrom",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for start date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "x-example" : "2018-01"
+        }, {
+          "name" : "DateTo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for end date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "x-example" : "2018-02"
+        }, {
+          "name" : "AmountMinimum",
+          "in" : "query",
+          "required" : false,
+          "type" : "number",
+          "description" : "Filter for minimum amount (included). No decimals.",
+          "x-example" : 500.0
+        }, {
+          "name" : "AmountMaximum",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for maximum amount (included). No decimals.",
+          "x-example" : "10000"
+        }, {
+          "name" : "MCC",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for MCC. Use code only.",
+          "x-example" : "3514"
+        }, {
+          "name" : "FreeText",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for free text. Case insensitive.",
+          "x-example" : "\"vipps\""
+        }, {
+          "name" : "IncludePending",
+          "in" : "query",
+          "required" : false,
+          "type" : "boolean",
+          "description" : "Should pending transactions be included?"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/transaction"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      } ]
+    },
+    "/transactions/cards/{cardId}" : {
+      "get" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Get transaction list for account",
+        "description" : "Optional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* IncludePending: **TODO:** Determine if this should be included, or refer to /payments/due/{accountNumber}",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "SortOrder",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Ascending, descending",
+          "x-example" : "ASC"
+        }, {
+          "name" : "DateFrom",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for start date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "x-example" : "2018-01"
+        }, {
+          "name" : "DateTo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date",
+          "description" : "Filter for end date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "x-example" : "2018-02"
+        }, {
+          "name" : "AmountMinimum",
+          "in" : "query",
+          "required" : false,
+          "type" : "number",
+          "description" : "Filter for minimum amount (included). No decimals.",
+          "x-example" : 500.0
+        }, {
+          "name" : "AmountMaximum",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for maximum amount (included). No decimals.",
+          "x-example" : "10000"
+        }, {
+          "name" : "MCC",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for MCC. Use code only.",
+          "x-example" : "3514"
+        }, {
+          "name" : "FreeText",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Filter for free text. Case insensitive.",
+          "x-example" : "\"vipps\""
+        }, {
+          "name" : "IncludePending",
+          "in" : "query",
+          "required" : false,
+          "type" : "boolean",
+          "description" : "Should pending transactions be included?"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/transaction"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
       } ]
     },
     "/currencies/convert/{base}/{currency}/{amount}" : {
@@ -2190,19 +2406,23 @@
     },
     "headerLinks" : {
       "type" : "object",
-      "required" : [ "self" ],
+      "required" : [ "first", "self" ],
       "properties" : {
-        "previous" : {
+        "first" : {
           "type" : "string",
-          "example" : "https://api.example.com/something-previous"
+          "description" : "https://api.example.com/something-first"
         },
         "self" : {
           "type" : "string",
           "example" : "https://api.example.com/something"
         },
+        "previous" : {
+          "type" : "string",
+          "example" : "https://api.example.com/something-previous"
+        },
         "next" : {
           "type" : "string",
-          "example" : "https://api.example.com/next"
+          "example" : "https://api.example.com/something-next"
         }
       },
       "description" : "URIs for previous, this and next. Only this (self) is required, as previous and next may not exist).\n\nSee also global headers for pagination: ```pageNumber```and ```pageSize```."
