@@ -2013,9 +2013,7 @@
           "example" : "012345678901"
         },
         "cardStatus" : {
-          "type" : "string",
-          "description" : "Normal, active, blocked",
-          "example" : "NORMAL"
+          "$ref" : "#/definitions/cardStatus"
         },
         "blockCode" : {
           "type" : "string",
@@ -2035,6 +2033,22 @@
         }
       },
       "description" : "Both debit and credit cards."
+    },
+    "cardStatus" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "default" : "Not blocked",
+          "enum" : [ "Not blocked", "Card blocked by customer - card is allowed to unblock", "Card blocked by customer - card is not allowed to unblock", "Card blocked for e-commerce by customer service", "Card blocked for e-commerce by customer" ],
+          "example" : "Not blocked"
+        },
+        "blockingType" : {
+          "type" : "string",
+          "default" : "Card",
+          "enum" : [ "Card", "E-commerce" ]
+        }
+      }
     },
     "cardBalance" : {
       "type" : "object",
