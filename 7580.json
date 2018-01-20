@@ -240,7 +240,7 @@
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for start date (included)./home/standards/iso8601.htm",
+          "description" : "Filter for start date (included)",
           "x-example" : "2018-01-01"
         }, {
           "name" : "dateTo",
@@ -971,7 +971,7 @@
       "patch" : {
         "tags" : [ "Payments" ],
         "summary" : "Update existing payment",
-        "description" : "A payment can be updatet until due dtae. \nPossible to udate :\n* Date (\"YYYY-MM-DD\", ISO 8601: www.iso.org/iso/home/standards/iso8601.htm)\n* Amount\n* Status (deactivate, reactivate)\n\nReturns the updated Payment.",
+        "description" : "A ```payment``` can be updatet until due date:\n* Date \n* Amount\n* Status (deactivate, reactivate)\n\nReturns the updated ```payment```.",
         "consumes" : [ ],
         "parameters" : [ {
           "name" : "body",
