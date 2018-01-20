@@ -839,7 +839,7 @@
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "Filter for start date (included).",
           "x-example" : "2018-01-01"
         }, {
           "name" : "stopDate",
@@ -847,7 +847,7 @@
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "\"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "Filter for end date (included).",
           "x-example" : "2018-12-31"
         } ],
         "responses" : {
@@ -1376,7 +1376,7 @@
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "description" : "End of day. ISO 8601: “YYYY-MM-DD”: https://en.wikipedia.org/wiki/ISO_8601",
+          "description" : "End of day rate.",
           "x-example" : "2018-12-31"
         } ],
         "responses" : {
@@ -2142,7 +2142,6 @@
         "date" : {
           "type" : "string",
           "format" : "date",
-          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-31-12"
         },
         "status" : {
@@ -2191,8 +2190,7 @@
         "paymentDate" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "2018-12-31"
+          "example" : "2018-12-31T23:59:59+01:00"
         },
         "message" : {
           "type" : "string",
@@ -2232,13 +2230,11 @@
         "dateBooking" : {
           "type" : "string",
           "format" : "date",
-          "description" : "YYYY-MM-DD: Date: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "example" : "2018-13-12"
+          "example" : "2018-12-31"
         },
         "dateValue" : {
           "type" : "string",
           "format" : "date",
-          "description" : "YYYY-MM. ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31"
         },
         "description" : {
