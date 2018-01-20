@@ -174,10 +174,10 @@
         "x-example" : "12345678901"
       } ]
     },
-    "/accounts/{accountNumber}/balances" : {
+    "/accounts/{accountNumber}/balance" : {
       "get" : {
         "tags" : [ "Accounts" ],
-        "summary" : "Get account balances",
+        "summary" : "Get account balance",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -224,41 +224,41 @@
     "/accounts/{accountNumber}/transactions" : {
       "get" : {
         "tags" : [ "Accounts" ],
-        "summary" : "Get transaction list for account",
+        "summary" : "Get transactions for account",
         "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "SortOrder",
+          "name" : "sortOrder",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Ascending, descending",
           "x-example" : "ASC"
         }, {
-          "name" : "DateFrom",
+          "name" : "dateFrom",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for start date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "x-example" : "2018-01"
+          "description" : "Filter for start date (included)./home/standards/iso8601.htm",
+          "x-example" : "2018-01-01"
         }, {
-          "name" : "DateTo",
+          "name" : "dateTo",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for end date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "x-example" : "2018-02"
+          "description" : "Filter for end date (included).",
+          "x-example" : "2018-31-12"
         }, {
-          "name" : "AmountMinimum",
+          "name" : "amountMinimum",
           "in" : "query",
           "required" : false,
           "type" : "number",
           "description" : "Filter for minimum amount (included). No decimals.",
           "x-example" : 500.0
         }, {
-          "name" : "AmountMaximum",
+          "name" : "amountMaximum",
           "in" : "query",
           "required" : false,
           "type" : "string",
@@ -272,14 +272,14 @@
           "description" : "Filter for MCC. Use code only.",
           "x-example" : "3514"
         }, {
-          "name" : "FreeText",
+          "name" : "freeText",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Filter for free text. Case insensitive.",
           "x-example" : "\"vipps\""
         }, {
-          "name" : "IncludePending",
+          "name" : "includePending",
           "in" : "query",
           "required" : false,
           "type" : "boolean",
@@ -393,14 +393,14 @@
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "YYYY-MM-DD”: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "Filter for start date (included).",
           "x-example" : "2018-01-01"
         }, {
           "name" : "stopDate",
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "description" : "YYYY-MM-DD”: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "Filter for end date (included).",
           "x-example" : "2018-12-31"
         } ],
         "responses" : {
@@ -1031,37 +1031,37 @@
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "SortOrder",
+          "name" : "sortOrder",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Ascending, descending",
           "x-example" : "ASC"
         }, {
-          "name" : "DateFrom",
+          "name" : "dateFrom",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for start date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "x-example" : "2018-01"
+          "description" : "Filter for start date (included).",
+          "x-example" : "2018-01-01"
         }, {
-          "name" : "DateTo",
+          "name" : "dateTo",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for end date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "x-example" : "2018-02"
+          "description" : "Filter for end date (included).",
+          "x-example" : "2018-12-31"
         }, {
-          "name" : "AmountMinimum",
+          "name" : "amountMinimum",
           "in" : "query",
           "required" : false,
           "type" : "number",
           "description" : "Filter for minimum amount (included). No decimals.",
           "x-example" : 500.0
         }, {
-          "name" : "AmountMaximum",
+          "name" : "amountMaximum",
           "in" : "query",
           "required" : false,
           "type" : "string",
@@ -1075,14 +1075,14 @@
           "description" : "Filter for MCC. Use code only.",
           "x-example" : "3514"
         }, {
-          "name" : "FreeText",
+          "name" : "freeText",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Filter for free text. Case insensitive.",
           "x-example" : "\"vipps\""
         }, {
-          "name" : "IncludePending",
+          "name" : "includePending",
           "in" : "query",
           "required" : false,
           "type" : "boolean",
@@ -1196,37 +1196,37 @@
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Cards```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "SortOrder",
+          "name" : "sortOrder",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Ascending, descending",
           "x-example" : "ASC"
         }, {
-          "name" : "DateFrom",
+          "name" : "dateFrom",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for start date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "x-example" : "2018-01"
+          "description" : "Filter for start date (included).",
+          "x-example" : "2018-01-01"
         }, {
-          "name" : "DateTo",
+          "name" : "dateTo",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "Filter for end date (included). ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
-          "x-example" : "2018-02"
+          "description" : "Filter for end date (included).",
+          "x-example" : "2018-12-31"
         }, {
-          "name" : "AmountMinimum",
+          "name" : "amountMinimum",
           "in" : "query",
           "required" : false,
           "type" : "number",
           "description" : "Filter for minimum amount (included). No decimals.",
           "x-example" : 500.0
         }, {
-          "name" : "AmountMaximum",
+          "name" : "amountMaximum",
           "in" : "query",
           "required" : false,
           "type" : "string",
@@ -1240,14 +1240,14 @@
           "description" : "Filter for MCC. Use code only.",
           "x-example" : "3514"
         }, {
-          "name" : "FreeText",
+          "name" : "freeText",
           "in" : "query",
           "required" : false,
           "type" : "string",
           "description" : "Filter for free text. Case insensitive.",
           "x-example" : "\"vipps\""
         }, {
-          "name" : "IncludePending",
+          "name" : "includePending",
           "in" : "query",
           "required" : false,
           "type" : "boolean",
@@ -1916,13 +1916,13 @@
         "created" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "Time of account creation.",
           "example" : "2018-12-31T23:59:59+01"
         },
         "updated" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "Time of last update.",
           "example" : "2018-12-31T23:59:59+01"
         },
         "accountInterestDetails" : {
