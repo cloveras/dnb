@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "**IMPORTANT:** This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts. For more APIs, in even less finished form, see: https://dnb.restlet.no\n\n**Guidelines:**\n\n* The Swagger file should be self-documented, containing as much relevant information as possible.\n* camelCase, starting with lowercase: ```customerEngagement```, ```accountNumber```, ```creditCard```, etc.\n* Use, and refer to, standards for all properties and values.\n* Use examples for all properties and values. Don't force guesses.\n* General rule: Response (object) determines endpoint: If response is ```account```, the endpoint should start with ```/accounts```. In cases where this may be up for discussion, multiple endpoints may, for a limited time, be available in order to evaluate.\n\n**Standards:**\n\nAPIs must use ISO and RFC standards:\n\n* Country: ISO 3166-1 alpha-2: : https://www.iso.org/standard/63546.html (```NO```, ```GB```, ```US```)\n* Currency: ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html (```NOK```, ```EUR```, ```USD```)\n* Date: ISO 8601:  www.iso.org/iso/home/standards/iso8601.htm (date: ```2018-12-31```, timestamp: ```2018-12-31T23:59:59+01:00```)\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 (```DNBANOKKXXX```)\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html (```NO9386011117947```)\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes) (```3514: Hotels/Motels/Inns/Resorts```)\n\n**HTTP Response Codes**\n\nHTTP response codes should be logical: If an ```account``` does not exist, the response should be ```404 Not Found```.  All errors return a relevant HTTP status code and response with an ``error`` containing additional details. \n\nSuccess\n\n* ```200: OK``` https://httpstatuses.com/200 / https://tools.ietf.org/html/rfc7231#section-6.3.1     \n* ```201: Created``` https://httpstatuses.com/201 / https://tools.ietf.org/html/rfc7231#section-6.3.2\n\nClient Error\n\n* ```400: Bad Request``` https://httpstatuses.com/400 / https://tools.ietf.org/html/rfc7231#section-6.5.1     \n* ```401: Unauthorized``` https://httpstatuses.com/401 / https://tools.ietf.org/html/rfc7235#section-3.1      \n* ```403: Forbidden``` https://httpstatuses.com/403 / https://tools.ietf.org/html/rfc7231#section-6.5.3     \n* ```404: Not Found``` https://httpstatuses.com/404 / https://tools.ietf.org/html/rfc7231#section-6.5.4      \n* ```429: Too Many Requests``` https://httpstatuses.com/429 / https://tools.ietf.org/html/rfc6585#section-4  \n\nServer Error\n\n* ```500: Server Error``` https://httpstatuses.com/500 / https://tools.ietf.org/html/rfc7231#section-6.6.1     \n* ```503: Service Unavailable``` https://httpstatuses.com/503 / https://tools.ietf.org/html/rfc7231#section-6.6.503\n* ```504: Timeout``` https://httpstatuses.com/504 / https://tools.ietf.org/html/rfc7231#section-6.6.5    \n\n**Github**\n\nFull Swagger documentation and links to other generated documentation is available on Github: https://github.com/cloveras/dnb/\n\n\n",
-    "version" : "0.4",
+    "version" : "0.5",
     "title" : "7580: APIs for 3rd Parties - Gateway Layer",
     "termsOfService" : "http://developer.dnb.no/terms",
     "contact" : {
@@ -1308,7 +1308,7 @@
           "required" : false,
           "type" : "string",
           "format" : "date",
-          "description" : "End of day. ISO 8601: \"YYYY-MM-DD\": https://en.wikipedia.org/wiki/ISO_8601",
+          "description" : "End of day rate.",
           "x-example" : "2018-12-31"
         } ],
         "responses" : {
@@ -1888,7 +1888,6 @@
         "timestamp" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31T23:59:59+01"
         }
       },
@@ -1968,12 +1967,12 @@
         },
         "year" : {
           "type" : "string",
-          "description" : "YYYY: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "YYYY",
           "example" : "1990"
         },
         "month" : {
           "type" : "string",
-          "description" : "MM: ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
+          "description" : "MM, January: 01",
           "example" : "01"
         },
         "transactions" : {
@@ -2026,7 +2025,6 @@
         "expiryDate" : {
           "type" : "string",
           "format" : "date",
-          "description" : "YYYY-MM. ISO 8601: https://www.iso.org/iso-8601-date-and-time-format.html",
           "example" : "2018-12"
         },
         "debitBalance" : {
@@ -2063,7 +2061,6 @@
         "timestamp" : {
           "type" : "string",
           "format" : "date-time",
-          "description" : "ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31T23:59:59+01:00"
         }
       },
@@ -2093,7 +2090,6 @@
         "dueDate" : {
           "type" : "string",
           "format" : "date",
-          "description" : "YYYY-MM-DD. ISO 8601: www.iso.org/iso/home/standards/iso8601.htm",
           "example" : "2018-12-31"
         },
         "accountNumber" : {
