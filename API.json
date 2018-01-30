@@ -971,6 +971,44 @@
         "type" : "string"
       } ]
     },
+    "/accounts/{accountNumber}/transactions/subscribe" : {
+      "post" : {
+        "tags" : [ "Accounts" ],
+        "summary" : "Subscribe to transactions",
+        "description" : "Subscribe to all new ```transaction```s to and from the specified ```account```. New ```transaction```s will be ```POST``èd to the ```callbackUrl```. ",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "callbackUrl" ],
+            "properties" : {
+              "callbackUrl" : {
+                "type" : "string",
+                "description" : "Callback URL"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "accountNumber",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      } ]
+    },
     "/cards" : {
       "get" : {
         "tags" : [ "Card" ],
