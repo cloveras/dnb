@@ -1748,6 +1748,8 @@
         "customerType" : {
           "type" : "string",
           "description" : "```PERSON```, ```COMPANY```",
+          "default" : "PERSON",
+          "enum" : [ "PERSON", "COMPANY" ],
           "example" : "PERSON"
         },
         "firstName" : {
@@ -1770,17 +1772,22 @@
         },
         "email" : {
           "type" : "string",
-          "description" : "Email address.",
+          "description" : "Email address. RFC 5322.",
+          "minLength" : 6,
+          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
           "example" : "example@example.com"
         },
         "phone" : {
           "type" : "string",
-          "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
+          "description" : "Including \"+\" and international prefix. E.164: https://www.twilio.com/docs/glossary/what-e164 Whitespace and dashes are stripped.",
+          "pattern" : "'^\\+?[1-9]\\d{1,14}$'",
           "example" : "+4791504800"
         },
         "countryOfBirth" : {
           "type" : "string",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
+          "minLength" : 2,
+          "maxLength" : 2,
           "example" : "NO"
         },
         "countryCitizenships" : {
@@ -1788,6 +1795,8 @@
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
             "type" : "string",
+            "minLength" : 2,
+            "maxLength" : 2,
             "example" : "NO"
           }
         },
@@ -1796,6 +1805,8 @@
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
             "type" : "string",
+            "minLength" : 2,
+            "maxLength" : 2,
             "example" : "NO"
           }
         },
@@ -1820,10 +1831,15 @@
         "engagementType" : {
           "type" : "string",
           "description" : "Types of engagements: To be determined. Needs to be aligned with DNB CIM, without exposing internal complexity.",
+          "default" : "DEPOSIT",
+          "enum" : [ "DEPOSIT", "CREDITCARD", "MORTGAGE" ],
           "example" : "DEPOSIT"
         },
         "accountNumber" : {
           "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "'\\d{11}'",
           "example" : "12345678901"
         },
         "friendlyName" : {
@@ -1832,6 +1848,7 @@
         },
         "corporate" : {
           "type" : "boolean",
+          "default" : false,
           "example" : true
         }
       },
@@ -1844,6 +1861,9 @@
         "accountNumber" : {
           "type" : "string",
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
+          "default" : "'^\\d{11}$'",
+          "minLength" : 11,
+          "maxLength" : 11,
           "example" : "12345678901"
         },
         "type" : {
@@ -1910,6 +1930,8 @@
         "currency" : {
           "type" : "string",
           "description" : "Currency: ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
+          "minLength" : 2,
+          "maxLength" : 2,
           "example" : "NOK"
         },
         "created" : {
@@ -2005,6 +2027,8 @@
         "cardGroup" : {
           "type" : "string",
           "description" : "Debit or credit.",
+          "default" : "DEBIT",
+          "enum" : [ "DEBIT", "CREDIT" ],
           "example" : "DEBIT"
         },
         "accountNumber" : {
