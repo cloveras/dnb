@@ -1742,7 +1742,10 @@
       "properties" : {
         "customerId" : {
           "type" : "string",
-          "description" : "SSN or organization number",
+          "description" : "SSN (11 digits) or organization number (9 digits).",
+          "minLength" : 9,
+          "maxLength" : 11,
+          "pattern" : "'^\\d{9,11}$'",
           "example" : "12345678901"
         },
         "customerType" : {
@@ -1839,7 +1842,7 @@
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'\\d{11}'",
+          "pattern" : "'^\\d{11}$'",
           "example" : "12345678901"
         },
         "friendlyName" : {
@@ -1869,6 +1872,8 @@
         "type" : {
           "type" : "string",
           "description" : "Any type of account.",
+          "default" : "DEPOSIT",
+          "enum" : [ "DEPOSIT", "CREDITCARD", "ASK", "BSU" ],
           "example" : "DEPOSIT"
         },
         "accountName" : {
@@ -1893,6 +1898,9 @@
         "accountNumber" : {
           "type" : "string",
           "description" : "11 digits",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "12345678901"
         },
         "amountAvailable" : {
@@ -1920,11 +1928,13 @@
         "IBAN" : {
           "type" : "string",
           "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace",
+          "pattern" : "'^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$'",
           "example" : "NO9386011117947"
         },
         "BIC" : {
           "type" : "string",
           "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362",
+          "pattern" : "''/^[a-z]{6}[2-9a-z][0-9a-np-z]([a-z0-9]{3}|x{3})?$/i''",
           "example" : "DNBANOKKXXX"
         },
         "currency" : {
@@ -1985,6 +1995,8 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
           "example" : "12345678901"
         },
         "year" : {
@@ -1995,6 +2007,9 @@
         "month" : {
           "type" : "string",
           "description" : "MM, January: 01",
+          "minLength" : 2,
+          "maxLength" : 2,
+          "pattern" : "'\\d{2}'",
           "example" : "01"
         },
         "transactions" : {
@@ -2016,12 +2031,17 @@
         },
         "maskedCardNumber" : {
           "type" : "string",
-          "description" : "16 characters: Twelve \"X\", and the last four digits ofr the card number. 4x4 nubers with whitespace.",
-          "example" : "XXXX XXXX XXXX 1234"
+          "description" : "16 characters: Twelve \"X\", and the last four digits of the card number. No whitespace.",
+          "minLength" : 16,
+          "maxLength" : 16,
+          "pattern" : "'x{12}\\d{4}'",
+          "example" : "XXXXXXXXXXXX1234"
         },
         "cardType" : {
           "type" : "string",
           "description" : "Visa, MasterCard, American Express, etc",
+          "default" : "VISA",
+          "enum" : [ "VISA", "MASTERCARD", "AMERICANEXPRESS" ],
           "example" : "VISA"
         },
         "cardGroup" : {
@@ -2034,6 +2054,9 @@
         "accountNumber" : {
           "type" : "string",
           "description" : "Both for debit and credit cards",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "012345678901"
         },
         "cardStatus" : {
@@ -2158,10 +2181,14 @@
         },
         "debitAccount" : {
           "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
           "example" : "12345678901"
         },
         "creditAccount" : {
           "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
           "example" : "12345678901"
         },
         "amount" : {
@@ -2180,8 +2207,8 @@
         },
         "status" : {
           "type" : "string",
-          "description" : "Statuses TBD",
-          "example" : "PAID"
+          "description" : "Statuses",
+          "enum" : [ "PAID", "PENDINGCONFIRMATION", "LIMITEXCEEDED", "REJECTED", "CONFIRMED" ]
         },
         "paymentDetails" : {
           "$ref" : "#/definitions/paymentDetails"
@@ -2207,14 +2234,20 @@
         "type" : {
           "type" : "string",
           "description" : "KID, message (and transfer?)",
+          "default" : "KID",
+          "enum" : [ "KID", "MESSAGE", "TRANSFER" ],
           "example" : "KID"
         },
         "debitAccountNumber" : {
           "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
           "example" : "12345678901"
         },
         "creditAccountNumber" : {
           "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
           "example" : "12345678901"
         },
         "amount" : {
@@ -2279,6 +2312,8 @@
         "status" : {
           "type" : "string",
           "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)",
+          "default" : "BOOKED",
+          "enum" : [ "BOOKED", "RESERVED" ],
           "example" : "BOOKED"
         },
         "merchantName" : {
@@ -2312,6 +2347,8 @@
         },
         "postCode" : {
           "type" : "string",
+          "minLength" : 4,
+          "maxLength" : 4,
           "example" : "0191"
         },
         "postCity" : {
@@ -2321,6 +2358,8 @@
         "postCountry" : {
           "type" : "string",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
+          "minLength" : 2,
+          "maxLength" : 2,
           "example" : "NO"
         }
       },
@@ -2428,11 +2467,13 @@
           "openingTime" : {
             "type" : "string",
             "description" : "HH:MM",
+            "pattern" : "'\\d{2}:\\d{2}'",
             "example" : "09:00"
           },
           "closingTime" : {
             "type" : "string",
             "description" : "HH:MM",
+            "pattern" : "'\\d{2}:\\d{2}'",
             "example" : "16:00"
           }
         }
@@ -2440,10 +2481,12 @@
     },
     "error" : {
       "type" : "object",
+      "required" : [ "errorMessage", "errorNumber", "httpStatus" ],
       "properties" : {
         "httpStatus" : {
           "type" : "string",
           "description" : "Implicit, but still included.",
+          "pattern" : "'\\d{3}'",
           "example" : "400"
         },
         "errorNumber" : {
@@ -2478,7 +2521,7 @@
         "errorNumber" : {
           "type" : "string",
           "description" : "DNB's internal error number.",
-          "example" : "5432"
+          "example" : "1234"
         },
         "errorField" : {
           "type" : "string",
@@ -2521,11 +2564,14 @@
         "currency" : {
           "type" : "string",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "default" : "NOK",
+          "minLength" : 2,
+          "maxLength" : 2,
           "example" : "NOK"
         },
         "currencyRate" : {
-          "type" : "string",
-          "example" : "123.45"
+          "type" : "number",
+          "example" : 123.45
         }
       },
       "description" : "Used by ```/currencies/list/{base}``` for a response similar to:\n\n```\n{\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```"
