@@ -2183,12 +2183,14 @@
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "12345678901"
         },
         "creditAccount" : {
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "12345678901"
         },
         "amount" : {
@@ -2208,7 +2210,9 @@
         "status" : {
           "type" : "string",
           "description" : "Statuses",
-          "enum" : [ "PAID", "PENDINGCONFIRMATION", "LIMITEXCEEDED", "REJECTED", "CONFIRMED" ]
+          "default" : "PAID",
+          "enum" : [ "PAID", "PENDINGCONFIRMATION", "LIMITEXCEEDED", "REJECTED", "CONFIRMED" ],
+          "example" : "PAID"
         },
         "paymentDetails" : {
           "$ref" : "#/definitions/paymentDetails"
@@ -2242,12 +2246,14 @@
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "12345678901"
         },
         "creditAccountNumber" : {
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "12345678901"
         },
         "amount" : {
@@ -2281,17 +2287,21 @@
           "example" : "12345"
         },
         "amount" : {
-          "type" : "string",
-          "example" : "1500.00"
+          "type" : "number",
+          "minimum" : 0,
+          "example" : 1500
         },
         "currencyValue" : {
-          "type" : "string",
+          "type" : "number",
           "description" : "Amount in foreign currency (if relevant)",
-          "example" : "90.00"
+          "example" : 90
         },
         "currency" : {
           "type" : "string",
           "description" : "If not the currency of the account/card.",
+          "default" : "NOK",
+          "minLength" : 3,
+          "maxLength" : 3,
           "example" : "NOK"
         },
         "dateBooking" : {
@@ -2380,10 +2390,12 @@
         },
         "latitude" : {
           "type" : "string",
+          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'",
           "example" : "59.9075823"
         },
         "longditude" : {
           "type" : "string",
+          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'",
           "example" : "10.760133399999972"
         },
         "description" : {
