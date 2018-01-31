@@ -1864,9 +1864,9 @@
         "accountNumber" : {
           "type" : "string",
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
-          "default" : "'^\\d{11}$'",
           "minLength" : 11,
           "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "12345678901"
         },
         "type" : {
@@ -1927,7 +1927,7 @@
       "properties" : {
         "IBAN" : {
           "type" : "string",
-          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace",
+          "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace. Enjoy the regex.",
           "pattern" : "'^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$'",
           "example" : "NO9386011117947"
         },
@@ -2034,7 +2034,7 @@
           "description" : "16 characters: Twelve \"X\", and the last four digits of the card number. No whitespace.",
           "minLength" : 16,
           "maxLength" : 16,
-          "pattern" : "'x{12}\\d{4}'",
+          "pattern" : "'^X{12}\\d{4}$'",
           "example" : "XXXXXXXXXXXX1234"
         },
         "cardType" : {
@@ -2104,10 +2104,13 @@
         "currency" : {
           "type" : "string",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "minLength" : 3,
+          "maxLength" : 3,
           "example" : "NOK"
         },
         "creditLimit" : {
-          "type" : "string",
+          "type" : "integer",
+          "minimum" : 0,
           "example" : "100000.00"
         },
         "amountAvailable" : {
@@ -2137,16 +2140,18 @@
         "year" : {
           "type" : "string",
           "description" : "YYYY",
+          "pattern" : "'^\\d{4}$'",
           "example" : "2018"
         },
         "month" : {
           "type" : "string",
           "description" : "MM, where January is 01",
+          "pattern" : "'^\\d{2}$'",
           "example" : "01"
         },
         "amount" : {
-          "type" : "string",
-          "example" : "100.00"
+          "type" : "number",
+          "example" : 100
         },
         "dueDate" : {
           "type" : "string",
@@ -2156,11 +2161,17 @@
         "accountNumber" : {
           "type" : "string",
           "description" : "Account to pay to. 11 digits.",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "'^\\d{11}$'",
           "example" : "012345678901"
         },
         "KID" : {
           "type" : "string",
           "description" : "2-25 digits",
+          "minLength" : 2,
+          "maxLength" : 25,
+          "pattern" : "'^\\d{2,25}$'",
           "example" : "42"
         },
         "transactions" : {
@@ -2257,8 +2268,8 @@
           "example" : "12345678901"
         },
         "amount" : {
-          "type" : "string",
-          "example" : "1500.00"
+          "type" : "number",
+          "example" : 1500
         },
         "paymentDate" : {
           "type" : "string",
@@ -2280,7 +2291,7 @@
     },
     "transaction" : {
       "type" : "object",
-      "required" : [ "amount", "dateBooking", "transactionId" ],
+      "required" : [ "amount", "dateBooking", "status", "transactionId" ],
       "properties" : {
         "transactionId" : {
           "type" : "string",
@@ -2357,8 +2368,10 @@
         },
         "postCode" : {
           "type" : "string",
+          "description" : "Norwegian postcode only (for now).",
           "minLength" : 4,
           "maxLength" : 4,
+          "pattern" : "'^\\d{4}$'",
           "example" : "0191"
         },
         "postCity" : {
@@ -2377,6 +2390,7 @@
     },
     "location" : {
       "type" : "object",
+      "required" : [ "id", "latitude", "longditude" ],
       "properties" : {
         "id" : {
           "type" : "string",
@@ -2408,6 +2422,7 @@
     },
     "branch" : {
       "type" : "object",
+      "required" : [ "address", "branchId", "email", "location", "openingTimes", "phoneNumber" ],
       "properties" : {
         "branchId" : {
           "type" : "string"
@@ -2423,6 +2438,8 @@
         },
         "email" : {
           "type" : "string",
+          "description" : "RFC 5322",
+          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
           "example" : "example@example.com"
         },
         "address" : {
@@ -2470,11 +2487,15 @@
       "type" : "array",
       "description" : "Opening times for a ```branch```, ```ATM```, or something else.\n\nIf open 24 hours, use \"00:00\" both for ```openingTime``` and ```closingTime```.",
       "items" : {
+        "required" : [ "closingTime", "openingTime" ],
         "type" : "object",
         "properties" : {
           "day" : {
             "type" : "integer",
-            "description" : "1: Monday, 2: Tuesday, etc"
+            "description" : "1: Monday, 2: Tuesday, etc",
+            "minimum" : 1,
+            "maximum" : 7,
+            "example" : 1
           },
           "openingTime" : {
             "type" : "string",
@@ -2498,7 +2519,7 @@
         "httpStatus" : {
           "type" : "string",
           "description" : "Implicit, but still included.",
-          "pattern" : "'\\d{3}'",
+          "pattern" : "'^\\d{3}$'",
           "example" : "400"
         },
         "errorNumber" : {
@@ -2572,13 +2593,14 @@
     },
     "currencyRate" : {
       "type" : "object",
+      "required" : [ "currency", "currencyRate" ],
       "properties" : {
         "currency" : {
           "type" : "string",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
           "default" : "NOK",
-          "minLength" : 2,
-          "maxLength" : 2,
+          "minLength" : 3,
+          "maxLength" : 3,
           "example" : "NOK"
         },
         "currencyRate" : {
