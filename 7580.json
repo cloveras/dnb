@@ -2024,7 +2024,7 @@
     },
     "card" : {
       "type" : "object",
-      "required" : [ "accountNumber", "cardGroup", "cardId", "cardStatus", "cardType", "expiryDate", "maskedCardNumber" ],
+      "required" : [ "accountNumber", "cardGroup", "cardId", "cardStatus", "cardType", "expiryMonth", "expiryYear", "maskedCardNumber" ],
       "properties" : {
         "cardId" : {
           "type" : "string",
@@ -2068,10 +2068,21 @@
           "example" : "12345",
           "description" : "If blocked: Code for the blocking reason."
         },
-        "expiryDate" : {
+        "expiryYear" : {
           "type" : "string",
-          "format" : "date",
-          "example" : "2018-12"
+          "example" : "2020",
+          "description" : "YYYY",
+          "minLength" : 4,
+          "maxLength" : 4,
+          "pattern" : "'^\\d{4}$'"
+        },
+        "expiryMonth" : {
+          "type" : "string",
+          "example" : "01",
+          "description" : "MM",
+          "minLength" : 2,
+          "maxLength" : 2,
+          "pattern" : "'^\\d{4}$'"
         },
         "debitBalance" : {
           "$ref" : "#/definitions/accountBalance"
