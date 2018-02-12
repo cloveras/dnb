@@ -26,6 +26,7 @@
         "tags" : [ "Customers" ],
         "summary" : "Get current customer's details",
         "description" : "**NOTE:** This endpoint may disappear, as ```/customers/{customerId}``` offers the same functionality.\n\nGet current ```customer``` details. The ```customerId```is included in the context object.",
+        "operationId" : "getCustomerCurrent",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -60,6 +61,7 @@
         "tags" : [ "Customers" ],
         "summary" : "Get customer's details by id",
         "description" : "Get ```customer``` details by id.",
+        "operationId" : "getCustomerById",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -100,6 +102,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get all accounts for current user",
+        "operationId" : "getAccountsForCurrentUser",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -131,6 +134,7 @@
         "tags" : [ "Accounts" ],
         "summary" : "Get account details",
         "description" : "Returns Account.",
+        "operationId" : "getAccountDetails",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -181,6 +185,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get account balance",
+        "operationId" : "getAccountBalance",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -232,6 +237,7 @@
         "tags" : [ "Accounts" ],
         "summary" : "Get transactions for account",
         "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
+        "operationId" : "getAccountTransactions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "sortOrder",
@@ -343,6 +349,7 @@
         "tags" : [ "Accounts" ],
         "summary" : "Get transaction specified by id",
         "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. ",
+        "operationId" : "getAccountTransactionById",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -399,6 +406,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get due payments for account by date range",
+        "operationId" : "getAccountPaymentsDue",
         "parameters" : [ {
           "name" : "startDate",
           "in" : "query",
@@ -454,6 +462,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get details for a payment for an account",
+        "operationId" : "getAccountPaymentDetailsById",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -497,7 +506,8 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get IBAN for DNB account",
-        "description" : "**DRAFT:** This endpoint is not part of the initial release. Input appreciated.",
+        "description" : "**DRAFT:** This endpoint is not part of the initial release. Input appreciated: developer@dnb.no",
+        "operationId" : "getIbanForAccount",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -539,7 +549,8 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Verify IBAN format",
-        "description" : "**DRAFT:** This endpoint is not part of the initial release. Input appreciated.",
+        "description" : "**DRAFT:** This endpoint is not part of the initial release. Input appreciated: developer@dnb.no",
+        "operationId" : "verifyIbanFormat",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -576,6 +587,8 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Verify that account belongs to a customer",
+        "description" : "DRAFT: This endpoint is not part of the initial release. Input appreciated: developer@dnb.no\n",
+        "operationId" : "verifyAccount",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -621,6 +634,7 @@
         "tags" : [ "Cards" ],
         "summary" : "Get cards for current customer",
         "description" : "List over the current ```customer```'s debet and credit cards. ",
+        "operationId" : "getCardsForCurrentCustomer",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -665,6 +679,7 @@
         "tags" : [ "Cards" ],
         "summary" : "Get card details",
         "description" : "Includes balance and credit limit (when applicable).",
+        "operationId" : "getCardDetailsById",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -712,6 +727,7 @@
         "tags" : [ "Cards" ],
         "summary" : "Get card transactions",
         "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nTransactionlist for the customers creditcard",
+        "operationId" : "getCardTransactions",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -763,6 +779,7 @@
         "tags" : [ "Cards" ],
         "summary" : "Block card",
         "description" : "Aviability for end-customet to block a debit or credit card. (Not Cresco Cards)",
+        "operationId" : "blockCard",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -816,6 +833,7 @@
         "tags" : [ "Cards" ],
         "summary" : "Unblock card",
         "description" : "Unblock a blocked ```card```.",
+        "operationId" : "unblockCard",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -860,6 +878,7 @@
         "tags" : [ "Cards" ],
         "summary" : "Get card invoice",
         "description" : "Get card invoice form chosen month",
+        "operationId" : "gertCardInvoice",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -921,6 +940,7 @@
         "tags" : [ "Payments" ],
         "summary" : "Initiate payment",
         "description" : "Domestic payment with KID or message.\n\nReturns HTTP 201 and the ```PaymentId``` of successfully created payment.",
+        "operationId" : "paymentInitiate",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "body",
@@ -965,8 +985,9 @@
     "/payments/{accountNumber}/due" : {
       "get" : {
         "tags" : [ "Payments" ],
-        "summary" : "Get due payments by date range",
+        "summary" : "Get due payments for an account",
         "description" : "Gets all due ```payment```s, both domestic and international.",
+        "operationId" : "getPaymentsDue",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "accountNumber",
@@ -1039,6 +1060,7 @@
         "tags" : [ "Payments" ],
         "summary" : "Get due payment by payment id",
         "description" : "Returns ```payment,``` complete with with ```paymentDetails```.\n\nThis endpoint may change, as it is offers the same as ```accounts/{accountNumber}/payments/due/{paymentId}```, and the placement is not decided yet.",
+        "operationId" : "getPaymentDueById",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -1090,6 +1112,7 @@
       "delete" : {
         "tags" : [ "Payments" ],
         "summary" : "Delete payment by id",
+        "operationId" : "deletePayment",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1113,6 +1136,7 @@
         "tags" : [ "Payments" ],
         "summary" : "Update existing payment",
         "description" : "A ```payment``` can be updatet until due date:\n* Date \n* Amount\n* Status (deactivate, reactivate)\n\nReturns the updated ```payment```.",
+        "operationId" : "updatePayment",
         "consumes" : [ ],
         "parameters" : [ {
           "name" : "body",
@@ -1170,6 +1194,7 @@
         "tags" : [ "Transactions" ],
         "summary" : "Get transactions for account",
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
+        "operationId" : "gertTransactionsForAccount",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "sortOrder",
@@ -1177,6 +1202,10 @@
           "required" : false,
           "type" : "string",
           "description" : "Ascending, descending",
+          "default" : "ASC",
+          "enum" : [ "ASC", "DESC" ],
+          "minLength" : 3,
+          "maxLength" : 4,
           "x-example" : "ASC"
         }, {
           "name" : "dateFrom",
@@ -1213,7 +1242,10 @@
           "in" : "query",
           "required" : false,
           "type" : "string",
-          "description" : "Filter for MCC. Use code only.",
+          "description" : "Filter for MCC. Use only the numeric code.",
+          "minLength" : 4,
+          "maxLength" : 4,
+          "pattern" : "'^\\d{4}$'",
           "x-example" : "3514"
         }, {
           "name" : "freeText",
@@ -1270,6 +1302,9 @@
         "in" : "path",
         "required" : true,
         "type" : "string",
+        "minLength" : 11,
+        "maxLength" : 11,
+        "pattern" : "`^\\d{11}$'",
         "x-example" : "12345678901"
       } ]
     },
@@ -1278,6 +1313,7 @@
         "tags" : [ "Transactions" ],
         "summary" : "Get transaction for account by transaction id",
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. ",
+        "operationId" : "gertTransactionForAccountById",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -1321,6 +1357,9 @@
         "in" : "path",
         "required" : true,
         "type" : "string",
+        "minLength" : 11,
+        "maxLength" : 11,
+        "pattern" : "`^\\d{11}$'",
         "x-example" : "12345678901"
       }, {
         "name" : "transactionId",
@@ -1335,6 +1374,7 @@
         "tags" : [ "Transactions" ],
         "summary" : "Get transactions for credit card",
         "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Cards```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
+        "operationId" : "gertTransactionsForCard",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "sortOrder",
@@ -1443,6 +1483,7 @@
         "tags" : [ "Currencies" ],
         "summary" : "Convert amount from CUR1 to CUR2",
         "description" : "Quite basic for now. Input welcome.",
+        "operationId" : "currencyConvert",
         "parameters" : [ {
           "name" : "date",
           "in" : "query",
@@ -1512,6 +1553,7 @@
         "tags" : [ "Currencies" ],
         "summary" : "Get a list rates for the most common currencies, with a specified base",
         "description" : "Suitable for making a table or similar.\n\n```\n{\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```",
+        "operationId" : "currencyList",
         "parameters" : [ {
           "name" : "date",
           "in" : "query",
@@ -1570,6 +1612,7 @@
         "tags" : [ "Location" ],
         "summary" : "Find nearest branch by address",
         "description" : "Basic geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
+        "operationId" : "findBranchByAddress",
         "parameters" : [ {
           "name" : "address",
           "in" : "query",
@@ -1611,10 +1654,11 @@
         }
       }
     },
-    "/locations/branch/{latitude}/{longditude}/" : {
+    "/locations/branch/{latitude}/{longditude}" : {
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Find nearest branch by coordinates",
+        "operationId" : "findBranchByCoordinates",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1668,6 +1712,7 @@
         "tags" : [ "Location" ],
         "summary" : "Get branch details",
         "description" : "Contact information, opening hours, etc.",
+        "operationId" : "getBranchDetails",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1716,6 +1761,7 @@
         "tags" : [ "Location" ],
         "summary" : "Get a branch's opening times",
         "description" : "Opening times is also included in Branch.",
+        "operationId" : "getBranchOpeningTimes",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -1765,6 +1811,7 @@
         "tags" : [ "Location" ],
         "summary" : "Find nearest ATM by coordinates",
         "description" : "If no details (as for now): Assume ATM is open 24h.",
+        "operationId" : "findAtmByCoordinates",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1822,6 +1869,7 @@
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Get list of all DNB branches",
+        "operationId" : "listBranches",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1883,65 +1931,65 @@
       "properties" : {
         "customerId" : {
           "type" : "string",
-          "example" : "12345678901",
           "description" : "SSN (11 digits) or organization number (9 digits).",
           "minLength" : 9,
           "maxLength" : 11,
-          "pattern" : "'^\\d{9,11}$'"
+          "pattern" : "'^\\d{9,11}$'",
+          "example" : "12345678901"
         },
         "customerType" : {
           "type" : "string",
-          "example" : "PERSON",
           "description" : "```PERSON```, ```COMPANY```",
+          "default" : "PERSON",
           "enum" : [ "PERSON", "COMPANY" ],
-          "default" : "PERSON"
+          "example" : "PERSON"
         },
         "firstName" : {
           "type" : "string",
-          "example" : "Rune",
-          "description" : "First name. May be used for the contact person if type is ```COMPANY```."
+          "description" : "First name. May be used for the contact person if type is ```COMPANY```.",
+          "example" : "Rune"
         },
         "lastName" : {
           "type" : "string",
-          "example" : "Bjerke",
-          "description" : "Surname. May be used for the contact person if type is ```COMPANY```."
+          "description" : "Surname. May be used for the contact person if type is ```COMPANY```.",
+          "example" : "Bjerke"
         },
         "companyName" : {
           "type" : "string",
-          "example" : "DNB",
-          "description" : "Company name, if type is ```COMPANY```."
+          "description" : "Company name, if type is ```COMPANY```.",
+          "example" : "DNB"
         },
         "address" : {
           "$ref" : "#/definitions/address"
         },
         "email" : {
           "type" : "string",
-          "example" : "example@example.com",
           "description" : "Email address. RFC 5322.",
           "minLength" : 6,
-          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'"
+          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
+          "example" : "example@example.com"
         },
         "phone" : {
           "type" : "string",
-          "example" : "+4791504800",
           "description" : "Including \"+\" and international prefix. E.164: https://www.twilio.com/docs/glossary/what-e164 Whitespace and dashes are stripped.",
-          "pattern" : "'^\\+?[1-9]\\d{1,14}$'"
+          "pattern" : "'^\\+?[1-9]\\d{1,14}$'",
+          "example" : "+4791504800"
         },
         "countryOfBirth" : {
           "type" : "string",
-          "example" : "NO",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "minLength" : 2,
-          "maxLength" : 2
+          "maxLength" : 2,
+          "example" : "NO"
         },
         "countryCitizenships" : {
           "type" : "array",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
             "type" : "string",
-            "example" : "NO",
             "minLength" : 2,
-            "maxLength" : 2
+            "maxLength" : 2,
+            "example" : "NO"
           }
         },
         "countryTax" : {
@@ -1949,9 +1997,9 @@
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
             "type" : "string",
-            "example" : "NO",
             "minLength" : 2,
-            "maxLength" : 2
+            "maxLength" : 2,
+            "example" : "NO"
           }
         },
         "customerEngagement" : {
@@ -1974,17 +2022,17 @@
         },
         "engagementType" : {
           "type" : "string",
-          "example" : "DEPOSIT",
           "description" : "Types of engagements: To be determined. Needs to be aligned with DNB CIM, without exposing internal complexity.",
+          "default" : "DEPOSIT",
           "enum" : [ "DEPOSIT", "CREDITCARD", "MORTGAGE" ],
-          "default" : "DEPOSIT"
+          "example" : "DEPOSIT"
         },
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "friendlyName" : {
           "type" : "string",
@@ -1992,8 +2040,8 @@
         },
         "corporate" : {
           "type" : "boolean",
-          "example" : true,
-          "default" : false
+          "default" : false,
+          "example" : true
         }
       },
       "description" : "Used with ```customer```. \n\nWork in progress. See https://shasl.restlet.io/#type_engagement"
@@ -2004,23 +2052,23 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "type" : {
           "type" : "string",
-          "example" : "DEPOSIT",
           "description" : "Any type of account.",
+          "default" : "DEPOSIT",
           "enum" : [ "DEPOSIT", "CREDITCARD", "ASK", "BSU" ],
-          "default" : "DEPOSIT"
+          "example" : "DEPOSIT"
         },
         "accountName" : {
           "type" : "string",
-          "example" : "Standard account",
-          "description" : "Friendly name for the account:"
+          "description" : "Friendly name for the account:",
+          "example" : "Standard account"
         },
         "balanceAvailable" : {
           "type" : "number",
@@ -2030,7 +2078,7 @@
           "$ref" : "#/definitions/accountDetails"
         }
       },
-      "description" : "Same ```account``` data object for all types of account. The ```type``` property determines the type. \n\nAn ```account``` may have ```accountDetails```, which may again have ```accountBalance``` and  ```accountInterestDetails```.\n\nA Norwegian ```account```has three groups: xxxx yy zzzzc.\n* xxxx: Bank register number, identifying bank and branch. \n* yy: Account group. \n* zzzz: Customer account number.  \n* c: Control digit, modulo 11 with weight number 5432765432."
+      "description" : "Same ```account``` data object is used for all types of accounts. The ```type``` property determines the type. \n\nAn ```account``` may have ```accountDetails```, which may again have ```accountBalance``` and  ```accountInterestDetails```.\n\nA Norwegian ```account```has three groups: xxxx yy zzzzc.\n* xxxx: Bank register number, identifying bank and branch. \n* yy: Account group. \n* zzzz: Customer account number.  \n* c: Control digit, modulo 11 with weight number 5432765432."
     },
     "accountBalance" : {
       "type" : "object",
@@ -2038,11 +2086,11 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "description" : "11 digits",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "amountAvailable" : {
           "type" : "number",
@@ -2068,22 +2116,22 @@
       "properties" : {
         "IBAN" : {
           "type" : "string",
-          "example" : "NO9386011117947",
           "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace. Enjoy the regex.",
-          "pattern" : "'^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$'"
+          "pattern" : "'^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$'",
+          "example" : "NO9386011117947"
         },
         "BIC" : {
           "type" : "string",
-          "example" : "DNBANOKKXXX",
           "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362",
-          "pattern" : "''^[a-z]{6}[2-9a-z][0-9a-np-z]([a-z0-9]{3}|x{3})?$''"
+          "pattern" : "''^[a-z]{6}[2-9a-z][0-9a-np-z]([a-z0-9]{3}|x{3})?$''",
+          "example" : "DNBANOKKXXX"
         },
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "Currency: ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
           "minLength" : 2,
-          "maxLength" : 2
+          "maxLength" : 2,
+          "example" : "NOK"
         },
         "created" : {
           "type" : "string",
@@ -2136,23 +2184,23 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "year" : {
           "type" : "string",
-          "example" : "1990",
-          "description" : "YYYY"
+          "description" : "YYYY",
+          "example" : "1990"
         },
         "month" : {
           "type" : "string",
-          "example" : "01",
           "description" : "MM, January: 01",
           "minLength" : 2,
           "maxLength" : 2,
-          "pattern" : "'\\d{2}'"
+          "pattern" : "'\\d{2}'",
+          "example" : "01"
         },
         "transactions" : {
           "type" : "array",
@@ -2173,57 +2221,57 @@
         },
         "maskedCardNumber" : {
           "type" : "string",
-          "example" : "XXXXXXXXXXXX1234",
           "description" : "16 characters: Twelve \"X\", and the last four digits of the card number. No whitespace.",
           "minLength" : 16,
           "maxLength" : 16,
-          "pattern" : "'^X{12}\\d{4}$'"
+          "pattern" : "'^X{12}\\d{4}$'",
+          "example" : "XXXXXXXXXXXX1234"
         },
         "cardType" : {
           "type" : "string",
-          "example" : "VISA",
           "description" : "Visa, MasterCard, American Express, etc",
+          "default" : "VISA",
           "enum" : [ "VISA", "MASTERCARD", "AMERICANEXPRESS" ],
-          "default" : "VISA"
+          "example" : "VISA"
         },
         "cardGroup" : {
           "type" : "string",
-          "example" : "DEBIT",
           "description" : "Debit or credit.",
+          "default" : "DEBIT",
           "enum" : [ "DEBIT", "CREDIT" ],
-          "default" : "DEBIT"
+          "example" : "DEBIT"
         },
         "accountNumber" : {
           "type" : "string",
-          "example" : "012345678901",
           "description" : "Both for debit and credit cards",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "012345678901"
         },
         "cardStatus" : {
           "$ref" : "#/definitions/cardStatus"
         },
         "blockCode" : {
           "type" : "string",
-          "example" : "12345",
-          "description" : "If blocked: Code for the blocking reason."
+          "description" : "If blocked: Code for the blocking reason.",
+          "example" : "12345"
         },
         "expiryYear" : {
           "type" : "string",
-          "example" : "2020",
           "description" : "YYYY",
           "minLength" : 4,
           "maxLength" : 4,
-          "pattern" : "'^\\d{4}$'"
+          "pattern" : "'^\\d{4}$'",
+          "example" : "2020"
         },
         "expiryMonth" : {
           "type" : "string",
-          "example" : "01",
           "description" : "MM",
           "minLength" : 2,
           "maxLength" : 2,
-          "pattern" : "'^\\d{4}$'"
+          "pattern" : "'^\\d{4}$'",
+          "example" : "01"
         },
         "debitBalance" : {
           "$ref" : "#/definitions/accountBalance"
@@ -2239,14 +2287,14 @@
       "properties" : {
         "status" : {
           "type" : "string",
-          "example" : "Not blocked",
+          "default" : "Not blocked",
           "enum" : [ "Not blocked", "Card blocked by customer - card is allowed to unblock", "Card blocked by customer - card is not allowed to unblock", "Card blocked for e-commerce by customer service", "Card blocked for e-commerce by customer" ],
-          "default" : "Not blocked"
+          "example" : "Not blocked"
         },
         "blockingType" : {
           "type" : "string",
-          "enum" : [ "Card", "E-commerce" ],
-          "default" : "Card"
+          "default" : "Card",
+          "enum" : [ "Card", "E-commerce" ]
         }
       }
     },
@@ -2256,15 +2304,15 @@
       "properties" : {
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
           "minLength" : 3,
-          "maxLength" : 3
+          "maxLength" : 3,
+          "example" : "NOK"
         },
         "creditLimit" : {
           "type" : "integer",
-          "example" : "100000.00",
-          "minimum" : 0
+          "minimum" : 0,
+          "example" : "100000.00"
         },
         "amountAvailable" : {
           "type" : "number",
@@ -2292,15 +2340,15 @@
         },
         "year" : {
           "type" : "string",
-          "example" : "2018",
           "description" : "YYYY",
-          "pattern" : "'^\\d{4}$'"
+          "pattern" : "'^\\d{4}$'",
+          "example" : "2018"
         },
         "month" : {
           "type" : "string",
-          "example" : "01",
           "description" : "MM, where January is 01",
-          "pattern" : "'^\\d{2}$'"
+          "pattern" : "'^\\d{2}$'",
+          "example" : "01"
         },
         "amount" : {
           "type" : "number",
@@ -2313,19 +2361,19 @@
         },
         "accountNumber" : {
           "type" : "string",
-          "example" : "012345678901",
           "description" : "Account to pay to. 11 digits.",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "012345678901"
         },
         "KID" : {
           "type" : "string",
-          "example" : "42",
           "description" : "2-25 digits",
           "minLength" : 2,
           "maxLength" : 25,
-          "pattern" : "'^\\d{2,25}$'"
+          "pattern" : "'^\\d{2,25}$'",
+          "example" : "42"
         },
         "transactions" : {
           "type" : "array",
@@ -2345,17 +2393,17 @@
         },
         "debitAccount" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "creditAccount" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "amount" : {
           "type" : "number",
@@ -2363,8 +2411,8 @@
         },
         "type" : {
           "type" : "string",
-          "example" : "TBD1",
-          "description" : "TBD"
+          "description" : "TBD",
+          "example" : "TBD1"
         },
         "date" : {
           "type" : "string",
@@ -2373,24 +2421,24 @@
         },
         "status" : {
           "type" : "string",
-          "example" : "PAID",
           "description" : "Statuses",
+          "default" : "PAID",
           "enum" : [ "PAID", "PENDINGCONFIRMATION", "LIMITEXCEEDED", "REJECTED", "CONFIRMED" ],
-          "default" : "PAID"
+          "example" : "PAID"
         },
         "paymentDetails" : {
           "$ref" : "#/definitions/paymentDetails"
         }
       },
-      "description" : "**Note:** May be completely merged with ```transaction```.\n\nDetails about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n"
+      "description" : "**NOTE:** May be completely merged with ```transaction```.\n\nA ```payment``` is a planned payment/transaction that has not yet been carried out.\n\nDetails about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n"
     },
     "paymentDetails" : {
       "type" : "object",
       "properties" : {
         "invoiceReference" : {
           "type" : "string",
-          "example" : "12345678901",
-          "description" : "Used for eFaktura"
+          "description" : "Used for eFaktura",
+          "example" : "12345678901"
         }
       },
       "description" : "More details about a payment. Some payment types have more data than others."
@@ -2401,24 +2449,24 @@
       "properties" : {
         "type" : {
           "type" : "string",
-          "example" : "KID",
           "description" : "KID, message (and transfer?)",
+          "default" : "KID",
           "enum" : [ "KID", "MESSAGE", "TRANSFER" ],
-          "default" : "KID"
+          "example" : "KID"
         },
         "debitAccountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "creditAccountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'"
+          "pattern" : "'^\\d{11}$'",
+          "example" : "12345678901"
         },
         "amount" : {
           "type" : "number",
@@ -2431,13 +2479,13 @@
         },
         "message" : {
           "type" : "string",
-          "example" : "35298562958265982749",
-          "description" : "Used for both KID and Message, based on Type."
+          "description" : "Used for both KID and Message, based on Type.",
+          "example" : "35298562958265982749"
         },
         "initiator" : {
           "type" : "string",
-          "example" : "DNB",
-          "description" : "Nu phone who dis?"
+          "description" : "Nu phone who dis?",
+          "example" : "DNB"
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
@@ -2462,11 +2510,11 @@
         },
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "If not the currency of the account/card.",
+          "default" : "NOK",
           "minLength" : 3,
           "maxLength" : 3,
-          "default" : "NOK"
+          "example" : "NOK"
         },
         "dateBooking" : {
           "type" : "string",
@@ -2480,28 +2528,28 @@
         },
         "description" : {
           "type" : "string",
-          "example" : "Lunch at The Restaurant at the End of the Universe",
-          "description" : "Descriptive text for the transaction."
+          "description" : "Descriptive text for the transaction.",
+          "example" : "Lunch at The Restaurant at the End of the Universe"
         },
         "status" : {
           "type" : "string",
-          "example" : "BOOKED",
           "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)",
+          "default" : "BOOKED",
           "enum" : [ "BOOKED", "RESERVED" ],
-          "default" : "BOOKED"
+          "example" : "BOOKED"
         },
         "merchantName" : {
           "type" : "string",
-          "example" : "Coffee Shop ChainName, shop number 10",
-          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```."
+          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```.",
+          "example" : "Coffee Shop ChainName, shop number 10"
         },
         "MCC" : {
           "type" : "string",
-          "example" : "3514: Hotels/Motels/Inns/Resorts",
-          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html"
+          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html",
+          "example" : "3514: Hotels/Motels/Inns/Resorts"
         }
       },
-      "description" : "Same ```transaction``` for ll types of transactions: Account transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer should not need to know about different transaction types when retrieving them.\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
+      "description" : "A ```transaction``` is a completed operation, in contrast to ```payment```, which is planned, but not completed.\n\nThe same ```transaction``` is used for all types of transactions: DNB-only account transactions, domestic transactions, international transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer does not need to know about different transaction types when retrieving them, this is .\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
     },
     "address" : {
       "type" : "object",
@@ -2509,8 +2557,8 @@
       "properties" : {
         "postalAddressLine1" : {
           "type" : "string",
-          "example" : "Dronning Eufemias gate 30",
-          "description" : "Street name and number"
+          "description" : "Street name and number",
+          "example" : "Dronning Eufemias gate 30"
         },
         "postalAddressLine2" : {
           "type" : "string",
@@ -2521,11 +2569,11 @@
         },
         "postCode" : {
           "type" : "string",
-          "example" : "0191",
           "description" : "Norwegian postcode only (for now).",
           "minLength" : 4,
           "maxLength" : 4,
-          "pattern" : "'^\\d{4}$'"
+          "pattern" : "'^\\d{4}$'",
+          "example" : "0191"
         },
         "postCity" : {
           "type" : "string",
@@ -2533,10 +2581,10 @@
         },
         "postCountry" : {
           "type" : "string",
-          "example" : "NO",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "minLength" : 2,
-          "maxLength" : 2
+          "maxLength" : 2,
+          "example" : "NO"
         }
       },
       "description" : "Corresponds with address fields used internally in DNB. "
@@ -2547,28 +2595,28 @@
       "properties" : {
         "id" : {
           "type" : "string",
-          "example" : "12345",
-          "description" : "Internal id"
+          "description" : "Internal id",
+          "example" : "12345"
         },
         "friendlyName" : {
           "type" : "string",
-          "example" : "DNB headquarters",
-          "description" : "Descriptive name"
+          "description" : "Descriptive name",
+          "example" : "DNB headquarters"
         },
         "latitude" : {
           "type" : "string",
-          "example" : "59.9075823",
-          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'"
+          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'",
+          "example" : "59.9075823"
         },
         "longditude" : {
           "type" : "string",
-          "example" : "10.760133399999972",
-          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'"
+          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'",
+          "example" : "10.760133399999972"
         },
         "description" : {
           "type" : "string",
-          "example" : "Lobby",
-          "description" : "May be used for large areas like airports, train stations, stadiums, etc."
+          "description" : "May be used for large areas like airports, train stations, stadiums, etc.",
+          "example" : "Lobby"
         }
       },
       "description" : "Data object for physical location based on GPS coordinates. May be used for something that does not have a specific address, or somethjing that needs a more specific than an address provides, such as an ```ATM``` at a train station. A ```location``` may be used in addition to an ```address```.\n"
@@ -2586,15 +2634,15 @@
         },
         "phoneNumber" : {
           "type" : "string",
-          "example" : "+4791504800",
           "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
-          "pattern" : "'^\\+?[1-9]\\d{1,14}$'"
+          "pattern" : "'^\\+?[1-9]\\d{1,14}$'",
+          "example" : "+4791504800"
         },
         "email" : {
           "type" : "string",
-          "example" : "example@example.com",
           "description" : "RFC 5322",
-          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'"
+          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
+          "example" : "example@example.com"
         },
         "address" : {
           "$ref" : "#/definitions/address"
@@ -2641,29 +2689,29 @@
       "type" : "array",
       "description" : "Opening times for a ```branch```, ```ATM```, or something else.\n\nIf open 24 hours, use \"00:00\" both for ```openingTime``` and ```closingTime```.",
       "items" : {
+        "required" : [ "closingTime", "openingTime" ],
         "type" : "object",
         "properties" : {
           "day" : {
             "type" : "integer",
-            "example" : 1,
             "description" : "1: Monday, 2: Tuesday, etc",
             "minimum" : 1,
-            "maximum" : 7
+            "maximum" : 7,
+            "example" : 1
           },
           "openingTime" : {
             "type" : "string",
-            "example" : "09:00",
             "description" : "HH:MM",
-            "pattern" : "'^\\d{2}:\\d{2}$'"
+            "pattern" : "'^\\d{2}:\\d{2}$'",
+            "example" : "09:00"
           },
           "closingTime" : {
             "type" : "string",
-            "example" : "16:00",
             "description" : "HH:MM",
-            "pattern" : "'^\\d{2}:\\d{2}$'"
+            "pattern" : "'^\\d{2}:\\d{2}$'",
+            "example" : "16:00"
           }
-        },
-        "required" : [ "closingTime", "openingTime" ]
+        }
       }
     },
     "error" : {
@@ -2672,9 +2720,9 @@
       "properties" : {
         "httpStatus" : {
           "type" : "string",
-          "example" : "400",
           "description" : "Implicit, but still included.",
-          "pattern" : "'^\\d{3}$'"
+          "pattern" : "'^\\d{3}$'",
+          "example" : "400"
         },
         "errorNumber" : {
           "type" : "number",
@@ -2683,13 +2731,13 @@
         },
         "errorMessage" : {
           "type" : "string",
-          "example" : "Computer says no",
-          "description" : "Explanation"
+          "description" : "Explanation",
+          "example" : "Computer says no"
         },
         "errorDocumentation" : {
           "type" : "string",
-          "example" : "https://docs.example.com/help-for-this-endpoint/",
-          "description" : "URI to developer documentation for this error"
+          "description" : "URI to developer documentation for this error",
+          "example" : "https://docs.example.com/help-for-this-endpoint/"
         },
         "errorDetails" : {
           "type" : "array",
@@ -2707,13 +2755,13 @@
       "properties" : {
         "errorNumber" : {
           "type" : "string",
-          "example" : "1234",
-          "description" : "DNB's internal error number."
+          "description" : "DNB's internal error number.",
+          "example" : "1234"
         },
         "errorField" : {
           "type" : "string",
-          "example" : "firstName",
-          "description" : "Name of field that caused the error."
+          "description" : "Name of field that caused the error.",
+          "example" : "firstName"
         },
         "errorDescription" : {
           "type" : "string",
@@ -2751,11 +2799,11 @@
       "properties" : {
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "default" : "NOK",
           "minLength" : 3,
           "maxLength" : 3,
-          "default" : "NOK"
+          "example" : "NOK"
         },
         "currencyRate" : {
           "type" : "number",
