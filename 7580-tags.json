@@ -1,0 +1,46 @@
+{
+  "tags": [
+    {
+      "name": "Accounts",
+      "description": "Retrieve all the savings and debit accounts where your user is listed as the owner, and view account details if you’d like",
+      "externalDocs": {
+        "url": "http://developer.dnb.no/404"
+      }
+    },
+    {
+      "name": "Payments",
+      "description": "Initiate payments straight from an account using BankID, or fetch all the due payments on that account",
+      "externalDocs": {
+        "url": "http://developer.dnb.no/404"
+      }
+    },
+    {
+      "name": "Transactionss",
+      "description": "Get all transactions from an account or a credit card up to three years back in time",
+      "externalDocs": {
+        "url": "http://developer.dnb.no/404"
+      }
+    },
+    {
+      "name": "Cards",
+      "description": "Get information about all of the cards where the user is listed as owner, for both credit and debit cards",
+      "externalDocs": {
+        "url": "http://developer.dnb.no/404"
+      }
+    },
+    {
+      "name": "Locations",
+      "description": "Get coordinates, address and opening hours of a DNB branch or ATM",
+      "externalDocs": {
+        "url": "http://developer.dnb.no/404"
+      }
+    },
+    {
+      "name": "Currencies",
+      "description": "Get conversion rates between currencies, or list the most common currency rates based on a currency of your choice.",
+      "externalDocs": {
+        "url": "http://developer.dnb.no/404"
+      }
+    }
+  ]
+}
