@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "**IMPORTANT:** This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts.\n\n**General guidelines:**\n\n* We use camelCase, starting with lowercase: ```customerEngagement```, ```accountNumber```, ```creditCard```, etc.\n* Unless implicit by Swagger, standards are mentioned and refered to.\n* General rule: The response (object) determines endpoint: If the response is ```account```, the endpoint should be under ```/accounts```. In cases where this may be up for discussion, multiple endpoints may, for a limited time, be available in order to evaluate.\n\n**Standards:**\n\nAll APIs use ISO and RFC standards:\n\n* Swagger specification: https://swagger.io/specification/\n* Country: ISO 3166-1 alpha-2: : https://www.iso.org/standard/63546.html (```NO```, ```GB```, ```US```)\n* Currency: ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html (```NOK```, ```EUR```, ```USD```)\n* Date: According to Swagger specification: ISO 8601:  www.iso.org/iso/home/standards/iso8601.htm (date: ```2018-12-31```, timestamp: ```2018-12-31T23:59:59+01:00```)\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 (```DNBANOKKXXX```)\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html (```NO9386011117947```)\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes) (```3514: Hotels/Motels/Inns/Resorts```)\n\n**HTTP Response Codes**\n\nHTTP response are intended to be logical: If a ```customer```or an ```account``` does not exist, the response is ```404 Not Found```.  All errors return a relevant HTTP status code and response with an ``error`` containing additional details. The HTTP statuses returnbed are:\n\nSuccess\n\n* ```200: OK``` Success!   \n* ```201: Created``` Resource created. Reference included.\n\nClient Error\n\n* ```400: Bad Request``` Yor request was, somehow, not ok.  \n* ```401: Unauthorized``` You are unknown.   \n* ```403: Forbidden``` You are authorized, but you are attempting something you are not allowed to.  \n* ```404: Not Found``` What you looked for is not here.  \n* ```429: Too Many Requests``` Settle down!\n\nServer Error\n\n* ```500: Server Error``` We screwed up, sorry!\n* ```503: Service Unavailable``` Something is very wrong.\n* ```504: Timeout``` We need to speed up internally,  \n\n**Github**\n\nSwagger documentation is (for now) available on Github: https://github.com/cloveras/dnb/\n\n\n",
-    "version" : "0.8",
+    "version" : "0.10",
     "title" : "DNB Developer APIs",
     "termsOfService" : "Be nice. Thanks!\nhttp://developer.dnb.no/terms (404 for now)\n\n\n",
     "contact" : {
@@ -17,8 +17,6 @@
   "produces" : [ "application/json" ],
   "security" : [ {
     "OAuth2" : [ "read", "write" ]
-  }, {
-    "Basic authentication" : [ ]
   } ],
   "paths" : {
     "/customers/current" : {
@@ -629,312 +627,6 @@
         "x-example" : "12345678901"
       } ]
     },
-    "/cards" : {
-      "get" : {
-        "tags" : [ "Cards" ],
-        "summary" : "Get cards for current customer",
-        "description" : "List over the current ```customer```'s debet and credit cards. ",
-        "operationId" : "getCardsForCurrentCustomer",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Request succeeded",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/card"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      }
-    },
-    "/cards/{cardId}/details" : {
-      "get" : {
-        "tags" : [ "Cards" ],
-        "summary" : "Get card details",
-        "description" : "Includes balance and credit limit (when applicable).",
-        "operationId" : "getCardDetailsById",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Request succeeded",
-            "schema" : {
-              "$ref" : "#/definitions/card"
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "x-example" : "12345678901"
-      } ]
-    },
-    "/cards/{cardId}/transactions" : {
-      "get" : {
-        "tags" : [ "Cards" ],
-        "summary" : "Get card transactions",
-        "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nTransactionlist for the customers creditcard",
-        "operationId" : "getCardTransactions",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Request succeeded",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/transaction"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "x-example" : "12345678901"
-      } ]
-    },
-    "/cards/{cardId}/block" : {
-      "patch" : {
-        "tags" : [ "Cards" ],
-        "summary" : "Block card",
-        "description" : "Aviability for end-customet to block a debit or credit card. (Not Cresco Cards)",
-        "operationId" : "blockCard",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "The card is now blocked",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "string"
-              }
-            },
-            "examples" : {
-              "application/json" : "ReasonCode"
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "x-example" : "12345678901"
-      } ]
-    },
-    "/cards/{cardId}/unblock" : {
-      "patch" : {
-        "tags" : [ "Cards" ],
-        "summary" : "Unblock card",
-        "description" : "Unblock a blocked ```card```.",
-        "operationId" : "unblockCard",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Unblocked"
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "x-example" : "12345678901"
-      } ]
-    },
-    "/cards/{cardId}/invoice/{year}/{month}" : {
-      "get" : {
-        "tags" : [ "Cards" ],
-        "summary" : "Get card invoice",
-        "description" : "Get card invoice form chosen month",
-        "operationId" : "gertCardInvoice",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Request succeeded",
-            "schema" : {
-              "$ref" : "#/definitions/cardInvoice"
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "cardId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "x-example" : "12345678901"
-      }, {
-        "name" : "year",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "YYYY",
-        "x-example" : "2018"
-      }, {
-        "name" : "month",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "MM, where January is 01",
-        "x-example" : "01"
-      } ]
-    },
     "/payments" : {
       "post" : {
         "tags" : [ "Payments" ],
@@ -981,6 +673,87 @@
           }
         }
       }
+    },
+    "/payments/{paymentId}" : {
+      "delete" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Delete payment by id",
+        "operationId" : "deletePayment",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Gone forever"
+          },
+          "400" : {
+            "description" : "Status 400"
+          },
+          "401" : {
+            "description" : "Status 401"
+          },
+          "403" : {
+            "description" : "Status 403"
+          },
+          "404" : {
+            "description" : "Unknown paymentId"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Update existing payment",
+        "description" : "A ```payment``` can be updatet until due date:\n* Date \n* Amount\n* Status (deactivate, reactivate)\n\nReturns the updated ```payment```.",
+        "operationId" : "updatePayment",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Changed",
+            "schema" : {
+              "$ref" : "#/definitions/payment"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "paymentId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
     },
     "/payments/{accountNumber}/due" : {
       "get" : {
@@ -1096,87 +869,6 @@
         "required" : true,
         "type" : "string"
       }, {
-        "name" : "paymentId",
-        "in" : "path",
-        "required" : true,
-        "type" : "string"
-      } ]
-    },
-    "/payments/{paymentId}" : {
-      "delete" : {
-        "tags" : [ "Payments" ],
-        "summary" : "Delete payment by id",
-        "operationId" : "deletePayment",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Gone forever"
-          },
-          "400" : {
-            "description" : "Status 400"
-          },
-          "401" : {
-            "description" : "Status 401"
-          },
-          "403" : {
-            "description" : "Status 403"
-          },
-          "404" : {
-            "description" : "Unknown paymentId"
-          }
-        }
-      },
-      "patch" : {
-        "tags" : [ "Payments" ],
-        "summary" : "Update existing payment",
-        "description" : "A ```payment``` can be updatet until due date:\n* Date \n* Amount\n* Status (deactivate, reactivate)\n\nReturns the updated ```payment```.",
-        "operationId" : "updatePayment",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        } ],
-        "responses" : {
-          "201" : {
-            "description" : "Changed",
-            "schema" : {
-              "$ref" : "#/definitions/payment"
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
         "name" : "paymentId",
         "in" : "path",
         "required" : true,
@@ -1472,6 +1164,312 @@
         "x-example" : "12345678901"
       } ]
     },
+    "/cards" : {
+      "get" : {
+        "tags" : [ "Cards" ],
+        "summary" : "Get cards for current customer",
+        "description" : "List over the current ```customer```'s debet and credit cards. ",
+        "operationId" : "getCardsForCurrentCustomer",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/card"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/cards/{cardId}/details" : {
+      "get" : {
+        "tags" : [ "Cards" ],
+        "summary" : "Get card details",
+        "description" : "Includes balance and credit limit (when applicable).",
+        "operationId" : "getCardDetailsById",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "$ref" : "#/definitions/card"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      } ]
+    },
+    "/cards/{cardId}/transactions" : {
+      "get" : {
+        "tags" : [ "Cards" ],
+        "summary" : "Get card transactions",
+        "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nTransactionlist for the customers creditcard",
+        "operationId" : "getCardTransactions",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/transaction"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      } ]
+    },
+    "/cards/{cardId}/invoice/{year}/{month}" : {
+      "get" : {
+        "tags" : [ "Cards" ],
+        "summary" : "Get card invoice",
+        "description" : "Get card invoice form chosen month",
+        "operationId" : "gertCardInvoice",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "$ref" : "#/definitions/cardInvoice"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      }, {
+        "name" : "year",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "YYYY",
+        "x-example" : "2018"
+      }, {
+        "name" : "month",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "MM, where January is 01",
+        "x-example" : "01"
+      } ]
+    },
+    "/cards/{cardId}/block" : {
+      "patch" : {
+        "tags" : [ "Cards" ],
+        "summary" : "Block card",
+        "description" : "Aviability for end-customet to block a debit or credit card. (Not Cresco Cards)",
+        "operationId" : "blockCard",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "The card is now blocked",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            },
+            "examples" : {
+              "application/json" : "ReasonCode"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      } ]
+    },
+    "/cards/{cardId}/unblock" : {
+      "patch" : {
+        "tags" : [ "Cards" ],
+        "summary" : "Unblock card",
+        "description" : "Unblock a blocked ```card```.",
+        "operationId" : "unblockCard",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Unblocked"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "x-example" : "12345678901"
+      } ]
+    },
     "/currencies/convert/{base}/{currency}/{amount}" : {
       "get" : {
         "tags" : [ "Currencies" ],
@@ -1601,24 +1599,20 @@
         "x-example" : "NOK"
       } ]
     },
-    "/locations/branch/findbyaddress" : {
+    "/locations/branches" : {
       "get" : {
         "tags" : [ "Location" ],
-        "summary" : "Find nearest branch by address",
-        "description" : "Basic geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
-        "operationId" : "findBranchByAddress",
-        "parameters" : [ {
-          "name" : "address",
-          "in" : "query",
-          "required" : false,
-          "type" : "string",
-          "description" : "For now: Assume geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro"
-        } ],
+        "summary" : "Get list of all DNB branches",
+        "operationId" : "listBranches",
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/branch"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/branch"
+              }
             }
           },
           "400" : {
@@ -1700,6 +1694,53 @@
         "type" : "string",
         "x-example" : "10.760133399999972"
       } ]
+    },
+    "/locations/branch/findbyaddress" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Find nearest branch by address",
+        "description" : "Basic geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
+        "operationId" : "findBranchByAddress",
+        "parameters" : [ {
+          "name" : "address",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "For now: Assume geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "$ref" : "#/definitions/branch"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
     },
     "/locations/branch/{branchid}/details" : {
       "get" : {
@@ -1858,49 +1899,6 @@
         "description" : "Current longditude.",
         "x-example" : "10.760133399999972"
       } ]
-    },
-    "/locations/branches" : {
-      "get" : {
-        "tags" : [ "Location" ],
-        "summary" : "Get list of all DNB branches",
-        "operationId" : "listBranches",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Request succeeded",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/branch"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      }
     }
   },
   "securityDefinitions" : {
@@ -2205,6 +2203,174 @@
       },
       "description" : "Monthly ```account``` statement. "
     },
+    "paymentInitiation" : {
+      "type" : "object",
+      "required" : [ "amount", "creditAccountNumber", "debitAccountNumber", "initiator", "paymentDate", "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "KID, message (and transfer?)",
+          "default" : "KID",
+          "enum" : [ "KID", "MESSAGE", "TRANSFER" ],
+          "example" : "KID"
+        },
+        "debitAccountNumber" : {
+          "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
+        },
+        "creditAccountNumber" : {
+          "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
+        },
+        "amount" : {
+          "type" : "number",
+          "example" : 1500
+        },
+        "paymentDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2018-12-31T23:59:59+01:00"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "Used for both KID and Message, based on Type.",
+          "example" : "35298562958265982749"
+        },
+        "initiator" : {
+          "type" : "string",
+          "description" : "Nu phone who dis?",
+          "example" : "DNB"
+        }
+      },
+      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
+    },
+    "paymentDetails" : {
+      "type" : "object",
+      "properties" : {
+        "invoiceReference" : {
+          "type" : "string",
+          "description" : "Used for eFaktura",
+          "example" : "12345678901"
+        }
+      },
+      "description" : "More details about a payment. Some payment types have more data than others."
+    },
+    "payment" : {
+      "type" : "object",
+      "required" : [ "amount", "creditAccount", "debitAccount", "paymentId", "status", "type" ],
+      "properties" : {
+        "paymentId" : {
+          "type" : "string",
+          "example" : "123456789"
+        },
+        "debitAccount" : {
+          "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
+        },
+        "creditAccount" : {
+          "type" : "string",
+          "minLength" : 11,
+          "maxLength" : 11,
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
+        },
+        "amount" : {
+          "type" : "number",
+          "example" : 1500.01
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "TBD",
+          "example" : "TBD1"
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2018-31-12"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Statuses",
+          "default" : "PAID",
+          "enum" : [ "PAID", "PENDINGCONFIRMATION", "LIMITEXCEEDED", "REJECTED", "CONFIRMED" ],
+          "example" : "PAID"
+        },
+        "paymentDetails" : {
+          "$ref" : "#/definitions/paymentDetails"
+        }
+      },
+      "description" : "**NOTE:** May be completely merged with ```transaction```.\n\nA ```payment``` is a planned payment/transaction that has not yet been carried out.\n\nDetails about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n"
+    },
+    "transaction" : {
+      "type" : "object",
+      "required" : [ "amount", "dateBooking", "status", "transactionId" ],
+      "properties" : {
+        "transactionId" : {
+          "type" : "string",
+          "example" : "12345"
+        },
+        "amount" : {
+          "type" : "number",
+          "minimum" : 0,
+          "example" : 1500
+        },
+        "currencyValue" : {
+          "type" : "number",
+          "description" : "Amount in foreign currency (if relevant)",
+          "example" : 90
+        },
+        "currency" : {
+          "type" : "string",
+          "description" : "If not the currency of the account/card.",
+          "default" : "NOK",
+          "minLength" : 3,
+          "maxLength" : 3,
+          "example" : "NOK"
+        },
+        "dateBooking" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2018-12-31"
+        },
+        "dateValue" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "2018-12-31"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Descriptive text for the transaction.",
+          "example" : "Lunch at The Restaurant at the End of the Universe"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)",
+          "default" : "BOOKED",
+          "enum" : [ "BOOKED", "RESERVED" ],
+          "example" : "BOOKED"
+        },
+        "merchantName" : {
+          "type" : "string",
+          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```.",
+          "example" : "Coffee Shop ChainName, shop number 10"
+        },
+        "MCC" : {
+          "type" : "string",
+          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html",
+          "example" : "3514: Hotels/Motels/Inns/Resorts"
+        }
+      },
+      "description" : "A ```transaction``` is a completed operation, in contrast to ```payment```, which is planned, but not completed.\n\nThe same ```transaction``` is used for all types of transactions: DNB-only account transactions, domestic transactions, international transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer does not need to know about different transaction types when retrieving them, this is .\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
+    },
     "card" : {
       "type" : "object",
       "required" : [ "accountNumber", "cardGroup", "cardId", "cardStatus", "cardType", "expiryMonth", "expiryYear", "maskedCardNumber" ],
@@ -2276,22 +2442,6 @@
       },
       "description" : "Both debit and credit cards."
     },
-    "cardStatus" : {
-      "type" : "object",
-      "properties" : {
-        "status" : {
-          "type" : "string",
-          "default" : "Not blocked",
-          "enum" : [ "Not blocked", "Card blocked by customer - card is allowed to unblock", "Card blocked by customer - card is not allowed to unblock", "Card blocked for e-commerce by customer service", "Card blocked for e-commerce by customer" ],
-          "example" : "Not blocked"
-        },
-        "blockingType" : {
-          "type" : "string",
-          "default" : "Card",
-          "enum" : [ "Card", "E-commerce" ]
-        }
-      }
-    },
     "cardBalance" : {
       "type" : "object",
       "required" : [ "amountAvailable", "currency" ],
@@ -2324,6 +2474,22 @@
         }
       },
       "description" : "Used by ```card```. See also: ```accountBalance```."
+    },
+    "cardStatus" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "default" : "Not blocked",
+          "enum" : [ "Not blocked", "Card blocked by customer - card is allowed to unblock", "Card blocked by customer - card is not allowed to unblock", "Card blocked for e-commerce by customer service", "Card blocked for e-commerce by customer" ],
+          "example" : "Not blocked"
+        },
+        "blockingType" : {
+          "type" : "string",
+          "default" : "Card",
+          "enum" : [ "Card", "E-commerce" ]
+        }
+      }
     },
     "cardInvoice" : {
       "type" : "object",
@@ -2377,173 +2543,24 @@
         }
       }
     },
-    "payment" : {
+    "currencyRate" : {
       "type" : "object",
-      "required" : [ "amount", "creditAccount", "debitAccount", "paymentId", "status", "type" ],
+      "required" : [ "currency", "currencyRate" ],
       "properties" : {
-        "paymentId" : {
-          "type" : "string",
-          "example" : "123456789"
-        },
-        "debitAccount" : {
-          "type" : "string",
-          "minLength" : 11,
-          "maxLength" : 11,
-          "pattern" : "^\\d{11}$",
-          "example" : "12345678901"
-        },
-        "creditAccount" : {
-          "type" : "string",
-          "minLength" : 11,
-          "maxLength" : 11,
-          "pattern" : "^\\d{11}$",
-          "example" : "12345678901"
-        },
-        "amount" : {
-          "type" : "number",
-          "example" : 1500.01
-        },
-        "type" : {
-          "type" : "string",
-          "description" : "TBD",
-          "example" : "TBD1"
-        },
-        "date" : {
-          "type" : "string",
-          "format" : "date",
-          "example" : "2018-31-12"
-        },
-        "status" : {
-          "type" : "string",
-          "description" : "Statuses",
-          "default" : "PAID",
-          "enum" : [ "PAID", "PENDINGCONFIRMATION", "LIMITEXCEEDED", "REJECTED", "CONFIRMED" ],
-          "example" : "PAID"
-        },
-        "paymentDetails" : {
-          "$ref" : "#/definitions/paymentDetails"
-        }
-      },
-      "description" : "**NOTE:** May be completely merged with ```transaction```.\n\nA ```payment``` is a planned payment/transaction that has not yet been carried out.\n\nDetails about a payment. Used by:\n* /payments/due/{accountNumber}: Returning a list of payments, with _empty_ PaymentDetails\n* /payments/due/{accountNumber}/details: Returning a list of payments, with PaymentDetails\n\n"
-    },
-    "paymentDetails" : {
-      "type" : "object",
-      "properties" : {
-        "invoiceReference" : {
-          "type" : "string",
-          "description" : "Used for eFaktura",
-          "example" : "12345678901"
-        }
-      },
-      "description" : "More details about a payment. Some payment types have more data than others."
-    },
-    "paymentInitiation" : {
-      "type" : "object",
-      "required" : [ "amount", "creditAccountNumber", "debitAccountNumber", "initiator", "paymentDate", "type" ],
-      "properties" : {
-        "type" : {
-          "type" : "string",
-          "description" : "KID, message (and transfer?)",
-          "default" : "KID",
-          "enum" : [ "KID", "MESSAGE", "TRANSFER" ],
-          "example" : "KID"
-        },
-        "debitAccountNumber" : {
-          "type" : "string",
-          "minLength" : 11,
-          "maxLength" : 11,
-          "pattern" : "^\\d{11}$",
-          "example" : "12345678901"
-        },
-        "creditAccountNumber" : {
-          "type" : "string",
-          "minLength" : 11,
-          "maxLength" : 11,
-          "pattern" : "^\\d{11}$",
-          "example" : "12345678901"
-        },
-        "amount" : {
-          "type" : "number",
-          "example" : 1500
-        },
-        "paymentDate" : {
-          "type" : "string",
-          "format" : "date-time",
-          "example" : "2018-12-31T23:59:59+01:00"
-        },
-        "message" : {
-          "type" : "string",
-          "description" : "Used for both KID and Message, based on Type.",
-          "example" : "35298562958265982749"
-        },
-        "initiator" : {
-          "type" : "string",
-          "description" : "Nu phone who dis?",
-          "example" : "DNB"
-        }
-      },
-      "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
-    },
-    "transaction" : {
-      "type" : "object",
-      "required" : [ "amount", "dateBooking", "status", "transactionId" ],
-      "properties" : {
-        "transactionId" : {
-          "type" : "string",
-          "example" : "12345"
-        },
-        "amount" : {
-          "type" : "number",
-          "minimum" : 0,
-          "example" : 1500
-        },
-        "currencyValue" : {
-          "type" : "number",
-          "description" : "Amount in foreign currency (if relevant)",
-          "example" : 90
-        },
         "currency" : {
           "type" : "string",
-          "description" : "If not the currency of the account/card.",
+          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
           "default" : "NOK",
           "minLength" : 3,
           "maxLength" : 3,
           "example" : "NOK"
         },
-        "dateBooking" : {
-          "type" : "string",
-          "format" : "date",
-          "example" : "2018-12-31"
-        },
-        "dateValue" : {
-          "type" : "string",
-          "format" : "date",
-          "example" : "2018-12-31"
-        },
-        "description" : {
-          "type" : "string",
-          "description" : "Descriptive text for the transaction.",
-          "example" : "Lunch at The Restaurant at the End of the Universe"
-        },
-        "status" : {
-          "type" : "string",
-          "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)",
-          "default" : "BOOKED",
-          "enum" : [ "BOOKED", "RESERVED" ],
-          "example" : "BOOKED"
-        },
-        "merchantName" : {
-          "type" : "string",
-          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```.",
-          "example" : "Coffee Shop ChainName, shop number 10"
-        },
-        "MCC" : {
-          "type" : "string",
-          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html",
-          "example" : "3514: Hotels/Motels/Inns/Resorts"
+        "currencyRate" : {
+          "type" : "number",
+          "example" : 123.45
         }
       },
-      "description" : "A ```transaction``` is a completed operation, in contrast to ```payment```, which is planned, but not completed.\n\nThe same ```transaction``` is used for all types of transactions: DNB-only account transactions, domestic transactions, international transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer does not need to know about different transaction types when retrieving them, this is .\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
+      "description" : "Used by ```/currencies/list/{base}``` for a response similar to:\n\n```\n{\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```"
     },
     "address" : {
       "type" : "object",
@@ -2582,131 +2599,6 @@
         }
       },
       "description" : "Corresponds with address fields used internally in DNB. "
-    },
-    "location" : {
-      "type" : "object",
-      "required" : [ "id", "latitude", "longditude" ],
-      "properties" : {
-        "id" : {
-          "type" : "string",
-          "description" : "Internal id",
-          "example" : "12345"
-        },
-        "friendlyName" : {
-          "type" : "string",
-          "description" : "Descriptive name",
-          "example" : "DNB headquarters"
-        },
-        "latitude" : {
-          "type" : "string",
-          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
-          "example" : "59.9075823"
-        },
-        "longditude" : {
-          "type" : "string",
-          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
-          "example" : "10.760133399999972"
-        },
-        "description" : {
-          "type" : "string",
-          "description" : "May be used for large areas like airports, train stations, stadiums, etc.",
-          "example" : "Lobby"
-        }
-      },
-      "description" : "Data object for physical location based on GPS coordinates. May be used for something that does not have a specific address, or somethjing that needs a more specific than an address provides, such as an ```ATM``` at a train station. A ```location``` may be used in addition to an ```address```.\n"
-    },
-    "branch" : {
-      "type" : "object",
-      "required" : [ "address", "branchId", "email", "location", "openingTimes", "phoneNumber" ],
-      "properties" : {
-        "branchId" : {
-          "type" : "string"
-        },
-        "name" : {
-          "type" : "string",
-          "example" : "DNB headquarters, lobby"
-        },
-        "phoneNumber" : {
-          "type" : "string",
-          "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
-          "pattern" : "^\\+?[1-9]\\d{1,14}$",
-          "example" : "+4791504800"
-        },
-        "email" : {
-          "type" : "string",
-          "description" : "RFC 5322",
-          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
-          "example" : "example@example.com"
-        },
-        "address" : {
-          "$ref" : "#/definitions/address"
-        },
-        "openingTimes" : {
-          "$ref" : "#/definitions/openingTimes"
-        },
-        "location" : {
-          "$ref" : "#/definitions/location"
-        }
-      }
-    },
-    "ATM" : {
-      "type" : "object",
-      "properties" : {
-        "id" : {
-          "type" : "string",
-          "example" : "12345"
-        },
-        "name" : {
-          "type" : "string",
-          "example" : "DNB headquarters, lobby"
-        },
-        "address" : {
-          "$ref" : "#/definitions/address"
-        },
-        "location" : {
-          "$ref" : "#/definitions/location"
-        },
-        "openingTimes" : {
-          "$ref" : "#/definitions/openingTimes"
-        },
-        "currencies" : {
-          "type" : "array",
-          "description" : "Array of ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
-          "items" : {
-            "type" : "string",
-            "example" : "NOK"
-          }
-        }
-      }
-    },
-    "openingTimes" : {
-      "type" : "array",
-      "description" : "Opening times for a ```branch```, ```ATM```, or something else.\n\nIf open 24 hours, use \"00:00\" both for ```openingTime``` and ```closingTime```.",
-      "items" : {
-        "required" : [ "closingTime", "openingTime" ],
-        "type" : "object",
-        "properties" : {
-          "day" : {
-            "type" : "integer",
-            "description" : "1: Monday, 2: Tuesday, etc",
-            "minimum" : 1,
-            "maximum" : 7,
-            "example" : 1
-          },
-          "openingTime" : {
-            "type" : "string",
-            "description" : "HH:MM",
-            "pattern" : "^\\d{2}:\\d{2}$",
-            "example" : "09:00"
-          },
-          "closingTime" : {
-            "type" : "string",
-            "description" : "HH:MM",
-            "pattern" : "^\\d{2}:\\d{2}$",
-            "example" : "16:00"
-          }
-        }
-      }
     },
     "error" : {
       "type" : "object",
@@ -2787,24 +2679,130 @@
       },
       "description" : "URIs for previous, this and next. Only this (self) is required, as previous and next may not exist).\n\nSee also global headers for pagination: ```pageNumber```and ```pageSize```."
     },
-    "currencyRate" : {
+    "ATM" : {
       "type" : "object",
-      "required" : [ "currency", "currencyRate" ],
       "properties" : {
-        "currency" : {
+        "id" : {
           "type" : "string",
-          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
-          "default" : "NOK",
-          "minLength" : 3,
-          "maxLength" : 3,
-          "example" : "NOK"
+          "example" : "12345"
         },
-        "currencyRate" : {
-          "type" : "number",
-          "example" : 123.45
+        "name" : {
+          "type" : "string",
+          "example" : "DNB headquarters, lobby"
+        },
+        "address" : {
+          "$ref" : "#/definitions/address"
+        },
+        "location" : {
+          "$ref" : "#/definitions/location"
+        },
+        "openingTimes" : {
+          "$ref" : "#/definitions/openingTimes"
+        },
+        "currencies" : {
+          "type" : "array",
+          "description" : "Array of ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
+          "items" : {
+            "type" : "string",
+            "example" : "NOK"
+          }
+        }
+      }
+    },
+    "location" : {
+      "type" : "object",
+      "required" : [ "id", "latitude", "longditude" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Internal id",
+          "example" : "12345"
+        },
+        "friendlyName" : {
+          "type" : "string",
+          "description" : "Descriptive name",
+          "example" : "DNB headquarters"
+        },
+        "latitude" : {
+          "type" : "string",
+          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
+          "example" : "59.9075823"
+        },
+        "longditude" : {
+          "type" : "string",
+          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
+          "example" : "10.760133399999972"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "May be used for large areas like airports, train stations, stadiums, etc.",
+          "example" : "Lobby"
         }
       },
-      "description" : "Used by ```/currencies/list/{base}``` for a response similar to:\n\n```\n{\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```"
+      "description" : "Data object for physical location based on GPS coordinates. May be used for something that does not have a specific address, or somethjing that needs a more specific than an address provides, such as an ```ATM``` at a train station. A ```location``` may be used in addition to an ```address```.\n"
+    },
+    "branch" : {
+      "type" : "object",
+      "required" : [ "address", "branchId", "email", "location", "openingTimes", "phoneNumber" ],
+      "properties" : {
+        "branchId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "DNB headquarters, lobby"
+        },
+        "phoneNumber" : {
+          "type" : "string",
+          "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
+          "pattern" : "^\\+?[1-9]\\d{1,14}$",
+          "example" : "+4791504800"
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "RFC 5322",
+          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
+          "example" : "example@example.com"
+        },
+        "address" : {
+          "$ref" : "#/definitions/address"
+        },
+        "openingTimes" : {
+          "$ref" : "#/definitions/openingTimes"
+        },
+        "location" : {
+          "$ref" : "#/definitions/location"
+        }
+      }
+    },
+    "openingTimes" : {
+      "type" : "array",
+      "description" : "Opening times for a ```branch```, ```ATM```, or something else.\n\nIf open 24 hours, use \"00:00\" both for ```openingTime``` and ```closingTime```.",
+      "items" : {
+        "required" : [ "closingTime", "openingTime" ],
+        "type" : "object",
+        "properties" : {
+          "day" : {
+            "type" : "integer",
+            "description" : "1: Monday, 2: Tuesday, etc",
+            "minimum" : 1,
+            "maximum" : 7,
+            "example" : 1
+          },
+          "openingTime" : {
+            "type" : "string",
+            "description" : "HH:MM",
+            "pattern" : "^\\d{2}:\\d{2}$",
+            "example" : "09:00"
+          },
+          "closingTime" : {
+            "type" : "string",
+            "description" : "HH:MM",
+            "pattern" : "^\\d{2}:\\d{2}$",
+            "example" : "16:00"
+          }
+        }
+      }
     }
   }
 }
