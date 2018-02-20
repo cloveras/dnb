@@ -177,7 +177,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       } ]
     },
@@ -228,7 +228,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       } ]
     },
@@ -340,7 +340,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       } ]
     },
@@ -392,7 +392,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       }, {
         "name" : "transactionId",
@@ -454,7 +454,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       } ]
     },
@@ -492,7 +492,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       }, {
         "name" : "paymentId",
@@ -541,7 +541,7 @@
         "default" : "12345678901",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       } ]
     },
@@ -615,7 +615,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "'^\\d{11}$'",
+        "pattern" : "^\\d{11}$",
         "x-example" : "12345678901"
       }, {
         "name" : "customerId",
@@ -625,7 +625,7 @@
         "description" : "SSN or Organization number",
         "minLength" : 9,
         "maxLength" : 11,
-        "pattern" : "'^\\d{9,11}$'",
+        "pattern" : "^\\d{9,11}$",
         "x-example" : "12345678901"
       } ]
     },
@@ -990,12 +990,6 @@
         "operationId" : "getPaymentsDue",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "accountNumber",
-          "in" : "query",
-          "required" : true,
-          "type" : "string",
-          "x-example" : "12345678901"
-        }, {
           "name" : "startDate",
           "in" : "query",
           "required" : false,
@@ -1245,7 +1239,7 @@
           "description" : "Filter for MCC. Use only the numeric code.",
           "minLength" : 4,
           "maxLength" : 4,
-          "pattern" : "'^\\d{4}$'",
+          "pattern" : "^\\d{4}$",
           "x-example" : "3514"
         }, {
           "name" : "freeText",
@@ -1304,7 +1298,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "`^\\d{11}$'",
+        "pattern" : "`^\\d{11}$",
         "x-example" : "12345678901"
       } ]
     },
@@ -1359,7 +1353,7 @@
         "type" : "string",
         "minLength" : 11,
         "maxLength" : 11,
-        "pattern" : "`^\\d{11}$'",
+        "pattern" : "`^\\d{11}$",
         "x-example" : "12345678901"
       }, {
         "name" : "transactionId",
@@ -1934,7 +1928,7 @@
           "description" : "SSN (11 digits) or organization number (9 digits).",
           "minLength" : 9,
           "maxLength" : 11,
-          "pattern" : "'^\\d{9,11}$'",
+          "pattern" : "^\\d{9,11}$",
           "example" : "12345678901"
         },
         "customerType" : {
@@ -1972,7 +1966,7 @@
         "phone" : {
           "type" : "string",
           "description" : "Including \"+\" and international prefix. E.164: https://www.twilio.com/docs/glossary/what-e164 Whitespace and dashes are stripped.",
-          "pattern" : "'^\\+?[1-9]\\d{1,14}$'",
+          "pattern" : "^\\+?[1-9]\\d{1,14}$",
           "example" : "+4791504800"
         },
         "countryOfBirth" : {
@@ -2031,7 +2025,7 @@
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "friendlyName" : {
@@ -2055,7 +2049,7 @@
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "type" : {
@@ -2089,7 +2083,7 @@
           "description" : "11 digits",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "amountAvailable" : {
@@ -2117,7 +2111,7 @@
         "IBAN" : {
           "type" : "string",
           "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace. Enjoy the regex.",
-          "pattern" : "'^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$'",
+          "pattern" : "^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$",
           "example" : "NO9386011117947"
         },
         "BIC" : {
@@ -2186,7 +2180,7 @@
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "year" : {
@@ -2224,7 +2218,7 @@
           "description" : "16 characters: Twelve \"X\", and the last four digits of the card number. No whitespace.",
           "minLength" : 16,
           "maxLength" : 16,
-          "pattern" : "'^X{12}\\d{4}$'",
+          "pattern" : "^X{12}\\d{4}$",
           "example" : "XXXXXXXXXXXX1234"
         },
         "cardType" : {
@@ -2246,8 +2240,8 @@
           "description" : "Both for debit and credit cards",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
-          "example" : "012345678901"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "cardStatus" : {
           "$ref" : "#/definitions/cardStatus"
@@ -2262,7 +2256,7 @@
           "description" : "YYYY",
           "minLength" : 4,
           "maxLength" : 4,
-          "pattern" : "'^\\d{4}$'",
+          "pattern" : "^\\d{4}$",
           "example" : "2020"
         },
         "expiryMonth" : {
@@ -2270,7 +2264,7 @@
           "description" : "MM",
           "minLength" : 2,
           "maxLength" : 2,
-          "pattern" : "'^\\d{4}$'",
+          "pattern" : "^\\d{4}$",
           "example" : "01"
         },
         "debitBalance" : {
@@ -2341,13 +2335,13 @@
         "year" : {
           "type" : "string",
           "description" : "YYYY",
-          "pattern" : "'^\\d{4}$'",
+          "pattern" : "^\\d{4}$",
           "example" : "2018"
         },
         "month" : {
           "type" : "string",
           "description" : "MM, where January is 01",
-          "pattern" : "'^\\d{2}$'",
+          "pattern" : "^\\d{2}$",
           "example" : "01"
         },
         "amount" : {
@@ -2364,15 +2358,15 @@
           "description" : "Account to pay to. 11 digits.",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
-          "example" : "012345678901"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "KID" : {
           "type" : "string",
           "description" : "2-25 digits",
           "minLength" : 2,
           "maxLength" : 25,
-          "pattern" : "'^\\d{2,25}$'",
+          "pattern" : "^\\d{2,25}$",
           "example" : "42"
         },
         "transactions" : {
@@ -2395,14 +2389,14 @@
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "creditAccount" : {
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "amount" : {
@@ -2458,14 +2452,14 @@
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "creditAccountNumber" : {
           "type" : "string",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "'^\\d{11}$'",
+          "pattern" : "^\\d{11}$",
           "example" : "12345678901"
         },
         "amount" : {
@@ -2572,7 +2566,7 @@
           "description" : "Norwegian postcode only (for now).",
           "minLength" : 4,
           "maxLength" : 4,
-          "pattern" : "'^\\d{4}$'",
+          "pattern" : "^\\d{4}$",
           "example" : "0191"
         },
         "postCity" : {
@@ -2605,12 +2599,12 @@
         },
         "latitude" : {
           "type" : "string",
-          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'",
+          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
           "example" : "59.9075823"
         },
         "longditude" : {
           "type" : "string",
-          "pattern" : "'^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$'",
+          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
           "example" : "10.760133399999972"
         },
         "description" : {
@@ -2635,7 +2629,7 @@
         "phoneNumber" : {
           "type" : "string",
           "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
-          "pattern" : "'^\\+?[1-9]\\d{1,14}$'",
+          "pattern" : "^\\+?[1-9]\\d{1,14}$",
           "example" : "+4791504800"
         },
         "email" : {
@@ -2702,13 +2696,13 @@
           "openingTime" : {
             "type" : "string",
             "description" : "HH:MM",
-            "pattern" : "'^\\d{2}:\\d{2}$'",
+            "pattern" : "^\\d{2}:\\d{2}$",
             "example" : "09:00"
           },
           "closingTime" : {
             "type" : "string",
             "description" : "HH:MM",
-            "pattern" : "'^\\d{2}:\\d{2}$'",
+            "pattern" : "^\\d{2}:\\d{2}$",
             "example" : "16:00"
           }
         }
@@ -2721,7 +2715,7 @@
         "httpStatus" : {
           "type" : "string",
           "description" : "Implicit, but still included.",
-          "pattern" : "'^\\d{3}$'",
+          "pattern" : "^\\d{3}$",
           "example" : "400"
         },
         "errorNumber" : {
