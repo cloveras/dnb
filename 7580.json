@@ -990,12 +990,6 @@
         "operationId" : "getPaymentsDue",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "accountNumber",
-          "in" : "query",
-          "required" : true,
-          "type" : "string",
-          "x-example" : "12345678901"
-        }, {
           "name" : "startDate",
           "in" : "query",
           "required" : false,
