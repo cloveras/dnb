@@ -2247,7 +2247,7 @@
           "minLength" : 11,
           "maxLength" : 11,
           "pattern" : "^\\d{11}$",
-          "example" : "012345678901"
+          "example" : "12345678901"
         },
         "cardStatus" : {
           "$ref" : "#/definitions/cardStatus"
@@ -2365,7 +2365,7 @@
           "minLength" : 11,
           "maxLength" : 11,
           "pattern" : "^\\d{11}$",
-          "example" : "012345678901"
+          "example" : "12345678901"
         },
         "KID" : {
           "type" : "string",
