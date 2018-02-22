@@ -500,7 +500,7 @@
         "x-example" : "12345"
       } ]
     },
-    "/accounts/iban/{accountNumber}" : {
+    "/ideas/accounts/iban/{accountNumber}" : {
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get IBAN for DNB account",
@@ -543,7 +543,7 @@
         "x-example" : "12345678901"
       } ]
     },
-    "/idea/accounts/ibanverify/{IBAN}" : {
+    "/ideas/accounts/ibanverify/{IBAN}" : {
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Verify IBAN format",
@@ -581,7 +581,7 @@
         "type" : "string"
       } ]
     },
-    "/idea/accounts/verify/{accountNumber}/{customerId}" : {
+    "/ideas/accounts/verify/{accountNumber}/{customerId}" : {
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Verify that account belongs to a customer",
