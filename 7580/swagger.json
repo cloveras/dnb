@@ -543,11 +543,11 @@
         "x-example" : "12345678901"
       } ]
     },
-    "/accounts/ibanverify/{IBAN}" : {
+    "/idea/accounts/ibanverify/{IBAN}" : {
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Verify IBAN format",
-        "description" : "**DRAFT:** This endpoint is not part of the initial release. Input appreciated: developer@dnb.no",
+        "description" : "**DRAFT IDEA:** This endpoint is not part of the initial release. Input appreciated: developer@dnb.no",
         "operationId" : "verifyIbanFormat",
         "parameters" : [ ],
         "responses" : {
@@ -581,11 +581,11 @@
         "type" : "string"
       } ]
     },
-    "/accounts/verify/{accountNumber}/{customerId}" : {
+    "/idea/accounts/verify/{accountNumber}/{customerId}" : {
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Verify that account belongs to a customer",
-        "description" : "**DRAFT:** This endpoint is not part of the initial release. Input appreciated: developer@dnb.no\n",
+        "description" : "**DRAFT IDEA:** This endpoint is not part of the initial release. Input appreciated: developer@dnb.no\n",
         "operationId" : "verifyAccount",
         "parameters" : [ ],
         "responses" : {
