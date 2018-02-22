@@ -631,7 +631,7 @@
       "post" : {
         "tags" : [ "Payments" ],
         "summary" : "Initiate payment",
-        "description" : "Domestic payment with KID or message.\n\nReturns HTTP 201 and the ```PaymentId``` of successfully created payment.",
+        "description" : "Domestic payment with KID or message.\n\nReturns HTTP 201 and the ```PaymentId``` of successfully created payment.\n\nExample code test:\n```\nPOST /payments HTTP/1.1\nAccept: application/json\nContent-Length: 219\nContent-Type: application/json\n\n{\n  \"type\": \"MESSAGE\",\n  \"debitAccountNumber\": \"12345678901\",\n  \"creditAccountNumber\": \"12345678902\",\n  \"amount\": \"1500.00\",\n  \"paymentDate\": \"2018-01-01\",\n  \"message\": \"Open the pod doors, HAL\",\n  \"initiator\": \"Dave\"\n}\n```\n\nResponse:\n```\nHTTP/1.1 201 Created\ndate: Thu, 22 Feb 2018 16:00:14 GMT, Thu, 22 Feb 2018 16:00:14 GMT\ncontent-type: application/json; charset=UTF-8\ncontent-length: 10\n\n1234567890\n````",
         "operationId" : "paymentInitiate",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
