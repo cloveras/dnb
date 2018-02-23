@@ -1,8 +1,8 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "**IMPORTANT:** This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts.\n\n**General guidelines:**\n\n* We use camelCase, starting with lowercase: ```customerEngagement```, ```accountNumber```, ```creditCard```, etc.\n* Unless implicit by Swagger, standards are mentioned and refered to.\n* General rule: The response (object) determines endpoint: If the response is ```account```, the endpoint should be under ```/accounts```. In cases where this may be up for discussion, multiple endpoints may, for a limited time, be available in order to evaluate.\n* Versioning: https://semver.org/ (Major.Minor.Patch). Major: Incompatible changes. Minor: New, backwards-compatible functionality. Patch: Backwards-compatible fixes.\n\n**Standards:**\n\nAll APIs use ISO and RFC standards:\n\n* Swagger specification: https://swagger.io/specification/\n* Country: ISO 3166-1 alpha-2: : https://www.iso.org/standard/63546.html (```NO```, ```GB```, ```US```)\n* Currency: ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html (```NOK```, ```EUR```, ```USD```)\n* Date: According to Swagger specification: ISO 8601:  www.iso.org/iso/home/standards/iso8601.htm (date: ```2018-12-31```, timestamp: ```2018-12-31T23:59:59+01:00```)\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 (```DNBANOKKXXX```)\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html (```NO9386011117947```)\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes) (```3514: Hotels/Motels/Inns/Resorts```)\n\n**HTTP Response Codes**\n\nHTTP response are intended to be logical: If a ```customer```or an ```account``` does not exist, the response is ```404 Not Found```.  All errors return a relevant HTTP status code and response with an ``error`` containing additional details. The HTTP statuses returnbed are:\n\nSuccess\n\n* ```200: OK``` Success!   \n* ```201: Created``` Resource created. Reference included.\n\nClient Error\n\n* ```400: Bad Request``` Yor request was, somehow, not ok.  \n* ```401: Unauthorized``` You are unknown.   \n* ```403: Forbidden``` You are authorized, but you are attempting something you are not allowed to.  \n* ```404: Not Found``` What you looked for is not here.  \n* ```429: Too Many Requests``` Settle down!\n\nServer Error\n\n* ```500: Server Error``` We screwed up, sorry!\n* ```503: Service Unavailable``` Something is very wrong.\n* ```504: Timeout``` We need to speed up internally,  \n\n**Github**\n\nSwagger documentation is (for now) available on Github: https://github.com/cloveras/dnb/\n\n\n",
-    "version" : "0.10.2",
+    "description" : "**IMPORTANT:** This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts.\n\n**General guidelines:**\n\n* We use camelCase, starting with lowercase: ```customerEngagement```, ```accountNumber```, ```creditCard```, etc.\n* Unless implicit by Swagger, standards are mentioned and refered to.\n* General rule: The response (object) determines endpoint: If the response is ```account```, the endpoint should be under ```/accounts```. In cases where this may be up for discussion, multiple endpoints may, for a limited time, be available in order to evaluate.\n* Versioning: https://semver.org/ (Major.Minor.Patch). Major: Incompatible changes. Minor: New, backwards-compatible functionality. Patch: Backwards-compatible fixes.\n* Some endpoints start with ```/ideas``` and are marked \"DRAFT IDEA\". These enpoints are ideas we would like feedback on. Requests typically return ```HTTP 501 Not Implemented``` and a ```notImplemented```response, as well as a standard ```error```.\n\n**Standards:**\n\nAll APIs use ISO and RFC standards:\n\n* Swagger specification: https://swagger.io/specification/\n* Country: ISO 3166-1 alpha-2: : https://www.iso.org/standard/63546.html (```NO```, ```GB```, ```US```)\n* Currency: ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html (```NOK```, ```EUR```, ```USD```)\n* Date: According to Swagger specification: ISO 8601:  www.iso.org/iso/home/standards/iso8601.htm (date: ```2018-12-31```, timestamp: ```2018-12-31T23:59:59+01:00```)\n* SWIFT BIC: ISO 9362: https://en.wikipedia.org/wiki/ISO_9362 (```DNBANOKKXXX```)\n* IBAN ISO 13616:2007: https://www.iso.org/standard/41031.html (```NO9386011117947```)\n* MCC: ISO 18245: https://www.iso.org/standard/33365.html (https://github.com/greggles/mcc-codes) (```3514: Hotels/Motels/Inns/Resorts```)\n\n**HTTP Response Codes**\n\nHTTP response are intended to be logical: If a ```customer```or an ```account``` does not exist, the response is ```404 Not Found```.  All errors return a relevant HTTP status code and response with an ``error`` containing additional details. The HTTP statuses returnbed are:\n\nSuccess\n\n* ```200: OK``` Success!   \n* ```201: Created``` Resource created. Reference included.\n\nClient Error\n\n* ```400: Bad Request``` Yor request was, somehow, not ok.  \n* ```401: Unauthorized``` You are unknown.   \n* ```403: Forbidden``` You are authorized, but you are attempting something you are not allowed to.  \n* ```404: Not Found``` What you looked for is not here.  \n* ```429: Too Many Requests``` Settle down!\n\nServer Error\n\n* ```500: Server Error``` We screwed up, sorry!\n* ```503: Service Unavailable``` Something is very wrong.\n* ```504: Timeout``` We need to speed up internally,  \n\n**Github**\n\nSwagger documentation is (for now) available on Github: https://github.com/cloveras/dnb/\n\n\n",
+    "version" : "0.10.3",
     "title" : "DNB Developer APIs",
     "termsOfService" : "Be nice. Thanks!\nhttp://developer.dnb.no/terms (404 for now)\n\n\n",
     "contact" : {
@@ -602,6 +602,12 @@
             "description" : "No match",
             "schema" : {
               "$ref" : "#/definitions/error"
+            }
+          },
+          "501" : {
+            "description" : "Status 501",
+            "schema" : {
+              "$ref" : "#/definitions/notImplemented"
             }
           }
         }
@@ -2678,6 +2684,20 @@
         }
       },
       "description" : "URIs for previous, this and next. Only this (self) is required, as previous and next may not exist).\n\nSee also global headers for pagination: ```pageNumber```and ```pageSize```."
+    },
+    "notImplemented" : {
+      "type" : "object",
+      "properties" : {
+        "explanation" : {
+          "type" : "string",
+          "description" : "Text describing that this opertation is not yet implemented.",
+          "default" : "This operation is not yet implemented. Feedback is very welcome: developer@dnb.no"
+        },
+        "error" : {
+          "$ref" : "#/definitions/error"
+        }
+      },
+      "description" : "Standard response for operations that are not yet implemented."
     },
     "ATM" : {
       "type" : "object",
