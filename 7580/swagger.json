@@ -945,7 +945,7 @@
           "required" : false,
           "type" : "string",
           "description" : "Filter for free text. Case insensitive.",
-          "x-example" : "\"vipps\""
+          "x-example" : "Vipps"
         }, {
           "name" : "includePending",
           "in" : "query",
@@ -1964,7 +1964,7 @@
           "type" : "string",
           "description" : "Email address. RFC 5322.",
           "minLength" : 6,
-          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
+          "pattern" : "^\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z$",
           "example" : "example@example.com"
         },
         "phone" : {
@@ -2197,7 +2197,7 @@
           "description" : "MM, January: 01",
           "minLength" : 2,
           "maxLength" : 2,
-          "pattern" : "'\\d{2}'",
+          "pattern" : "^\\d{2}$",
           "example" : "01"
         },
         "transactions" : {
@@ -2690,8 +2690,8 @@
       "properties" : {
         "explanation" : {
           "type" : "string",
-          "description" : "Text describing that this opertation is not yet implemented.",
-          "default" : "This operation is not yet implemented. Feedback is very welcome: developer@dnb.no"
+          "description" : "Text describing that this operation is not yet implemented.",
+          "default" : "Feedback is very welcome: developer@dnb.no"
         },
         "error" : {
           "$ref" : "#/definitions/error"
