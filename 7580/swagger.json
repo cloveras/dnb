@@ -131,7 +131,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get account details",
-        "description" : "Returns Account.",
+        "description" : "Returns an ```account```, which also has ```accountBalance```, ```accountDetails``` and ```accountInterestDetails```. ",
         "operationId" : "getAccountDetails",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
@@ -161,7 +161,7 @@
             }
           },
           "404" : {
-            "description" : "customerId unknown",
+            "description" : "accountNumber not found",
             "schema" : {
               "$ref" : "#/definitions/error"
             }
