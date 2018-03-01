@@ -2310,6 +2310,184 @@
       },
       "description" : "Monthly ```account``` statement. "
     },
+    "depositAccount" : {
+      "type" : "object",
+      "properties" : {
+        "accountNumber" : {
+          "type" : "string"
+        },
+        "accountCurrency" : {
+          "type" : "string"
+        },
+        "iban" : {
+          "type" : "string"
+        },
+        "bic" : {
+          "type" : "string"
+        },
+        "openingDate" : {
+          "type" : "string"
+        },
+        "lastTransactionDate" : {
+          "type" : "string"
+        },
+        "sourceProductId" : {
+          "type" : "string"
+        },
+        "sourceProductSystem" : {
+          "type" : "string"
+        },
+        "sourceAgreementId" : {
+          "type" : "string"
+        },
+        "salesProductId" : {
+          "type" : "string"
+        },
+        "salesProductName" : {
+          "type" : "string"
+        },
+        "depositInterestRates" : {
+          "type" : "object",
+          "properties" : {
+            "interestCalculationMethod" : {
+              "type" : "string"
+            },
+            "overdraftInterestRate" : {
+              "type" : "number"
+            },
+            "depositInterestRate" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "depositRate" : {
+                    "type" : "number"
+                  },
+                  "depositThreshold" : {
+                    "type" : "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "transactionRestrictions" : {
+          "type" : "object",
+          "properties" : {
+            "blockingRestriction" : {
+              "type" : "string"
+            },
+            "restrictedWithdrawalAmount" : {
+              "type" : "number"
+            },
+            "freeWithdrawals" : {
+              "type" : "number"
+            },
+            "remainingFreeWithdrawals" : {
+              "type" : "number"
+            }
+          }
+        },
+        "accountUserRoles" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "roleType" : {
+                "type" : "string"
+              },
+              "roleOwnerId" : {
+                "type" : "string"
+              },
+              "roleOwnerName" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "creditLimits" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "creditLimit" : {
+                "type" : "number"
+              },
+              "creditLimitExpiryDate" : {
+                "type" : "string"
+              },
+              "creditLimitInterestRate" : {
+                "type" : "number"
+              }
+            }
+          }
+        },
+        "accumulators" : {
+          "type" : "object",
+          "properties" : {
+            "debitInterestPreviousYear" : {
+              "type" : "number"
+            },
+            "debitInterestThisYear" : {
+              "type" : "number"
+            },
+            "feesThisMonth" : {
+              "type" : "number"
+            },
+            "feesThisYear" : {
+              "type" : "number"
+            },
+            "creditInterestThisYear" : {
+              "type" : "number"
+            },
+            "creditInterestPreviousYear" : {
+              "type" : "number"
+            },
+            "creditNegativeInterestPreviousYear" : {
+              "type" : "number"
+            },
+            "withdrawalFeesPreviousMonth" : {
+              "type" : "number"
+            },
+            "withdrawalFeesPreviousYear" : {
+              "type" : "number"
+            }
+          }
+        },
+        "bsuInformation" : {
+          "type" : "object",
+          "properties" : {
+            "bsuStatus" : {
+              "type" : "string"
+            },
+            "frozenInterestAmount" : {
+              "type" : "number"
+            },
+            "frozenSavedAmount" : {
+              "type" : "number"
+            },
+            "savedAmountThisYear" : {
+              "type" : "number"
+            }
+          }
+        },
+        "fixedDepositRates" : {
+          "type" : "object",
+          "properties" : {
+            "debitBasisRate" : {
+              "type" : "number"
+            },
+            "fixedRateEndDate" : {
+              "type" : "string"
+            },
+            "creditBasisRate" : {
+              "type" : "number"
+            }
+          }
+        }
+      },
+      "description" : "Generate from JSON example in Shared Service Layer.\n"
+    },
     "paymentInitiation" : {
       "type" : "object",
       "required" : [ "amount", "creditAccountNumber", "debitAccountNumber", "initiator", "paymentDate", "type" ],
