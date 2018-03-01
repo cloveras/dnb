@@ -1,6 +1,6 @@
 # 🥁 Please note 🥁
 
-**IMPORTANT:** _This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts. Please contact cl@dnb.no if you have questions or comments._
+**IMPORTANT:** _This is a work in progress, and all information may change at any time. Final APIs may look very different. Until there is an official release, these APIs should be seen as unfinished drafts. Please contact cl@dnb.no if you have questions or comments. And, even though it's early: Pull requests and other inputs are welcome!_
 
 # 7580
 
