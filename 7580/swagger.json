@@ -88,6 +88,39 @@
           }
         }
       },
+      "patch" : {
+        "tags" : [ "Customers" ],
+        "summary" : "Update customer",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "500" : {
+            "description" : "Status 500",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      },
       "parameters" : [ {
         "name" : "customerId",
         "in" : "path",
@@ -99,7 +132,7 @@
     "/accounts" : {
       "get" : {
         "tags" : [ "Accounts" ],
-        "summary" : "Get all accounts for current user",
+        "summary" : "Get account list for current user",
         "operationId" : "getAccountsForCurrentUser",
         "parameters" : [ ],
         "responses" : {
@@ -234,7 +267,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transactions for account",
-        "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
+        "description" : "**NOTE:** Duplicates endpoint in ```Transactions```. For evaluation purposes. May be restricted to only retrieve one month at a time.\n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
         "operationId" : "getAccountTransactions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -346,7 +379,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transaction specified by id",
-        "description" : "**Note:** Duplicates endpoint in ```Transactions```. For evaluation purposes. ",
+        "description" : "**NOTE:** May not be possible, as this is not implemented in the Open Layer yet. Duplicates endpoint in ```Transactions```. For evaluation purposes. ",
         "operationId" : "getAccountTransactionById",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
@@ -889,6 +922,12 @@
         "operationId" : "gertTransactionsForAccount",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "name" : "includeReserved",
+          "in" : "query",
+          "required" : false,
+          "type" : "boolean",
+          "description" : "Should reserved (unbooked) transactions be included?"
+        }, {
           "name" : "sortOrder",
           "in" : "query",
           "required" : false,
@@ -946,12 +985,6 @@
           "type" : "string",
           "description" : "Filter for free text. Case insensitive.",
           "x-example" : "Vipps"
-        }, {
-          "name" : "includePending",
-          "in" : "query",
-          "required" : false,
-          "type" : "boolean",
-          "description" : "Should pending transactions be included?"
         } ],
         "responses" : {
           "200" : {
@@ -1215,11 +1248,32 @@
         }
       }
     },
+    "/cards/{cardId}/balance" : {
+      "get" : {
+        "tags" : [ "Cards" ],
+        "summary" : "Get card balance",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/cardBalance"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "cardId",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
     "/cards/{cardId}/details" : {
       "get" : {
         "tags" : [ "Cards" ],
         "summary" : "Get card details",
-        "description" : "Includes balance and credit limit (when applicable).",
+        "description" : "**NOTE:** May not be relevant, if \"Get cards for current customer\" returnes the same information, but for all the customer's cards.\n\nIncludes balance and credit limit (when applicable).",
         "operationId" : "getCardDetailsById",
         "parameters" : [ ],
         "responses" : {
@@ -1315,11 +1369,11 @@
         "x-example" : "12345678901"
       } ]
     },
-    "/cards/{cardId}/invoice/{year}/{month}" : {
+    "/cards/{cardId}/statement/{year}/{month}" : {
       "get" : {
         "tags" : [ "Cards" ],
-        "summary" : "Get card invoice",
-        "description" : "Get card invoice form chosen month",
+        "summary" : "Get card statement",
+        "description" : "Get card statement for the specified month",
         "operationId" : "gertCardInvoice",
         "parameters" : [ ],
         "responses" : {
@@ -1479,8 +1533,8 @@
     "/currencies/convert/{base}/{currency}/{amount}" : {
       "get" : {
         "tags" : [ "Currencies" ],
-        "summary" : "Convert amount from CUR1 to CUR2",
-        "description" : "Quite basic for now. Input welcome.",
+        "summary" : "Currency conversion",
+        "description" : "Convert amount from CUR1 to CUR2. Quite basic for now. Input welcome.",
         "operationId" : "currencyConvert",
         "parameters" : [ {
           "name" : "date",
@@ -1549,7 +1603,7 @@
     "/currencies/list/{base}" : {
       "get" : {
         "tags" : [ "Currencies" ],
-        "summary" : "Get a list rates for the most common currencies, with a specified base",
+        "summary" : "Get a currency rate list",
         "description" : "Suitable for making a table or similar.\n\n```\n{\n    timestamp: 1504548341,\n    base: \"NOK\",\n    rates: {\n        AED: 3.672538,\n        AFN: 66.809999,\n        ALL: 125.716501,\n        AMD: 484.902502,\n        ANG: 1.788575,\n        AOA: 135.295998,\n        ARS: 9.750101,\n        AUD: 1.390866,\n        /* ... */\n    }\n}\n```",
         "operationId" : "currencyList",
         "parameters" : [ {
@@ -1602,6 +1656,9 @@
         "required" : true,
         "type" : "string",
         "description" : "\"Home\" currency. ISO 4217: alpha 3-letter upcase",
+        "default" : "NOK",
+        "minLength" : 3,
+        "maxLength" : 3,
         "x-example" : "NOK"
       } ]
     },
@@ -1648,10 +1705,54 @@
         }
       }
     },
+    "/locations/Atms" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Get list of all DNB ATMs",
+        "operationId" : "listAtms",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request succeeded",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/branch"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
     "/locations/branch/{latitude}/{longditude}" : {
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Find nearest branch by coordinates",
+        "description" : "**NOTE:** Not planned for the first phase. See ```/locations/branches``` and ```/locations/Atms```. ",
         "operationId" : "findBranchByCoordinates",
         "parameters" : [ ],
         "responses" : {
@@ -1705,7 +1806,7 @@
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Find nearest branch by address",
-        "description" : "Basic geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
+        "description" : "**NOTE:** Not planned for the first phase. See ```/locations/branches``` and ```/locations/Atms```. \n\nBasic geocoding functionality similar to Google Maps: https://developers.google.com/maps/documentation/geocoding/intro",
         "operationId" : "findBranchByAddress",
         "parameters" : [ {
           "name" : "address",
@@ -1752,7 +1853,7 @@
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Get branch details",
-        "description" : "Contact information, opening hours, etc.",
+        "description" : "**NOTE:** Not planned for the first phase. See ```/locations/branches``` and ```/locations/Atms```. \n\nContact information, opening hours, etc.",
         "operationId" : "getBranchDetails",
         "parameters" : [ ],
         "responses" : {
@@ -1801,7 +1902,7 @@
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Get a branch's opening times",
-        "description" : "Opening times is also included in Branch.",
+        "description" : "**NOTE:** Not planned for the first phase. See ```/locations/branches``` and ```/locations/Atms```. \n\nOpening times is also included in Branch.",
         "operationId" : "getBranchOpeningTimes",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
@@ -1851,7 +1952,7 @@
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Find nearest ATM by coordinates",
-        "description" : "If no details (as for now): Assume ATM is open 24h.",
+        "description" : "**NOTE:** Not planned for the first phase. See ```/locations/branches``` and ```/locations/Atms```. \n\nIf no details (as for now): Assume ATM is open 24h.",
         "operationId" : "findAtmByCoordinates",
         "parameters" : [ ],
         "responses" : {
