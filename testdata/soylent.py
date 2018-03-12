@@ -45,12 +45,15 @@ from random import randrange
 from random import choice
 from faker import Faker
 
-def random_date(year):
+def get_random_date():
+    max_age = 100
+    this_year = datetime.datetime.now().year
+    random_year = randrange(this_year - max_age, this_year)
     try:
-        return datetime.datetime.strptime('{} {}'.format(random.randint(1, 366), year), '%j %Y')
-    # if the value happens to be in the leap year range, try again
+        return datetime.datetime.strptime('{} {}'.format(random.randint(1, 366), random_year), '%j %Y')
+    # Leap year? Try again.
     except ValueError:
-        get_random_date(year)
+        get_random_date(random_year)
 
 def create_people (number_of_people):
     '''
@@ -66,8 +69,8 @@ def create_people (number_of_people):
     month = ''
     year = ''
     date_of_birth = ''
-    fn = ''
-    ln = ''
+    first_name = ''
+    last_name = ''
     gender = ''
     street = ''
     postal_code = ''
@@ -83,13 +86,9 @@ def create_people (number_of_people):
     # People of the world!
     for i in range(number_of_people):
 
-        # Get random birth date
-        this_year = datetime.datetime.now().year
-        max_age = 100
-        date_of_birth = random_date(randrange(this_year - max_age, this_year))
-        year = date_of_birth.year
-        month = date_of_birth.month
-        day = date_of_birth.day
+        # Get random birth date as timestamp
+        random_date = get_random_date()
+        year, month, day = [random_date.year, random_date.month, random_date.day]
         date_of_birth = str(year) + '-' + str(month).zfill(2) + '-' + str(day).zfill(2) + 'T00:00:00.000Z'
 
         # SSN: Faking it until Faker supports Norwegian SSNs: https://github.com/joke2k/faker/issues/714
@@ -99,11 +98,11 @@ def create_people (number_of_people):
         # Name and gender
         if random.choice((True,False)):
             gender = 'Female'
-            fn = fake.first_name_female()
+            first_name = fake.first_name_female()
         else:
             gender = 'Male'
-            fn = fake.first_name_male()
-        ln = fake.last_name()
+            first_name = fake.first_name_male()
+        last_name = fake.last_name()
 
         # Contact information
         street = fake.street_name() + ' ' + fake.building_number()
@@ -115,9 +114,9 @@ def create_people (number_of_people):
 
         # JSON
         person = {
-            'personalNumber': ssn,
-            'firstName': fn,
-            'lastName': ln,
+            'personalast_nameumber': ssn,
+            'firstName': first_name,
+            'lastName': last_name,
             'dateOfBirth': date_of_birth,
             'gender': gender,
             'nationality': 'Norwegian',
@@ -135,10 +134,12 @@ def create_people (number_of_people):
 
         # Write to files in JSON and text format
         customerFileJson.write(data + '\n')
-        customerFileTxt.write('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r\n' % (ssn, fn, ln, gender, street, postal_code, city, phone, email, id_type))
+        customerFileTxt.write('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r\n' %
+                              (ssn, first_name, last_name, gender, street, postal_code, city, phone, email, id_type))
 
         # Vewry verbose
-        print('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r' % (ssn, fn, ln, gender, street, postal_code, city, phone, email, id_type))
+        print('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r' %
+              (ssn, first_name, last_name, gender, street, postal_code, city, phone, email, id_type))
 
 # Business time
 create_people(10)
