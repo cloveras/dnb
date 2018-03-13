@@ -114,7 +114,7 @@ def create_people (number_of_people):
 
         # JSON
         person = {
-            'personalast_nameumber': ssn,
+            'personal_number': ssn,
             'firstName': first_name,
             'lastName': last_name,
             'dateOfBirth': date_of_birth,
