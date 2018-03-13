@@ -2,7 +2,7 @@
 """ Quick hack to generate fake people and some data.
 
 TODO:
-- Valid Norwegian SSNs
+- Valid Norwegian SSNs: https://github.com/joke2k/faker/issues/714
 - Bank accounts: One or more per person
 - Debit cards: One or more per person
 - Credit cards: Zero or more per person
@@ -61,23 +61,8 @@ def create_people (number_of_people):
     :return:
     '''
 
+    # Faker: https://github.com/joke2k/faker
     fake = Faker('no_NO')
-
-    # Person data for reuse in loop below
-    person = ''
-    day = ''
-    month = ''
-    year = ''
-    date_of_birth = ''
-    first_name = ''
-    last_name = ''
-    gender = ''
-    street = ''
-    postal_code = ''
-    city = ''
-    phone = ''
-    email = ''
-    customer_data = ''
 
     # Files to create, or append to
     customerFileTxt = open('customers-generated.txt', 'a')
@@ -112,6 +97,12 @@ def create_people (number_of_people):
         email = fake.safe_email()
         id_type = random.choice(('passport', 'driverslicense', 'nationalidcard'))
 
+        # Bank account and credit card
+        bank_account_iban = fake.iban() # No provider for no_NO in Faker (yet)
+        credit_card_no = fake.credit_card_number()
+        credit_card_expiry_date = fake.credit_card_expire(start="now", end="+10y", date_format="%m/%y")
+        credit_card_cvc = fake.credit_card_security_code()
+
         # JSON
         person = {
             'personal_number': ssn,
@@ -124,11 +115,15 @@ def create_people (number_of_people):
                 'street': street,
                 'postalCode': postal_code,
                 'city': city,
-                'country': 'NO'
+                'country': 'NO',
             },
             'phoneNumber': phone,
             'email': email,
-            'idType': id_type
+            'idType': id_type,
+            'bank_account_iban': bank_account_iban,
+            'credit_card_no': credit_card_no,
+            'credit_card_expiry_date': credit_card_expiry_date,
+            'credit_card_cvc': credit_card_cvc
         }
         data = json.dumps(person)
 
