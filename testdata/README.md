@@ -6,7 +6,7 @@ Creates JSON people like this:
 
 ```
 {
-    "personalast_nameumber": "27058031155",
+    "person_number": "27058031155",
     "firstName": "Kari",
     "lastName": "Gulbrandsen",
     "dateOfBirth": "1981-05-27T00:00:00.000Z",
