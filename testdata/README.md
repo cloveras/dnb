@@ -23,3 +23,9 @@ Creates JSON people like this:
      "idType": "driverslicense"
 }
 ```
+
+And text data like this:
+
+```
+'27058031155', 'Kari', 'Gulbrandsen', 'Female', 'Larsengrenda 557', '8408', 'Eliseby', '68 00 57 07', 'mikkelsenanders@example.net', 'driverslicense'
+```
