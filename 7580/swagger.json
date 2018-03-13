@@ -96,7 +96,7 @@
         "x-example" : "1234567890"
       } ]
     },
-    "/idea/customers/{customerId}" : {
+    "/ideas/customers/{customerId}" : {
       "patch" : {
         "tags" : [ "Customers" ],
         "summary" : "Update customer",
