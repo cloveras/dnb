@@ -98,6 +98,7 @@ def create_people (number_of_people):
         id_type = random.choice(('passport', 'driverslicense', 'nationalidcard'))
 
         # Bank account and credit card
+        bank_account_bban = str(randrange(0,99999999999)).zfill(11) # 11 random digits. Not the same as IBAN below
         bank_account_iban = fake.iban() # No provider for no_NO in Faker (yet)
         credit_card_no = fake.credit_card_number()
         credit_card_expiry_date = fake.credit_card_expire(start="now", end="+10y", date_format="%m/%y")
@@ -129,12 +130,16 @@ def create_people (number_of_people):
 
         # Write to files in JSON and text format
         customerFileJson.write(data + '\n')
-        customerFileTxt.write('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r\n' %
-                              (ssn, first_name, last_name, gender, street, postal_code, city, phone, email, id_type))
 
-        # Vewry verbose
-        print('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r' %
-              (ssn, first_name, last_name, gender, street, postal_code, city, phone, email, id_type))
+        # The person's data in a string
+        person_data = str('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r' %
+                          (ssn, first_name, last_name, gender, street, postal_code, city, phone, email, id_type,
+                           bank_account_bban, bank_account_iban, credit_card_no, credit_card_expiry_date, credit_card_cvc))
+
+        # Write to file
+        customerFileTxt.write(person_data + '\n')
+        # Be chatty
+        print(person_data)
 
 # Business time
 create_people(10)
