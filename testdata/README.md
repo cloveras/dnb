@@ -20,7 +20,11 @@ Creates JSON people like this:
      },
      "phoneNumber": "68 00 57 07",
      "email": "mikkelsenanders@example.net",
-     "idType": "driverslicense"
+     "idType": "driverslicense",
+     "bank_account_iban": "GB21ITPJ0472259290889", 
+     "credit_card_no": "5438102519823046", 
+     "credit_card_expiry_date": "12/23", 
+     "credit_card_cvc": "796"
 }
 ```
 
