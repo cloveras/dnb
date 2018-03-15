@@ -35,7 +35,7 @@ __contact__ = "cl@dnb.no"
 __copyright__ = "Copyright 2018, DNB Open Banking"
 __license__ = "GPLv3"
 __status__ = "Hack"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 import requests
 import json
@@ -74,7 +74,7 @@ def create_people (number_of_people):
         # Get random birth date as timestamp
         random_date = get_random_date()
         year, month, day = [random_date.year, random_date.month, random_date.day]
-        date_of_birth = str(year) + '-' + str(month).zfill(2) + '-' + str(day).zfill(2) + 'T00:00:00.000Z'
+        date_of_birth = str(year) + '-' + str(month).zfill(2) + '-' + str(day).zfill(2)
 
         # SSN: Faking it until Faker supports Norwegian SSNs: https://github.com/joke2k/faker/issues/714
         pnr = str(randrange(10000,99999)).zfill(6)
@@ -129,7 +129,7 @@ def create_people (number_of_people):
         data = json.dumps(person)
 
         # Write to files in JSON and text format
-        customerFileJson.write(data + '\n')
+        customerFileJson.write(data + '\n\n')
 
         # The person's data in a string
         person_data = str('%r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r, %r' %
@@ -139,7 +139,7 @@ def create_people (number_of_people):
         # Write to file
         customerFileTxt.write(person_data + '\n')
         # Be chatty
-        print(person_data)
+        print(person_data + '\n')
 
 # Business time
 create_people(10)
