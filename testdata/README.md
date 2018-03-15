@@ -2,6 +2,8 @@
 
 Quick hack to generate fake people and some data.
 
+Uses Faker: https://github.com/joke2k/faker/
+
 Creates JSON people like this:
 
 ```
@@ -9,7 +11,7 @@ Creates JSON people like this:
     "person_number": "27058031155",
     "firstName": "Kari",
     "lastName": "Gulbrandsen",
-    "dateOfBirth": "1981-05-27T00:00:00.000Z",
+    "dateOfBirth": "1981-05-27",
     "gender": "Female",
     "nationality": "Norwegian",
     "address": {
@@ -21,6 +23,7 @@ Creates JSON people like this:
      "phoneNumber": "68 00 57 07",
      "email": "mikkelsenanders@example.net",
      "idType": "driverslicense",
+     "bank_account_bban": "42983166871",
      "bank_account_iban": "GB21ITPJ0472259290889", 
      "credit_card_no": "5438102519823046", 
      "credit_card_expiry_date": "12/23", 
@@ -28,8 +31,4 @@ Creates JSON people like this:
 }
 ```
 
-And text data like this:
-
-```
-'27058031155', 'Kari', 'Gulbrandsen', 'Female', 'Larsengrenda 557', '8408', 'Eliseby', '68 00 57 07', 'mikkelsenanders@example.net', 'driverslicense'
-```
+And the same data in .csv format.
