@@ -114,19 +114,10 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : "Status 200"
-          },
-          "400" : {
-            "description" : "Status 400",
+          "501" : {
+            "description" : "Status 501",
             "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "500" : {
-            "description" : "Status 500",
-            "schema" : {
-              "$ref" : "#/definitions/error"
+              "$ref" : "#/definitions/notImplemented"
             }
           }
         }
@@ -232,7 +223,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/accountBalance"
+              "$ref" : "#/definitions/balance"
             }
           },
           "400" : {
@@ -631,8 +622,8 @@
         "operationId" : "verifyAccount",
         "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : "Status 200"
+          "204" : {
+            "description" : "Match!"
           },
           "400" : {
             "description" : "Status 400",
@@ -927,7 +918,7 @@
       "get" : {
         "tags" : [ "Transactions" ],
         "summary" : "Get transactions for account",
-        "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
+        "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* status: ```BOOKED``` or ```RESERVED```",
         "operationId" : "gertTransactionsForAccount",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -978,7 +969,7 @@
           "description" : "Filter for maximum amount (included). No decimals.",
           "x-example" : "10000"
         }, {
-          "name" : "MCC",
+          "name" : "mcc",
           "in" : "query",
           "required" : false,
           "type" : "string",
@@ -994,6 +985,12 @@
           "type" : "string",
           "description" : "Filter for free text. Case insensitive.",
           "x-example" : "Vipps"
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "BOOKED, RESERVED"
         } ],
         "responses" : {
           "200" : {
@@ -1266,7 +1263,7 @@
           "200" : {
             "description" : "Status 200",
             "schema" : {
-              "$ref" : "#/definitions/cardBalance"
+              "$ref" : "#/definitions/balance"
             }
           }
         }
@@ -1389,7 +1386,7 @@
           "200" : {
             "description" : "Request succeeded",
             "schema" : {
-              "$ref" : "#/definitions/cardInvoice"
+              "$ref" : "#/definitions/cardStatement"
             }
           },
           "400" : {
@@ -1670,6 +1667,25 @@
         "maxLength" : 3,
         "x-example" : "NOK"
       } ]
+    },
+    "/locations/branchesatms" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Get list of all DNB branches and ATMs",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "string",
+              "format" : "binary"
+            },
+            "examples" : {
+              "application/json" : "CSV file with all branches and ATMs"
+            }
+          }
+        }
+      }
     },
     "/locations/branches" : {
       "get" : {
@@ -2020,16 +2036,12 @@
   "securityDefinitions" : {
     "OAuth2" : {
       "type" : "oauth2",
-      "authorizationUrl" : "https://api.dnb.no/oauth/authorize",
-      "tokenUrl" : "https://api.dnb.no/oauth/token",
-      "flow" : "accessCode",
+      "tokenUrl" : "https://token.dnbciam.int",
+      "flow" : "application",
       "scopes" : {
         "read" : "Read",
         "write" : "Write"
       }
-    },
-    "Basic authentication" : {
-      "type" : "basic"
     }
   },
   "definitions" : {
@@ -2118,11 +2130,11 @@
           }
         }
       },
-      "description" : "One common ```customer```data object for all kinds of customers: Private customers, business customers, and others.\n\nPlease note:\n* Some updates may be required.\n* Should be aligned with Shared Services Layer: https://shasl.restlet.io/#type_customer\n* Should be aligned with CIM, while still hiding internal complexity and making it easy to understand and use."
+      "description" : "One common ```customer```data object for all kinds of customers. A customer may have one or more ```customerEngagement```s."
     },
     "customerEngagement" : {
       "type" : "object",
-      "required" : [ "engagementId" ],
+      "required" : [ "accountNumber", "engagementId", "engagementType" ],
       "properties" : {
         "engagementId" : {
           "type" : "string",
@@ -2145,18 +2157,13 @@
         "friendlyName" : {
           "type" : "string",
           "example" : "SAGA MasterCard"
-        },
-        "corporate" : {
-          "type" : "boolean",
-          "example" : true,
-          "default" : false
         }
       },
       "description" : "Used with ```customer```. \n\nWork in progress. See https://shasl.restlet.io/#type_engagement"
     },
     "account" : {
       "type" : "object",
-      "required" : [ "accountNumber", "balanceAvailable", "type" ],
+      "required" : [ "accountNumber", "type" ],
       "properties" : {
         "accountNumber" : {
           "type" : "string",
@@ -2166,10 +2173,13 @@
           "maxLength" : 11,
           "pattern" : "^\\d{11}$"
         },
+        "productName" : {
+          "type" : "string"
+        },
         "type" : {
           "type" : "string",
           "example" : "DEPOSIT",
-          "description" : "Any type of account.",
+          "description" : "Any type (category) of account.",
           "enum" : [ "DEPOSIT", "CREDITCARD", "ASK", "BSU" ],
           "default" : "DEPOSIT"
         },
@@ -2178,45 +2188,11 @@
           "example" : "Standard account",
           "description" : "Friendly name for the account:"
         },
-        "balanceAvailable" : {
-          "type" : "number",
-          "example" : 100.01
-        },
         "accountDetails" : {
           "$ref" : "#/definitions/accountDetails"
         }
       },
       "description" : "Same ```account``` data object is used for all types of accounts. The ```type``` property determines the type. \n\nAn ```account``` may have ```accountDetails```, which may again have ```accountBalance``` and  ```accountInterestDetails```.\n\nA Norwegian ```account```has three groups: xxxx yy zzzzc.\n* xxxx: Bank register number, identifying bank and branch. \n* yy: Account group. \n* zzzz: Customer account number.  \n* c: Control digit, modulo 11 with weight number 5432765432."
-    },
-    "accountBalance" : {
-      "type" : "object",
-      "required" : [ "accountNumber", "amountAvailable", "amountBooked", "timestamp" ],
-      "properties" : {
-        "accountNumber" : {
-          "type" : "string",
-          "example" : "12345678901",
-          "description" : "11 digits",
-          "minLength" : 11,
-          "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
-        },
-        "amountAvailable" : {
-          "type" : "number",
-          "description" : "Amount available",
-          "example" : 100.01
-        },
-        "amountBooked" : {
-          "type" : "number",
-          "description" : "Booked amount available",
-          "example" : 100.01
-        },
-        "timestamp" : {
-          "type" : "string",
-          "format" : "date-time",
-          "example" : "2018-12-31T23:59:59+01"
-        }
-      },
-      "description" : "Balances for an ```account```. See also: ```cardBalance```."
     },
     "accountDetails" : {
       "type" : "object",
@@ -2428,29 +2404,18 @@
     },
     "transaction" : {
       "type" : "object",
-      "required" : [ "amount", "dateBooking", "status", "transactionId" ],
+      "required" : [ "accountNumber", "amount", "dateBooking", "status", "transactionId" ],
       "properties" : {
         "transactionId" : {
           "type" : "string",
           "example" : "12345"
         },
-        "amount" : {
-          "type" : "number",
-          "minimum" : 0,
-          "example" : 1500
+        "accountNumber" : {
+          "type" : "string"
         },
-        "currencyValue" : {
-          "type" : "number",
-          "description" : "Amount in foreign currency (if relevant)",
-          "example" : 90
-        },
-        "currency" : {
+        "transactionTimestamp" : {
           "type" : "string",
-          "example" : "NOK",
-          "description" : "If not the currency of the account/card.",
-          "minLength" : 3,
-          "maxLength" : 3,
-          "default" : "NOK"
+          "format" : "date-time"
         },
         "dateBooking" : {
           "type" : "string",
@@ -2462,10 +2427,31 @@
           "format" : "date",
           "example" : "2018-12-31"
         },
-        "description" : {
+        "dateReservation" : {
           "type" : "string",
-          "example" : "Lunch at The Restaurant at the End of the Universe",
-          "description" : "Descriptive text for the transaction."
+          "format" : "date"
+        },
+        "originalCurrencyValue" : {
+          "type" : "number",
+          "description" : "Amount in foreign currency (if relevant)",
+          "example" : 90
+        },
+        "originalCurrency" : {
+          "type" : "string",
+          "example" : "NOK",
+          "description" : "If not the currency of the account/card.",
+          "minLength" : 3,
+          "maxLength" : 3,
+          "default" : "NOK"
+        },
+        "amount" : {
+          "type" : "number",
+          "description" : "Amount in the account's currency",
+          "minimum" : 0,
+          "example" : 1500
+        },
+        "exchangeRate" : {
+          "type" : "number"
         },
         "status" : {
           "type" : "string",
@@ -2474,22 +2460,55 @@
           "enum" : [ "BOOKED", "RESERVED" ],
           "default" : "BOOKED"
         },
+        "description" : {
+          "type" : "string",
+          "example" : "Lunch at The Restaurant at the End of the Universe",
+          "description" : "Descriptive text for the transaction."
+        },
         "merchantName" : {
           "type" : "string",
           "example" : "Coffee Shop ChainName, shop number 10",
           "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```."
         },
-        "MCC" : {
-          "type" : "string",
-          "example" : "3514: Hotels/Motels/Inns/Resorts",
-          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html"
+        "externalReference" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "kid" : {
+          "type" : "string"
+        },
+        "paymentId" : {
+          "type" : "string"
+        },
+        "reservationId" : {
+          "type" : "string"
+        },
+        "cardId" : {
+          "type" : "string"
+        },
+        "merchantId" : {
+          "$ref" : "#/definitions/merchant"
+        },
+        "details" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "metadata" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
         }
       },
       "description" : "A ```transaction``` is a completed operation, in contrast to ```payment```, which is planned, but not completed.\n\nThe same ```transaction``` is used for all types of transactions: DNB-only account transactions, domestic transactions, international transactions, card transactions, etc. Some transaction types have more fields and data than others. A developer does not need to know about different transaction types when retrieving them, this is .\n\nShould have enough data to be useful both for presenting information to an end user, and for data analysis. Mey be extended, possibly to include ```merchantId```with a reference to more details about merchant, as well as ```location```data, etc.\n\nMCC codes: https://github.com/greggles/mcc-codes Example for a hotel:\n```\n{\n    \"mcc\": \"3514\",\n    \"edited_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"combined_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"usda_description\": \"\",\n    \"irs_description\": \"Hotels/Motels/Inns/Resorts\",\n    \"irs_reportable\": \"Yes\",\n    \"id\": 418\n}\n```"
     },
     "card" : {
       "type" : "object",
-      "required" : [ "accountNumber", "cardGroup", "cardId", "cardStatus", "cardType", "expiryMonth", "expiryYear", "maskedCardNumber" ],
+      "required" : [ "accountNumber", "cardId", "cardStatus", "cardType", "expiryMonth", "expiryYear", "maskedCardNumber", "productName" ],
       "properties" : {
         "cardId" : {
           "type" : "string",
@@ -2503,19 +2522,24 @@
           "maxLength" : 16,
           "pattern" : "^X{12}\\d{4}$"
         },
-        "cardType" : {
+        "customerId" : {
           "type" : "string",
-          "example" : "VISA",
-          "description" : "Visa, MasterCard, American Express, etc",
-          "enum" : [ "VISA", "MASTERCARD", "AMERICANEXPRESS" ],
-          "default" : "VISA"
+          "description" : "SSN"
         },
-        "cardGroup" : {
+        "cardHolderName" : {
+          "type" : "string",
+          "description" : "Name of card holder. More details may retrieved from ```/customers``` using SSN."
+        },
+        "cardType" : {
           "type" : "string",
           "example" : "DEBIT",
           "description" : "Debit or credit.",
           "enum" : [ "DEBIT", "CREDIT" ],
           "default" : "DEBIT"
+        },
+        "productName" : {
+          "type" : "string",
+          "enum" : [ "VISA", "MASTERCARD", "AMERICANEXPRESS" ]
         },
         "accountNumber" : {
           "type" : "string",
@@ -2528,15 +2552,33 @@
         "cardStatus" : {
           "$ref" : "#/definitions/cardStatus"
         },
-        "blockCode" : {
-          "type" : "string",
-          "example" : "12345",
-          "description" : "If blocked: Code for the blocking reason."
+        "blockingInfo" : {
+          "type" : "object",
+          "description" : "Empty unless the card is blocked.",
+          "properties" : {
+            "performedBy" : {
+              "type" : "string",
+              "description" : "Who has blocked the card?"
+            },
+            "timestamp" : {
+              "type" : "string",
+              "format" : "date-time",
+              "description" : "When was the card blocked?"
+            },
+            "blockAllowed" : {
+              "type" : "boolean",
+              "description" : "Can the user block the card?"
+            },
+            "unblockAllowed" : {
+              "type" : "boolean",
+              "description" : "Can the user unblock the card?"
+            }
+          }
         },
         "expiryYear" : {
           "type" : "string",
           "example" : "2020",
-          "description" : "YYYY",
+          "description" : "Not implemented.",
           "minLength" : 4,
           "maxLength" : 4,
           "pattern" : "^\\d{4}$"
@@ -2544,52 +2586,27 @@
         "expiryMonth" : {
           "type" : "string",
           "example" : "01",
-          "description" : "MM",
+          "description" : "Not implemented.",
           "minLength" : 2,
           "maxLength" : 2,
           "pattern" : "^\\d{4}$"
         },
         "debitBalance" : {
-          "$ref" : "#/definitions/accountBalance"
+          "$ref" : "#/definitions/balance"
         },
         "creditBalance" : {
-          "$ref" : "#/definitions/cardBalance"
+          "$ref" : "#/definitions/balance"
+        },
+        "created" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "lastChanged" : {
+          "type" : "string",
+          "format" : "date-time"
         }
       },
       "description" : "Both debit and credit cards."
-    },
-    "cardBalance" : {
-      "type" : "object",
-      "required" : [ "amountAvailable", "currency" ],
-      "properties" : {
-        "currency" : {
-          "type" : "string",
-          "example" : "NOK",
-          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
-          "minLength" : 3,
-          "maxLength" : 3
-        },
-        "creditLimit" : {
-          "type" : "integer",
-          "example" : "100000.00",
-          "minimum" : 0
-        },
-        "amountAvailable" : {
-          "type" : "number",
-          "description" : "Debit: The amount in the ```account```.Credit: The limit minus the registered payments.",
-          "example" : 90000.01
-        },
-        "amountBook" : {
-          "type" : "number",
-          "example" : 90000.01
-        },
-        "timestamp" : {
-          "type" : "string",
-          "format" : "date-time",
-          "example" : "2018-12-31T23:59:59+01:00"
-        }
-      },
-      "description" : "Used by ```card```. See also: ```accountBalance```."
     },
     "cardStatus" : {
       "type" : "object",
@@ -2607,52 +2624,48 @@
         }
       }
     },
-    "cardInvoice" : {
+    "cardStatement" : {
       "type" : "object",
-      "required" : [ "accountNumber", "amount", "card", "dueDate", "month", "transactions", "year" ],
+      "required" : [ "accountNumber", "amountDue", "card", "dateDue", "transactions" ],
       "properties" : {
         "card" : {
           "$ref" : "#/definitions/card"
         },
-        "year" : {
+        "dateBilling" : {
           "type" : "string",
-          "example" : "2018",
-          "description" : "YYYY",
-          "pattern" : "^\\d{4}$"
+          "format" : "date"
         },
-        "month" : {
-          "type" : "string",
-          "example" : "01",
-          "description" : "MM, where January is 01",
-          "pattern" : "^\\d{2}$"
-        },
-        "amount" : {
-          "type" : "number",
-          "example" : 100
-        },
-        "dueDate" : {
+        "dateDue" : {
           "type" : "string",
           "format" : "date",
           "example" : "2018-12-31"
         },
+        "amountDue" : {
+          "type" : "number",
+          "example" : 100
+        },
+        "balanceOpening" : {
+          "type" : "string"
+        },
+        "balanceClosing" : {
+          "type" : "string"
+        },
+        "amountMinimum" : {
+          "type" : "string"
+        },
         "accountNumber" : {
           "type" : "string",
           "example" : "12345678901",
-          "description" : "Account to pay to. 11 digits.",
           "minLength" : 11,
           "maxLength" : 11,
           "pattern" : "^\\d{11}$"
         },
-        "KID" : {
-          "type" : "string",
-          "example" : "42",
-          "description" : "2-25 digits",
-          "minLength" : 2,
-          "maxLength" : 25,
-          "pattern" : "^\\d{2,25}$"
+        "currency" : {
+          "type" : "string"
         },
         "transactions" : {
           "type" : "array",
+          "description" : "Investigating if this will be included here, or done in a separate request.",
           "items" : {
             "$ref" : "#/definitions/transaction"
           }
@@ -2809,6 +2822,68 @@
       },
       "description" : "Standard response for operations that are not yet implemented."
     },
+    "merchant" : {
+      "type" : "object",
+      "required" : [ "mcc", "merchantId", "name" ],
+      "properties" : {
+        "merchantId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "mcc" : {
+          "type" : "string",
+          "example" : "3514: Hotels/Motels/Inns/Resorts",
+          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html"
+        },
+        "terminalOperator" : {
+          "type" : "string"
+        },
+        "terminalId" : {
+          "type" : "string"
+        },
+        "postalCode" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        }
+      }
+    },
+    "balance" : {
+      "type" : "object",
+      "required" : [ "balance", "currency" ],
+      "properties" : {
+        "currency" : {
+          "type" : "string",
+          "example" : "NOK",
+          "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "minLength" : 3,
+          "maxLength" : 3,
+          "pattern" : "^\\d{3}$"
+        },
+        "creditLimit" : {
+          "type" : "integer",
+          "example" : "100000.00",
+          "minimum" : 0
+        },
+        "balance" : {
+          "type" : "number",
+          "description" : "Debit: The amount in the ```account```.Credit: The limit minus the registered payments.",
+          "example" : 90000.01
+        },
+        "lastBalanceChange" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2018-12-31T23:59:59+01:00"
+        }
+      },
+      "description" : "Common data object used by both ```account```and  ```card```. \n\nNot all fields from Shared Service Layer is used, since ```balance```wil be part of an ```account```or a ```card```. Some values may easily be calculated: availableBalanceWithCredit = bookedBalance + creditLimit. \n\nShared Service Layer:\n```\n{\n  \"accountNumber\": \"05390000000\",\n  \"currency\": \"NOK\",\n  \"availableBalanceWithCredit\": 1000.00,\n  \"availableBalanceWithoutCredit\": 500.00,\n  \"bookedBalance\": 500.00,\n  \"creditLimit\": 500.00,\n  \"lastBalanceChange\": \"2016-02-28 16:41:41\"\n  \"reservedAmount\": 500.00,\n  \"instalmentAmount\": 500.00,\n  \"usedAmount\": 500.00\n}\n```"
+    },
     "ATM" : {
       "type" : "object",
       "properties" : {
@@ -2933,6 +3008,82 @@
           }
         }
       }
+    },
+    "branchOrAtm" : {
+      "type" : "object",
+      "required" : [ "id", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "SSL: storeCode"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "categories" : {
+          "type" : "string",
+          "enum" : [ "BRANCH", "ATM" ]
+        },
+        "description" : {
+          "required" : [ "norwegian" ],
+          "type" : "object",
+          "properties" : {
+            "norwegian" : {
+              "type" : "string"
+            },
+            "english" : {
+              "type" : "string"
+            }
+          }
+        },
+        "address" : {
+          "$ref" : "#/definitions/address"
+        },
+        "phone" : {
+          "type" : "string"
+        },
+        "website" : {
+          "type" : "string"
+        },
+        "openingTimes" : {
+          "$ref" : "#/definitions/openingTimes"
+        },
+        "latitude" : {
+          "type" : "string",
+          "example" : "59.9075823"
+        },
+        "longitude" : {
+          "type" : "string",
+          "example" : "10.760133399999972"
+        },
+        "openingTimesSummer" : {
+          "$ref" : "#/definitions/openingTimes"
+        },
+        "openingHoliday" : {
+          "$ref" : "#/definitions/openingTimes"
+        },
+        "currencies" : {
+          "type" : "array",
+          "description" : "List of currencies",
+          "items" : {
+            "type" : "string",
+            "example" : "NOK"
+          }
+        },
+        "openingTimeSummertime" : {
+          "$ref" : "#/definitions/openingTimes"
+        },
+        "summertimeStart" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "summertimeStop" : {
+          "type" : "string",
+          "format" : "date"
+        }
+      },
+      "description" : "Common object for both branches and ATMs (we have to start somewhere).",
+      "example" : "{\n\"storeCode\" : \"MB131\",\n\"name\": \"Asker\",\n\"address\": \"Strøket 6\",\n\"city\":\"ASKER \",\n\"state\":\" AKERSHUS \",\n\"countryCode\":\"NO\",\n\"postalCode\": \" 1370\",\n\"mainPhone\":\"\",\n\"homePage\":\" https://www.dnb.no\",\n\"hours\":\"1:07:00:22:00,2:07:00:22:00,3:07:00:22:00,4:07:00:22:00,5:07:00:22:00,6:07:00:22:00,7:07:00:22:00\",\n\"categories\":\" ATM\",\n\"description\":\"\",\n\"latitude\":\" 59.83518219\",\n\"longitude\":\" 10.43393611\",\n\"c:ohSummer\":\"\",\n\"c:ohHoliday\":\"\",\n\"c:currencies\":\" NOK, EUR, SEK\",\n\"c:summertime\":\"\",\n\"c:summerTime2\":\"\",\n\"c:ohSummer2\":\"\",\n\"descriptionEN\":\"\"\n}"
     }
   }
 }
