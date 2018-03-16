@@ -1671,6 +1671,25 @@
         "x-example" : "NOK"
       } ]
     },
+    "/locations/branchesatms" : {
+      "get" : {
+        "tags" : [ "Location" ],
+        "summary" : "Get list of all DNB branches and ATMs",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "string",
+              "format" : "binary"
+            },
+            "examples" : {
+              "application/json" : "CSV file with all branches and ATMs"
+            }
+          }
+        }
+      }
+    },
     "/locations/branches" : {
       "get" : {
         "tags" : [ "Location" ],
