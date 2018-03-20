@@ -1671,7 +1671,8 @@
     "/locations/branchesatms" : {
       "get" : {
         "tags" : [ "Location" ],
-        "summary" : "Get list of all DNB branches and ATMs",
+        "summary" : "Get .csv file with all DNB branches and ATMs",
+        "operationId" : "getBranchAtmFile",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -1730,7 +1731,7 @@
         }
       }
     },
-    "/locations/Atms" : {
+    "/locations/atms" : {
       "get" : {
         "tags" : [ "Location" ],
         "summary" : "Get list of all DNB ATMs",
@@ -1920,56 +1921,6 @@
         "required" : true,
         "type" : "string",
         "description" : "Id of branch",
-        "x-example" : "12345"
-      } ]
-    },
-    "/locations/branch/{branchid}/openingtimes" : {
-      "get" : {
-        "tags" : [ "Location" ],
-        "summary" : "Get a branch's opening times",
-        "description" : "**NOTE:** Not planned for the first phase. See ```/locations/branches``` and ```/locations/Atms```. \n\nOpening times is also included in Branch.",
-        "operationId" : "getBranchOpeningTimes",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Request succeeded",
-            "schema" : {
-              "$ref" : "#/definitions/openingTimes"
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/error"
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "branchid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Id of a branch",
         "x-example" : "12345"
       } ]
     },
@@ -2771,7 +2722,7 @@
           }
         }
       },
-      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred."
+      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.\n\n**Note:** We strive to offer the best possible information about all errors. This depends on the information offered by the backend systems, and in some cases there is limited information available from the underlying soluitions. In these cases, the errors may contain empty fields, and/or infomration that is difficult to interpret. In cazses where the error infomration needs improvement, please let us know: developer@dnb.no. "
     },
     "errorDetails" : {
       "type" : "object",
@@ -2962,7 +2913,7 @@
           "format" : "date"
         }
       },
-      "description" : "Common object used for both branches and ATMs (we have to start somewhere).\n\nExample from Shared Services Layer:\n```\n{\n  \"storeCode\" : \"MB131\",\n  \"name\": \"Asker\",\n  \"address\": \"Strøket 6\",\n  \"city\":\"ASKER \",\n  \"state\":\" AKERSHUS \",\n  \"countryCode\":\"NO\",\n  \"postalCode\": \" 1370\",\n  \"mainPhone\":\"\",\n  \"homePage\":\" https://www.dnb.no\",\n  \"hours\":\"1:07:00:22:00,2:07:00:22:00,3:07:00:22:00,4:07:00:22:00,5:07:00:22:00,6:07:00:22:00,7:07:00:22:00\",\n  \"categories\":\" ATM\",\n  \"description\":\"\",\n  \"latitude\":\" 59.83518219\",\n  \"longitude\":\" 10.43393611\",\n  \"c:ohSummer\":\"\",\n  \"c:ohHoliday\":\"\",\n  \"c:currencies\":\" NOK, EUR, SEK\",\n  \"c:summertime\":\"\",\n  \"c:summerTime2\":\"\",\n  \"c:ohSummer2\":\"\",\n  \"descriptionEN\":\"\"\n}\n```"
+      "description" : "Common object used for both branches and ATMs. **Or:** Should we make two separate data types, in case we need it later..?\n\nExample from Shared Services Layer:\n```\n{\n  \"storeCode\" : \"MB131\",\n  \"name\": \"Asker\",\n  \"address\": \"Strøket 6\",\n  \"city\":\"ASKER \",\n  \"state\":\" AKERSHUS \",\n  \"countryCode\":\"NO\",\n  \"postalCode\": \" 1370\",\n  \"mainPhone\":\"\",\n  \"homePage\":\" https://www.dnb.no\",\n  \"hours\":\"1:07:00:22:00,2:07:00:22:00,3:07:00:22:00,4:07:00:22:00,5:07:00:22:00,6:07:00:22:00,7:07:00:22:00\",\n  \"categories\":\" ATM\",\n  \"description\":\"\",\n  \"latitude\":\" 59.83518219\",\n  \"longitude\":\" 10.43393611\",\n  \"c:ohSummer\":\"\",\n  \"c:ohHoliday\":\"\",\n  \"c:currencies\":\" NOK, EUR, SEK\",\n  \"c:summertime\":\"\",\n  \"c:summerTime2\":\"\",\n  \"c:ohSummer2\":\"\",\n  \"descriptionEN\":\"\"\n}\n```"
     },
     "branch" : {
       "type" : "object",
