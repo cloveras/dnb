@@ -2722,7 +2722,7 @@
           }
         }
       },
-      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.\n\n**Note:** We strive to offer the best possible information about all errors. This depends on the information offered by the backend systems, and in some cases there is limited information available from the underlying soluitions. In these cases, the errors may contain empty fields, and/or infomration that is difficult to interpret. In cazses where the error infomration needs improvement, please let us know: developer@dnb.no. "
+      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.\n\n**Note:** We strive to offer the best possible information about all errors. This depends on the information offered by the backend systems, and in some cases there is limited information available from the underlying solutions. In these cases, the errors may contain empty fields, and/or information that is difficult to interpret. In cases where the error infomration needs improvement, please let us know: developer@dnb.no. "
     },
     "errorDetails" : {
       "type" : "object",
