@@ -2002,65 +2002,65 @@
       "properties" : {
         "customerId" : {
           "type" : "string",
-          "example" : "12345678901",
           "description" : "SSN (11 digits) or organization number (9 digits).",
           "minLength" : 9,
           "maxLength" : 11,
-          "pattern" : "^\\d{9,11}$"
+          "pattern" : "^\\d{9,11}$",
+          "example" : "12345678901"
         },
         "customerType" : {
           "type" : "string",
-          "example" : "PERSON",
           "description" : "```PERSON```, ```COMPANY```",
+          "default" : "PERSON",
           "enum" : [ "PERSON", "COMPANY" ],
-          "default" : "PERSON"
+          "example" : "PERSON"
         },
         "firstName" : {
           "type" : "string",
-          "example" : "Rune",
-          "description" : "First name. May be used for the contact person if type is ```PERSON```."
+          "description" : "First name. May be used for the contact person if type is ```PERSON```.",
+          "example" : "Rune"
         },
         "lastName" : {
           "type" : "string",
-          "example" : "Bjerke",
-          "description" : "Surname. May be used for the contact person if type is ```PERSON```."
+          "description" : "Surname. May be used for the contact person if type is ```PERSON```.",
+          "example" : "Bjerke"
         },
         "companyName" : {
           "type" : "string",
-          "example" : "DNB",
-          "description" : "Company name, if type is ```COMPANY```."
+          "description" : "Company name, if type is ```COMPANY```.",
+          "example" : "DNB"
         },
         "address" : {
           "$ref" : "#/definitions/address"
         },
         "email" : {
           "type" : "string",
-          "example" : "example@example.com",
           "description" : "Email address. RFC 5322.",
           "minLength" : 6,
-          "pattern" : "^\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z$"
+          "pattern" : "^\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z$",
+          "example" : "example@example.com"
         },
         "phone" : {
           "type" : "string",
-          "example" : "+4791504800",
           "description" : "Including \"+\" and international prefix. E.164: https://www.twilio.com/docs/glossary/what-e164 Whitespace and dashes are stripped.",
-          "pattern" : "^\\+?[1-9]\\d{1,14}$"
+          "pattern" : "^\\+?[1-9]\\d{1,14}$",
+          "example" : "+4791504800"
         },
         "countryOfBirth" : {
           "type" : "string",
-          "example" : "NO",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "minLength" : 2,
-          "maxLength" : 2
+          "maxLength" : 2,
+          "example" : "NO"
         },
         "countryCitizenships" : {
           "type" : "array",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
             "type" : "string",
-            "example" : "NO",
             "minLength" : 2,
-            "maxLength" : 2
+            "maxLength" : 2,
+            "example" : "NO"
           }
         },
         "countryTax" : {
@@ -2068,9 +2068,9 @@
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "items" : {
             "type" : "string",
-            "example" : "NO",
             "minLength" : 2,
-            "maxLength" : 2
+            "maxLength" : 2,
+            "example" : "NO"
           }
         },
         "customerEngagement" : {
@@ -2093,17 +2093,17 @@
         },
         "engagementType" : {
           "type" : "string",
-          "example" : "DEPOSIT",
           "description" : "Types of engagements: To be determined. Needs to be aligned with DNB CIM, without exposing internal complexity.",
+          "default" : "DEPOSIT",
           "enum" : [ "DEPOSIT", "CREDITCARD", "MORTGAGE" ],
-          "default" : "DEPOSIT"
+          "example" : "DEPOSIT"
         },
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "friendlyName" : {
           "type" : "string",
@@ -2118,26 +2118,26 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "description" : "11 digits. Bank, etc can be determined from this: https://no.wikipedia.org/wiki/Kontonummer",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "productName" : {
           "type" : "string"
         },
         "type" : {
           "type" : "string",
-          "example" : "DEPOSIT",
           "description" : "Any type (category) of account.",
+          "default" : "DEPOSIT",
           "enum" : [ "DEPOSIT", "CREDITCARD", "ASK", "BSU" ],
-          "default" : "DEPOSIT"
+          "example" : "DEPOSIT"
         },
         "accountName" : {
           "type" : "string",
-          "example" : "Standard account",
-          "description" : "Friendly name for the account:"
+          "description" : "Friendly name for the account:",
+          "example" : "Standard account"
         },
         "accountDetails" : {
           "$ref" : "#/definitions/accountDetails"
@@ -2151,23 +2151,23 @@
       "properties" : {
         "IBAN" : {
           "type" : "string",
-          "example" : "NO9386011117947",
           "description" : "ISO 13616:2007: https://www.iso.org/standard/41031.html No whitespace. Enjoy the regex.",
-          "pattern" : "^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$"
+          "pattern" : "^((NO)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(NO)[0-9A-Z]{13}|(BE)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BE)[0-9A-Z]{14}|(DK|FO|FI|GL|NL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(DK|FO|FI|GL|NL)[0-9A-Z]{16}|(MK|SI)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MK|SI)[0-9A-Z]{17}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(BA|EE|KZ|LT|LU|AT)[0-9A-Z]{18}|(HR|LI|LV|CH)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(HR|LI|LV|CH)[0-9A-Z]{19}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(BG|DE|IE|ME|RS|GB)[0-9A-Z]{20}|(GI|IL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(GI|IL)[0-9A-Z]{21}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AD|CZ|SA|RO|SK|ES|SE|TN)[0-9A-Z]{22}|(PT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{1}|(PT)[0-9A-Z]{23}|(IS|TR)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(IS|TR)[0-9A-Z]{24}|(FR|GR|IT|MC|SM)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(FR|GR|IT|MC|SM)[0-9A-Z]{25}|(AL|CY|HU|LB|PL)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}|(AL|CY|HU|LB|PL)[0-9A-Z]{26}|(MU)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{2}|(MU)[0-9A-Z]{28}|(MT)[0-9A-Z]{2}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{4}[ ][0-9A-Z]{3}|(MT)[0-9A-Z]{29})$",
+          "example" : "NO9386011117947"
         },
         "BIC" : {
           "type" : "string",
-          "example" : "DNBANOKKXXX",
           "description" : "ISO 9362: https://en.wikipedia.org/wiki/ISO_9362",
-          "pattern" : "^[a-z]{6}[2-9a-z][0-9a-np-z]([a-z0-9]{3}|x{3})?$"
+          "pattern" : "^[a-z]{6}[2-9a-z][0-9a-np-z]([a-z0-9]{3}|x{3})?$",
+          "example" : "DNBANOKKXXX"
         },
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "Currency: ISO 4217: alpha 3-letter upcase. https://www.iso.org/iso-4217-currency-codes.html",
           "minLength" : 3,
           "maxLength" : 3,
-          "pattern" : "^[A-Z]{3}$"
+          "pattern" : "^[A-Z]{3}$",
+          "example" : "NOK"
         },
         "created" : {
           "type" : "string",
@@ -2220,23 +2220,23 @@
       "properties" : {
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "year" : {
           "type" : "string",
-          "example" : "1990",
-          "description" : "YYYY"
+          "description" : "YYYY",
+          "example" : "1990"
         },
         "month" : {
           "type" : "string",
-          "example" : "01",
           "description" : "MM, January: 01",
           "minLength" : 2,
           "maxLength" : 2,
-          "pattern" : "^\\d{2}$"
+          "pattern" : "^\\d{2}$",
+          "example" : "01"
         },
         "transactions" : {
           "type" : "array",
@@ -2253,24 +2253,24 @@
       "properties" : {
         "type" : {
           "type" : "string",
-          "example" : "KID",
           "description" : "KID, message (and transfer?)",
+          "default" : "KID",
           "enum" : [ "KID", "MESSAGE", "TRANSFER" ],
-          "default" : "KID"
+          "example" : "KID"
         },
         "debitAccountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "creditAccountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "amount" : {
           "type" : "number",
@@ -2283,13 +2283,13 @@
         },
         "message" : {
           "type" : "string",
-          "example" : "35298562958265982749",
-          "description" : "Used for both KID and Message, based on Type."
+          "description" : "Used for both KID and Message, based on Type.",
+          "example" : "35298562958265982749"
         },
         "initiator" : {
           "type" : "string",
-          "example" : "DNB",
-          "description" : "Nu phone who dis?"
+          "description" : "Nu phone who dis?",
+          "example" : "DNB"
         }
       },
       "description" : "Three types of payments\n* KID: Customer Identification (2-25 digits, including control digit)\n* Message: Text message describing the payment\n\nNot including the \"straksbetaling\" (imediate payment) flag, as this will be the default.\n\nPayment initiator: Part of the contxt object, but kept here too for reference. "
@@ -2299,8 +2299,8 @@
       "properties" : {
         "invoiceReference" : {
           "type" : "string",
-          "example" : "12345678901",
-          "description" : "Used for eFaktura"
+          "description" : "Used for eFaktura",
+          "example" : "12345678901"
         }
       },
       "description" : "More details about a payment. Some payment types have more data than others."
@@ -2315,17 +2315,17 @@
         },
         "debitAccount" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "creditAccount" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "amount" : {
           "type" : "number",
@@ -2333,8 +2333,8 @@
         },
         "type" : {
           "type" : "string",
-          "example" : "TBD1",
-          "description" : "TBD"
+          "description" : "TBD",
+          "example" : "TBD1"
         },
         "date" : {
           "type" : "string",
@@ -2343,10 +2343,10 @@
         },
         "status" : {
           "type" : "string",
-          "example" : "PAID",
           "description" : "Statuses",
+          "default" : "PAID",
           "enum" : [ "PAID", "PENDINGCONFIRMATION", "LIMITEXCEEDED", "REJECTED", "CONFIRMED" ],
-          "default" : "PAID"
+          "example" : "PAID"
         },
         "paymentDetails" : {
           "$ref" : "#/definitions/paymentDetails"
@@ -2390,12 +2390,12 @@
         },
         "originalCurrency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "If not the currency of the account/card.",
+          "default" : "NOK",
           "minLength" : 3,
           "maxLength" : 3,
           "pattern" : "`^[A-Z]{3}$",
-          "default" : "NOK"
+          "example" : "NOK"
         },
         "amount" : {
           "type" : "number",
@@ -2408,20 +2408,20 @@
         },
         "status" : {
           "type" : "string",
-          "example" : "BOOKED",
           "description" : "Booked, reserved, and, if this is to be merged with ```payment```: Completed (or something similar, to indicate that this has, in fact, been processed and finalized)",
+          "default" : "BOOKED",
           "enum" : [ "BOOKED", "RESERVED" ],
-          "default" : "BOOKED"
+          "example" : "BOOKED"
         },
         "description" : {
           "type" : "string",
-          "example" : "Lunch at The Restaurant at the End of the Universe",
-          "description" : "Descriptive text for the transaction."
+          "description" : "Descriptive text for the transaction.",
+          "example" : "Lunch at The Restaurant at the End of the Universe"
         },
         "merchantName" : {
           "type" : "string",
-          "example" : "Coffee Shop ChainName, shop number 10",
-          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```."
+          "description" : "Name of merchant. With a merhant register, this could be replaced with a (for now, non-existant) ```merchantId```.",
+          "example" : "Coffee Shop ChainName, shop number 10"
         },
         "externalReference" : {
           "type" : "string"
@@ -2469,11 +2469,11 @@
         },
         "maskedCardNumber" : {
           "type" : "string",
-          "example" : "XXXXXXXXXXXX1234",
           "description" : "16 characters: Twelve \"X\", and the last four digits of the card number. No whitespace.",
           "minLength" : 16,
           "maxLength" : 16,
-          "pattern" : "^X{12}\\d{4}$"
+          "pattern" : "^X{12}\\d{4}$",
+          "example" : "XXXXXXXXXXXX1234"
         },
         "customerId" : {
           "type" : "string",
@@ -2485,10 +2485,10 @@
         },
         "cardType" : {
           "type" : "string",
-          "example" : "DEBIT",
           "description" : "Debit or credit.",
+          "default" : "DEBIT",
           "enum" : [ "DEBIT", "CREDIT" ],
-          "default" : "DEBIT"
+          "example" : "DEBIT"
         },
         "productName" : {
           "type" : "string",
@@ -2496,11 +2496,11 @@
         },
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "description" : "Both for debit and credit cards",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "cardStatus" : {
           "$ref" : "#/definitions/cardStatus"
@@ -2530,19 +2530,19 @@
         },
         "expiryYear" : {
           "type" : "string",
-          "example" : "2020",
           "description" : "Not implemented.",
           "minLength" : 4,
           "maxLength" : 4,
-          "pattern" : "^\\d{4}$"
+          "pattern" : "^\\d{4}$",
+          "example" : "2020"
         },
         "expiryMonth" : {
           "type" : "string",
-          "example" : "01",
           "description" : "Not implemented.",
           "minLength" : 2,
           "maxLength" : 2,
-          "pattern" : "^\\d{4}$"
+          "pattern" : "^\\d{4}$",
+          "example" : "01"
         },
         "debitBalance" : {
           "$ref" : "#/definitions/balance"
@@ -2566,14 +2566,14 @@
       "properties" : {
         "status" : {
           "type" : "string",
-          "example" : "Not blocked",
+          "default" : "Not blocked",
           "enum" : [ "Not blocked", "Card blocked by customer - card is allowed to unblock", "Card blocked by customer - card is not allowed to unblock", "Card blocked for e-commerce by customer service", "Card blocked for e-commerce by customer" ],
-          "default" : "Not blocked"
+          "example" : "Not blocked"
         },
         "blockingType" : {
           "type" : "string",
-          "enum" : [ "Card", "E-commerce" ],
-          "default" : "Card"
+          "default" : "Card",
+          "enum" : [ "Card", "E-commerce" ]
         }
       }
     },
@@ -2608,19 +2608,19 @@
         },
         "accountNumber" : {
           "type" : "string",
-          "example" : "12345678901",
           "minLength" : 11,
           "maxLength" : 11,
-          "pattern" : "^\\d{11}$"
+          "pattern" : "^\\d{11}$",
+          "example" : "12345678901"
         },
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "default" : "NOK",
           "minLength" : 3,
           "maxLength" : 3,
           "pattern" : "`^[A-Z]{3}$",
-          "default" : "NOK"
+          "example" : "NOK"
         },
         "transactions" : {
           "type" : "array",
@@ -2638,11 +2638,11 @@
       "properties" : {
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "default" : "NOK",
           "minLength" : 3,
           "maxLength" : 3,
-          "default" : "NOK"
+          "example" : "NOK"
         },
         "currencyRate" : {
           "type" : "number",
@@ -2657,8 +2657,8 @@
       "properties" : {
         "postalAddressLine1" : {
           "type" : "string",
-          "example" : "Dronning Eufemias gate 30",
-          "description" : "Street name and number"
+          "description" : "Street name and number",
+          "example" : "Dronning Eufemias gate 30"
         },
         "postalAddressLine2" : {
           "type" : "string",
@@ -2669,11 +2669,11 @@
         },
         "postCode" : {
           "type" : "string",
-          "example" : "0191",
           "description" : "Norwegian postcode only (for now).",
           "minLength" : 4,
           "maxLength" : 4,
-          "pattern" : "^\\d{4}$"
+          "pattern" : "^\\d{4}$",
+          "example" : "0191"
         },
         "postCity" : {
           "type" : "string",
@@ -2681,10 +2681,10 @@
         },
         "postCountry" : {
           "type" : "string",
-          "example" : "NO",
           "description" : "ISO 3166-1 alpha-2: https://www.iso.org/standard/63546.html",
           "minLength" : 2,
-          "maxLength" : 2
+          "maxLength" : 2,
+          "example" : "NO"
         }
       },
       "description" : "Corresponds with address fields used internally in DNB. "
@@ -2695,9 +2695,9 @@
       "properties" : {
         "httpStatus" : {
           "type" : "string",
-          "example" : "400",
           "description" : "Implicit, but still included.",
-          "pattern" : "^\\d{3}$"
+          "pattern" : "^\\d{3}$",
+          "example" : "400"
         },
         "errorNumber" : {
           "type" : "number",
@@ -2706,13 +2706,13 @@
         },
         "errorMessage" : {
           "type" : "string",
-          "example" : "Computer says no",
-          "description" : "Explanation"
+          "description" : "Explanation",
+          "example" : "Computer says no"
         },
         "errorDocumentation" : {
           "type" : "string",
-          "example" : "https://docs.example.com/help-for-this-endpoint/",
-          "description" : "URI to developer documentation for this error"
+          "description" : "URI to developer documentation for this error",
+          "example" : "https://docs.example.com/help-for-this-endpoint/"
         },
         "errorDetails" : {
           "type" : "array",
@@ -2722,21 +2722,15 @@
           }
         }
       },
-      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.\n\n**Note:** We strive to offer the best possible information about all errors. This depends on the information offered by the backend systems, and in some cases there is limited information available from the underlying solutions. In these cases, the errors may contain empty fields, and/or information that is difficult to interpret. In cases where the error information needs improvement, please let us know: developer@dnb.no. "
+      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.\n\n**Note:** We strive to offer the best possible information about all errors. This depends on the information offered by the backend systems, and in some cases there is limited information available from the underlying solutions. In these cases, the errors may contain empty fields, and/or information that is difficult to interpret. In cases where the error information needs improvement, please let us know: developer@dnb.no. \n\nExample:\n```\n\"error\" : {\n  \"type\" : \"object\",\n  \"required\" : [ \"errorMessage\", \"errorNumber\", \"httpStatus\" ],\n  \"properties\" : {\n    \"httpStatus\" : {\n    \"type\" : \"string\",\n    \"example\" : \"400\",\n    \"description\" : \"Implicit, but still included.\",\n    \"pattern\" : \"^\\\\d{3}$\"\n  },\n  \"errorNumber\" : {\n    \"type\" : \"number\",\n    \"description\" : \"DNB's error number\",\n    \"example\" : 1234\n  },\n  \"errorMessage\" : {\n    \"type\" : \"string\",\n    \"example\" : \"Computer says no\",\n    \"description\" : \"Explanation\"\n  },\n  \"errorDocumentation\" : {\n    \"type\" : \"string\",\n    \"example\" : \"https://docs.example.com/help-for-this-endpoint/\",\n    \"description\" : \"URI to developer documentation for this error\"\n  },\n  \"errorDetails\" : {\n    \"type\" : \"array\",\n    \"description\" : \"Details about the cause of this error. Zero or more.\",\n    \"items\" : {\n      \"errorDetails\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"errorNumber\" ],\n      \"properties\" : {\n        \"errorNumber\" : {\n          \"type\" : \"string\",\n          \"example\" : \"1234\",\n          \"description\" : \"DNB's internal error number.\"\n        },\n        \"errorField\" : {\n          \"type\" : \"string\",\n          \"example\" : \"firstName\",\n          \"description\" : \"Name of field that caused the error.\"\n        },\n        \"errorDescription\" : {\n        \"type\" : \"string\",\n        \"example\" : \"First name cannot have non-Latin characters.\"\n        }\n      },\n      \"description\" : \"Detailed explanation of the error. Used by ```error```.\"\n      }\n    }\n  }\n}```"
     },
     "errorDetails" : {
       "type" : "object",
-      "required" : [ "errorNumber" ],
       "properties" : {
-        "errorNumber" : {
-          "type" : "string",
-          "example" : "1234",
-          "description" : "DNB's internal error number."
-        },
         "errorField" : {
           "type" : "string",
-          "example" : "firstName",
-          "description" : "Name of field that caused the error."
+          "description" : "Name of field that caused the error.",
+          "example" : "firstName"
         },
         "errorDescription" : {
           "type" : "string",
@@ -2791,8 +2785,8 @@
         },
         "mcc" : {
           "type" : "string",
-          "example" : "3514: Hotels/Motels/Inns/Resorts",
-          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html"
+          "description" : "MCC: Number and \"combined description\". ISO 18245: https://www.iso.org/standard/33365.html",
+          "example" : "3514: Hotels/Motels/Inns/Resorts"
         },
         "name" : {
           "type" : "string"
@@ -2815,17 +2809,17 @@
       "properties" : {
         "currency" : {
           "type" : "string",
-          "example" : "NOK",
           "description" : "ISO 4217: alpha 3-letter upcase: https://www.iso.org/iso-4217-currency-codes.html",
+          "default" : "NOK",
           "minLength" : 3,
           "maxLength" : 3,
           "pattern" : "`^[A-Z]{3}$",
-          "default" : "NOK"
+          "example" : "NOK"
         },
         "creditLimit" : {
           "type" : "integer",
-          "example" : "100000.00",
-          "minimum" : 0
+          "minimum" : 0,
+          "example" : "100000.00"
         },
         "balance" : {
           "type" : "number",
@@ -2928,15 +2922,15 @@
         },
         "phoneNumber" : {
           "type" : "string",
-          "example" : "+4791504800",
           "description" : "Including \"+\" and international prefix. Whitespace is stripped.",
-          "pattern" : "^\\+?[1-9]\\d{1,14}$"
+          "pattern" : "^\\+?[1-9]\\d{1,14}$",
+          "example" : "+4791504800"
         },
         "email" : {
           "type" : "string",
-          "example" : "example@example.com",
           "description" : "RFC 5322",
-          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'"
+          "pattern" : "'\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@ (?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z'",
+          "example" : "example@example.com"
         },
         "address" : {
           "$ref" : "#/definitions/address"
@@ -2985,28 +2979,28 @@
       "properties" : {
         "id" : {
           "type" : "string",
-          "example" : "12345",
-          "description" : "Internal id"
+          "description" : "Internal id",
+          "example" : "12345"
         },
         "friendlyName" : {
           "type" : "string",
-          "example" : "DNB headquarters",
-          "description" : "Descriptive name"
+          "description" : "Descriptive name",
+          "example" : "DNB headquarters"
         },
         "latitude" : {
           "type" : "string",
-          "example" : "59.9075823",
-          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$"
+          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
+          "example" : "59.9075823"
         },
         "longditude" : {
           "type" : "string",
-          "example" : "10.760133399999972",
-          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$"
+          "pattern" : "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
+          "example" : "10.760133399999972"
         },
         "description" : {
           "type" : "string",
-          "example" : "Lobby",
-          "description" : "May be used for large areas like airports, train stations, stadiums, etc."
+          "description" : "May be used for large areas like airports, train stations, stadiums, etc.",
+          "example" : "Lobby"
         }
       },
       "description" : "Data object for physical location based on GPS coordinates. May be used for something that does not have a specific address, or somethjing that needs a more specific than an address provides, such as an ```ATM``` at a train station. A ```location``` may be used in addition to an ```address```.\n"
@@ -3020,22 +3014,22 @@
         "properties" : {
           "day" : {
             "type" : "integer",
-            "example" : 1,
             "description" : "1: Monday, 2: Tuesday, etc",
             "minimum" : 1,
-            "maximum" : 7
+            "maximum" : 7,
+            "example" : 1
           },
           "openingTime" : {
             "type" : "string",
-            "example" : "09:00",
             "description" : "HH:MM",
-            "pattern" : "^\\d{2}:\\d{2}$"
+            "pattern" : "^\\d{2}:\\d{2}$",
+            "example" : "09:00"
           },
           "closingTime" : {
             "type" : "string",
-            "example" : "16:00",
             "description" : "HH:MM",
-            "pattern" : "^\\d{2}:\\d{2}$"
+            "pattern" : "^\\d{2}:\\d{2}$",
+            "example" : "16:00"
           }
         }
       }
