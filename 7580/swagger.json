@@ -267,7 +267,7 @@
       "get" : {
         "tags" : [ "Accounts" ],
         "summary" : "Get transactions for account",
-        "description" : "**NOTE:** Duplicates endpoint in ```Transactions```. For evaluation purposes. May be restricted to only retrieve one month at a time.\n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text",
+        "description" : "**NOTE:** Duplicates endpoint in ```Transactions```. For evaluation purposes. May be restricted to only retrieve one month at a time.\n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* sortOrder: ```ASC```, ```DESC```\n* dateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* dateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* amountMinimum: Include amount from (and including) this amount.\n* amountMaximum: Include amount from (and including) this amount.\n* mcc: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* text: Filter by free text",
         "operationId" : "getAccountTransactions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -315,7 +315,7 @@
           "description" : "Filter for MCC. Use code only.",
           "x-example" : "3514"
         }, {
-          "name" : "freeText",
+          "name" : "text",
           "in" : "query",
           "required" : false,
           "type" : "string",
@@ -962,7 +962,7 @@
       "get" : {
         "tags" : [ "Transactions" ],
         "summary" : "Get transactions for account",
-        "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* SortOrder: \"ASC\", \"DESC\"\n* DateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* DateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* AmountMinimum: Include amount from (and including) this amount.\n* AmountMaximum: Include amount from (and including) this amount.\n* MCC: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* FreeText: Filter by free text\n* status: ```BOOKED``` or ```RESERVED```",
+        "description" : "**Note:** Duplicates ```Transactions```endpoint in ```Accounts```. For evaluation purposes. \n\nOptional query parameters below. Note: Sorting and filtering affects backend, and may change.\n\n* sortOrder: ```ASC```, ```DESC```\n* dateFrom: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* dateTo: \"YYYY-MM-DD\": ISO 8601: www.iso.org/iso/home/standards/iso8601.htm\n* amountMinimum: Include amount from (and including) this amount.\n* amountMaximum: Include amount from (and including) this amount.\n* mcc: Include only this MCC code: ISO 18245: https://www.iso.org/standard/33365.html \n* text: Filter by free text\n* status: ```BOOKED``` or ```RESERVED```",
         "operationId" : "gertTransactionsForAccount",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -1023,7 +1023,7 @@
           "pattern" : "^\\d{4}$",
           "x-example" : "3514"
         }, {
-          "name" : "freeText",
+          "name" : "text",
           "in" : "query",
           "required" : false,
           "type" : "string",
