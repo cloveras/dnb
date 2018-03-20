@@ -2718,26 +2718,19 @@
           "type" : "array",
           "description" : "Details about the cause of this error. Zero or more.",
           "items" : {
-            "$ref" : "#/definitions/errorDetails"
+            "type" : "object",
+            "properties" : {
+              "errorDetails" : {
+                "type" : "string"
+              },
+              "errorDetailsDescription" : {
+                "type" : "string"
+              }
+            }
           }
         }
       },
-      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.\n\n**Note:** We strive to offer the best possible information about all errors. This depends on the information offered by the backend systems, and in some cases there is limited information available from the underlying solutions. In these cases, the errors may contain empty fields, and/or information that is difficult to interpret. In cases where the error information needs improvement, please let us know: developer@dnb.no. \n\nExample:\n```\n\"error\" : {\n  \"type\" : \"object\",\n  \"required\" : [ \"errorMessage\", \"errorNumber\", \"httpStatus\" ],\n  \"properties\" : {\n    \"httpStatus\" : {\n    \"type\" : \"string\",\n    \"example\" : \"400\",\n    \"description\" : \"Implicit, but still included.\",\n    \"pattern\" : \"^\\\\d{3}$\"\n  },\n  \"errorNumber\" : {\n    \"type\" : \"number\",\n    \"description\" : \"DNB's error number\",\n    \"example\" : 1234\n  },\n  \"errorMessage\" : {\n    \"type\" : \"string\",\n    \"example\" : \"Computer says no\",\n    \"description\" : \"Explanation\"\n  },\n  \"errorDocumentation\" : {\n    \"type\" : \"string\",\n    \"example\" : \"https://docs.example.com/help-for-this-endpoint/\",\n    \"description\" : \"URI to developer documentation for this error\"\n  },\n  \"errorDetails\" : {\n    \"type\" : \"array\",\n    \"description\" : \"Details about the cause of this error. Zero or more.\",\n    \"items\" : {\n      \"errorDetails\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"errorNumber\" ],\n      \"properties\" : {\n        \"errorNumber\" : {\n          \"type\" : \"string\",\n          \"example\" : \"1234\",\n          \"description\" : \"DNB's internal error number.\"\n        },\n        \"errorField\" : {\n          \"type\" : \"string\",\n          \"example\" : \"firstName\",\n          \"description\" : \"Name of field that caused the error.\"\n        },\n        \"errorDescription\" : {\n        \"type\" : \"string\",\n        \"example\" : \"First name cannot have non-Latin characters.\"\n        }\n      },\n      \"description\" : \"Detailed explanation of the error. Used by ```error```.\"\n      }\n    }\n  }\n}```"
-    },
-    "errorDetails" : {
-      "type" : "object",
-      "properties" : {
-        "errorField" : {
-          "type" : "string",
-          "description" : "Name of field that caused the error.",
-          "example" : "firstName"
-        },
-        "errorDescription" : {
-          "type" : "string",
-          "example" : "First name cannot have non-Latin characters."
-        }
-      },
-      "description" : "Detailed explanation of the error. Used by ```error```."
+      "description" : "The HTTP status code (```httpStatus```) is the main classifier. A DNB-specific ```errorNumber```is also provided as a lookup reference. \n\nThe ```errorDocumentation``` is a URI to further information about the endpoint, with uesful infomration about correct usage.\n\nThe ```errorDetails```is specific information about the one or more errors that have occurred.\n\n**Note:** We strive to offer the best possible information about all errors. This depends on the information offered by the backend systems, and in some cases there is limited information available from the underlying solutions. In these cases, the errors may contain empty fields, and/or information that is difficult to interpret. In cases where the error information needs improvement, please let us know: developer@dnb.no. \n\nExample ```error``` (TODO: Work in progress: May need an update):\n```\n{\n  \"httpStatus\": \"400\",\n  \"errorNumber\": 12345,\n  \"errorMessage\": \"Invalid endpoint path parameters\",\n  \"errorDocumentation\": \"https://developer.dnb.no/something-useful-goes-here/\",\n  \"errorDetails\": [\n    {\n      \"errorNumber\": \"123450\",\n      \"errorField\": \"accountNumber\",\n      \"errorDescription\": \"accountNumber must be digits only\"\n    },\n    {\n      \"errorNumber\": \"123451\",\n      \"errorField\": \"dateFrom\",\n      \"errorDescription\": \"dateFrom must be in ISO8601 date format\"\n    }\n  ]\n}\n```"
     },
     "headerLinks" : {
       "type" : "object",
